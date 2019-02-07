@@ -1,11 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 // This is the code for your desktop app.
@@ -13,22 +6,22 @@ using System.Windows.Forms;
 
 namespace Question_3._06
 {
-    public partial class Form1 : Form
+    public partial class Question_6 : Form
     {
-        public Form1()
+        public Question_6()
         {
             InitializeComponent();
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            // Click on the link below to continue learning how to build a desktop app using WinForms!
-            System.Diagnostics.Process.Start("http://aka.ms/dotnet-get-started-desktop");
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Thanks!");
+            ulong x = Convert.ToUInt64(Microsoft.VisualBasic.Interaction.InputBox("Enter x!", "Factorial", "1"));
+            ulong res = 1;
+            for (ulong i = 1; i <= x; i++)
+            {
+                res *= i;
+            }
+            MessageBox.Show(String.Format("Result: {0:n0}", res), "Factorial", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

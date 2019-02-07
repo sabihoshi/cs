@@ -1,11 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 // This is the code for your desktop app.
@@ -40,6 +33,7 @@ namespace App_3._01
                 case DialogResult.Yes:
                     this.Close();
                     break;
+
                 case DialogResult.No:
                     break;
             }
@@ -47,12 +41,10 @@ namespace App_3._01
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

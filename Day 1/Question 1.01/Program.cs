@@ -2,9 +2,9 @@ using System;
 
 namespace Question_1
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Enter miles > ");
             double miles = Convert.ToDouble(Console.ReadLine());

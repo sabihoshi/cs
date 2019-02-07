@@ -2,9 +2,9 @@ using System;
 
 namespace Question_10
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Enter the radius");
             int radius = Convert.ToInt32(Console.ReadLine());

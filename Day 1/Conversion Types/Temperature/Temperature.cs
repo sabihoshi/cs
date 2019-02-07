@@ -1,14 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Conversion_Types
 {
-    class Temperature
+    internal class Temperature
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             int celsius, faren;
             Console.WriteLine("Etner the Temperature in Celsius(C) > ");

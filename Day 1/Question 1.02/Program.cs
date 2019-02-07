@@ -2,9 +2,9 @@ using System;
 
 namespace Question_2
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Enter your value > ");
             double centimeters = Convert.ToDouble(Console.ReadLine());

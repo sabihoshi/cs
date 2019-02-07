@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Conversion_Types
 {
-    class Average
+    internal class Average
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             int n1, n2, n3, n4, n5, avg, sum;
             List<int> numbers = new List<int>();

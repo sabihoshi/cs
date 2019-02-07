@@ -1,14 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Switch
 {
-    class Calculate
+    internal class Calculate
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             int Num1, Num2, result;
             char option;
@@ -29,14 +25,17 @@ namespace Switch
                     result = Num1 + Num2;
                     Console.WriteLine("The result of Addition is: ${result}");
                     break;
+
                 case '2':
                     result = Num1 - Num2;
                     Console.WriteLine("The result of Subtraction is: {0}", result);
                     break;
+
                 case '3':
                     result = Num1 * Num2;
                     Console.WriteLine("The result of Multiplication is: {result}");
                     break;
+
                 case '4':
                     result = Num1 / Num2;
                     Console.WriteLine("The result of Division is: {result}");

@@ -28,6 +28,7 @@ namespace Question_3._04
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.helloWorldLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -62,9 +63,12 @@ namespace Question_3._04
             this.ClientSize = new System.Drawing.Size(173, 84);
             this.Controls.Add(this.helloWorldLabel);
             this.Controls.Add(this.button1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Question 4";
             this.ResumeLayout(false);
             this.PerformLayout();
 

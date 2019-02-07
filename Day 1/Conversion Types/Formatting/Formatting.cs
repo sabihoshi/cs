@@ -2,9 +2,9 @@ using System;
 
 namespace Conversion_Types
 {
-    class Formatting
+    internal class Formatting
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             string value1 = "Dot";
             string value2 = "Net";

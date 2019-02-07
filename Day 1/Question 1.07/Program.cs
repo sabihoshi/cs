@@ -2,9 +2,9 @@ using System;
 
 namespace Question_7
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Enter a number");
             int x = Convert.ToInt32(Console.ReadLine());

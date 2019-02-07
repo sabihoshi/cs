@@ -2,9 +2,9 @@ using System;
 
 namespace Question_3
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Enter your weight in pounds");
             double pounds = Convert.ToDouble(Console.ReadLine());

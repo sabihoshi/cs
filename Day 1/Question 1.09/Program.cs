@@ -2,9 +2,9 @@ using System;
 
 namespace Question_9
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Enter in pints > ");
             double pints = Convert.ToDouble(Console.ReadLine());

@@ -2,9 +2,9 @@ using System;
 
 namespace Question_5
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Enter how many seconds");
             int seconds = Convert.ToInt32(Console.ReadLine());
