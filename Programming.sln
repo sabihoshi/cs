@@ -79,7 +79,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Question 3.05", "Day 3\Acti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Question 3.06", "Day 3\Activity 3\Question 3.06\Question 3.06.csproj", "{BB4B2FD0-DD95-47D0-BA1C-98D6C408B359}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Question 3.07", "..\..\..\Documents\CIIT\Programming\2nd Quarter\Activity 3\Question 3.07\Question 3.07.csproj", "{A7CED2D2-5F75-4C22-8E8D-34B387F82EA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Question 3.07", "Day 3\Activity 3\Question 3.07\Question 3.07.csproj", "{A7CED2D2-5F75-4C22-8E8D-34B387F82EA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
