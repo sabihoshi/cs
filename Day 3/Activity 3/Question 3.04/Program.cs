@@ -13,7 +13,7 @@ namespace Question_3._04
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Prime());
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace Question_3._02
 {
-    public partial class Form1 : Form
+    public partial class Multiplication : Form
     {
-        public Form1()
+        public Multiplication()
         {
             InitializeComponent();
         }

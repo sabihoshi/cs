@@ -1,6 +1,6 @@
-namespace Question_3._04
+namespace Question_3._03
 {
-    partial class Form1
+    partial class Division
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,17 @@ namespace Question_3._04
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Division));
             this.button1 = new System.Windows.Forms.Button();
             this.helloWorldLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(42, 37);
+            this.button1.Location = new System.Drawing.Point(40, 46);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(97, 28);
+            this.button1.Size = new System.Drawing.Size(63, 28);
             this.button1.TabIndex = 2;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
@@ -48,27 +48,26 @@ namespace Question_3._04
             // 
             this.helloWorldLabel.AutoSize = true;
             this.helloWorldLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.helloWorldLabel.Location = new System.Drawing.Point(11, 9);
+            this.helloWorldLabel.Location = new System.Drawing.Point(26, 9);
             this.helloWorldLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.helloWorldLabel.Name = "helloWorldLabel";
-            this.helloWorldLabel.Size = new System.Drawing.Size(154, 26);
+            this.helloWorldLabel.Size = new System.Drawing.Size(89, 26);
             this.helloWorldLabel.TabIndex = 3;
-            this.helloWorldLabel.Text = "Prime Number";
-            this.helloWorldLabel.Click += new System.EventHandler(this.helloWorldLabel_Click);
+            this.helloWorldLabel.Text = "Division";
             // 
-            // Form1
+            // Division
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(173, 84);
+            this.ClientSize = new System.Drawing.Size(151, 85);
             this.Controls.Add(this.helloWorldLabel);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Question 4";
+            this.Name = "Division";
+            this.Text = "Question 3";
             this.ResumeLayout(false);
             this.PerformLayout();
 

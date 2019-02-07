@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace Question_3._05
 {
-    public partial class Form1 : Form
+    public partial class Fibonacci : Form
     {
-        public Form1()
+        public Fibonacci()
         {
             InitializeComponent();
         }
