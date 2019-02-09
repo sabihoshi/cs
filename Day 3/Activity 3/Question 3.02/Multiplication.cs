@@ -18,7 +18,7 @@ namespace Question_3._02
             int x = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox("Input x", "Multiplication", "0"));
             int y = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox("Input y", "Multiplication", "0"));
             int type = 1;
-            if ((x < 0 && y > 0) || (y < 0 && x > 0))
+            if ((x < 0 && y >= 0) || (y < 0 && x >= 0))
                 type = 0;
             if (x < 0)
                 x = x * -1;
