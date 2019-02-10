@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Question_3._16
+namespace Question_3._17
 {
     public partial class Form1 : Form
     {
@@ -12,7 +12,7 @@ namespace Question_3._16
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var input = Microsoft.VisualBasic.Interaction.InputBox("Enter x", "Numbers to Words", "1").Split(' ');
+            var input = Microsoft.VisualBasic.Interaction.InputBox("Enter x", "Numbers to Words", "1").ToCharArray();
             MessageBox.Show(String.Format("{0}", String.Join("\n", input)), "Split String", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
