@@ -1,8 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Windows.Forms;
-
-// This is the code for your desktop app.
-// Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
 
 namespace Question_3._12
 {
@@ -13,44 +13,17 @@ namespace Question_3._12
             InitializeComponent();
         }
 
-        public string convert(int x)
-        {
-            switch (x)
-            {
-                case 1:
-                    return "one";
-
-                case 2:
-                    return "two";
-
-                case 3:
-                    return "three";
-
-                case 4:
-                    return "four";
-
-                case 5:
-                    return "five";
-
-                case 6:
-                    return "six";
-
-                case 7:
-                    return "seven";
-
-                case 8:
-                    return "eight";
-
-                case 9:
-                    return "nine";
-
-                default:
-                    return "";
-            }
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
+            string[] num = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+            string x = Microsoft.VisualBasic.Interaction.InputBox("Enter x", "Numbers to Words", "1");
+            var res = x.Select(digit => int.Parse(digit.ToString()));
+            var output = new List<string>();
+            foreach (int i in res)
+            {
+                output.Add(num[i]);
+            }
+            MessageBox.Show(String.Format("Result: {0}", String.Join(" ", output)), "Reverse", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

@@ -1,6 +1,6 @@
 using System;
 
-namespace Queztion_2
+namespace Question_02
 {
     internal class Program
     {
