@@ -105,7 +105,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Question 3.18", "Day 3\Acti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Question 3.19", "Day 3\Activity 3\Question 3.19\Question 3.19.csproj", "{2DA57CF9-EBF9-40FE-BC94-12D29FD58D6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Question 3.20", "Day 3\Activity 3\Question 20\Question 3.20.csproj", "{875D0930-D02D-4AF3-9DB1-ADD3895839A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Question 3.20", "Day 3\Activity 3\Question 3.20\Question 3.20.csproj", "{875D0930-D02D-4AF3-9DB1-ADD3895839A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
