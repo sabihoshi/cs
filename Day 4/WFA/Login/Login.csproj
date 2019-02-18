@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,24 +62,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entry.cs">
+    <Compile Include="Forms\Entry.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Entry.Designer.cs">
+    <Compile Include="Forms\Entry.Designer.cs">
       <DependentUpon>Entry.cs</DependentUpon>
     </Compile>
-    <Compile Include="Project.cs">
+    <Compile Include="Forms\Interface.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Project.Designer.cs">
+    <Compile Include="Forms\Interface.Designer.cs">
+      <DependentUpon>Interface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Project.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Project.Designer.cs">
       <DependentUpon>Project.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Config\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Entry.resx">
+    <Compile Include="Config\User.cs" />
+    <EmbeddedResource Include="Forms\Entry.resx">
       <DependentUpon>Entry.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Project.resx">
+    <EmbeddedResource Include="Forms\Interface.resx">
+      <DependentUpon>Interface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Project.resx">
       <DependentUpon>Project.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -86,7 +112,24 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Config\App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\userLogin.txt" />
+    <Content Include="Data\Users\Kao.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

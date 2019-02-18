@@ -69,7 +69,7 @@
             // 
             // UserPass
             // 
-            this.UserPass.Location = new System.Drawing.Point(25, 190);
+            this.UserPass.Location = new System.Drawing.Point(25, 174);
             this.UserPass.Name = "UserPass";
             this.UserPass.Size = new System.Drawing.Size(295, 20);
             this.UserPass.TabIndex = 1;
@@ -79,7 +79,7 @@
             // 
             this.UserPassLbl.AutoSize = true;
             this.UserPassLbl.BackColor = System.Drawing.Color.Transparent;
-            this.UserPassLbl.Location = new System.Drawing.Point(22, 174);
+            this.UserPassLbl.Location = new System.Drawing.Point(22, 158);
             this.UserPassLbl.Name = "UserPassLbl";
             this.UserPassLbl.Size = new System.Drawing.Size(53, 13);
             this.UserPassLbl.TabIndex = 2;
@@ -89,7 +89,7 @@
             // 
             this.LoginStart.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.LoginStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LoginStart.Location = new System.Drawing.Point(239, 225);
+            this.LoginStart.Location = new System.Drawing.Point(239, 200);
             this.LoginStart.Name = "LoginStart";
             this.LoginStart.Size = new System.Drawing.Size(81, 25);
             this.LoginStart.TabIndex = 3;
@@ -115,6 +115,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Entry";
             this.Text = "GitHubPub";
+            this.Load += new System.EventHandler(this.Entry_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GitHub)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
