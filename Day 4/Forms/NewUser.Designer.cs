@@ -31,6 +31,7 @@
             System.Windows.Forms.Label UserPassLbl;
             System.Windows.Forms.Label UserNameLbl;
             System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label label2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewUser));
             this.LoginStart = new System.Windows.Forms.Button();
             this.UserPass = new System.Windows.Forms.TextBox();
@@ -39,19 +40,8 @@
             UserPassLbl = new System.Windows.Forms.Label();
             UserNameLbl = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // LoginStart
-            // 
-            this.LoginStart.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.LoginStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LoginStart.Location = new System.Drawing.Point(234, 199);
-            this.LoginStart.Name = "LoginStart";
-            this.LoginStart.Size = new System.Drawing.Size(81, 25);
-            this.LoginStart.TabIndex = 4;
-            this.LoginStart.Text = "Create";
-            this.LoginStart.UseVisualStyleBackColor = false;
-            this.LoginStart.Click += new System.EventHandler(this.LoginStart_Click);
             // 
             // UserPassLbl
             // 
@@ -72,6 +62,28 @@
             UserNameLbl.Size = new System.Drawing.Size(55, 13);
             UserNameLbl.TabIndex = 6;
             UserNameLbl.Text = "Username";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = System.Drawing.Color.Transparent;
+            label1.Location = new System.Drawing.Point(17, 137);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(97, 13);
+            label1.TabIndex = 5;
+            label1.Text = "Re-enter Password";
+            // 
+            // LoginStart
+            // 
+            this.LoginStart.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.LoginStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LoginStart.Location = new System.Drawing.Point(234, 199);
+            this.LoginStart.Name = "LoginStart";
+            this.LoginStart.Size = new System.Drawing.Size(81, 25);
+            this.LoginStart.TabIndex = 4;
+            this.LoginStart.Text = "Create";
+            this.LoginStart.UseVisualStyleBackColor = false;
+            this.LoginStart.Click += new System.EventHandler(this.LoginStart_Click);
             // 
             // UserPass
             // 
@@ -99,23 +111,26 @@
             this.UserPassCheck.UseSystemPasswordChar = true;
             this.UserPassCheck.WordWrap = false;
             // 
-            // label1
+            // label2
             // 
-            label1.AutoSize = true;
-            label1.BackColor = System.Drawing.Color.Transparent;
-            label1.Location = new System.Drawing.Point(17, 137);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(97, 13);
-            label1.TabIndex = 5;
-            label1.Text = "Re-enter Password";
+            label2.AutoSize = true;
+            label2.BackColor = System.Drawing.Color.Transparent;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label2.Location = new System.Drawing.Point(15, 18);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(195, 29);
+            label2.TabIndex = 7;
+            label2.Text = "Account Creation";
             // 
             // NewUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(332, 252);
+            this.Controls.Add(label2);
             this.Controls.Add(this.LoginStart);
             this.Controls.Add(label1);
             this.Controls.Add(UserPassLbl);
@@ -126,7 +141,7 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewUser";
-            this.Text = "Create an Account";
+            this.Text = "GitHubPub";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.PictureBox GitHub;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Entry));
             System.Windows.Forms.Label UserNameLbl;
             System.Windows.Forms.Label UserPassLbl;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Entry));
             this.UserName = new System.Windows.Forms.TextBox();
             this.UserPass = new System.Windows.Forms.TextBox();
             this.LoginStart = new System.Windows.Forms.Button();
@@ -46,7 +46,7 @@
             // 
             GitHub.Anchor = System.Windows.Forms.AnchorStyles.None;
             GitHub.BackColor = System.Drawing.Color.Transparent;
-            GitHub.Image = ((System.Drawing.Image)(resources.GetObject("GitHub.Image")));
+            GitHub.Image = global::GitHubPseudo.Properties.Resources.logo;
             GitHub.Location = new System.Drawing.Point(25, 12);
             GitHub.Name = "GitHub";
             GitHub.Size = new System.Drawing.Size(298, 84);
@@ -120,7 +120,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::GitHubPseudo.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(347, 244);
             this.Controls.Add(this.CreateAccountButton);

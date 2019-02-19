@@ -32,13 +32,15 @@
             this.MainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeUsernameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subscriptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Avatar = new System.Windows.Forms.PictureBox();
             this.BioBox = new System.Windows.Forms.RichTextBox();
@@ -65,7 +67,9 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem});
+            this.openToolStripMenuItem,
+            this.editEntryToolStripMenuItem,
+            this.newEntryToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -73,15 +77,36 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.openToolStripMenuItem.Text = "Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
+            // editEntryToolStripMenuItem
+            // 
+            this.editEntryToolStripMenuItem.Name = "editEntryToolStripMenuItem";
+            this.editEntryToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.editEntryToolStripMenuItem.Text = "Edit entry";
+            // 
+            // newEntryToolStripMenuItem
+            // 
+            this.newEntryToolStripMenuItem.Name = "newEntryToolStripMenuItem";
+            this.newEntryToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.newEntryToolStripMenuItem.Text = "New entry";
+            // 
             // statusToolStripMenuItem
             // 
+            this.statusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeStatusToolStripMenuItem});
             this.statusToolStripMenuItem.Name = "statusToolStripMenuItem";
             this.statusToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.statusToolStripMenuItem.Text = "Status";
+            // 
+            // changeStatusToolStripMenuItem
+            // 
+            this.changeStatusToolStripMenuItem.Name = "changeStatusToolStripMenuItem";
+            this.changeStatusToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changeStatusToolStripMenuItem.Text = "Change Status";
+            this.changeStatusToolStripMenuItem.Click += new System.EventHandler(this.changeStatusToolStripMenuItem_Click);
             // 
             // accountToolStripMenuItem
             // 
@@ -98,13 +123,13 @@
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
             this.logoutToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // manageToolStripMenuItem
             // 
             this.manageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeUsernameToolStripMenuItem,
-            this.changePasswordToolStripMenuItem,
-            this.changeStatusToolStripMenuItem});
+            this.changePasswordToolStripMenuItem});
             this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
             this.manageToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.manageToolStripMenuItem.Text = "Manage";
@@ -122,13 +147,6 @@
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
-            // 
-            // changeStatusToolStripMenuItem
-            // 
-            this.changeStatusToolStripMenuItem.Name = "changeStatusToolStripMenuItem";
-            this.changeStatusToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.changeStatusToolStripMenuItem.Text = "Change Status";
-            this.changeStatusToolStripMenuItem.Click += new System.EventHandler(this.changeStatusToolStripMenuItem_Click);
             // 
             // subscriptionToolStripMenuItem
             // 
@@ -221,12 +239,14 @@
         private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.RichTextBox BioBox;
-        private System.Windows.Forms.ToolStripMenuItem changeStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem subscriptionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeUsernameToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog OpenFile;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.Label WelcomeText;
         private System.Windows.Forms.WebBrowser WebBrowser;
+        private System.Windows.Forms.ToolStripMenuItem editEntryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newEntryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeStatusToolStripMenuItem;
     }
 }

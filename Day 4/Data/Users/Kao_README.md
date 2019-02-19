@@ -1,4 +1,4 @@
-<body background = "C:\Users\Kao\source\repos\cs\Day 4\Login\Resources\background.png"><h1>Use Visual Studio Code for C++</h1>
+<body background = "C:\Users\Kao\source\repos\cs\Day 4\Resources\background.png"><h1>Use Visual Studio Code for C++</h1>
 <h2>1. Install MinGW</h2>
 <ol>
 <li>Download MinGW from <a href="https://sourceforge.net/projects/mingw/">https://sourceforge.net/projects/mingw/</a></li>

@@ -29,7 +29,7 @@ namespace Login
                 MessageBox.Show("Please login with the same user!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (UserPass.Text == userPass)
             {
-                this.Hide();
+                Hide();
                 var projectForm = new Subscription();
                 projectForm.ShowDialog();
             }
