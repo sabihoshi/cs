@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Interface));
             this.MainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,10 +41,9 @@
             this.changeStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subscriptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Avatar = new System.Windows.Forms.PictureBox();
-            this.StatusBox = new System.Windows.Forms.RichTextBox();
+            this.BioBox = new System.Windows.Forms.RichTextBox();
             this.WelcomeText = new System.Windows.Forms.Label();
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WebBrowser = new System.Windows.Forms.WebBrowser();
             this.MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Avatar)).BeginInit();
@@ -69,6 +69,13 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Text = "Open...";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // statusToolStripMenuItem
             // 
@@ -141,22 +148,22 @@
             this.Avatar.TabIndex = 1;
             this.Avatar.TabStop = false;
             // 
-            // StatusBox
+            // BioBox
             // 
-            this.StatusBox.BackColor = System.Drawing.SystemColors.Window;
-            this.StatusBox.Location = new System.Drawing.Point(12, 167);
-            this.StatusBox.Name = "StatusBox";
-            this.StatusBox.Size = new System.Drawing.Size(138, 47);
-            this.StatusBox.TabIndex = 2;
-            this.StatusBox.Text = "";
-            this.StatusBox.TextChanged += new System.EventHandler(this.StatusBox_TextChanged);
+            this.BioBox.BackColor = System.Drawing.SystemColors.Window;
+            this.BioBox.Location = new System.Drawing.Point(12, 167);
+            this.BioBox.Name = "BioBox";
+            this.BioBox.Size = new System.Drawing.Size(138, 47);
+            this.BioBox.TabIndex = 2;
+            this.BioBox.Text = "";
+            this.BioBox.TextChanged += new System.EventHandler(this.BioBox_TextChanged);
             // 
             // WelcomeText
             // 
             this.WelcomeText.AutoSize = true;
             this.WelcomeText.BackColor = System.Drawing.Color.Transparent;
             this.WelcomeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WelcomeText.Location = new System.Drawing.Point(156, 27);
+            this.WelcomeText.Location = new System.Drawing.Point(151, 27);
             this.WelcomeText.Name = "WelcomeText";
             this.WelcomeText.Size = new System.Drawing.Size(188, 29);
             this.WelcomeText.TabIndex = 3;
@@ -166,19 +173,15 @@
             // 
             this.OpenFile.FileName = "fileName";
             // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openToolStripMenuItem.Text = "Open...";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
             // WebBrowser
             // 
-            this.WebBrowser.Location = new System.Drawing.Point(156, 59);
+            this.WebBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.WebBrowser.Location = new System.Drawing.Point(157, 60);
             this.WebBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.WebBrowser.Name = "WebBrowser";
-            this.WebBrowser.Size = new System.Drawing.Size(632, 379);
+            this.WebBrowser.Size = new System.Drawing.Size(631, 378);
             this.WebBrowser.TabIndex = 4;
             // 
             // Interface
@@ -190,7 +193,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.WebBrowser);
             this.Controls.Add(this.WelcomeText);
-            this.Controls.Add(this.StatusBox);
+            this.Controls.Add(this.BioBox);
             this.Controls.Add(this.Avatar);
             this.Controls.Add(this.MainMenu);
             this.DoubleBuffered = true;
@@ -217,13 +220,13 @@
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
-        private System.Windows.Forms.RichTextBox StatusBox;
+        private System.Windows.Forms.RichTextBox BioBox;
         private System.Windows.Forms.ToolStripMenuItem changeStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem subscriptionToolStripMenuItem;
-        private System.Windows.Forms.Label WelcomeText;
         private System.Windows.Forms.ToolStripMenuItem changeUsernameToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog OpenFile;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.Label WelcomeText;
         private System.Windows.Forms.WebBrowser WebBrowser;
     }
 }

@@ -2,7 +2,6 @@
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 namespace Login
 {
@@ -32,10 +31,12 @@ namespace Login
             {
                 if (userStatus == "")
                     userStatus = "Enter status...";
-                StatusBox.Text = userStatus;
+                BioBox.Text = userStatus;
             }
             else
-                StatusBox.Text = "Enter status...";
+                BioBox.Text = "Enter status...";
+            if (User.userData.Recent != null)
+                WebBrowser.Url = User.userData.Recent;
             WelcomeText.Text = String.Format("Welcome back, {0}!", Entry.userName);
         }
 
@@ -47,9 +48,9 @@ namespace Login
             User.JsonUpdate(Entry.userFile, Entry.userLogin);
         }
 
-        private void StatusBox_TextChanged(object sender, EventArgs e)
+        private void BioBox_TextChanged(object sender, EventArgs e)
         {
-            User.userData.Status = StatusBox.Text;
+            User.userData.Status = BioBox.Text;
             User.JsonUpdate(User.userFile, User.userData);
         }
 
@@ -61,7 +62,7 @@ namespace Login
                 userStatus = "Enter a status...";
             newStatus = Microsoft.VisualBasic.Interaction.InputBox("Enter a new password", "Status Change", userStatus);
             User.userData.Status = newStatus;
-            StatusBox.Text = newStatus;
+            BioBox.Text = newStatus;
             User.JsonUpdate(User.userFile, User.userData);
             MessageBox.Show("Status successfully changed.", "Status Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -97,13 +98,29 @@ namespace Login
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string buffer = "";
+            string fileName = "";
+            string htmlName = "";
             if (OpenFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 System.IO.StreamReader sr = new
                    System.IO.StreamReader(OpenFile.FileName);
-                MessageBox.Show(sr.ReadToEnd());
+                fileName = OpenFile.SafeFileName;
+                buffer = sr.ReadToEnd();
                 sr.Close();
             }
+            fileName = String.Format(@"../../Data/Users/{0}_{1}", Entry.userName, fileName);
+            htmlName = @"file:///" + Path.GetFullPath(fileName);
+            using (StreamWriter file = File.CreateText(fileName))
+            {
+                file.Write(String.Format("<body background = \"{0}\">", Path.GetFullPath("..\\..\\Resources\\background.png")));
+                file.Write(Markdig.Markdown.ToHtml(buffer));
+                file.Write(@"</body>");
+                file.Close();
+            }
+            User.userData.Recent = htmlName;
+            User.JsonUpdate(User.userFile, User.userData);
+            WebBrowser.Url = new System.Uri(htmlName);
         }
     }
 }

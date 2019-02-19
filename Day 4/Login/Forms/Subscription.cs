@@ -23,7 +23,7 @@ namespace Login
             LengthList.SelectedItem = User.userData.Subscription.ToString();
         }
 
-        public void Update()
+        public void UpdateForm()
         {
             switch (ProjectList.SelectedItem)
             {
@@ -108,12 +108,12 @@ namespace Login
 
         private void ProjectList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Update();
+            UpdateForm();
         }
 
         private void LengthList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Update();
+            UpdateForm();
         }
 
         private void PurchaseButton_Click(object sender, EventArgs e)
