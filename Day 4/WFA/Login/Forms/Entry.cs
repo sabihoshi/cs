@@ -16,7 +16,7 @@ namespace Login
 
         public static string userName, userPass;
         public static Dictionary<string, List<string>> userLogin = new Dictionary<string, List<string>>();
-        public static string file = @"C:\Users\Kao\source\repos\cs\Day 4\WFA\Login\Data\userLogin.txt";
+        public static string file = @"..\..\Data\userLogin.txt";
 
         private void Entry_Load(object sender, EventArgs e)
         {

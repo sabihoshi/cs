@@ -34,6 +34,7 @@ namespace Login
                 StatusBox.Text = userStatus;
             else
                 StatusBox.Text = "Enter status...";
+            WelcomeText.Text = String.Format("Welcome back, {0}!", Entry.userName);
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
@@ -60,6 +61,17 @@ namespace Login
             {
                 MessageBox.Show("Password successfully changed.", "Password Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void statusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void manageSubscriptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var newForm = new Project();
+            newForm.Show();
         }
     }
 }

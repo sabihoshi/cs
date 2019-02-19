@@ -11,7 +11,7 @@ namespace Login
 
         public void CreateUser(string userName)
         {
-            string file = String.Format(@"C:\Users\Kao\source\repos\cs\Day 4\WFA\Login\Data\Users\{0}.txt", userName);
+            string file = String.Format(@"..\..\Data\Users\{0}.txt", userName);
             var buffer = File.ReadAllLines(file).ToList();
             foreach (var line in buffer.Select(temp => temp.Split(',')))
             {

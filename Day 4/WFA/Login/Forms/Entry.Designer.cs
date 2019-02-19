@@ -43,7 +43,7 @@
             this.GitHub.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.GitHub.BackColor = System.Drawing.Color.Transparent;
             this.GitHub.Image = ((System.Drawing.Image)(resources.GetObject("GitHub.Image")));
-            this.GitHub.Location = new System.Drawing.Point(22, 12);
+            this.GitHub.Location = new System.Drawing.Point(25, 12);
             this.GitHub.Name = "GitHub";
             this.GitHub.Size = new System.Drawing.Size(298, 84);
             this.GitHub.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -56,6 +56,7 @@
             this.UserName.Name = "UserName";
             this.UserName.Size = new System.Drawing.Size(295, 20);
             this.UserName.TabIndex = 1;
+            this.UserName.WordWrap = false;
             // 
             // UserNameLbl
             // 
@@ -72,8 +73,9 @@
             this.UserPass.Location = new System.Drawing.Point(25, 174);
             this.UserPass.Name = "UserPass";
             this.UserPass.Size = new System.Drawing.Size(295, 20);
-            this.UserPass.TabIndex = 1;
+            this.UserPass.TabIndex = 2;
             this.UserPass.UseSystemPasswordChar = true;
+            this.UserPass.WordWrap = false;
             // 
             // UserPassLbl
             // 
@@ -104,7 +106,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(347, 277);
+            this.ClientSize = new System.Drawing.Size(347, 244);
             this.Controls.Add(this.LoginStart);
             this.Controls.Add(this.UserPassLbl);
             this.Controls.Add(this.UserNameLbl);
