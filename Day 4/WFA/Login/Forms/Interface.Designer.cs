@@ -40,6 +40,8 @@
             this.subscriptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Avatar = new System.Windows.Forms.PictureBox();
             this.StatusBox = new System.Windows.Forms.RichTextBox();
+            this.WelcomeText = new System.Windows.Forms.Label();
+            this.WebBrowser = new System.Windows.Forms.WebBrowser();
             this.MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Avatar)).BeginInit();
             this.SuspendLayout();
@@ -135,11 +137,31 @@
             this.StatusBox.Text = "";
             this.StatusBox.TextChanged += new System.EventHandler(this.StatusBox_TextChanged);
             // 
+            // WelcomeText
+            // 
+            this.WelcomeText.AutoSize = true;
+            this.WelcomeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WelcomeText.Location = new System.Drawing.Point(156, 27);
+            this.WelcomeText.Name = "WelcomeText";
+            this.WelcomeText.Size = new System.Drawing.Size(188, 29);
+            this.WelcomeText.TabIndex = 3;
+            this.WelcomeText.Text = "Welcome back!";
+            // 
+            // WebBrowser
+            // 
+            this.WebBrowser.Location = new System.Drawing.Point(156, 59);
+            this.WebBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.WebBrowser.Name = "WebBrowser";
+            this.WebBrowser.Size = new System.Drawing.Size(632, 379);
+            this.WebBrowser.TabIndex = 4;
+            // 
             // Interface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.WebBrowser);
+            this.Controls.Add(this.WelcomeText);
             this.Controls.Add(this.StatusBox);
             this.Controls.Add(this.Avatar);
             this.Controls.Add(this.MainMenu);
@@ -168,5 +190,7 @@
         private System.Windows.Forms.RichTextBox StatusBox;
         private System.Windows.Forms.ToolStripMenuItem changeStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem subscriptionToolStripMenuItem;
+        private System.Windows.Forms.Label WelcomeText;
+        private System.Windows.Forms.WebBrowser WebBrowser;
     }
 }

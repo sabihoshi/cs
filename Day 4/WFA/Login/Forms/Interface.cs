@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace Login
 {
@@ -27,16 +28,17 @@ namespace Login
             WebClient wc = new WebClient();
             try
             {
-                byte[] bytes = wc.DownloadData(User.userData["avatar"]["value"]);
+                byte[] bytes = wc.DownloadData(User.userData.Avatar);
                 MemoryStream ms = new MemoryStream(bytes);
                 System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
                 Avatar.Image = img;
             }
             catch (Exception) { }
-
-            if (User.userData.TryGetValue("status", out var temp))
+            string userStatus = User.userData.Status;
+            if (userStatus != null)
             {
-                temp.TryGetValue("value", out var userStatus);
+                if (userStatus == "")
+                    userStatus = "Enter status...";
                 StatusBox.Text = userStatus;
             }
             else
@@ -46,40 +48,36 @@ namespace Login
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Entry.userLogin.TryGetValue(Entry.userName, out var temp);
-            string userPass = temp[0].ToString();
-            LineChanger(
-                    String.Format(
-                        "{0} {1}",
-                        Entry.userName,
-                        Microsoft.VisualBasic.Interaction.InputBox("Enter a new password", "Password Change", userPass)
-                    ),
-                    Entry.file,
-                    Convert.ToInt32(temp[1])
-            );
-            MessageBox.Show("Password successfully changed.", "Password Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Entry.userLogin.TryGetValue(Entry.userName, out var temp);
+            // string userPass = temp[0].ToString();
+            // LineChanger(
+            //         String.Format(
+            //             "{0} {1}",
+            //             Entry.userName,
+            //             Microsoft.VisualBasic.Interaction.InputBox("Enter a new / password", /"Password Change", userPass)
+            //         ),
+            //         Entry.file,
+            //         Convert.ToInt32(temp[1])
+            // );
+            // MessageBox.Show("Password successfully changed.", "Password Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void StatusBox_TextChanged(object sender, EventArgs e)
         {
-            User.userData["status"]["value"] = StatusBox.Text;
-            LineChanger(
-                "status," + StatusBox.Text,
-                User.file, Convert.ToInt32(User.userData["status"]["line"])
-            );
+            User.userData.Status = StatusBox.Text;
+            using (StreamWriter file = File.CreateText(User.fileName))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, User.userData);
+            }
         }
 
         private void changeStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string userStatus;
-            if (User.userData.TryGetValue("status", out var temp))
-                temp.TryGetValue("value", out userStatus);
-            else
+            string userStatus = User.userData.Status;
+            if (User.userData.Status == null)
                 userStatus = "Enter a status...";
-            LineChanger(
-                "status," + Microsoft.VisualBasic.Interaction.InputBox("Enter a new password", "Status Change", userStatus),
-                User.file, Convert.ToInt32(User.userData["status"]["line"])
-            );
+            User.userData.Status = Microsoft.VisualBasic.Interaction.InputBox("Enter a new password", "Status Change", User.userData.Status);
             MessageBox.Show("Status successfully changed.", "Status Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
