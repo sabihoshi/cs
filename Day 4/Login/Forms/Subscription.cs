@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace Login
 {
-    public partial class Project : Form
+    public partial class Subscription : Form
     {
-        public Project()
+        public Subscription()
         {
             InitializeComponent();
         }
@@ -13,6 +13,15 @@ namespace Login
         public string[] output = new string[5];
         public int cost = 0;
         public double total = 0;
+
+        private User User = new User();
+
+        private void Subscription_Load(object sender, EventArgs e)
+        {
+            User.CreateUser(Entry.userName);
+            ProjectList.SelectedItem = User.userData.Plan.ToString();
+            LengthList.SelectedItem = User.userData.Subscription.ToString();
+        }
 
         public void Update()
         {
@@ -48,6 +57,7 @@ namespace Login
 
                 default:
                     LengthList.Enabled = false;
+                    PurchaseButton.Enabled = false;
                     output[0] = "Selected Plan: None";
                     cost = 0;
                     output[1] = String.Format("Cost: ${0:n0}/ month", cost);
@@ -57,6 +67,7 @@ namespace Login
             switch (LengthList.SelectedItem)
             {
                 case "1 month":
+                    PurchaseButton.Enabled = true;
                     total = cost;
                     disCount = 0;
                     disCountValue = cost * disCount;
@@ -64,6 +75,7 @@ namespace Login
                     break;
 
                 case "3 months":
+                    PurchaseButton.Enabled = true;
                     disCount = 0.05;
                     disCountValue = cost * disCount;
                     total = (cost - disCountValue) * 3;
@@ -71,6 +83,7 @@ namespace Login
                     break;
 
                 case "6 months":
+                    PurchaseButton.Enabled = true;
                     disCount = 0.15;
                     disCountValue = cost * disCount;
                     total = (cost - disCountValue) * 6;
@@ -78,6 +91,7 @@ namespace Login
                     break;
 
                 case "1 year":
+                    PurchaseButton.Enabled = true;
                     disCount = 0.25;
                     disCountValue = cost * disCount;
                     total = (cost - disCountValue) * 12;
@@ -85,10 +99,29 @@ namespace Login
                     break;
 
                 default:
+                    PurchaseButton.Enabled = false;
                     output[2] = "";
                     break;
             }
-            richTextBox.Text = String.Join("\n", output);
+            SubTextBox.Text = String.Join("\n", output);
+        }
+
+        private void ProjectList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Update();
+        }
+
+        private void LengthList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Update();
+        }
+
+        private void PurchaseButton_Click(object sender, EventArgs e)
+        {
+            User.userData.Plan = ProjectList.Text;
+            User.userData.Subscritption = LengthList.Text;
+            User.JsonUpdate
+                (User.userFile, User.userData);
         }
     }
 }

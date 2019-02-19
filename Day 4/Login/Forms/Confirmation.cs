@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace Login
 {
-    public partial class Entry : Form
+    public partial class Confirmation : Form
     {
-        public Entry()
+        public Confirmation()
         {
             InitializeComponent();
         }
@@ -16,29 +16,21 @@ namespace Login
         public static string userFile = @"..\..\Data\userLogin.json";
         public static dynamic userLogin;
 
-        private void CreateAccountButton_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            var projectForm = new NewUser();
-            projectForm.ShowDialog();
-        }
-
-        private void Entry_Load(object sender, EventArgs e)
+        private void LoginStart_Click(object sender, EventArgs e)
         {
             using (StreamReader r = new StreamReader(userFile))
             {
                 string json = r.ReadToEnd();
                 userLogin = JsonConvert.DeserializeObject(json);
             }
-        }
-
-        private void LoginStart_Click(object sender, EventArgs e)
-        {
             userName = UserName.Text;
             userPass = userLogin[userName];
-            if (UserPass.Text == userPass)
+            if (userName != Entry.userName)
+                MessageBox.Show("Please login with the same user!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (UserPass.Text == userPass)
             {
                 this.Hide();
-                var projectForm = new Interface();
+                var projectForm = new Subscription();
                 projectForm.ShowDialog();
             }
             else

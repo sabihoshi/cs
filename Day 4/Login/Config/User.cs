@@ -6,6 +6,15 @@ namespace Login
 {
     public class User
     {
+        public void JsonUpdate(string fileName, dynamic new_object)
+        {
+            using (StreamWriter file = File.CreateText(fileName))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, new_object);
+            }
+        }
+
         public dynamic LoadJson(string file)
         {
             using (StreamReader r = new StreamReader(file))
@@ -20,13 +29,13 @@ namespace Login
             }
         }
 
-        public string fileName;
+        public string userFile;
         public dynamic userData;
 
         public void CreateUser(string userName)
         {
-            fileName = String.Format(@"..\..\Data\Users\{0}.json", userName);
-            userData = LoadJson(fileName);
+            userFile = String.Format(@"..\..\Data\Users\{0}.json", userName);
+            userData = LoadJson(userFile);
         }
     }
 }

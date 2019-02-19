@@ -35,12 +35,15 @@
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeUsernameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subscriptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Avatar = new System.Windows.Forms.PictureBox();
             this.StatusBox = new System.Windows.Forms.RichTextBox();
             this.WelcomeText = new System.Windows.Forms.Label();
+            this.OpenFile = new System.Windows.Forms.OpenFileDialog();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WebBrowser = new System.Windows.Forms.WebBrowser();
             this.MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Avatar)).BeginInit();
@@ -48,6 +51,7 @@
             // 
             // MainMenu
             // 
+            this.MainMenu.BackColor = System.Drawing.Color.Transparent;
             this.MainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.statusToolStripMenuItem,
@@ -60,6 +64,8 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -89,23 +95,31 @@
             // manageToolStripMenuItem
             // 
             this.manageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeUsernameToolStripMenuItem,
             this.changePasswordToolStripMenuItem,
             this.changeStatusToolStripMenuItem});
             this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
             this.manageToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.manageToolStripMenuItem.Text = "Manage";
             // 
+            // changeUsernameToolStripMenuItem
+            // 
+            this.changeUsernameToolStripMenuItem.Name = "changeUsernameToolStripMenuItem";
+            this.changeUsernameToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.changeUsernameToolStripMenuItem.Text = "Change Username";
+            this.changeUsernameToolStripMenuItem.Click += new System.EventHandler(this.changeUsernameToolStripMenuItem_Click);
+            // 
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // changeStatusToolStripMenuItem
             // 
             this.changeStatusToolStripMenuItem.Name = "changeStatusToolStripMenuItem";
-            this.changeStatusToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.changeStatusToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.changeStatusToolStripMenuItem.Text = "Change Status";
             this.changeStatusToolStripMenuItem.Click += new System.EventHandler(this.changeStatusToolStripMenuItem_Click);
             // 
@@ -140,12 +154,24 @@
             // WelcomeText
             // 
             this.WelcomeText.AutoSize = true;
+            this.WelcomeText.BackColor = System.Drawing.Color.Transparent;
             this.WelcomeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WelcomeText.Location = new System.Drawing.Point(156, 27);
             this.WelcomeText.Name = "WelcomeText";
             this.WelcomeText.Size = new System.Drawing.Size(188, 29);
             this.WelcomeText.TabIndex = 3;
             this.WelcomeText.Text = "Welcome back!";
+            // 
+            // OpenFile
+            // 
+            this.OpenFile.FileName = "fileName";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Text = "Open...";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // WebBrowser
             // 
@@ -159,12 +185,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::GitHubPseudo.Properties.Resources.background;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.WebBrowser);
             this.Controls.Add(this.WelcomeText);
             this.Controls.Add(this.StatusBox);
             this.Controls.Add(this.Avatar);
             this.Controls.Add(this.MainMenu);
+            this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MainMenu;
             this.Name = "Interface";
             this.Text = "GitHubPub";
@@ -191,6 +221,9 @@
         private System.Windows.Forms.ToolStripMenuItem changeStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem subscriptionToolStripMenuItem;
         private System.Windows.Forms.Label WelcomeText;
+        private System.Windows.Forms.ToolStripMenuItem changeUsernameToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog OpenFile;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.WebBrowser WebBrowser;
     }
 }

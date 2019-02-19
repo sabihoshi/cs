@@ -54,7 +54,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -69,6 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Confirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Confirmation.Designer.cs">
+      <DependentUpon>Confirmation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Entry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,23 +87,35 @@
     <Compile Include="Forms\Interface.Designer.cs">
       <DependentUpon>Interface.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Project.cs">
+    <Compile Include="Forms\NewUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Project.Designer.cs">
-      <DependentUpon>Project.cs</DependentUpon>
+    <Compile Include="Forms\NewUser.Designer.cs">
+      <DependentUpon>NewUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Subscription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Subscription.Designer.cs">
+      <DependentUpon>Subscription.cs</DependentUpon>
     </Compile>
     <Compile Include="Config\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Config\User.cs" />
+    <EmbeddedResource Include="Forms\Confirmation.resx">
+      <DependentUpon>Confirmation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Entry.resx">
       <DependentUpon>Entry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Interface.resx">
       <DependentUpon>Interface.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Project.resx">
-      <DependentUpon>Project.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\NewUser.resx">
+      <DependentUpon>NewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Subscription.resx">
+      <DependentUpon>Subscription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -111,6 +129,7 @@
     </Compile>
     <None Include="Data\Users\Kao.json" />
     <None Include="Data\userLogin.json" />
+    <None Include="Data\Users\Test.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -126,7 +145,11 @@
     <None Include="Config\App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\userLogin.txt" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\icon.ico" />
+    <None Include="Resources\background.png" />
+    <None Include="Resources\avatar.png" />
+    <None Include="Data\userLogin.txt" />
     <Content Include="Data\Users\Kao.txt" />
   </ItemGroup>
   <ItemGroup />
