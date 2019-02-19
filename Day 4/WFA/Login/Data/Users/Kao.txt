@@ -1,4 +1,4 @@
-﻿avatar,https://github.com/loliprotector.png
-status,Bored...
+avatar,https://github.com/loliprotector.png
+status,
 subscription,12
 subRemaining,8

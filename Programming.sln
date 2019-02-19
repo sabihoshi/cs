@@ -111,7 +111,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Day 4", "Day 4", "{1C96842B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WFA", "WFA", "{745A70F4-CAEC-4940-8923-B64ACF736BF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login", "Day 4\WFA\Login\Login.csproj", "{931DF78D-0A16-4CB4-9790-0F38075B2619}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubPseudo", "Day 4\WFA\Login\GitHubPseudo.csproj", "{931DF78D-0A16-4CB4-9790-0F38075B2619}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
