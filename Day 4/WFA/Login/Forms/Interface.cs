@@ -12,12 +12,11 @@ namespace Login
             InitializeComponent();
         }
 
-        private static bool LineChanger(string newText, string fileName, int line_to_edit)
+        private static void LineChanger(string newText, string fileName, int line_to_edit)
         {
             string[] arrLine = File.ReadAllLines(fileName);
             arrLine[line_to_edit] = newText;
             File.WriteAllLines(fileName, arrLine);
-            return true;
         }
 
         private User User = new User();
@@ -26,12 +25,20 @@ namespace Login
         {
             User.CreateUser(Entry.userName);
             WebClient wc = new WebClient();
-            byte[] bytes = wc.DownloadData(User.userData["avatar"]);
-            MemoryStream ms = new MemoryStream(bytes);
-            System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
-            Avatar.Image = img;
-            if (User.userData.TryGetValue("status", out string userStatus))
+            try
+            {
+                byte[] bytes = wc.DownloadData(User.userData["avatar"]["value"]);
+                MemoryStream ms = new MemoryStream(bytes);
+                System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+                Avatar.Image = img;
+            }
+            catch (Exception) { }
+
+            if (User.userData.TryGetValue("status", out var temp))
+            {
+                temp.TryGetValue("value", out var userStatus);
                 StatusBox.Text = userStatus;
+            }
             else
                 StatusBox.Text = "Enter status...";
         }
@@ -40,26 +47,46 @@ namespace Login
         {
             Entry.userLogin.TryGetValue(Entry.userName, out var temp);
             string userPass = temp[0].ToString();
-            string newPass = Microsoft.VisualBasic.Interaction.InputBox("Enter a new password", "Password Change", userPass);
-            if (LineChanger(String.Format("{0} {1}", Entry.userName, newPass), Entry.file, Convert.ToInt32(temp[1])))
-            {
-                MessageBox.Show("Password successfully changed.", "Password Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            LineChanger(
+                    String.Format(
+                        "{0} {1}",
+                        Entry.userName,
+                        Microsoft.VisualBasic.Interaction.InputBox("Enter a new password", "Password Change", userPass)
+                    ),
+                    Entry.file,
+                    Convert.ToInt32(temp[1])
+            );
+            MessageBox.Show("Password successfully changed.", "Password Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void StatusBox_TextChanged(object sender, EventArgs e)
         {
+            User.userData["status"]["value"] = StatusBox.Text;
+            LineChanger(
+                "status," + StatusBox.Text,
+                User.file, Convert.ToInt32(User.userData["status"]["line"])
+            );
         }
 
         private void changeStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Entry.userLogin.TryGetValue(User.userData["status"], out var temp);
-            string userStatus = temp[0].ToString();
-            string newStatus = Microsoft.VisualBasic.Interaction.InputBox("Enter a new password", "Status Change", userStatus);
-            if (LineChanger(String.Format("{0} {1}", Entry.userName, newStatus), Entry.file, Convert.ToInt32(temp[1])))
-            {
-                MessageBox.Show("Password successfully changed.", "Password Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            string userStatus;
+            if (User.userData.TryGetValue("status", out var temp))
+                temp.TryGetValue("value", out userStatus);
+            else
+                userStatus = "Enter a status...";
+            LineChanger(
+                "status," + Microsoft.VisualBasic.Interaction.InputBox("Enter a new password", "Status Change", userStatus),
+                User.file, Convert.ToInt32(User.userData["status"]["line"])
+            );
+            MessageBox.Show("Status successfully changed.", "Status Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void subscriptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var projectForm = new Entry();
+            projectForm.ShowDialog();
         }
     }
 }

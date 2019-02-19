@@ -36,9 +36,10 @@
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subscriptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Avatar = new System.Windows.Forms.PictureBox();
             this.StatusBox = new System.Windows.Forms.RichTextBox();
-            this.changeStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Avatar)).BeginInit();
             this.SuspendLayout();
@@ -71,7 +72,8 @@
             // 
             this.accountToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.logoutToolStripMenuItem,
-            this.manageToolStripMenuItem});
+            this.manageToolStripMenuItem,
+            this.subscriptionToolStripMenuItem});
             this.accountToolStripMenuItem.Name = "accountToolStripMenuItem";
             this.accountToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.accountToolStripMenuItem.Text = "Account";
@@ -79,7 +81,7 @@
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.logoutToolStripMenuItem.Text = "Logout";
             // 
             // manageToolStripMenuItem
@@ -88,15 +90,29 @@
             this.changePasswordToolStripMenuItem,
             this.changeStatusToolStripMenuItem});
             this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
-            this.manageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manageToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.manageToolStripMenuItem.Text = "Manage";
             // 
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
+            // 
+            // changeStatusToolStripMenuItem
+            // 
+            this.changeStatusToolStripMenuItem.Name = "changeStatusToolStripMenuItem";
+            this.changeStatusToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.changeStatusToolStripMenuItem.Text = "Change Status";
+            this.changeStatusToolStripMenuItem.Click += new System.EventHandler(this.changeStatusToolStripMenuItem_Click);
+            // 
+            // subscriptionToolStripMenuItem
+            // 
+            this.subscriptionToolStripMenuItem.Name = "subscriptionToolStripMenuItem";
+            this.subscriptionToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.subscriptionToolStripMenuItem.Text = "Subscription";
+            this.subscriptionToolStripMenuItem.Click += new System.EventHandler(this.subscriptionToolStripMenuItem_Click);
             // 
             // Avatar
             // 
@@ -119,13 +135,6 @@
             this.StatusBox.Text = "";
             this.StatusBox.TextChanged += new System.EventHandler(this.StatusBox_TextChanged);
             // 
-            // changeStatusToolStripMenuItem
-            // 
-            this.changeStatusToolStripMenuItem.Name = "changeStatusToolStripMenuItem";
-            this.changeStatusToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.changeStatusToolStripMenuItem.Text = "Change Status";
-            this.changeStatusToolStripMenuItem.Click += new System.EventHandler(this.changeStatusToolStripMenuItem_Click);
-            // 
             // Interface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -136,7 +145,7 @@
             this.Controls.Add(this.MainMenu);
             this.MainMenuStrip = this.MainMenu;
             this.Name = "Interface";
-            this.Text = "Form1";
+            this.Text = "GitHubPub";
             this.Load += new System.EventHandler(this.Interface_Load);
             this.MainMenu.ResumeLayout(false);
             this.MainMenu.PerformLayout();
@@ -158,5 +167,6 @@
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.RichTextBox StatusBox;
         private System.Windows.Forms.ToolStripMenuItem changeStatusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem subscriptionToolStripMenuItem;
     }
 }
