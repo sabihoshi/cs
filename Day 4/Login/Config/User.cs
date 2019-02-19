@@ -20,8 +20,6 @@ namespace Login
             }
         }
 
-        // public Dictionary<string, Dictionary<string, string>> userData = new Dictionary<string, Dictionary<string, string>>();
-
         public string fileName;
         public dynamic userData;
 
@@ -29,17 +27,6 @@ namespace Login
         {
             fileName = String.Format(@"..\..\Data\Users\{0}.json", userName);
             userData = LoadJson(fileName);
-
-            // var buffer = File.ReadAllLines(file).ToList();
-            // int count = 0;
-            // foreach (var line in buffer.Select(temp => temp.Split(',')))
-            // {
-            //     userData.Add(line[0], new Dictionary<string, string> {
-            //         { "value", line[1] },
-            //         { "line", count.ToString() }
-            //     });
-            //     count++;
-            // }
         }
     }
 }
