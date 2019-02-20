@@ -36,7 +36,7 @@ namespace Login
             else
                 BioBox.Text = "Enter status...";
             if (User.userData.Recent != null)
-                WebBrowser.Url = User.userData.Recent;
+                WebBrowser.Url = new System.Uri(Path.GetFullPath(User.userData.Recent.ToString()));
             WelcomeText.Text = String.Format("Welcome back, {0}!", Entry.userName);
         }
 
@@ -59,16 +59,16 @@ namespace Login
                 buffer = sr.ReadToEnd();
                 sr.Close();
             }
-            fileName = String.Format(@"../../Data/Users/{0}_{1}", Entry.userName, fileName);
+            fileName = String.Format(@"..\..\Data\Users\{0}_{1}", Entry.userName, fileName);
             htmlName = @"file:///" + Path.GetFullPath(fileName);
             using (StreamWriter file = File.CreateText(fileName))
             {
-                file.Write(String.Format("<body background = \"{0}\">", Path.GetFullPath("..\\..\\Resources\\background.png")));
+                file.Write(String.Format("<body background = \"{0}\">", Path.GetFullPath(@"..\..\Resources\background.png")));
                 file.Write(Markdig.Markdown.ToHtml(buffer));
                 file.Write(@"</body>");
                 file.Close();
             }
-            User.userData.Recent = htmlName;
+            User.userData.Recent = @"..\..\Data\Users" + fileName;
             User.JsonUpdate(User.userFile, User.userData);
             WebBrowser.Url = new System.Uri(htmlName);
         }

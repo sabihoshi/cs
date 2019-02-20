@@ -1,6 +1,0 @@
-avatar,https://github.com/loliprotector.png
-status,status
-subscription,12
-subRemaining,8
-plan,C#
-url,https://github.com/loliprotector
