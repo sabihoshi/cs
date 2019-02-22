@@ -131,6 +131,7 @@
     </Compile>
     <None Include="Data\userLogin.json" />
     <None Include="Data\Users\Kao.json" />
+    <None Include="Data\Users\test.md" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CIIT_Grading_System.Forms.User.datasource" />
     <None Include="Properties\Settings.settings">

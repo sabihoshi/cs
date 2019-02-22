@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
@@ -38,7 +39,11 @@ namespace CIIT_Grading_System.Forms
                 StudentList.Items.Add(output);
             }
             StudentList.SelectedIndex = 0;
+            StudentList.Enabled = true;
         }
+
+        public string itemName;
+        public int itemTotal, itemScore;
 
         private void StudentList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -46,12 +51,11 @@ namespace CIIT_Grading_System.Forms
             double percentageHandsOn = 0;
             double percentageLaboratory = 0;
 
-            var midTermsList = new List<List<string>>();
-            midTermsList.AddRange(new List<List<string>> {
-                new List<string>{ "Lectures","","","Laboratory","","","Hands-on","","" },
-                new List<string>{ " -: "," :- "," :-: "," -: "," :- "," :-: "," -: "," :- "," :-: " }
+            var midTermsLectures = new List<List<string>>();
+            midTermsLectures.AddRange(new List<List<string>> {
+                new List<string>{ "Lectures","","" },
+                new List<string>{ " -: "," :- ", ":-:" }
             });
-            Console.WriteLine(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem].ChildrenTokens[0]);
             foreach (var item in User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem])
             {
                 switch (item.Name)
@@ -61,26 +65,26 @@ namespace CIIT_Grading_System.Forms
                         double scoreExams = 0;
                         double totalAttendance = 0;
                         double scoreAttendance = 0;
-                        foreach (var item_ in User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name])
+                        foreach (var item_ in item.Value)
                         {
                             switch (item_.Name)
                             {
                                 case "Exams":
-                                    foreach (var item__ in User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name])
+                                    foreach (var item__ in item_.Value)
                                     {
-                                        midTermsList.Add(new List<string> { User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name][item__.Name], String.Format("{0}/{1}", User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name][item__.Name]["Score"], User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name][item__.Name]["Total"]) });
-                                        totalExams += Convert.ToDouble(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name][item__.Name]["Total"]);
-                                        scoreExams += Convert.ToDouble(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name][item__.Name]["Score"]);
+                                        midTermsLectures.Add(new List<string> { item__.Name, String.Format("{0}/{1}", item__.Value.Score, item__.Value.Total), "✔" });
+                                        totalExams += Convert.ToDouble(item__.Value.Total);
+                                        scoreExams += Convert.ToDouble(item__.Value.Score);
                                     }
                                     break;
 
                                 case "Attendance":
-                                    totalAttendance += Convert.ToDouble(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name]["Total"]);
-                                    scoreAttendance += Convert.ToDouble(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name]["Score"]);
+                                    totalAttendance += Convert.ToDouble(item_.Value.Total);
+                                    scoreAttendance += Convert.ToDouble(item_.Value.Score);
                                     break;
 
                                 case "Recitation":
-                                    scoreExams += Convert.ToDouble(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name]);
+                                    scoreExams += Convert.ToDouble(item_.Value);
                                     if (scoreExams > totalExams)
                                         scoreExams = totalExams;
                                     break;
@@ -98,27 +102,28 @@ namespace CIIT_Grading_System.Forms
                         double scoreCommunication = 0;
                         double totalTeamwork = 0;
                         double scoreTeamwork = 0;
-                        foreach (var item_ in User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name])
+                        double percentageCommunication = 0;
+                        double percentageTeamwork = 0;
+
+                        foreach (var item_ in item.Value)
                         {
                             switch (item_.Name)
                             {
                                 case "Communication":
-
-                                    foreach (var item__ in User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name])
-                                    {
-                                        totalCommunication += Convert.ToDouble(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name]["Total"]);
-                                        scoreCommunication += Convert.ToDouble(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name]["Score"]);
-                                    }
+                                    totalCommunication += Convert.ToDouble(item_.Value.Total);
+                                    scoreCommunication += Convert.ToDouble(item_.Value.Score);
+                                    percentageCommunication = (100 / totalCommunication) * scoreCommunication;
+                                    midTermsLectures[2].AddRange(new List<string> { item_.Name, String.Format("{0:0.00}", percentageCommunication), "✔" });
                                     break;
 
                                 case "Teamwork":
-                                    totalTeamwork += Convert.ToDouble(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name]["Total"]);
-                                    scoreTeamwork += Convert.ToDouble(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name]["Score"]);
+                                    totalTeamwork += Convert.ToDouble(item_.Value.Total);
+                                    scoreTeamwork += Convert.ToDouble(item_.Value.Score);
+                                    percentageTeamwork = (100 / totalTeamwork) * scoreTeamwork;
+                                    midTermsLectures[2].AddRange(new List<string> { item_.Name, String.Format("{0:0.00}", percentageTeamwork), "✔" });
                                     break;
                             }
                         }
-                        double percentageCommunication = (100 / totalCommunication) * scoreCommunication;
-                        double percentageTeamwork = (100 / totalTeamwork) * scoreTeamwork;
 
                         percentageHandsOn += (percentageCommunication * 50) / 100;
                         percentageHandsOn += (percentageTeamwork * 50) / 100;
@@ -127,10 +132,10 @@ namespace CIIT_Grading_System.Forms
                     case "Laboratory":
                         double totalLaboratory = 0;
                         double scoreLaboratory = 0;
-                        foreach (var item_ in User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name])
+                        foreach (var item_ in item.Value)
                         {
-                            totalLaboratory += Convert.ToDouble(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name]["Total"]);
-                            scoreLaboratory += Convert.ToDouble(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name]["Score"]);
+                            totalLaboratory += Convert.ToDouble(item_.Value.Total);
+                            scoreLaboratory += Convert.ToDouble(item_.Value.Score);
                         }
                         percentageLaboratory = (100 / totalLaboratory) * scoreLaboratory;
                         break;
