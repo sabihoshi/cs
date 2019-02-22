@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label1;
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.MainMenu = new System.Windows.Forms.MenuStrip();
@@ -50,11 +49,9 @@
             this.ClassroomList = new System.Windows.Forms.ListBox();
             this.WebBrowser = new System.Windows.Forms.WebBrowser();
             this.StudentList = new System.Windows.Forms.ListBox();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.MainMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -231,10 +228,6 @@
             this.StudentList.TabIndex = 9;
             this.StudentList.SelectedIndexChanged += new System.EventHandler(this.StudentList_SelectedIndexChanged);
             // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(CIIT_Grading_System.Forms.User);
-            // 
             // StudentPortal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -256,7 +249,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.MainMenu.ResumeLayout(false);
             this.MainMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,7 +274,6 @@
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addStudentToClassToolStripMenuItem;
         private System.Windows.Forms.ListBox ClassroomList;
-        private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.WebBrowser WebBrowser;
         private System.Windows.Forms.ListBox StudentList;
     }

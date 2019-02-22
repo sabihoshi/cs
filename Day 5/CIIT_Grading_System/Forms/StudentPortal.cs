@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -45,6 +46,12 @@ namespace CIIT_Grading_System.Forms
             double percentageHandsOn = 0;
             double percentageLaboratory = 0;
 
+            var midTermsList = new List<List<string>>();
+            midTermsList.AddRange(new List<List<string>> {
+                new List<string>{ "Lectures","","","Laboratory","","","Hands-on","","" },
+                new List<string>{ " -: "," :- "," :-: "," -: "," :- "," :-: "," -: "," :- "," :-: " }
+            });
+            Console.WriteLine(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem].ChildrenTokens[0]);
             foreach (var item in User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem])
             {
                 switch (item.Name)
@@ -59,9 +66,9 @@ namespace CIIT_Grading_System.Forms
                             switch (item_.Name)
                             {
                                 case "Exams":
-
                                     foreach (var item__ in User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name])
                                     {
+                                        midTermsList.Add(new List<string> { User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name][item__.Name], String.Format("{0}/{1}", User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name][item__.Name]["Score"], User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name][item__.Name]["Total"]) });
                                         totalExams += Convert.ToDouble(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name][item__.Name]["Total"]);
                                         scoreExams += Convert.ToDouble(User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem][item.Name][item_.Name][item__.Name]["Score"]);
                                     }
