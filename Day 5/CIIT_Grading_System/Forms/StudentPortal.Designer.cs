@@ -32,7 +32,6 @@
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label3;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentPortal));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.MainMenu = new System.Windows.Forms.MenuStrip();
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,15 +47,15 @@
             this.studentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addStudentToClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AddNewGrade = new System.Windows.Forms.Button();
-            this.WebBrowser = new System.Windows.Forms.WebBrowser();
             this.ClassroomList = new System.Windows.Forms.ComboBox();
             this.StudentList = new System.Windows.Forms.ComboBox();
+            this.WebBrowser = new System.Windows.Forms.WebBrowser();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.MainMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -64,23 +63,33 @@
             label1.AutoSize = true;
             label1.BackColor = System.Drawing.Color.Transparent;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(7, 43);
+            label1.Location = new System.Drawing.Point(7, 34);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(270, 29);
             label1.TabIndex = 0;
             label1.Text = "Welcome to the Portal!";
             // 
-            // pictureBox1
+            // label2
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Image = global::CIIT_Grading_System.Properties.Resources.CIIT_FULL_LOGO;
-            this.pictureBox1.Location = new System.Drawing.Point(419, 43);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(123, 70);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            label2.AutoSize = true;
+            label2.BackColor = System.Drawing.Color.Transparent;
+            label2.Location = new System.Drawing.Point(418, 20);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(55, 13);
+            label2.TabIndex = 10;
+            label2.Text = "Classroom";
+            // 
+            // label3
+            // 
+            label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            label3.AutoSize = true;
+            label3.BackColor = System.Drawing.Color.Transparent;
+            label3.Location = new System.Drawing.Point(418, 51);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(44, 13);
+            label3.TabIndex = 10;
+            label3.Text = "Student";
             // 
             // MainMenu
             // 
@@ -91,7 +100,7 @@
             this.studentsToolStripMenuItem});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Size = new System.Drawing.Size(668, 24);
+            this.MainMenu.Size = new System.Drawing.Size(604, 24);
             this.MainMenu.TabIndex = 2;
             this.MainMenu.Text = "menuStrip1";
             // 
@@ -197,28 +206,11 @@
             this.addStudentToClassToolStripMenuItem.Text = "Add student(s) to class";
             this.addStudentToClassToolStripMenuItem.Click += new System.EventHandler(this.addStudentToClassToolStripMenuItem_Click);
             // 
-            // AddNewGrade
-            // 
-            this.AddNewGrade.BackColor = System.Drawing.Color.Transparent;
-            this.AddNewGrade.Location = new System.Drawing.Point(418, 173);
-            this.AddNewGrade.Name = "AddNewGrade";
-            this.AddNewGrade.Size = new System.Drawing.Size(121, 25);
-            this.AddNewGrade.TabIndex = 5;
-            this.AddNewGrade.Text = "Add new...";
-            this.AddNewGrade.UseVisualStyleBackColor = false;
-            // 
-            // WebBrowser
-            // 
-            this.WebBrowser.Location = new System.Drawing.Point(12, 75);
-            this.WebBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.WebBrowser.Name = "WebBrowser";
-            this.WebBrowser.Size = new System.Drawing.Size(400, 268);
-            this.WebBrowser.TabIndex = 8;
-            // 
             // ClassroomList
             // 
+            this.ClassroomList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ClassroomList.FormattingEnabled = true;
-            this.ClassroomList.Location = new System.Drawing.Point(419, 119);
+            this.ClassroomList.Location = new System.Drawing.Point(291, 12);
             this.ClassroomList.Name = "ClassroomList";
             this.ClassroomList.Size = new System.Drawing.Size(121, 21);
             this.ClassroomList.TabIndex = 9;
@@ -226,66 +218,68 @@
             // 
             // StudentList
             // 
+            this.StudentList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.StudentList.Enabled = false;
             this.StudentList.FormattingEnabled = true;
-            this.StudentList.Location = new System.Drawing.Point(419, 146);
+            this.StudentList.Location = new System.Drawing.Point(291, 43);
             this.StudentList.Name = "StudentList";
             this.StudentList.Size = new System.Drawing.Size(121, 21);
             this.StudentList.TabIndex = 9;
             this.StudentList.SelectedIndexChanged += new System.EventHandler(this.StudentList_SelectedIndexChanged);
             // 
-            // label2
+            // WebBrowser
             // 
-            label2.AutoSize = true;
-            label2.BackColor = System.Drawing.Color.Transparent;
-            label2.Location = new System.Drawing.Point(546, 127);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(55, 13);
-            label2.TabIndex = 10;
-            label2.Text = "Classroom";
+            this.WebBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.WebBrowser.Location = new System.Drawing.Point(12, 75);
+            this.WebBrowser.Name = "WebBrowser";
+            this.WebBrowser.Size = new System.Drawing.Size(580, 264);
+            this.WebBrowser.TabIndex = 8;
             // 
-            // label3
+            // pictureBox1
             // 
-            label3.AutoSize = true;
-            label3.BackColor = System.Drawing.Color.Transparent;
-            label3.Location = new System.Drawing.Point(546, 154);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(44, 13);
-            label3.TabIndex = 10;
-            label3.Text = "Student";
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox1.Image = global::CIIT_Grading_System.Properties.Resources.CIIT_FULL_LOGO;
+            this.pictureBox1.Location = new System.Drawing.Point(479, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(113, 57);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // StudentPortal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::CIIT_Grading_System.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(668, 356);
+            this.ClientSize = new System.Drawing.Size(604, 351);
             this.Controls.Add(label3);
             this.Controls.Add(label2);
             this.Controls.Add(this.StudentList);
             this.Controls.Add(this.ClassroomList);
             this.Controls.Add(this.WebBrowser);
-            this.Controls.Add(this.AddNewGrade);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(label1);
             this.Controls.Add(this.MainMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MainMenu;
+            this.MaximizeBox = false;
             this.Name = "StudentPortal";
             this.Text = "Student Portal";
             this.Load += new System.EventHandler(this.StudentPortal_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.MainMenu.ResumeLayout(false);
             this.MainMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.MenuStrip MainMenu;
         private System.Windows.Forms.ToolStripMenuItem accountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem;
@@ -295,15 +289,15 @@
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeAvatarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeStatusToolStripMenuItem;
-        private System.Windows.Forms.Button AddNewGrade;
         private System.Windows.Forms.ToolStripMenuItem classesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addClassToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteClassToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem studentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addStudentToClassToolStripMenuItem;
-        private System.Windows.Forms.WebBrowser WebBrowser;
         private System.Windows.Forms.ComboBox ClassroomList;
         private System.Windows.Forms.ComboBox StudentList;
+        private System.Windows.Forms.WebBrowser WebBrowser;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

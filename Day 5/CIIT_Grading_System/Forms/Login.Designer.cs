@@ -44,9 +44,14 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             pictureBox1.BackColor = System.Drawing.Color.Transparent;
             pictureBox1.Image = global::CIIT_Grading_System.Properties.Resources.CIIT_FULL_LOGO;
             pictureBox1.Location = new System.Drawing.Point(12, 12);
+            pictureBox1.MaximumSize = new System.Drawing.Size(269, 76);
+            pictureBox1.MinimumSize = new System.Drawing.Size(269, 76);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new System.Drawing.Size(269, 76);
             pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -55,10 +60,15 @@
             // 
             // label1
             // 
+            label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             label1.AutoSize = true;
             label1.BackColor = System.Drawing.Color.Transparent;
             label1.ForeColor = System.Drawing.Color.White;
             label1.Location = new System.Drawing.Point(12, 114);
+            label1.MaximumSize = new System.Drawing.Size(55, 13);
+            label1.MinimumSize = new System.Drawing.Size(55, 13);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(55, 13);
             label1.TabIndex = 2;
@@ -66,27 +76,42 @@
             // 
             // label2
             // 
+            label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             label2.AutoSize = true;
             label2.BackColor = System.Drawing.Color.Transparent;
             label2.ForeColor = System.Drawing.Color.White;
             label2.Location = new System.Drawing.Point(12, 153);
+            label2.MaximumSize = new System.Drawing.Size(55, 13);
+            label2.MinimumSize = new System.Drawing.Size(55, 13);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(53, 13);
+            label2.Size = new System.Drawing.Size(55, 13);
             label2.TabIndex = 2;
             label2.Text = "Password";
             // 
             // UserName
             // 
+            this.UserName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.UserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UserName.Location = new System.Drawing.Point(15, 130);
+            this.UserName.MaximumSize = new System.Drawing.Size(266, 20);
+            this.UserName.MinimumSize = new System.Drawing.Size(266, 20);
             this.UserName.Name = "UserName";
             this.UserName.Size = new System.Drawing.Size(266, 20);
             this.UserName.TabIndex = 1;
             // 
             // UserPass
             // 
+            this.UserPass.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.UserPass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UserPass.Location = new System.Drawing.Point(15, 169);
+            this.UserPass.MaximumSize = new System.Drawing.Size(266, 20);
+            this.UserPass.MinimumSize = new System.Drawing.Size(266, 20);
             this.UserPass.Name = "UserPass";
             this.UserPass.Size = new System.Drawing.Size(266, 20);
             this.UserPass.TabIndex = 2;
@@ -94,10 +119,15 @@
             // 
             // LoginButton
             // 
+            this.LoginButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LoginButton.BackColor = System.Drawing.Color.White;
             this.LoginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LoginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoginButton.Location = new System.Drawing.Point(185, 207);
+            this.LoginButton.MaximumSize = new System.Drawing.Size(95, 27);
+            this.LoginButton.MinimumSize = new System.Drawing.Size(95, 27);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(95, 27);
             this.LoginButton.TabIndex = 3;
@@ -107,10 +137,15 @@
             // 
             // NewUserButton
             // 
+            this.NewUserButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.NewUserButton.AutoSize = true;
             this.NewUserButton.BackColor = System.Drawing.Color.Transparent;
             this.NewUserButton.LinkColor = System.Drawing.Color.Aqua;
             this.NewUserButton.Location = new System.Drawing.Point(12, 214);
+            this.NewUserButton.MaximumSize = new System.Drawing.Size(93, 13);
+            this.NewUserButton.MinimumSize = new System.Drawing.Size(93, 13);
             this.NewUserButton.Name = "NewUserButton";
             this.NewUserButton.Size = new System.Drawing.Size(93, 13);
             this.NewUserButton.TabIndex = 4;
@@ -133,8 +168,10 @@
             this.Controls.Add(label1);
             this.Controls.Add(this.UserName);
             this.Controls.Add(pictureBox1);
-            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(309, 285);
             this.Name = "Login";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);

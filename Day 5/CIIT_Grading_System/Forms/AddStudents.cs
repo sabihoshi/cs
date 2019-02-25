@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CIIT_Grading_System.Classes;
+using System;
 using System.Windows.Forms;
 
 namespace CIIT_Grading_System.Forms
@@ -22,7 +16,7 @@ namespace CIIT_Grading_System.Forms
         private void AddStudents_Load(object sender, EventArgs e)
         {
             User.CreateUser(Login.userName);
-            foreach (var item in User.userData.Classrooms)
+            foreach (var item in User.userData["Classrooms"])
             {
             }
         }

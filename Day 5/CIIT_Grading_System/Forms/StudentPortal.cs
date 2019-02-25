@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using CIIT_Grading_System.Classes;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,7 +19,8 @@ namespace CIIT_Grading_System.Forms
         private void StudentPortal_Load(object sender, EventArgs e)
         {
             User.CreateUser(Login.userName);
-            foreach (var item in User.userData.Classrooms.Properties())
+            WebBrowser.Url = new Uri(@"file:\\\" + Path.GetFullPath(@"..\..\Resources\default.html"));
+            foreach (var item in User.userData["Classrooms"].Value<dynamic>())
             {
                 string output = item.Name;
                 ClassroomList.Items.Add(output);
@@ -31,9 +33,8 @@ namespace CIIT_Grading_System.Forms
 
         private void ClassroomList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var classRoom = ClassroomList.SelectedItem;
             StudentList.Items.Clear();
-            foreach (var item in User.userData.Classrooms[classRoom])
+            foreach (dynamic item in User.userData.SelectToken(String.Format("$.Classrooms[?(@.Name=='{0}')].Students", ClassroomList.Text)))
             {
                 string output = item.Name;
                 StudentList.Items.Add(output);
@@ -51,19 +52,14 @@ namespace CIIT_Grading_System.Forms
             double percentageHandsOn = 0;
             double percentageLaboratory = 0;
 
-            var midTermsLectures = new List<List<string>>();
-            midTermsLectures.AddRange(new List<List<string>> {
-                new List<string>{ "Lectures","","" },
-                new List<string>{ " -: "," :- ", ":-:" }
-            });
-            foreach (var item in User.userData.Classrooms[ClassroomList.SelectedItem][StudentList.SelectedItem])
+            var Grade = new GradeTemplate();
+            foreach (dynamic item in User.userData.SelectToken(String.Format("$.Classrooms[?(@.Name=='{0}')].Students[?(@.Name=='{1}')]", ClassroomList.Text, StudentList.Text)))
             {
                 switch (item.Name)
                 {
                     case "Lecture":
                         double totalExams = 0;
                         double scoreExams = 0;
-                        double totalAttendance = 0;
                         double scoreAttendance = 0;
                         foreach (var item_ in item.Value)
                         {
@@ -72,29 +68,23 @@ namespace CIIT_Grading_System.Forms
                                 case "Exams":
                                     foreach (var item__ in item_.Value)
                                     {
-                                        midTermsLectures.Add(new List<string> { item__.Name, String.Format("{0}/{1}", item__.Value.Score, item__.Value.Total), "✔" });
-                                        totalExams += Convert.ToDouble(item__.Value.Total);
-                                        scoreExams += Convert.ToDouble(item__.Value.Score);
+                                        totalExams += Convert.ToDouble(item__.Total);
+                                        scoreExams += Convert.ToDouble(item__.Score);
+                                        Grade.MidTerm.Lectures.Add(new List<string> { item__.Name, $"{item__.Total}/{item__.Score}" });
                                     }
-                                    break;
-
-                                case "Attendance":
-                                    totalAttendance += Convert.ToDouble(item_.Value.Total);
-                                    scoreAttendance += Convert.ToDouble(item_.Value.Score);
                                     break;
 
                                 case "Recitation":
                                     scoreExams += Convert.ToDouble(item_.Value);
-                                    if (scoreExams > totalExams)
-                                        scoreExams = totalExams;
+                                    scoreExams = scoreExams > totalExams ? totalExams : scoreExams;
+                                    break;
+
+                                default:
                                     break;
                             }
                         }
                         double percentageExams = (100 / totalExams) * scoreExams;
-                        double percentageAttendance = (100 / totalAttendance) * scoreAttendance;
-
                         percentageLecture += (percentageExams * 75) / 100;
-                        percentageLecture += (percentageExams * 25) / 100;
                         break;
 
                     case "Hands-on":
@@ -113,14 +103,14 @@ namespace CIIT_Grading_System.Forms
                                     totalCommunication += Convert.ToDouble(item_.Value.Total);
                                     scoreCommunication += Convert.ToDouble(item_.Value.Score);
                                     percentageCommunication = (100 / totalCommunication) * scoreCommunication;
-                                    midTermsLectures[2].AddRange(new List<string> { item_.Name, String.Format("{0:0.00}", percentageCommunication), "✔" });
+                                    //midTerms.Add(new List<string> { item_.Name, String.Format("{0:0.00}", percentageCommunication), "✔" });
                                     break;
 
                                 case "Teamwork":
                                     totalTeamwork += Convert.ToDouble(item_.Value.Total);
                                     scoreTeamwork += Convert.ToDouble(item_.Value.Score);
                                     percentageTeamwork = (100 / totalTeamwork) * scoreTeamwork;
-                                    midTermsLectures[2].AddRange(new List<string> { item_.Name, String.Format("{0:0.00}", percentageTeamwork), "✔" });
+                                    //midTerms.Add(new List<string> { item_.Name, String.Format("{0:0.00}", percentageTeamwork), "✔" });
                                     break;
                             }
                         }
@@ -145,6 +135,8 @@ namespace CIIT_Grading_System.Forms
                 }
             }
 
+            // percentageLecture += (percentageAttendance * 25) / 100;
+
             string buffer = String.Format(
                 "# {0}'s grade\n" +
                 "## Lecture: {1:0.00}%\n" +
@@ -156,12 +148,11 @@ namespace CIIT_Grading_System.Forms
             string htmlName = @"file:\\\" + Path.GetFullPath(fileName);
             using (StreamWriter file = File.CreateText(fileName))
             {
-                file.Write(String.Format("<body background = \"{0}\">", Path.GetFullPath(@"..\..\Resources\background.png")));
+                file.Write(@"<body background='../../Resources/empty_browser.png'><style>body {background-size: 100% 100%;}</style></body>");
                 file.Write(Markdig.Markdown.ToHtml(buffer));
-                file.Write(@"</body>");
                 file.Close();
             }
-            User.userData.Recent = @"..\..\Data\Users" + fileName;
+            User.userData["Recent"] = fileName;
             User.JsonUpdate(User.userFile, User.userData);
             WebBrowser.Url = new System.Uri(htmlName);
         }
