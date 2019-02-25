@@ -8,7 +8,7 @@ namespace Conversion_Types
         private static void Main(string[] args)
         {
             int n1, n2, n3, n4, n5, avg, sum;
-            List<int> numbers = new List<int>();
+            var numbers = new List<int>();
             Console.WriteLine("Enter 5 Numbers:");
             n1 = Convert.ToInt32(Console.ReadLine());
             n2 = Convert.ToInt32(Console.ReadLine());

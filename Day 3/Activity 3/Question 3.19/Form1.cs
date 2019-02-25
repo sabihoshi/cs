@@ -12,7 +12,7 @@ namespace Question_3._19
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var input = Microsoft.VisualBasic.Interaction.InputBox("Enter word", "Encryption", "1").ToCharArray();
+            char[] input = Microsoft.VisualBasic.Interaction.InputBox("Enter word", "Encryption", "1").ToCharArray();
             string output = "";
             char[] encryption = { '!', '"', '#', '$', '%', '&', '\'', '(', ')', ',', '.', '~', '}', '|', '[', '\\', ']', '^', '_', ':', ';', '<', '=', '>', '?', '@' };
             foreach (char s in input)

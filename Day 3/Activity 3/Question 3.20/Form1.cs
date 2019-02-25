@@ -13,7 +13,7 @@ namespace Question_3_20
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var input = Microsoft.VisualBasic.Interaction.InputBox("Enter word", "Letter Count", "1").ToCharArray();
+            char[] input = Microsoft.VisualBasic.Interaction.InputBox("Enter word", "Letter Count", "1").ToCharArray();
             var list = new List<char>();
             var listCount = new List<int>();
             foreach (char s in input)

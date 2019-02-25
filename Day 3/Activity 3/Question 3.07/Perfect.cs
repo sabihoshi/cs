@@ -17,7 +17,7 @@ namespace Question_3._07
             int y = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox("Enter x", "Perfect Numbers", "6"));
             int x = 0;
             bool IsPerfect = false;
-            List<int> sums = new List<int>();
+            var sums = new List<int>();
             for (int i = y; i <= y; i++)
             {
                 for (int j = 1; j < i; j++)

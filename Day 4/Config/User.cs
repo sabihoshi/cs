@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 
 namespace Login
@@ -10,18 +9,18 @@ namespace Login
         {
             using (StreamWriter file = File.CreateText(fileName))
             {
-                JsonSerializer serializer = new JsonSerializer();
+                var serializer = new JsonSerializer();
                 serializer.Serialize(file, new_object);
             }
         }
 
         public dynamic LoadJson(string file)
         {
-            using (StreamReader r = new StreamReader(file))
+            using (var r = new StreamReader(file))
             {
                 string json = r.ReadToEnd();
                 dynamic array = JsonConvert.DeserializeObject(json);
-                foreach (var item in array)
+                foreach (dynamic item in array)
                 {
                     Console.WriteLine("{0}", item);
                 }

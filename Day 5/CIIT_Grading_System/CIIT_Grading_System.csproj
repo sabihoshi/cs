@@ -51,8 +51,8 @@
     <ApplicationIcon>Resources\logo_square.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Markdig, Version=0.15.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Markdig.0.15.7\lib\net40\Markdig.dll</HintPath>
+    <Reference Include="Markdig, Version=0.16.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Markdig.0.16.0\lib\net40\Markdig.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

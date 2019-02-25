@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -18,7 +17,7 @@ namespace CIIT_Grading_System.Forms
 
         private void Login_Load(object sender, EventArgs e)
         {
-            using (StreamReader r = new StreamReader(userFile))
+            using (var r = new StreamReader(userFile))
             {
                 string json = r.ReadToEnd();
                 userLogin = JsonConvert.DeserializeObject(json);

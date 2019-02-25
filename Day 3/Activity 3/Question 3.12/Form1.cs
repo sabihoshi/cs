@@ -17,7 +17,7 @@ namespace Question_3._12
         {
             string[] num = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
             string x = Microsoft.VisualBasic.Interaction.InputBox("Enter x", "Numbers to Words", "1");
-            var res = x.Select(digit => int.Parse(digit.ToString()));
+            IEnumerable<int> res = x.Select(digit => int.Parse(digit.ToString()));
             var output = new List<string>();
             foreach (int i in res)
             {

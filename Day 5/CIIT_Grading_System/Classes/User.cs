@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.IO;
 
 namespace CIIT_Grading_System.Classes
@@ -35,7 +33,7 @@ namespace CIIT_Grading_System.Classes
         {
             using (StreamWriter file = File.CreateText(fileName))
             {
-                JsonSerializer serializer = new JsonSerializer();
+                var serializer = new JsonSerializer();
                 serializer.Serialize(file, new_object);
             }
         }
@@ -44,7 +42,7 @@ namespace CIIT_Grading_System.Classes
         {
             string json = ReadFile(fileName);
             dynamic array = JsonConvert.DeserializeObject(json);
-            foreach (var item in array)
+            foreach (dynamic item in array)
             {
                 Console.WriteLine("{0}", item);
             }

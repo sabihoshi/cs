@@ -12,7 +12,7 @@ namespace Question_3._18
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var input = Microsoft.VisualBasic.Interaction.InputBox("Enter words (can be multiple)", "Plural", "1").Split(' ');
+            string[] input = Microsoft.VisualBasic.Interaction.InputBox("Enter words (can be multiple)", "Plural", "1").Split(' ');
             string word = null;
             for (int i = 0; i < input.Length; i++)
             {

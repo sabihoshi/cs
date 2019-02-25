@@ -12,7 +12,7 @@ namespace Question_3._17
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var input = Microsoft.VisualBasic.Interaction.InputBox("Enter x", "Numbers to Words", "1").ToCharArray();
+            char[] input = Microsoft.VisualBasic.Interaction.InputBox("Enter x", "Numbers to Words", "1").ToCharArray();
             MessageBox.Show(String.Format("{0}", String.Join("\n", input)), "Split String", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }

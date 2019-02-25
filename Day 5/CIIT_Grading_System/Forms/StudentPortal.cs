@@ -1,5 +1,4 @@
 ﻿using CIIT_Grading_System.Classes;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -61,12 +60,12 @@ namespace CIIT_Grading_System.Forms
                         double totalExams = 0;
                         double scoreExams = 0;
                         double scoreAttendance = 0;
-                        foreach (var item_ in item.Value)
+                        foreach (dynamic item_ in item.Value)
                         {
                             switch (item_.Name)
                             {
                                 case "Exams":
-                                    foreach (var item__ in item_.Value)
+                                    foreach (dynamic item__ in item_.Value)
                                     {
                                         totalExams += Convert.ToDouble(item__.Total);
                                         scoreExams += Convert.ToDouble(item__.Score);
@@ -95,7 +94,7 @@ namespace CIIT_Grading_System.Forms
                         double percentageCommunication = 0;
                         double percentageTeamwork = 0;
 
-                        foreach (var item_ in item.Value)
+                        foreach (dynamic item_ in item.Value)
                         {
                             switch (item_.Name)
                             {
@@ -122,7 +121,7 @@ namespace CIIT_Grading_System.Forms
                     case "Laboratory":
                         double totalLaboratory = 0;
                         double scoreLaboratory = 0;
-                        foreach (var item_ in item.Value)
+                        foreach (dynamic item_ in item.Value)
                         {
                             totalLaboratory += Convert.ToDouble(item_.Value.Total);
                             scoreLaboratory += Convert.ToDouble(item_.Value.Score);

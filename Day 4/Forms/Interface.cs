@@ -17,12 +17,12 @@ namespace Login
         private void Interface_Load(object sender, EventArgs e)
         {
             User.CreateUser(Entry.userName);
-            WebClient wc = new WebClient();
+            var wc = new WebClient();
             try
             {
                 byte[] bytes = wc.DownloadData(User.userData.Avatar.ToString());
-                MemoryStream ms = new MemoryStream(bytes);
-                System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+                var ms = new MemoryStream(bytes);
+                var img = System.Drawing.Image.FromStream(ms);
                 Avatar.Image = img;
             }
             catch (Exception) { }
@@ -53,7 +53,7 @@ namespace Login
             string htmlName = "";
             if (OpenFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                System.IO.StreamReader sr = new
+                var sr = new
                    System.IO.StreamReader(OpenFile.FileName);
                 fileName = OpenFile.SafeFileName;
                 buffer = sr.ReadToEnd();

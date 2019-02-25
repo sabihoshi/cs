@@ -15,8 +15,8 @@ namespace Question_3._14
         private void button1_Click(object sender, EventArgs e)
         {
             string[] num = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-            var x = Microsoft.VisualBasic.Interaction.InputBox("Enter x", "Numbers to Words", "1");
-            var numbers = x.Select(digit => int.Parse(digit.ToString()));
+            string x = Microsoft.VisualBasic.Interaction.InputBox("Enter x", "Numbers to Words", "1");
+            System.Collections.Generic.IEnumerable<int> numbers = x.Select(digit => int.Parse(digit.ToString()));
             int res = 0;
             foreach (int i in numbers)
             {

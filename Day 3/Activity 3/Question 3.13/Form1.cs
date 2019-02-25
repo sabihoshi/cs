@@ -24,7 +24,7 @@ namespace Question_3._13
                 temp = (temp * 10) + last;
                 x = x / 10;
             }
-            var res = Convert.ToString(temp).Select(digit => int.Parse(digit.ToString()));
+            IEnumerable<int> res = Convert.ToString(temp).Select(digit => int.Parse(digit.ToString()));
             var output = new List<string>();
             foreach (int i in res)
             {
