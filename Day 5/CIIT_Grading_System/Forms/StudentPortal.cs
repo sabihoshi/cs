@@ -1,4 +1,6 @@
 ﻿using CIIT_Grading_System.Classes;
+using Markdig;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,7 +21,7 @@ namespace CIIT_Grading_System.Forms
         {
             User.CreateUser(Login.userName);
             WebBrowser.Url = new Uri(@"file:\\\" + Path.GetFullPath(@"..\..\Resources\default.html"));
-            foreach (var item in User.userData["Classrooms"].Value<dynamic>())
+            foreach (dynamic item in User.userData["Classrooms"].Value<dynamic>())
             {
                 string output = item.Name;
                 ClassroomList.Items.Add(output);
@@ -45,21 +47,15 @@ namespace CIIT_Grading_System.Forms
         public string itemName;
         public int itemTotal, itemScore;
 
-        private void StudentList_SelectedIndexChanged(object sender, EventArgs e)
+        public string CalculateGrade(string classroomName, string studentName)
         {
-            double percentageLecture = 0;
-            double percentageHandsOn = 0;
-            double percentageLaboratory = 0;
-
             var Grade = new GradeTemplate();
-            foreach (dynamic item in User.userData.SelectToken(String.Format("$.Classrooms[?(@.Name=='{0}')].Students[?(@.Name=='{1}')]", ClassroomList.Text, StudentList.Text)))
+
+            foreach (dynamic item in User.userData.SelectToken($"$.Classrooms[?(@.Name=='{ClassroomList.Text}')].Students[?(@.Name=='{StudentList.Text}')]"))
             {
                 switch (item.Name)
                 {
                     case "Lecture":
-                        double totalExams = 0;
-                        double scoreExams = 0;
-                        double scoreAttendance = 0;
                         foreach (dynamic item_ in item.Value)
                         {
                             switch (item_.Name)
@@ -67,88 +63,124 @@ namespace CIIT_Grading_System.Forms
                                 case "Exams":
                                     foreach (dynamic item__ in item_.Value)
                                     {
-                                        totalExams += Convert.ToDouble(item__.Total);
-                                        scoreExams += Convert.ToDouble(item__.Score);
-                                        Grade.MidTerm.Lectures.Add(new List<string> { item__.Name, $"{item__.Total}/{item__.Score}" });
+                                        Grade.Lectures.Exams.Total += Convert.ToDouble(item__.Total);
+                                        Grade.Lectures.Exams.Score += Convert.ToDouble(item__.Score);
+                                        if (item__.Score > 0)
+                                            Grade.Lectures.Attendance.Score += 2;
+                                        Grade.Lectures.Attendance.Total += 2;
+                                        Grade.Table.Lectures.Add(new List<string> { item__.Name.ToString(), $"{item__.Total}/{item__.Score}", "+2" });
                                     }
                                     break;
 
                                 case "Recitation":
-                                    scoreExams += Convert.ToDouble(item_.Value);
-                                    scoreExams = scoreExams > totalExams ? totalExams : scoreExams;
+                                    Grade.Lectures.Exams.Score += Convert.ToDouble(item_.Value);
+                                    if (Grade.Lectures.Exams.Score > Grade.Lectures.Exams.Total)
+                                        Grade.Lectures.Exams.Score = Grade.Lectures.Exams.Total;
                                     break;
 
                                 default:
                                     break;
                             }
                         }
-                        double percentageExams = (100 / totalExams) * scoreExams;
-                        percentageLecture += (percentageExams * 75) / 100;
+                        Grade.Lectures.Exams.Percentage = (100 / Grade.Lectures.Exams.Total) * Grade.Lectures.Exams.Score;
+                        Grade.Lectures.Percentage += (Grade.Lectures.Exams.Percentage * 75) / 100;
                         break;
 
                     case "Hands-on":
-                        double totalCommunication = 0;
-                        double scoreCommunication = 0;
-                        double totalTeamwork = 0;
-                        double scoreTeamwork = 0;
-                        double percentageCommunication = 0;
-                        double percentageTeamwork = 0;
 
                         foreach (dynamic item_ in item.Value)
                         {
                             switch (item_.Name)
                             {
                                 case "Communication":
-                                    totalCommunication += Convert.ToDouble(item_.Value.Total);
-                                    scoreCommunication += Convert.ToDouble(item_.Value.Score);
-                                    percentageCommunication = (100 / totalCommunication) * scoreCommunication;
-                                    //midTerms.Add(new List<string> { item_.Name, String.Format("{0:0.00}", percentageCommunication), "✔" });
+                                    Grade.HandsOn.Communication.Total += Convert.ToDouble(item_.Value);
+                                    Grade.HandsOn.Communication.Percentage = (100 / Grade.HandsOn.Communication.Total) * Grade.HandsOn.Communication.Score;
+                                    if (item_.Value > 0)
+                                        Grade.Lectures.Attendance.Score += 2;
+                                    Grade.Lectures.Attendance.Total += 2;
+                                    Grade.Table.HandsOn.Add(new List<string> { item_.Name.ToString(), $"{item_.Value:0.00}%", "+2" });
                                     break;
 
                                 case "Teamwork":
-                                    totalTeamwork += Convert.ToDouble(item_.Value.Total);
-                                    scoreTeamwork += Convert.ToDouble(item_.Value.Score);
-                                    percentageTeamwork = (100 / totalTeamwork) * scoreTeamwork;
-                                    //midTerms.Add(new List<string> { item_.Name, String.Format("{0:0.00}", percentageTeamwork), "✔" });
+                                    Grade.HandsOn.Teamwork.Total += Convert.ToDouble(item_.Value);
+                                    Grade.HandsOn.Teamwork.Percentage = (100 / Grade.HandsOn.Teamwork.Total) * Grade.HandsOn.Teamwork.Score;
+                                    if (item_.Value > 0)
+                                        Grade.Lectures.Attendance.Score += 2;
+                                    Grade.Lectures.Attendance.Total += 2;
+                                    Grade.Table.HandsOn.Add(new List<string> { item_.Name.ToString(), $"{item_.Value:0.00}%", "+2" });
                                     break;
                             }
                         }
-
-                        percentageHandsOn += (percentageCommunication * 50) / 100;
-                        percentageHandsOn += (percentageTeamwork * 50) / 100;
+                        Grade.HandsOn.Percentage += (Grade.HandsOn.Communication.Percentage * 50) / 100;
+                        Grade.HandsOn.Percentage += (Grade.HandsOn.Teamwork.Percentage * 50) / 100;
                         break;
 
                     case "Laboratory":
-                        double totalLaboratory = 0;
-                        double scoreLaboratory = 0;
                         foreach (dynamic item_ in item.Value)
                         {
-                            totalLaboratory += Convert.ToDouble(item_.Value.Total);
-                            scoreLaboratory += Convert.ToDouble(item_.Value.Score);
+                            Grade.Laboratory.Total += Convert.ToDouble(item_.Total);
+                            Grade.Laboratory.Score += Convert.ToDouble(item_.Score);
+                            if (item_.Score > 0)
+                                Grade.Lectures.Attendance.Score += 2;
+                            Grade.Lectures.Attendance.Total += 2;
+                            Grade.Table.Laboratory.Add(new List<string> { item_.Name.ToString(), $"{item_.Total}/{item_.Score}", "+2" });
                         }
-                        percentageLaboratory = (100 / totalLaboratory) * scoreLaboratory;
+                        Grade.Laboratory.Percentage = (100 / Grade.Laboratory.Total) * Grade.Laboratory.Score;
                         break;
 
                     default:
                         break;
                 }
             }
+            Grade.Table.Lectures.Add(new List<string> { "Recitation", $"+{Grade.Lectures.Recitation.Score}" });
+            Grade.Lectures.Attendance.Percentage = (100 / Grade.Lectures.Attendance.Total) * Grade.Lectures.Attendance.Score;
+            Grade.Lectures.Percentage += (Grade.Lectures.Attendance.Percentage * 15) / 100;
 
-            // percentageLecture += (percentageAttendance * 25) / 100;
+            List<List<string>> tableList = Grade.Table.Lectures.Count > Grade.Table.Laboratory.Count ? Grade.Table.Lectures : Grade.Table.Laboratory;
+            List<List<string>> lower = Grade.Table.Lectures.Count < Grade.Table.Laboratory.Count ? Grade.Table.Lectures : Grade.Table.Laboratory;
 
-            string buffer = String.Format(
-                "# {0}'s grade\n" +
-                "## Lecture: {1:0.00}%\n" +
-                "## Hands-on: {2:0.00}%\n" +
-                "## Laboratory: {3:0.00}%\n",
-                StudentList.SelectedItem, percentageLecture, percentageHandsOn, percentageLaboratory);
+            for (int i = 0; i < lower.Count; i++)
+            {
+                tableList[i].AddRange(lower[i]);
+            }
+            for (int i = 0; i < Grade.Table.HandsOn.Count; i++)
+            {
+                tableList[i].AddRange(Grade.Table.HandsOn[i]);
+            }
 
+            var tableOutput = new List<string> {
+                "|Lectures|Grade| |Laboratories|Grade| |Hands-on|Grade| |",
+                "|--:|:--|:--:|--:|:--|:--:|--:|:--|:--:|"
+            };
+            foreach (List<string> item in tableList)
+            {
+                if (item.Count < 9)
+                {
+                    int c = 9 - item.Count;
+                    for (int i = 0; i < c; i++)
+                        item.Add(" ");
+                }
+                tableOutput.Add($"|{String.Join("|", item)}|");
+            }
+            string buffer =
+                $"# {Login.userName}'s Report Card\n" +
+                $"## Final Grade: 96.66%\n" +
+                $"\n" +
+                $"{String.Join("\r\n", tableOutput)}"
+            ;
+            return buffer;
+        }
+
+        private void StudentList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string buffer = CalculateGrade(ClassroomList.Text, StudentList.Text);
+            Console.WriteLine(buffer);
             string fileName = String.Format(@"..\..\Data\Users\{0}_grade.html", Login.userName);
             string htmlName = @"file:\\\" + Path.GetFullPath(fileName);
             using (StreamWriter file = File.CreateText(fileName))
             {
                 file.Write(@"<body background='../../Resources/empty_browser.png'><style>body {background-size: 100% 100%;}</style></body>");
-                file.Write(Markdig.Markdown.ToHtml(buffer));
+                file.Write(Markdig.Markdown.ToHtml(buffer, new MarkdownPipelineBuilder().UseAdvancedExtensions().Build()));
                 file.Close();
             }
             User.userData["Recent"] = fileName;
