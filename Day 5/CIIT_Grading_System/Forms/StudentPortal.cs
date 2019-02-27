@@ -16,13 +16,11 @@ namespace CIIT_Grading_System.Forms
             InitializeComponent();
         }
 
-        public static User User = new User();
-
         private void StudentPortal_Load(object sender, EventArgs e)
         {
-            User.CreateUser(Login.userName);
+            Login.User.CreateUser(Login.userName);
             WebBrowser.Url = new Uri(@"file:\\\" + Path.GetFullPath(@"..\..\Resources\default.html"));
-            foreach (dynamic item in User.userData.Classrooms.Select(c => c.Name))
+            foreach (dynamic item in Login.User.userData.Classrooms.Select(c => c.Name))
             {
                 string output = item;
                 ClassroomList.Items.Add(output);
@@ -32,7 +30,7 @@ namespace CIIT_Grading_System.Forms
         private void ClassroomList_SelectedIndexChanged(object sender, EventArgs e)
         {
             StudentList.Items.Clear();
-            foreach (dynamic item in User.userData.Classrooms.FirstOrDefault(c => c.Name.Equals(ClassroomList.Text)).Students.Select(s => s.Name))
+            foreach (dynamic item in Login.User.userData.Classrooms.FirstOrDefault(c => c.Name.Equals(ClassroomList.Text)).Students.Select(s => s.Name))
             {
                 string output = item;
                 StudentList.Items.Add(output);
@@ -47,7 +45,7 @@ namespace CIIT_Grading_System.Forms
         public string CalculateGrade(string classroomName, string studentName)
         {
             var Grade = new GradeTemplate();
-            Classroom classroom = User.userData.GetClassroom(ClassroomList.Text);
+            Classroom classroom = Login.User.userData.GetClassroom(ClassroomList.Text);
             Student student = classroom.GetStudent(StudentList.Text);
 
             foreach (Graded item in student.Lecture.Exams)
@@ -128,8 +126,8 @@ namespace CIIT_Grading_System.Forms
 
         private void addClassToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            User.userData.CreateClassroom(Microsoft.VisualBasic.Interaction.InputBox("Enter a new classroom name", "Create new classroom", "Class #"));
-            User.JsonUpdate(User.userFile, User.userData);
+            Login.User.userData.CreateClassroom(Microsoft.VisualBasic.Interaction.InputBox("Enter a new classroom name", "Create new classroom", "Class #"));
+            Login.User.JsonUpdate(Login.User.userFile, Login.User.userData);
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -142,6 +140,55 @@ namespace CIIT_Grading_System.Forms
         {
             var projectForm = new EditGrade();
             projectForm.ShowDialog();
+        }
+
+        private void changeUsernameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string userName = Login.userName;
+            string newName = Microsoft.VisualBasic.Interaction.InputBox("Enter a new username", "Username Change", userName);
+            Login.userLogin[userName] = newName;
+            Login.userLogin.Property(userName).Remove();
+            Login.User.JsonUpdate(Login.userFile, Login.userLogin);
+            File.Move(Login.User.userFile, String.Format(@"..\..\Data\Users\{0}.json", newName));
+            Login.User.userFile = newName;
+            MessageBox.Show("Username successfully changed.", "Username Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string userPass = Login.userPass;
+            Login.userLogin[Login.userName] = Microsoft.VisualBasic.Interaction.InputBox("Enter a new password", "Password Change", userPass);
+            MessageBox.Show("Password successfully changed.", "Password Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Login.User.JsonUpdate(Login.userFile, Login.userLogin);
+        }
+
+        private void changeAvatarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string userAvatar = Login.User.userData.Avatar.ToString();
+            Uri newAvatar;
+            if (Login.User.userData.Avatar == null)
+                userAvatar = "Enter an avatar...";
+            newAvatar = new System.Uri(Microsoft.VisualBasic.Interaction.InputBox("Enter a new password", "Avatar Change", userAvatar));
+            Login.User.userData.Avatar = newAvatar;
+            Login.User.JsonUpdate(Login.User.userFile, Login.User.userData);
+            MessageBox.Show("Avatar successfully changed.", "Avatar Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void changeStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string userStatus = Login.User.userData.Status;
+            string newStatus;
+            if (Login.User.userData.Status == null)
+                userStatus = "Enter a status...";
+            newStatus = Microsoft.VisualBasic.Interaction.InputBox("Enter a new password", "Status Change", userStatus);
+            Login.User.userData.Status = newStatus;
+            Login.User.JsonUpdate(Login.User.userFile, Login.User.userData);
+            MessageBox.Show("Status successfully changed.", "Status Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void deleteAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Login.userLogin[Login.userName].
         }
 
         private void StudentList_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,8 +204,8 @@ namespace CIIT_Grading_System.Forms
                 file.Write(@"</article></body>");
                 file.Close();
             }
-            User.userData.Recent = fileName;
-            User.JsonUpdate(User.userFile, User.userData);
+            Login.User.userData.Recent = fileName;
+            Login.User.JsonUpdate(Login.User.userFile, Login.User.userData);
             WebBrowser.Url = new System.Uri(htmlName);
         }
     }

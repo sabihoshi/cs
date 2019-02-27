@@ -39,9 +39,16 @@ namespace CIIT_Grading_System.Forms
             if (StudentName.Text == "")
                 return;
             UserData.Classroom classroom = User.userData.Classrooms.FirstOrDefault(c => c.Name.Equals(ClassroomList.SelectedItem));
-            classroom.CreateStudent(StudentName.Text);
-            StudentList.Items.Add(StudentName.Text);
-            User.JsonUpdate(User.userFile, User.userData);
+            if (classroom == null)
+            {
+                MessageBox.Show("Invalid classroom!", "Add Student", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                classroom.CreateStudent(StudentName.Text);
+                StudentList.Items.Add(StudentName.Text);
+                User.JsonUpdate(User.userFile, User.userData);
+            }
         }
     }
 }

@@ -82,7 +82,6 @@
             // 
             // StudentName
             // 
-            this.StudentName.Enabled = false;
             this.StudentName.Location = new System.Drawing.Point(12, 39);
             this.StudentName.Name = "StudentName";
             this.StudentName.Size = new System.Drawing.Size(127, 20);

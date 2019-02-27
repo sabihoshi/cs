@@ -1,6 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using CIIT_Grading_System.Classes;
+using Newtonsoft.Json;
 using System;
-using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CIIT_Grading_System.Forms
@@ -12,18 +13,12 @@ namespace CIIT_Grading_System.Forms
             InitializeComponent();
         }
 
+        public static User User = new User();
+
         public static string userName, userPass;
         public static string userFile = @"..\..\Data\userLogin.json";
-        public static dynamic userLogin;
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-            using (var r = new StreamReader(userFile))
-            {
-                string json = r.ReadToEnd();
-                userLogin = JsonConvert.DeserializeObject(json);
-            }
-        }
+        public static Users userLogin = JsonConvert.DeserializeObject<Users>(User.ReadFile(userFile));
 
         private void NewUserButton_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -34,7 +29,7 @@ namespace CIIT_Grading_System.Forms
         private void LoginButton_Click(object sender, EventArgs e)
         {
             userName = UserName.Text;
-            userPass = userLogin[userName];
+            userPass = userLogin.User.Single(u => u.Username == userName).Password;
             if (UserPass.Text == userPass)
             {
                 this.Hide();

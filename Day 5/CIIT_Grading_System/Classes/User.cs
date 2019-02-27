@@ -7,7 +7,7 @@ namespace CIIT_Grading_System.Classes
 {
     public class User
     {
-        private string ReadFile(string fileName)
+        public string ReadFile(string fileName)
         {
             string output = File.ReadAllText(fileName);
             return output;
@@ -40,20 +40,14 @@ namespace CIIT_Grading_System.Classes
             }
         }
 
-        public Data LoadJson(string fileName)
-        {
-            string jsonString = ReadFile(fileName);
-            Data array = JsonConvert.DeserializeObject<Data>(jsonString);
-            return array;
-        }
-
         public string userFile;
         public Data userData = new Data();
+        public Users userLogin = new Users();
 
         public void CreateUser(string userName)
         {
             userFile = String.Format(@"..\..\Data\Users\{0}.json", userName);
-            userData = LoadJson(userFile);
+            userData = JsonConvert.DeserializeObject<Data>(ReadFile(userFile));
         }
     }
 }

@@ -1,1 +1,10 @@
-{"Kao":"abc","Pipaolo":"test","Test":"test","admin":"admin"}
+[
+  {
+    "Username": "Kao",
+    "Password": "abc"
+  },
+  {
+    "Username": "Test",
+    "Password": "abc"
+  }
+]

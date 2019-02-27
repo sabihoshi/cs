@@ -76,6 +76,7 @@
     <Compile Include="Classes\Program.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\UserData.cs" />
+    <Compile Include="Classes\UserLogin.cs" />
     <Compile Include="Forms\AddStudents.cs">
       <SubType>Form</SubType>
     </Compile>

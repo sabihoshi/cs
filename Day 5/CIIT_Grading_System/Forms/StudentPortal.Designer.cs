@@ -46,11 +46,11 @@
             this.deleteClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.studentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageGradeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClassroomList = new System.Windows.Forms.ComboBox();
             this.StudentList = new System.Windows.Forms.ComboBox();
             this.WebBrowser = new System.Windows.Forms.WebBrowser();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.manageGradeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -111,7 +111,7 @@
             this.infoToolStripMenuItem});
             this.accountToolStripMenuItem.Name = "accountToolStripMenuItem";
             this.accountToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.accountToolStripMenuItem.Text = "Account";
+            this.accountToolStripMenuItem.Text = "&Account";
             // 
             // manageToolStripMenuItem
             // 
@@ -126,20 +126,23 @@
             // changeUsernameToolStripMenuItem
             // 
             this.changeUsernameToolStripMenuItem.Name = "changeUsernameToolStripMenuItem";
-            this.changeUsernameToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.changeUsernameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.changeUsernameToolStripMenuItem.Text = "Change Username";
+            this.changeUsernameToolStripMenuItem.Click += new System.EventHandler(this.changeUsernameToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // deleteAccountToolStripMenuItem
             // 
             this.deleteAccountToolStripMenuItem.Name = "deleteAccountToolStripMenuItem";
-            this.deleteAccountToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.deleteAccountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteAccountToolStripMenuItem.Text = "Delete Account";
+            this.deleteAccountToolStripMenuItem.Click += new System.EventHandler(this.deleteAccountToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
             // 
@@ -153,14 +156,16 @@
             // changeAvatarToolStripMenuItem
             // 
             this.changeAvatarToolStripMenuItem.Name = "changeAvatarToolStripMenuItem";
-            this.changeAvatarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.changeAvatarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.changeAvatarToolStripMenuItem.Text = "Change Avatar";
+            this.changeAvatarToolStripMenuItem.Click += new System.EventHandler(this.changeAvatarToolStripMenuItem_Click);
             // 
             // changeStatusToolStripMenuItem
             // 
             this.changeStatusToolStripMenuItem.Name = "changeStatusToolStripMenuItem";
-            this.changeStatusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.changeStatusToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.changeStatusToolStripMenuItem.Text = "Change Status";
+            this.changeStatusToolStripMenuItem.Click += new System.EventHandler(this.changeStatusToolStripMenuItem_Click);
             // 
             // classesToolStripMenuItem
             // 
@@ -169,7 +174,7 @@
             this.deleteClassToolStripMenuItem});
             this.classesToolStripMenuItem.Name = "classesToolStripMenuItem";
             this.classesToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
-            this.classesToolStripMenuItem.Text = "Classes";
+            this.classesToolStripMenuItem.Text = "&Classes";
             // 
             // addClassToolStripMenuItem
             // 
@@ -191,7 +196,7 @@
             this.manageGradeToolStripMenuItem});
             this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
             this.studentsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.studentsToolStripMenuItem.Text = "Students";
+            this.studentsToolStripMenuItem.Text = "&Students";
             // 
             // addToolStripMenuItem
             // 
@@ -199,6 +204,13 @@
             this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addToolStripMenuItem.Text = "Add new student(s)";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // manageGradeToolStripMenuItem
+            // 
+            this.manageGradeToolStripMenuItem.Name = "manageGradeToolStripMenuItem";
+            this.manageGradeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manageGradeToolStripMenuItem.Text = "Manage grade";
+            this.manageGradeToolStripMenuItem.Click += new System.EventHandler(this.manageGradeToolStripMenuItem_Click);
             // 
             // ClassroomList
             // 
@@ -243,13 +255,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // manageGradeToolStripMenuItem
-            // 
-            this.manageGradeToolStripMenuItem.Name = "manageGradeToolStripMenuItem";
-            this.manageGradeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.manageGradeToolStripMenuItem.Text = "Manage grade";
-            this.manageGradeToolStripMenuItem.Click += new System.EventHandler(this.manageGradeToolStripMenuItem_Click);
             // 
             // StudentPortal
             // 

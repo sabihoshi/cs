@@ -29,10 +29,20 @@ namespace CIIT_Grading_System.Forms
 
         private void EditGrade_Load(object sender, EventArgs e)
         {
+            foreach (string item in Login.User.userData.Classrooms.Select(c => c.Name))
+            {
+                ClassroomList.Items.Add(item);
+            }
         }
 
         private void ClassroomList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            StudentList.Items.Clear();
+            StudentList.Enabled = true;
+            foreach (string item in Login.User.userData.Classrooms.FirstOrDefault(c => c.Name.Equals(ClassroomList.SelectedText)).Students.Select(s => s.Name))
+            {
+                StudentList.Items.Add(item);
+            }
         }
 
         private void TermList_SelectedIndexChanged(object sender, EventArgs e)
