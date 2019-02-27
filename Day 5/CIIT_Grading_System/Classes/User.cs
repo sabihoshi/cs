@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
+using UserData;
 
 namespace CIIT_Grading_System.Classes
 {
@@ -38,24 +40,20 @@ namespace CIIT_Grading_System.Classes
             }
         }
 
-        public dynamic LoadJson(string fileName)
+        public Data LoadJson(string fileName)
         {
-            string json = ReadFile(fileName);
-            dynamic array = JsonConvert.DeserializeObject(json);
-            foreach (dynamic item in array)
-            {
-                Console.WriteLine("{0}", item);
-            }
+            string jsonString = ReadFile(fileName);
+            Data array = JsonConvert.DeserializeObject<Data>(jsonString);
             return array;
         }
 
         public string userFile;
-        public JObject userData;
+        public Data userData = new Data();
 
         public void CreateUser(string userName)
         {
             userFile = String.Format(@"..\..\Data\Users\{0}.json", userName);
-            userData = new JObject(LoadJson(userFile));
+            userData = LoadJson(userFile);
         }
     }
 }

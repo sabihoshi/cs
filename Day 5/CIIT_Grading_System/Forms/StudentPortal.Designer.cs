@@ -46,11 +46,11 @@
             this.deleteClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.studentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addStudentToClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClassroomList = new System.Windows.Forms.ComboBox();
             this.StudentList = new System.Windows.Forms.ComboBox();
             this.WebBrowser = new System.Windows.Forms.WebBrowser();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.manageGradeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -120,7 +120,7 @@
             this.changePasswordToolStripMenuItem,
             this.deleteAccountToolStripMenuItem});
             this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
-            this.manageToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.manageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.manageToolStripMenuItem.Text = "Manage";
             // 
             // changeUsernameToolStripMenuItem
@@ -147,7 +147,7 @@
             this.changeAvatarToolStripMenuItem,
             this.changeStatusToolStripMenuItem});
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.infoToolStripMenuItem.Text = "Info";
             // 
             // changeAvatarToolStripMenuItem
@@ -174,37 +174,31 @@
             // addClassToolStripMenuItem
             // 
             this.addClassToolStripMenuItem.Name = "addClassToolStripMenuItem";
-            this.addClassToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.addClassToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addClassToolStripMenuItem.Text = "Add class...";
+            this.addClassToolStripMenuItem.Click += new System.EventHandler(this.addClassToolStripMenuItem_Click);
             // 
             // deleteClassToolStripMenuItem
             // 
             this.deleteClassToolStripMenuItem.Name = "deleteClassToolStripMenuItem";
-            this.deleteClassToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.deleteClassToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteClassToolStripMenuItem.Text = "Delete class...";
             // 
             // studentsToolStripMenuItem
             // 
             this.studentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem});
+            this.addToolStripMenuItem,
+            this.manageGradeToolStripMenuItem});
             this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
             this.studentsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.studentsToolStripMenuItem.Text = "Students";
             // 
             // addToolStripMenuItem
             // 
-            this.addToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addStudentToClassToolStripMenuItem});
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
-            this.addToolStripMenuItem.Text = "Add...";
-            // 
-            // addStudentToClassToolStripMenuItem
-            // 
-            this.addStudentToClassToolStripMenuItem.Name = "addStudentToClassToolStripMenuItem";
-            this.addStudentToClassToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.addStudentToClassToolStripMenuItem.Text = "Add student(s) to class";
-            this.addStudentToClassToolStripMenuItem.Click += new System.EventHandler(this.addStudentToClassToolStripMenuItem_Click);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem.Text = "Add new student(s)";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // ClassroomList
             // 
@@ -250,6 +244,13 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // manageGradeToolStripMenuItem
+            // 
+            this.manageGradeToolStripMenuItem.Name = "manageGradeToolStripMenuItem";
+            this.manageGradeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manageGradeToolStripMenuItem.Text = "Manage grade";
+            this.manageGradeToolStripMenuItem.Click += new System.EventHandler(this.manageGradeToolStripMenuItem_Click);
+            // 
             // StudentPortal
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -294,10 +295,10 @@
         private System.Windows.Forms.ToolStripMenuItem deleteClassToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem studentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addStudentToClassToolStripMenuItem;
         private System.Windows.Forms.ComboBox ClassroomList;
         private System.Windows.Forms.ComboBox StudentList;
         private System.Windows.Forms.WebBrowser WebBrowser;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem manageGradeToolStripMenuItem;
     }
 }

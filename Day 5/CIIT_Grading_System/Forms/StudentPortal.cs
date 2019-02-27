@@ -1,10 +1,11 @@
 ﻿using CIIT_Grading_System.Classes;
 using Markdig;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using UserData;
 
 namespace CIIT_Grading_System.Forms
 {
@@ -15,29 +16,25 @@ namespace CIIT_Grading_System.Forms
             InitializeComponent();
         }
 
-        public User User = new User();
+        public static User User = new User();
 
         private void StudentPortal_Load(object sender, EventArgs e)
         {
             User.CreateUser(Login.userName);
             WebBrowser.Url = new Uri(@"file:\\\" + Path.GetFullPath(@"..\..\Resources\default.html"));
-            foreach (dynamic item in User.userData["Classrooms"].Value<dynamic>())
+            foreach (dynamic item in User.userData.Classrooms.Select(c => c.Name))
             {
-                string output = item.Name;
+                string output = item;
                 ClassroomList.Items.Add(output);
             }
-        }
-
-        private void addStudentToClassToolStripMenuItem_Click(object sender, EventArgs e)
-        {
         }
 
         private void ClassroomList_SelectedIndexChanged(object sender, EventArgs e)
         {
             StudentList.Items.Clear();
-            foreach (dynamic item in User.userData.SelectToken(String.Format("$.Classrooms[?(@.Name=='{0}')].Students", ClassroomList.Text)))
+            foreach (dynamic item in User.userData.Classrooms.FirstOrDefault(c => c.Name.Equals(ClassroomList.Text)).Students.Select(s => s.Name))
             {
-                string output = item.Name;
+                string output = item;
                 StudentList.Items.Add(output);
             }
             StudentList.SelectedIndex = 0;
@@ -50,88 +47,46 @@ namespace CIIT_Grading_System.Forms
         public string CalculateGrade(string classroomName, string studentName)
         {
             var Grade = new GradeTemplate();
+            Classroom classroom = User.userData.GetClassroom(ClassroomList.Text);
+            Student student = classroom.GetStudent(StudentList.Text);
 
-            foreach (dynamic item in User.userData.SelectToken($"$.Classrooms[?(@.Name=='{ClassroomList.Text}')].Students[?(@.Name=='{StudentList.Text}')]"))
+            foreach (Graded item in student.Lecture.Exams)
             {
-                switch (item.Name)
-                {
-                    case "Lecture":
-                        foreach (dynamic item_ in item.Value)
-                        {
-                            switch (item_.Name)
-                            {
-                                case "Exams":
-                                    foreach (dynamic item__ in item_.Value)
-                                    {
-                                        Grade.Lectures.Exams.Total += Convert.ToDouble(item__.Total);
-                                        Grade.Lectures.Exams.Score += Convert.ToDouble(item__.Score);
-                                        if (item__.Score > 0)
-                                            Grade.Lectures.Attendance.Score += 2;
-                                        Grade.Lectures.Attendance.Total += 2;
-                                        Grade.Table.Lectures.Add(new List<string> { item__.Name.ToString(), $"{item__.Total}/{item__.Score}", "+2" });
-                                    }
-                                    break;
-
-                                case "Recitation":
-                                    Grade.Lectures.Exams.Score += Convert.ToDouble(item_.Value);
-                                    if (Grade.Lectures.Exams.Score > Grade.Lectures.Exams.Total)
-                                        Grade.Lectures.Exams.Score = Grade.Lectures.Exams.Total;
-                                    break;
-
-                                default:
-                                    break;
-                            }
-                        }
-                        Grade.Lectures.Exams.Percentage = (100 / Grade.Lectures.Exams.Total) * Grade.Lectures.Exams.Score;
-                        Grade.Lectures.Percentage += (Grade.Lectures.Exams.Percentage * 75) / 100;
-                        break;
-
-                    case "Hands-on":
-
-                        foreach (dynamic item_ in item.Value)
-                        {
-                            switch (item_.Name)
-                            {
-                                case "Communication":
-                                    Grade.HandsOn.Communication.Total += Convert.ToDouble(item_.Value);
-                                    Grade.HandsOn.Communication.Percentage = (100 / Grade.HandsOn.Communication.Total) * Grade.HandsOn.Communication.Score;
-                                    if (item_.Value > 0)
-                                        Grade.Lectures.Attendance.Score += 2;
-                                    Grade.Lectures.Attendance.Total += 2;
-                                    Grade.Table.HandsOn.Add(new List<string> { item_.Name.ToString(), $"{item_.Value:0.00}%", "+2" });
-                                    break;
-
-                                case "Teamwork":
-                                    Grade.HandsOn.Teamwork.Total += Convert.ToDouble(item_.Value);
-                                    Grade.HandsOn.Teamwork.Percentage = (100 / Grade.HandsOn.Teamwork.Total) * Grade.HandsOn.Teamwork.Score;
-                                    if (item_.Value > 0)
-                                        Grade.Lectures.Attendance.Score += 2;
-                                    Grade.Lectures.Attendance.Total += 2;
-                                    Grade.Table.HandsOn.Add(new List<string> { item_.Name.ToString(), $"{item_.Value:0.00}%", "+2" });
-                                    break;
-                            }
-                        }
-                        Grade.HandsOn.Percentage += (Grade.HandsOn.Communication.Percentage * 50) / 100;
-                        Grade.HandsOn.Percentage += (Grade.HandsOn.Teamwork.Percentage * 50) / 100;
-                        break;
-
-                    case "Laboratory":
-                        foreach (dynamic item_ in item.Value)
-                        {
-                            Grade.Laboratory.Total += Convert.ToDouble(item_.Total);
-                            Grade.Laboratory.Score += Convert.ToDouble(item_.Score);
-                            if (item_.Score > 0)
-                                Grade.Lectures.Attendance.Score += 2;
-                            Grade.Lectures.Attendance.Total += 2;
-                            Grade.Table.Laboratory.Add(new List<string> { item_.Name.ToString(), $"{item_.Total}/{item_.Score}", "+2" });
-                        }
-                        Grade.Laboratory.Percentage = (100 / Grade.Laboratory.Total) * Grade.Laboratory.Score;
-                        break;
-
-                    default:
-                        break;
-                }
+                Grade.Lectures.Exams.Total += item.Total;
+                Grade.Lectures.Exams.Score += item.Score;
+                if (item.Score > 0)
+                    Grade.Lectures.Attendance.Score += 2;
+                Grade.Lectures.Attendance.Total += 2;
+                Grade.Table.Lectures.Add(new List<string> { item.Name.ToString(), $"{item.Total}/{item.Score}", "+2" });
             }
+            Grade.Lectures.Exams.Percentage = (100 / Grade.Lectures.Exams.Total) * Grade.Lectures.Exams.Score;
+            Grade.Lectures.Percentage += (Grade.Lectures.Exams.Percentage * 75) / 100;
+
+            foreach (Graded item in student.Laboratory)
+            {
+                Grade.Laboratory.Total += item.Total;
+                Grade.Laboratory.Score += item.Score;
+                if (item.Score > 0)
+                    Grade.Lectures.Attendance.Score += 2;
+                Grade.Lectures.Attendance.Total += 2;
+                Grade.Table.Laboratory.Add(new List<string> { item.Name.ToString(), $"{item.Total}/{item.Score}", "+2" });
+            }
+            Grade.Laboratory.Percentage = (100 / Grade.Laboratory.Total) * Grade.Laboratory.Score;
+
+            Grade.HandsOn.Communication.Total += student.HandsOn.Communication;
+            Grade.HandsOn.Communication.Percentage = (100 / Grade.HandsOn.Communication.Total) * Grade.HandsOn.Communication.Score;
+            if (student.HandsOn.Communication > 0)
+                Grade.Lectures.Attendance.Score += 2;
+            Grade.Lectures.Attendance.Total += 2;
+            Grade.Table.HandsOn.Add(new List<string> { "Communication", $"{student.HandsOn.Communication:0.00}%", "+2" });
+
+            Grade.HandsOn.Teamwork.Total += student.HandsOn.Teamwork;
+            Grade.HandsOn.Teamwork.Percentage = (100 / Grade.HandsOn.Teamwork.Total) * Grade.HandsOn.Teamwork.Score;
+            if (student.HandsOn.Teamwork > 0)
+                Grade.Lectures.Attendance.Score += 2;
+            Grade.Lectures.Attendance.Total += 2;
+            Grade.Table.HandsOn.Add(new List<string> { "Teamwork", $"{student.HandsOn.Teamwork:0.00}%", "+2" });
+
             Grade.Table.Lectures.Add(new List<string> { "Recitation", $"+{Grade.Lectures.Recitation.Score}" });
             Grade.Lectures.Attendance.Percentage = (100 / Grade.Lectures.Attendance.Total) * Grade.Lectures.Attendance.Score;
             Grade.Lectures.Percentage += (Grade.Lectures.Attendance.Percentage * 15) / 100;
@@ -149,8 +104,8 @@ namespace CIIT_Grading_System.Forms
             }
 
             var tableOutput = new List<string> {
-                "|Lectures|Grade| |Laboratories|Grade| |Hands-on|Grade| |",
-                "|--:|:--|:--:|--:|:--|:--:|--:|:--|:--:|"
+                "|__Lectures__|__________|_____|__Laboratories__|__________|_____|__Hands-on__|__________|_____|",
+                "|--:|:-:|:-:|--:|:--|:-:|--:|:-:|:-:|"
             };
             foreach (List<string> item in tableList)
             {
@@ -171,6 +126,24 @@ namespace CIIT_Grading_System.Forms
             return buffer;
         }
 
+        private void addClassToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            User.userData.CreateClassroom(Microsoft.VisualBasic.Interaction.InputBox("Enter a new classroom name", "Create new classroom", "Class #"));
+            User.JsonUpdate(User.userFile, User.userData);
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var projectForm = new AddStudents();
+            projectForm.ShowDialog();
+        }
+
+        private void manageGradeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var projectForm = new EditGrade();
+            projectForm.ShowDialog();
+        }
+
         private void StudentList_SelectedIndexChanged(object sender, EventArgs e)
         {
             string buffer = CalculateGrade(ClassroomList.Text, StudentList.Text);
@@ -179,11 +152,12 @@ namespace CIIT_Grading_System.Forms
             string htmlName = @"file:\\\" + Path.GetFullPath(fileName);
             using (StreamWriter file = File.CreateText(fileName))
             {
-                file.Write(@"<body background='../../Resources/empty_browser.png'><style>body {background-size: 100% 100%;}</style></body>");
+                file.Write(@"<body background='../../Resources/empty_browser.png'><meta name='viewport' content='width=device-width, initial-scale=1'><link rel='stylesheet' href='../../Resources/github-markdown.css'><style>.markdown-body{box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}@media (max-width:767px){.markdown-body{padding:15px}}</style><article class='markdown-body'>");
                 file.Write(Markdig.Markdown.ToHtml(buffer, new MarkdownPipelineBuilder().UseAdvancedExtensions().Build()));
+                file.Write(@"</article></body>");
                 file.Close();
             }
-            User.userData["Recent"] = fileName;
+            User.userData.Recent = fileName;
             User.JsonUpdate(User.userFile, User.userData);
             WebBrowser.Url = new System.Uri(htmlName);
         }

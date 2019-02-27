@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CIIT_Grading_System.Classes;
+using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CIIT_Grading_System.Forms
@@ -23,6 +25,18 @@ namespace CIIT_Grading_System.Forms
         {
             activityCount++;
             QuizList.Items.Add(String.Format("Quiz #{0}", activityCount));
+        }
+
+        private void EditGrade_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void ClassroomList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void TermList_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }

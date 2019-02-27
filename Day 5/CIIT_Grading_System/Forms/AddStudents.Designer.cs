@@ -28,58 +28,80 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            System.Windows.Forms.Label label2;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddStudents));
+            this.ClassroomList = new System.Windows.Forms.ComboBox();
+            this.StudentList = new System.Windows.Forms.ListBox();
+            this.AddStudent = new System.Windows.Forms.Button();
+            this.StudentName = new System.Windows.Forms.TextBox();
+            label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // listBox1
+            // label2
             // 
-            this.listBox1.BackColor = System.Drawing.Color.White;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(377, 49);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(189, 238);
-            this.listBox1.TabIndex = 0;
+            label2.AutoSize = true;
+            label2.BackColor = System.Drawing.Color.Transparent;
+            label2.Location = new System.Drawing.Point(145, 20);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(55, 13);
+            label2.TabIndex = 4;
+            label2.Text = "Classroom";
             // 
-            // richTextBox1
+            // ClassroomList
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(13, 52);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(225, 235);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
+            this.ClassroomList.FormattingEnabled = true;
+            this.ClassroomList.Location = new System.Drawing.Point(12, 12);
+            this.ClassroomList.Name = "ClassroomList";
+            this.ClassroomList.Size = new System.Drawing.Size(127, 21);
+            this.ClassroomList.TabIndex = 0;
+            this.ClassroomList.SelectedIndexChanged += new System.EventHandler(this.ClassroomList_SelectedIndexChanged);
             // 
-            // label1
+            // StudentList
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(13, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(206, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Enter new students separated by newlines";
+            this.StudentList.BackColor = System.Drawing.Color.White;
+            this.StudentList.FormattingEnabled = true;
+            this.StudentList.Location = new System.Drawing.Point(14, 70);
+            this.StudentList.Name = "StudentList";
+            this.StudentList.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.StudentList.Size = new System.Drawing.Size(225, 225);
+            this.StudentList.Sorted = true;
+            this.StudentList.TabIndex = 1;
             // 
-            // comboBox1
+            // AddStudent
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(244, 86);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(127, 21);
-            this.comboBox1.TabIndex = 3;
+            this.AddStudent.AutoSize = true;
+            this.AddStudent.BackColor = System.Drawing.SystemColors.Control;
+            this.AddStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddStudent.Location = new System.Drawing.Point(145, 39);
+            this.AddStudent.Name = "AddStudent";
+            this.AddStudent.Size = new System.Drawing.Size(76, 25);
+            this.AddStudent.TabIndex = 5;
+            this.AddStudent.Text = "Add student";
+            this.AddStudent.UseVisualStyleBackColor = false;
+            this.AddStudent.Click += new System.EventHandler(this.AddStudent_Click);
+            // 
+            // StudentName
+            // 
+            this.StudentName.Enabled = false;
+            this.StudentName.Location = new System.Drawing.Point(12, 39);
+            this.StudentName.Name = "StudentName";
+            this.StudentName.Size = new System.Drawing.Size(127, 20);
+            this.StudentName.TabIndex = 6;
             // 
             // AddStudents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = global::CIIT_Grading_System.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(594, 387);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(251, 302);
+            this.Controls.Add(this.StudentName);
+            this.Controls.Add(this.AddStudent);
+            this.Controls.Add(label2);
+            this.Controls.Add(this.ClassroomList);
+            this.Controls.Add(this.StudentList);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddStudents";
             this.Text = "AddStudents";
             this.Load += new System.EventHandler(this.AddStudents_Load);
@@ -89,10 +111,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox ClassroomList;
+        private System.Windows.Forms.ListBox StudentList;
+        private System.Windows.Forms.Button AddStudent;
+        private System.Windows.Forms.TextBox StudentName;
     }
 }
