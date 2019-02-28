@@ -52,10 +52,10 @@
             // Results
             // 
             this.Results.AutoSize = true;
-            this.Results.Font = new System.Drawing.Font("OCR A Std", 26.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Results.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Results.Location = new System.Drawing.Point(12, 29);
             this.Results.Name = "Results";
-            this.Results.Size = new System.Drawing.Size(199, 37);
+            this.Results.Size = new System.Drawing.Size(183, 39);
             this.Results.TabIndex = 0;
             this.Results.Text = "RESULTS";
             // 

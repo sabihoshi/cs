@@ -36,7 +36,7 @@ namespace CIIT_Grading_System.Forms
                     file.WriteLine("}");
                     file.Close();
                 }
-                Login.userLogin[UserName.Text] = UserPass.Text;
+                // .userLogin[UserName.Text] = UserPass.Text;
                 User.JsonUpdate(Login.userFile, Login.userLogin);
                 MessageBox.Show("User was created.", "Create user", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
