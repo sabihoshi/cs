@@ -1,6 +1,6 @@
 ﻿namespace Quiz.Forms
 {
-    partial class QuizResults
+    partial class Results
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Results = new System.Windows.Forms.Label();
+            this.Result = new System.Windows.Forms.Label();
             this.Correct = new System.Windows.Forms.Label();
             this.Score = new System.Windows.Forms.Label();
             this.z = new System.Windows.Forms.Label();
@@ -51,13 +51,13 @@
             // 
             // Results
             // 
-            this.Results.AutoSize = true;
-            this.Results.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Results.Location = new System.Drawing.Point(12, 29);
-            this.Results.Name = "Results";
-            this.Results.Size = new System.Drawing.Size(183, 39);
-            this.Results.TabIndex = 0;
-            this.Results.Text = "RESULTS";
+            this.Result.AutoSize = true;
+            this.Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Result.Location = new System.Drawing.Point(12, 29);
+            this.Result.Name = "Results";
+            this.Result.Size = new System.Drawing.Size(183, 39);
+            this.Result.TabIndex = 0;
+            this.Result.Text = "RESULTS";
             // 
             // Correct
             // 
@@ -255,7 +255,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Correct);
-            this.Controls.Add(this.Results);
+            this.Controls.Add(this.Result);
             this.Name = "QuizResults";
             this.Text = "QuizResults";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -266,7 +266,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label Results;
+        private System.Windows.Forms.Label Result;
         private System.Windows.Forms.Label Correct;
         private System.Windows.Forms.Label Score;
         private System.Windows.Forms.Label z;

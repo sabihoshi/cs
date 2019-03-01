@@ -2,9 +2,9 @@
 
 namespace Quiz.Forms
 {
-    public partial class QuizResults : Form
+    public partial class Results : Form
     {
-        public QuizResults()
+        public Results()
         {
             InitializeComponent();
         }

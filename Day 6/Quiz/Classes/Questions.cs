@@ -1,34 +1,28 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 
 namespace Quiz.Classes
 {
-    public class Questioned
+    public class Question
     {
+        protected static int Id = 0;
         public int Page { get; set; }
         public int Correct { get; set; }
-        public string Question { get; set; }
-        public List<string> Choices { get; set; } = new List<string>();
+        public string Description { get; set; }
+        public string[] Choices { get; set; }
 
-        public void CreateChoice(List<string> choices_to_add)
+        public Question(string question, int correctAnswer, params string[] choices)
         {
-            foreach (string item in choices_to_add)
-            {
-                Choices.Add(item);
-            }
+            Page = Interlocked.Increment(ref Id);
+            Description = question;
+            Correct = correctAnswer;
+            Choices = choices;
         }
     }
 
-    public class Questionnaires
+    public class Questionnaire
     {
-        public List<Questioned> Questions { get; set; } = new List<Questioned>();
-
-        public void CreateQuestion(string question)
-        {
-            Questions.Add(new Questioned
-            {
-                Question = question,
-                Page = Questions.Count
-            });
-        }
+        public List<Question> Questions { get; set; } = new List<Question>();
+        public string Name;
     }
 }

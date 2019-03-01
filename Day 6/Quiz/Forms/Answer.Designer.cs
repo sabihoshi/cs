@@ -1,6 +1,6 @@
 ﻿namespace Quiz.Forms
 {
-    partial class Quiz
+    partial class Answer
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Quiz));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Answer));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.quizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openAQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,6 +85,7 @@
             this.createAQuizToolStripMenuItem.Name = "createAQuizToolStripMenuItem";
             this.createAQuizToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.createAQuizToolStripMenuItem.Text = "Create a quiz";
+            this.createAQuizToolStripMenuItem.Click += new System.EventHandler(this.createAQuizToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -207,7 +208,7 @@
             // 
             this.PageNo.AutoSize = true;
             this.PageNo.BackColor = System.Drawing.Color.Transparent;
-            this.PageNo.Location = new System.Drawing.Point(236, 245);
+            this.PageNo.Location = new System.Drawing.Point(392, 245);
             this.PageNo.Name = "PageNo";
             this.PageNo.Size = new System.Drawing.Size(32, 13);
             this.PageNo.TabIndex = 5;
@@ -228,10 +229,10 @@
             this.QuizProgress.ForeColor = System.Drawing.Color.Green;
             this.QuizProgress.Location = new System.Drawing.Point(98, 240);
             this.QuizProgress.Name = "QuizProgress";
-            this.QuizProgress.Size = new System.Drawing.Size(350, 23);
+            this.QuizProgress.Size = new System.Drawing.Size(288, 23);
             this.QuizProgress.TabIndex = 0;
             // 
-            // Quiz
+            // Answer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -245,7 +246,7 @@
             this.Controls.Add(this.QuizProgress);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Quiz";
+            this.Name = "Answer";
             this.Text = "Quiz Maker";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

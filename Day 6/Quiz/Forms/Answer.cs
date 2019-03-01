@@ -7,16 +7,14 @@ using System.Windows.Forms;
 
 namespace Quiz.Forms
 {
-    public partial class Quiz : Form
+    public partial class Answer : Form
     {
-        public Quiz()
+        public Answer()
         {
             InitializeComponent();
         }
 
-        // Global variables
-        public Questionnaires Quizzes = new Questionnaires();
-
+        public Questionnaire Quizzes = new Questionnaire();
         public int pageCurrent = 0;
 
         private void openAQuizToolStripMenuItem_Click(object sender, EventArgs e)
@@ -32,7 +30,7 @@ namespace Quiz.Forms
                 sr.Close();
             }
             QuizLabel.Text = fileName;
-            try { Quizzes = JsonConvert.DeserializeObject<Questionnaires>(buffer); }
+            try { Quizzes = JsonConvert.DeserializeObject<Questionnaire>(buffer); }
             catch (Newtonsoft.Json.JsonReaderException) { Console.WriteLine("Invalid File"); }
             QuizProgress.Step = 100 / Quizzes.Questions.Count;
             UpdateQuestion();
@@ -41,8 +39,8 @@ namespace Quiz.Forms
         public void UpdateQuestion()
         {
             PageNo.Text = $"{pageCurrent + 1}/{Quizzes.Questions.Count}";
-            Questioned questionCurrent = Quizzes.Questions.FirstOrDefault(q => q.Page == pageCurrent);
-            QuestionBox.Text = questionCurrent.Question;
+            Question questionCurrent = Quizzes.Questions.FirstOrDefault(q => q.Page == pageCurrent);
+            QuestionBox.Text = questionCurrent.Description;
 
             if (pageCurrent == 0)
             {
@@ -76,8 +74,8 @@ namespace Quiz.Forms
         {
             if (pageCurrent + 1 == Quizzes.Questions.Count)
             {
-                this.Hide();
-                var newForm = new QuizResults();
+                Hide();
+                var newForm = new Results();
                 newForm.Show();
                 return;
             }
@@ -96,6 +94,13 @@ namespace Quiz.Forms
         {
             HardMode.Checked = true;
             EasyMode.Checked = false;
+        }
+
+        private void createAQuizToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var newForm = new Editor();
+            newForm.Show();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Quiz
+namespace Quiz.Forms
 {
     internal static class Program
     {
@@ -13,7 +13,7 @@ namespace Quiz
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Quiz());
+            Application.Run(new Answer());
         }
     }
 }

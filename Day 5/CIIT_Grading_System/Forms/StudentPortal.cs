@@ -147,7 +147,7 @@ namespace CIIT_Grading_System.Forms
             string userName = Login.userName;
             string newName = Microsoft.VisualBasic.Interaction.InputBox("Enter a new username", "Username Change", userName);
             Login.userLogin.User.FirstOrDefault(u => u.Username == userName).Username = newName;
-            Login.userLogin.User.
+            // Login.userLogin.User.
             // Login.User.JsonUpdate(Login.userFile, Login.userLogin);
             File.Move(Login.User.userFile, String.Format(@"..\..\Data\Users\{0}.json", newName));
             Login.User.userFile = newName;

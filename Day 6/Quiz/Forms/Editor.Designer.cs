@@ -1,6 +1,6 @@
 ﻿namespace Quiz.Forms
 {
-    partial class QuizEditor
+    partial class Editor
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label QuizLabel;
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
@@ -37,7 +36,7 @@
             System.Windows.Forms.Label label5;
             System.Windows.Forms.Label label6;
             System.Windows.Forms.Label label7;
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editor));
             this.PageNo = new System.Windows.Forms.Label();
             this.Next = new System.Windows.Forms.Button();
             this.Back = new System.Windows.Forms.Button();
@@ -53,19 +52,21 @@
             this.openAQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.Menu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openExistingQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.deletePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewQuestion = new System.Windows.Forms.Button();
+            this.Title = new System.Windows.Forms.TextBox();
+            this.Question = new System.Windows.Forms.TextBox();
+            this.B = new System.Windows.Forms.TextBox();
+            this.A = new System.Windows.Forms.TextBox();
+            this.D = new System.Windows.Forms.TextBox();
+            this.C = new System.Windows.Forms.TextBox();
+            this.RemoveQuestion = new System.Windows.Forms.Button();
             QuizLabel = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -75,8 +76,81 @@
             label6 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
             this.QuestionBox.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.Menu.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // QuizLabel
+            // 
+            QuizLabel.AutoSize = true;
+            QuizLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            QuizLabel.Location = new System.Drawing.Point(19, 45);
+            QuizLabel.Name = "QuizLabel";
+            QuizLabel.Size = new System.Drawing.Size(56, 25);
+            QuizLabel.TabIndex = 7;
+            QuizLabel.Text = "Quiz";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(361, 35);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(51, 13);
+            label1.TabIndex = 11;
+            label1.Text = "Quiz Title";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(361, 74);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(49, 13);
+            label2.TabIndex = 11;
+            label2.Text = "Question";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(361, 122);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(45, 13);
+            label4.TabIndex = 11;
+            label4.Text = "Choices";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(470, 144);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(14, 13);
+            label3.TabIndex = 11;
+            label3.Text = "A";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(470, 167);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(14, 13);
+            label5.TabIndex = 11;
+            label5.Text = "B";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(470, 192);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(14, 13);
+            label6.TabIndex = 11;
+            label6.Text = "C";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new System.Drawing.Point(470, 215);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(15, 13);
+            label7.TabIndex = 11;
+            label7.Text = "D";
             // 
             // PageNo
             // 
@@ -94,13 +168,12 @@
             this.Next.Location = new System.Drawing.Point(458, 244);
             this.Next.Name = "Next";
             this.Next.Size = new System.Drawing.Size(75, 23);
-            this.Next.TabIndex = 9;
+            this.Next.TabIndex = 11;
             this.Next.Text = "Next";
             this.Next.UseVisualStyleBackColor = false;
             // 
             // Back
             // 
-            this.Back.Enabled = false;
             this.Back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Back.Location = new System.Drawing.Point(21, 244);
             this.Back.Name = "Back";
@@ -115,10 +188,11 @@
             this.ChoiceD.Location = new System.Drawing.Point(21, 125);
             this.ChoiceD.Name = "ChoiceD";
             this.ChoiceD.Size = new System.Drawing.Size(33, 17);
-            this.ChoiceD.TabIndex = 2;
+            this.ChoiceD.TabIndex = 9;
             this.ChoiceD.TabStop = true;
             this.ChoiceD.Text = "D";
             this.ChoiceD.UseVisualStyleBackColor = true;
+            this.ChoiceD.CheckedChanged += new System.EventHandler(this.Choice_CorrectAnswer);
             // 
             // ChoiceC
             // 
@@ -126,10 +200,11 @@
             this.ChoiceC.Location = new System.Drawing.Point(21, 102);
             this.ChoiceC.Name = "ChoiceC";
             this.ChoiceC.Size = new System.Drawing.Size(32, 17);
-            this.ChoiceC.TabIndex = 2;
+            this.ChoiceC.TabIndex = 8;
             this.ChoiceC.TabStop = true;
             this.ChoiceC.Text = "C";
             this.ChoiceC.UseVisualStyleBackColor = true;
+            this.ChoiceC.CheckedChanged += new System.EventHandler(this.Choice_CorrectAnswer);
             // 
             // ChoiceB
             // 
@@ -137,10 +212,11 @@
             this.ChoiceB.Location = new System.Drawing.Point(21, 79);
             this.ChoiceB.Name = "ChoiceB";
             this.ChoiceB.Size = new System.Drawing.Size(32, 17);
-            this.ChoiceB.TabIndex = 2;
+            this.ChoiceB.TabIndex = 7;
             this.ChoiceB.TabStop = true;
             this.ChoiceB.Text = "B";
             this.ChoiceB.UseVisualStyleBackColor = true;
+            this.ChoiceB.CheckedChanged += new System.EventHandler(this.Choice_CorrectAnswer);
             // 
             // QuestionBox
             // 
@@ -161,20 +237,11 @@
             this.ChoiceA.Location = new System.Drawing.Point(21, 56);
             this.ChoiceA.Name = "ChoiceA";
             this.ChoiceA.Size = new System.Drawing.Size(32, 17);
-            this.ChoiceA.TabIndex = 2;
+            this.ChoiceA.TabIndex = 6;
             this.ChoiceA.TabStop = true;
             this.ChoiceA.Text = "A";
             this.ChoiceA.UseVisualStyleBackColor = true;
-            // 
-            // QuizLabel
-            // 
-            QuizLabel.AutoSize = true;
-            QuizLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            QuizLabel.Location = new System.Drawing.Point(19, 45);
-            QuizLabel.Name = "QuizLabel";
-            QuizLabel.Size = new System.Drawing.Size(56, 25);
-            QuizLabel.TabIndex = 7;
-            QuizLabel.Text = "Quiz";
+            this.ChoiceA.CheckedChanged += new System.EventHandler(this.Choice_CorrectAnswer);
             // 
             // HardMode
             // 
@@ -223,17 +290,17 @@
             // 
             this.OpenFile.FileName = "FileName";
             // 
-            // menuStrip1
+            // Menu
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.quizToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(585, 24);
-            this.menuStrip1.TabIndex = 6;
-            this.menuStrip1.Text = "menuStrip1";
+            this.Menu.Location = new System.Drawing.Point(0, 0);
+            this.Menu.Name = "Menu";
+            this.Menu.Size = new System.Drawing.Size(585, 24);
+            this.Menu.TabIndex = 6;
+            this.Menu.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -259,7 +326,8 @@
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addPageToolStripMenuItem});
+            this.addPageToolStripMenuItem,
+            this.deletePageToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -267,142 +335,101 @@
             // addPageToolStripMenuItem
             // 
             this.addPageToolStripMenuItem.Name = "addPageToolStripMenuItem";
-            this.addPageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.addPageToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.addPageToolStripMenuItem.Text = "Add Page";
             // 
-            // button1
+            // deletePageToolStripMenuItem
             // 
-            this.button1.Location = new System.Drawing.Point(549, 244);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(24, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
+            this.deletePageToolStripMenuItem.Name = "deletePageToolStripMenuItem";
+            this.deletePageToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.deletePageToolStripMenuItem.Text = "Delete Page";
             // 
-            // textBox1
+            // NewQuestion
             // 
-            this.textBox1.Location = new System.Drawing.Point(364, 51);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 13;
+            this.NewQuestion.Location = new System.Drawing.Point(539, 244);
+            this.NewQuestion.Name = "NewQuestion";
+            this.NewQuestion.Size = new System.Drawing.Size(24, 23);
+            this.NewQuestion.TabIndex = 12;
+            this.NewQuestion.Text = "+";
+            this.NewQuestion.UseVisualStyleBackColor = true;
+            this.NewQuestion.Click += new System.EventHandler(this.NewQuestion_Click);
             // 
-            // label1
+            // Title
             // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(361, 35);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(51, 13);
-            label1.TabIndex = 11;
-            label1.Text = "Quiz Title";
-            label1.Click += new System.EventHandler(this.label1_Click_1);
+            this.Title.Location = new System.Drawing.Point(364, 51);
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(100, 20);
+            this.Title.TabIndex = 0;
+            this.Title.TextChanged += new System.EventHandler(this.Title_TextChanged);
             // 
-            // label2
+            // Question
             // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(361, 74);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(49, 13);
-            label2.TabIndex = 11;
-            label2.Text = "Question";
-            label2.Click += new System.EventHandler(this.label1_Click_1);
+            this.Question.Enabled = false;
+            this.Question.Location = new System.Drawing.Point(364, 90);
+            this.Question.Name = "Question";
+            this.Question.Size = new System.Drawing.Size(100, 20);
+            this.Question.TabIndex = 1;
+            this.Question.TextChanged += new System.EventHandler(this.Question_TextChanged);
             // 
-            // textBox2
+            // B
             // 
-            this.textBox2.Location = new System.Drawing.Point(364, 90);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 13;
+            this.B.Enabled = false;
+            this.B.Location = new System.Drawing.Point(364, 164);
+            this.B.Name = "B";
+            this.B.Size = new System.Drawing.Size(100, 20);
+            this.B.TabIndex = 3;
+            this.B.TextChanged += new System.EventHandler(this.Choice_TextChanged);
             // 
-            // textBox3
+            // A
             // 
-            this.textBox3.Location = new System.Drawing.Point(364, 164);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 13;
+            this.A.Enabled = false;
+            this.A.Location = new System.Drawing.Point(364, 141);
+            this.A.Name = "A";
+            this.A.Size = new System.Drawing.Size(100, 20);
+            this.A.TabIndex = 2;
+            this.A.TextChanged += new System.EventHandler(this.Choice_TextChanged);
             // 
-            // label4
+            // D
             // 
-            label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(361, 122);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(45, 13);
-            label4.TabIndex = 11;
-            label4.Text = "Choices";
-            label4.Click += new System.EventHandler(this.label1_Click_1);
+            this.D.Enabled = false;
+            this.D.Location = new System.Drawing.Point(364, 210);
+            this.D.Name = "D";
+            this.D.Size = new System.Drawing.Size(100, 20);
+            this.D.TabIndex = 5;
+            this.D.TextChanged += new System.EventHandler(this.Choice_TextChanged);
             // 
-            // textBox4
+            // C
             // 
-            this.textBox4.Location = new System.Drawing.Point(364, 141);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 13;
+            this.C.Enabled = false;
+            this.C.Location = new System.Drawing.Point(364, 187);
+            this.C.Name = "C";
+            this.C.Size = new System.Drawing.Size(100, 20);
+            this.C.TabIndex = 4;
+            this.C.TextChanged += new System.EventHandler(this.Choice_TextChanged);
             // 
-            // textBox5
+            // RemoveQuestion
             // 
-            this.textBox5.Location = new System.Drawing.Point(364, 210);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 13;
+            this.RemoveQuestion.Location = new System.Drawing.Point(428, 244);
+            this.RemoveQuestion.Name = "RemoveQuestion";
+            this.RemoveQuestion.Size = new System.Drawing.Size(24, 23);
+            this.RemoveQuestion.TabIndex = 12;
+            this.RemoveQuestion.Text = "-";
+            this.RemoveQuestion.UseVisualStyleBackColor = true;
+            this.RemoveQuestion.Click += new System.EventHandler(this.NewQuestion_Click);
             // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(364, 187);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 13;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(470, 144);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(14, 13);
-            label3.TabIndex = 11;
-            label3.Text = "A";
-            label3.Click += new System.EventHandler(this.label1_Click_1);
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(470, 167);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(14, 13);
-            label5.TabIndex = 11;
-            label5.Text = "B";
-            label5.Click += new System.EventHandler(this.label1_Click_1);
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(470, 192);
-            label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(14, 13);
-            label6.TabIndex = 11;
-            label6.Text = "C";
-            label6.Click += new System.EventHandler(this.label1_Click_1);
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new System.Drawing.Point(470, 215);
-            label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(15, 13);
-            label7.TabIndex = 11;
-            label7.Text = "D";
-            label7.Click += new System.EventHandler(this.label1_Click_1);
-            // 
-            // QuizEditor
+            // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(585, 279);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.C);
+            this.Controls.Add(this.D);
+            this.Controls.Add(this.A);
+            this.Controls.Add(this.B);
+            this.Controls.Add(this.Question);
+            this.Controls.Add(this.Title);
+            this.Controls.Add(this.RemoveQuestion);
+            this.Controls.Add(this.NewQuestion);
             this.Controls.Add(label7);
             this.Controls.Add(label6);
             this.Controls.Add(label5);
@@ -415,21 +442,20 @@
             this.Controls.Add(this.Back);
             this.Controls.Add(this.QuestionBox);
             this.Controls.Add(QuizLabel);
-            this.Controls.Add(this.menuStrip1);
-            this.Name = "QuizEditor";
+            this.Controls.Add(this.Menu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Editor";
             this.Text = "Quiz Editor";
             this.QuestionBox.ResumeLayout(false);
             this.QuestionBox.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.Menu.ResumeLayout(false);
+            this.Menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label PageNo;
         private System.Windows.Forms.Button Next;
         private System.Windows.Forms.Button Back;
@@ -445,18 +471,20 @@
         private System.Windows.Forms.ToolStripMenuItem openAQuizToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quizToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog OpenFile;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip Menu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openExistingQuizToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addPageToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button NewQuestion;
+        private System.Windows.Forms.TextBox Title;
+        private System.Windows.Forms.TextBox Question;
+        private System.Windows.Forms.TextBox B;
+        private System.Windows.Forms.TextBox A;
+        private System.Windows.Forms.TextBox D;
+        private System.Windows.Forms.TextBox C;
+        private System.Windows.Forms.ToolStripMenuItem deletePageToolStripMenuItem;
+        private System.Windows.Forms.Button RemoveQuestion;
     }
 }
