@@ -225,11 +225,13 @@
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Linen;
-            this.label9.Location = new System.Drawing.Point(230, 453);
+            this.label9.Enabled = false;
+            this.label9.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(209, 454);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.Size = new System.Drawing.Size(90, 14);
             this.label9.TabIndex = 10;
-            this.label9.Text = "label9";
+            this.label9.Text = "Kendric and Neil";
             // 
             // QuizResults
             // 

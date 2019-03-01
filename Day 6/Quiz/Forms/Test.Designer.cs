@@ -34,6 +34,8 @@
             this.openAQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createAQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.EasyMode = new System.Windows.Forms.ToolStripMenuItem();
+            this.HardMode = new System.Windows.Forms.ToolStripMenuItem();
             this.QuizLabel = new System.Windows.Forms.Label();
             this.ChoiceA = new System.Windows.Forms.RadioButton();
             this.QuestionBox = new System.Windows.Forms.GroupBox();
@@ -45,8 +47,6 @@
             this.PageNo = new System.Windows.Forms.Label();
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.EasyMode = new System.Windows.Forms.ToolStripMenuItem();
-            this.HardMode = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.QuestionBox.SuspendLayout();
             this.SuspendLayout();
@@ -74,14 +74,14 @@
             // openAQuizToolStripMenuItem
             // 
             this.openAQuizToolStripMenuItem.Name = "openAQuizToolStripMenuItem";
-            this.openAQuizToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openAQuizToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.openAQuizToolStripMenuItem.Text = "Open a quiz";
             this.openAQuizToolStripMenuItem.Click += new System.EventHandler(this.openAQuizToolStripMenuItem_Click);
             // 
             // createAQuizToolStripMenuItem
             // 
             this.createAQuizToolStripMenuItem.Name = "createAQuizToolStripMenuItem";
-            this.createAQuizToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createAQuizToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.createAQuizToolStripMenuItem.Text = "Create a quiz";
             // 
             // toolStripMenuItem1
@@ -90,8 +90,22 @@
             this.EasyMode,
             this.HardMode});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
             this.toolStripMenuItem1.Text = "Mode";
+            // 
+            // EasyMode
+            // 
+            this.EasyMode.Name = "EasyMode";
+            this.EasyMode.Size = new System.Drawing.Size(123, 22);
+            this.EasyMode.Text = "Easy";
+            this.EasyMode.Click += new System.EventHandler(this.EasyMode_Click);
+            // 
+            // HardMode
+            // 
+            this.HardMode.Name = "HardMode";
+            this.HardMode.Size = new System.Drawing.Size(123, 22);
+            this.HardMode.Text = "Hardcore";
+            this.HardMode.Click += new System.EventHandler(this.HardMode_Click);
             // 
             // QuizLabel
             // 
@@ -174,7 +188,7 @@
             // 
             // Next
             // 
-            this.Next.BackColor = System.Drawing.Color.Green;
+            this.Next.BackColor = System.Drawing.SystemColors.Control;
             this.Next.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Next.Location = new System.Drawing.Point(454, 240);
             this.Next.Name = "Next";
@@ -197,20 +211,6 @@
             // 
             this.OpenFile.FileName = "FileName";
             // 
-            // EasyMode
-            // 
-            this.EasyMode.Name = "EasyMode";
-            this.EasyMode.Size = new System.Drawing.Size(180, 22);
-            this.EasyMode.Text = "Easy";
-            this.EasyMode.Click += new System.EventHandler(this.EasyMode_Click);
-            // 
-            // HardMode
-            // 
-            this.HardMode.Name = "HardMode";
-            this.HardMode.Size = new System.Drawing.Size(180, 22);
-            this.HardMode.Text = "Hardcore";
-            this.HardMode.Click += new System.EventHandler(this.HardMode_Click);
-            // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,7 +224,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Test";
-            this.Text = "Form1";
+            this.Text = "QUIZ FOR YOU";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.QuestionBox.ResumeLayout(false);
