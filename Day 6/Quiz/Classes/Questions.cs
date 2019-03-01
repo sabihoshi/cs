@@ -27,7 +27,7 @@ namespace Quiz.Classes
             Questions.Add(new Questioned
             {
                 Question = question,
-                Page = Questions.Count + 1
+                Page = Questions.Count
             });
         }
     }

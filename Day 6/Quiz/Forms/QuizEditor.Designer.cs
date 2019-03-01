@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label QuizLabel;
+            System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label label2;
+            System.Windows.Forms.Label label4;
+            System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label label5;
+            System.Windows.Forms.Label label6;
+            System.Windows.Forms.Label label7;
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.PageNo = new System.Windows.Forms.Label();
             this.Next = new System.Windows.Forms.Button();
@@ -38,7 +46,6 @@
             this.ChoiceB = new System.Windows.Forms.RadioButton();
             this.QuestionBox = new System.Windows.Forms.GroupBox();
             this.ChoiceA = new System.Windows.Forms.RadioButton();
-            this.QuizLabel = new System.Windows.Forms.Label();
             this.HardMode = new System.Windows.Forms.ToolStripMenuItem();
             this.EasyMode = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,25 +54,26 @@
             this.quizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.button1 = new System.Windows.Forms.Button();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openExistingQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            QuizLabel = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            label7 = new System.Windows.Forms.Label();
             this.QuestionBox.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -160,13 +168,13 @@
             // 
             // QuizLabel
             // 
-            this.QuizLabel.AutoSize = true;
-            this.QuizLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.QuizLabel.Location = new System.Drawing.Point(19, 45);
-            this.QuizLabel.Name = "QuizLabel";
-            this.QuizLabel.Size = new System.Drawing.Size(56, 25);
-            this.QuizLabel.TabIndex = 7;
-            this.QuizLabel.Text = "Quiz";
+            QuizLabel.AutoSize = true;
+            QuizLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            QuizLabel.Location = new System.Drawing.Point(19, 45);
+            QuizLabel.Name = "QuizLabel";
+            QuizLabel.Size = new System.Drawing.Size(56, 25);
+            QuizLabel.TabIndex = 7;
+            QuizLabel.Text = "Quiz";
             // 
             // HardMode
             // 
@@ -186,19 +194,19 @@
             this.EasyMode,
             this.HardMode});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
             this.toolStripMenuItem1.Text = "Mode";
             // 
             // createAQuizToolStripMenuItem
             // 
             this.createAQuizToolStripMenuItem.Name = "createAQuizToolStripMenuItem";
-            this.createAQuizToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createAQuizToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.createAQuizToolStripMenuItem.Text = "Create a quiz";
             // 
             // openAQuizToolStripMenuItem
             // 
             this.openAQuizToolStripMenuItem.Name = "openAQuizToolStripMenuItem";
-            this.openAQuizToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openAQuizToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.openAQuizToolStripMenuItem.Text = "Open a quiz";
             // 
             // quizToolStripMenuItem
@@ -227,23 +235,6 @@
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(549, 244);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(24, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addPageToolStripMenuItem});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
-            // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -256,20 +247,37 @@
             // openExistingQuizToolStripMenuItem
             // 
             this.openExistingQuizToolStripMenuItem.Name = "openExistingQuizToolStripMenuItem";
-            this.openExistingQuizToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openExistingQuizToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.openExistingQuizToolStripMenuItem.Text = "Open Existing Quiz";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.saveToolStripMenuItem.Text = "Save";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addPageToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
             // 
             // addPageToolStripMenuItem
             // 
             this.addPageToolStripMenuItem.Name = "addPageToolStripMenuItem";
-            this.addPageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addPageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.addPageToolStripMenuItem.Text = "Add Page";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(549, 244);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(24, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "+";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
@@ -280,23 +288,23 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(361, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Quiz Title";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(361, 35);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(51, 13);
+            label1.TabIndex = 11;
+            label1.Text = "Quiz Title";
+            label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(361, 74);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Question";
-            this.label2.Click += new System.EventHandler(this.label1_Click_1);
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(361, 74);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(49, 13);
+            label2.TabIndex = 11;
+            label2.Text = "Question";
+            label2.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // textBox2
             // 
@@ -314,13 +322,13 @@
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(361, 122);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Choices";
-            this.label4.Click += new System.EventHandler(this.label1_Click_1);
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(361, 122);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(45, 13);
+            label4.TabIndex = 11;
+            label4.Text = "Choices";
+            label4.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // textBox4
             // 
@@ -345,45 +353,45 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(470, 144);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(14, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "A";
-            this.label3.Click += new System.EventHandler(this.label1_Click_1);
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(470, 144);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(14, 13);
+            label3.TabIndex = 11;
+            label3.Text = "A";
+            label3.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(470, 167);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(14, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "B";
-            this.label5.Click += new System.EventHandler(this.label1_Click_1);
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(470, 167);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(14, 13);
+            label5.TabIndex = 11;
+            label5.Text = "B";
+            label5.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(470, 192);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(14, 13);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "C";
-            this.label6.Click += new System.EventHandler(this.label1_Click_1);
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(470, 192);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(14, 13);
+            label6.TabIndex = 11;
+            label6.Text = "C";
+            label6.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(470, 215);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(15, 13);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "D";
-            this.label7.Click += new System.EventHandler(this.label1_Click_1);
+            label7.AutoSize = true;
+            label7.Location = new System.Drawing.Point(470, 215);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(15, 13);
+            label7.TabIndex = 11;
+            label7.Text = "D";
+            label7.Click += new System.EventHandler(this.label1_Click_1);
             // 
-            // QuizEdit
+            // QuizEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -395,20 +403,20 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(label7);
+            this.Controls.Add(label6);
+            this.Controls.Add(label5);
+            this.Controls.Add(label3);
+            this.Controls.Add(label4);
+            this.Controls.Add(label2);
+            this.Controls.Add(label1);
             this.Controls.Add(this.PageNo);
             this.Controls.Add(this.Next);
             this.Controls.Add(this.Back);
             this.Controls.Add(this.QuestionBox);
-            this.Controls.Add(this.QuizLabel);
+            this.Controls.Add(QuizLabel);
             this.Controls.Add(this.menuStrip1);
-            this.Name = "QuizEdit";
+            this.Name = "QuizEditor";
             this.Text = "Quiz Editor";
             this.QuestionBox.ResumeLayout(false);
             this.QuestionBox.PerformLayout();
@@ -430,7 +438,6 @@
         private System.Windows.Forms.RadioButton ChoiceB;
         private System.Windows.Forms.GroupBox QuestionBox;
         private System.Windows.Forms.RadioButton ChoiceA;
-        private System.Windows.Forms.Label QuizLabel;
         private System.Windows.Forms.ToolStripMenuItem HardMode;
         private System.Windows.Forms.ToolStripMenuItem EasyMode;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
@@ -446,17 +453,10 @@
         private System.Windows.Forms.ToolStripMenuItem addPageToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
     }
 }

@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Quiz
+namespace Quiz.Forms
 {
     public partial class Quiz : Form
     {
@@ -14,6 +14,7 @@ namespace Quiz
             InitializeComponent();
         }
 
+        // Global variables
         public Questionnaires Quizzes = new Questionnaires();
 
         public int pageCurrent = 0;
@@ -33,14 +34,30 @@ namespace Quiz
             QuizLabel.Text = fileName;
             try { Quizzes = JsonConvert.DeserializeObject<Questionnaires>(buffer); }
             catch (Newtonsoft.Json.JsonReaderException) { Console.WriteLine("Invalid File"); }
+            QuizProgress.Step = 100 / Quizzes.Questions.Count;
             UpdateQuestion();
         }
 
         public void UpdateQuestion()
         {
             PageNo.Text = $"{pageCurrent + 1}/{Quizzes.Questions.Count}";
-            Questioned questionCurrent = Quizzes.Questions.FirstOrDefault(q => q.Page == pageCurrent + 1);
+            Questioned questionCurrent = Quizzes.Questions.FirstOrDefault(q => q.Page == pageCurrent);
             QuestionBox.Text = questionCurrent.Question;
+
+            if (pageCurrent == 0)
+            {
+                if (pageCurrent != Quizzes.Questions.Count)
+                    Next.Text = "Next";
+                else
+                    Next.Text = "Submit";
+                Back.Enabled = false;
+            }
+            else if (pageCurrent < Quizzes.Questions.Count)
+            {
+                if (pageCurrent + 1 == Quizzes.Questions.Count)
+                    Next.Text = "Submit";
+                Back.Enabled = true;
+            }
 
             ChoiceA.Text = questionCurrent.Choices[0];
             ChoiceB.Text = questionCurrent.Choices[1];
@@ -48,32 +65,25 @@ namespace Quiz
             ChoiceD.Text = questionCurrent.Choices[3];
         }
 
-        private void Test_Load(object sender, EventArgs e)
-        {
-        }
-
         private void Back_Click(object sender, EventArgs e)
         {
-            Next.Text = "Next";
-            if (pageCurrent == 1)
-                Back.Enabled = false;
             pageCurrent--;
+            QuizProgress.Increment(-QuizProgress.Step);
             UpdateQuestion();
         }
 
         private void Next_Click(object sender, EventArgs e)
         {
-            Back.Enabled = true;
-            if (pageCurrent == Quizzes.Questions.Count - 1)
+            if (pageCurrent + 1 == Quizzes.Questions.Count)
             {
+                this.Hide();
+                var newForm = new QuizResults();
+                newForm.Show();
+                return;
             }
-            else
-            {
-                if (pageCurrent == Quizzes.Questions.Count - 2)
-                    Next.Text = "Submit";
-                pageCurrent++;
-                UpdateQuestion();
-            }
+            pageCurrent++;
+            QuizProgress.PerformStep();
+            UpdateQuestion();
         }
 
         private void EasyMode_Click(object sender, EventArgs e)
@@ -86,10 +96,6 @@ namespace Quiz
         {
             HardMode.Checked = true;
             EasyMode.Checked = false;
-        }
-
-        private void Test_Load_1(object sender, EventArgs e)
-        {
         }
     }
 }

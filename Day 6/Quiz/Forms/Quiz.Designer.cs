@@ -1,4 +1,4 @@
-﻿namespace Quiz
+﻿namespace Quiz.Forms
 {
     partial class Quiz
     {
@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Quiz));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.quizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openAQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +47,8 @@
             this.Next = new System.Windows.Forms.Button();
             this.PageNo = new System.Windows.Forms.Label();
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.QuizTimer = new System.Windows.Forms.Timer(this.components);
+            this.QuizProgress = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.QuestionBox.SuspendLayout();
             this.SuspendLayout();
@@ -130,6 +132,7 @@
             // 
             // QuestionBox
             // 
+            this.QuestionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.QuestionBox.Controls.Add(this.ChoiceD);
             this.QuestionBox.Controls.Add(this.ChoiceC);
             this.QuestionBox.Controls.Add(this.ChoiceB);
@@ -176,6 +179,7 @@
             // 
             // Back
             // 
+            this.Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Back.Enabled = false;
             this.Back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Back.Location = new System.Drawing.Point(17, 240);
@@ -188,6 +192,7 @@
             // 
             // Next
             // 
+            this.Next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Next.BackColor = System.Drawing.SystemColors.Control;
             this.Next.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Next.Location = new System.Drawing.Point(454, 240);
@@ -201,7 +206,8 @@
             // PageNo
             // 
             this.PageNo.AutoSize = true;
-            this.PageNo.Location = new System.Drawing.Point(250, 250);
+            this.PageNo.BackColor = System.Drawing.Color.Transparent;
+            this.PageNo.Location = new System.Drawing.Point(236, 245);
             this.PageNo.Name = "PageNo";
             this.PageNo.Size = new System.Drawing.Size(32, 13);
             this.PageNo.TabIndex = 5;
@@ -211,7 +217,21 @@
             // 
             this.OpenFile.FileName = "FileName";
             // 
-            // Test
+            // QuizTimer
+            // 
+            this.QuizTimer.Interval = 1000;
+            // 
+            // QuizProgress
+            // 
+            this.QuizProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.QuizProgress.ForeColor = System.Drawing.Color.Green;
+            this.QuizProgress.Location = new System.Drawing.Point(98, 240);
+            this.QuizProgress.Name = "QuizProgress";
+            this.QuizProgress.Size = new System.Drawing.Size(350, 23);
+            this.QuizProgress.TabIndex = 0;
+            // 
+            // Quiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -222,11 +242,11 @@
             this.Controls.Add(this.QuestionBox);
             this.Controls.Add(this.QuizLabel);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.QuizProgress);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Test";
-            this.Text = "QUIZ FOR YOU";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Test_Load_1);
+            this.Name = "Quiz";
+            this.Text = "Quiz Maker";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.QuestionBox.ResumeLayout(false);
@@ -252,10 +272,11 @@
         private System.Windows.Forms.Button Next;
         private System.Windows.Forms.Label PageNo;
         private System.Windows.Forms.OpenFileDialog OpenFile;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer QuizTimer;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem EasyMode;
         private System.Windows.Forms.ToolStripMenuItem HardMode;
+        private System.Windows.Forms.ProgressBar QuizProgress;
     }
 }
 
