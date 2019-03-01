@@ -50,11 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Questions.cs" />
-    <Compile Include="Forms\Form1.cs">
+    <Compile Include="Forms\QuizEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\QuizEditor.Designer.cs">
+      <DependentUpon>QuizEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\QuizResults.cs">
       <SubType>Form</SubType>
@@ -62,22 +62,22 @@
     <Compile Include="Forms\QuizResults.Designer.cs">
       <DependentUpon>QuizResults.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Test.cs">
+    <Compile Include="Forms\Quiz.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Test.Designer.cs">
-      <DependentUpon>Test.cs</DependentUpon>
+    <Compile Include="Forms\Quiz.Designer.cs">
+      <DependentUpon>Quiz.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\QuizEditor.resx">
+      <DependentUpon>QuizEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\QuizResults.resx">
       <DependentUpon>QuizResults.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Test.resx">
-      <DependentUpon>Test.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Quiz.resx">
+      <DependentUpon>Quiz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -99,7 +99,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="test.json" />
+    <None Include="Data\test.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,16 +1,15 @@
 ﻿using Newtonsoft.Json;
 using Quiz.Classes;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace Quiz
 {
-    public partial class Test : Form
+    public partial class Quiz : Form
     {
-        public Test()
+        public Quiz()
         {
             InitializeComponent();
         }

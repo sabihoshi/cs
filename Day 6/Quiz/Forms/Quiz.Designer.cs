@@ -1,6 +1,6 @@
 ﻿namespace Quiz
 {
-    partial class Test
+    partial class Quiz
     {
         /// <summary>
         /// Required designer variable.

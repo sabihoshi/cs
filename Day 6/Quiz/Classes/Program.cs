@@ -1,5 +1,4 @@
-﻿using Quiz.Forms;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace Quiz
@@ -14,7 +13,7 @@ namespace Quiz
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Test());
+            Application.Run(new Quiz());
         }
     }
 }

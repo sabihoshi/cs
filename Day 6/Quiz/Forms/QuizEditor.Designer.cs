@@ -1,6 +1,6 @@
 ﻿namespace Quiz.Forms
 {
-    partial class QuizEdit
+    partial class QuizEditor
     {
         /// <summary>
         /// Required designer variable.
