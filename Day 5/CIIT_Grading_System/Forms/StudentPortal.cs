@@ -146,9 +146,9 @@ namespace CIIT_Grading_System.Forms
         {
             string userName = Login.userName;
             string newName = Microsoft.VisualBasic.Interaction.InputBox("Enter a new username", "Username Change", userName);
-            Login.userLogin[userName] = newName;
-            Login.userLogin.Property(userName).Remove();
-            Login.User.JsonUpdate(Login.userFile, Login.userLogin);
+            Login.userLogin.User.FirstOrDefault(u => u.Username == userName).Username = newName;
+            Login.userLogin.User.
+            // Login.User.JsonUpdate(Login.userFile, Login.userLogin);
             File.Move(Login.User.userFile, String.Format(@"..\..\Data\Users\{0}.json", newName));
             Login.User.userFile = newName;
             MessageBox.Show("Username successfully changed.", "Username Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -157,7 +157,7 @@ namespace CIIT_Grading_System.Forms
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string userPass = Login.userPass;
-            Login.userLogin[Login.userName] = Microsoft.VisualBasic.Interaction.InputBox("Enter a new password", "Password Change", userPass);
+            // Login.userLogin[Login.userName] = Microsoft.VisualBasic.Interaction.InputBox("Enter a new password", "Password Change", userPass);
             MessageBox.Show("Password successfully changed.", "Password Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Login.User.JsonUpdate(Login.userFile, Login.userLogin);
         }
@@ -188,7 +188,7 @@ namespace CIIT_Grading_System.Forms
 
         private void deleteAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Login.userLogin[Login.userName].
+            //Login.userLogin[Login.userName].
         }
 
         private void StudentList_SelectedIndexChanged(object sender, EventArgs e)

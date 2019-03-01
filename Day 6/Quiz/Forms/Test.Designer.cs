@@ -225,6 +225,8 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Test";
             this.Text = "QUIZ FOR YOU";
+            this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Test_Load_1);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.QuestionBox.ResumeLayout(false);
