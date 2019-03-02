@@ -44,8 +44,9 @@ namespace CIIT_Grading_System.Forms
             }
         }
 
-        private void TermList_SelectedIndexChanged(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
+            var Student = new UserData.Student();
         }
     }
 }

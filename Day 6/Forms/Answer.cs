@@ -15,47 +15,44 @@ namespace Quiz.Forms
         }
 
         public Questionnaire Quizzes = new Questionnaire();
-        public int pageCurrent = 0;
+        public int pageCurrent = 1;
 
         private void openAQuizToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string buffer = null;
             string fileName = null;
-            if (OpenFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                var sr = new
-                StreamReader(OpenFile.FileName);
-                fileName = OpenFile.SafeFileName;
-                buffer = sr.ReadToEnd();
-                sr.Close();
+                if (OpenFile.ShowDialog() == DialogResult.OK)
+                {
+                    var sr = new
+                    StreamReader(OpenFile.FileName);
+                    fileName = OpenFile.SafeFileName;
+                    buffer = sr.ReadToEnd();
+                    sr.Close();
+                }
+                Quizzes = JsonConvert.DeserializeObject<Questionnaire>(buffer);
+                QuizLabel.Text = Quizzes.Name;
             }
-            QuizLabel.Text = fileName;
-            try { Quizzes = JsonConvert.DeserializeObject<Questionnaire>(buffer); }
-            catch (Newtonsoft.Json.JsonReaderException) { Console.WriteLine("Invalid File"); }
+            catch (JsonReaderException) { MessageBox.Show("Invalid file", "Open file", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             QuizProgress.Step = 100 / Quizzes.Questions.Count;
             UpdateQuestion();
         }
 
         public void UpdateQuestion()
         {
-            PageNo.Text = $"{pageCurrent + 1}/{Quizzes.Questions.Count}";
-            Questions questionCurrent = Quizzes.Questions.FirstOrDefault(q => q.Page == pageCurrent);
+            PageNo.Text = $"{pageCurrent}/{Quizzes.Questions.Count}";
+            Question questionCurrent = Quizzes.Questions[pageCurrent - 1];
             QuestionBox.Text = questionCurrent.Description;
 
-            if (pageCurrent == 0)
-            {
-                if (pageCurrent != Quizzes.Questions.Count)
-                    Next.Text = "Next";
-                else
-                    Next.Text = "Submit";
+            if (pageCurrent == 1)
                 Back.Enabled = false;
-            }
-            else if (pageCurrent < Quizzes.Questions.Count)
-            {
-                if (pageCurrent + 1 == Quizzes.Questions.Count)
-                    Next.Text = "Submit";
+            else
                 Back.Enabled = true;
-            }
+            if (pageCurrent == Quizzes.Questions.Count)
+                Next.Text = "Submit";
+            else
+                Next.Text = "Next";
 
             ChoiceA.Text = questionCurrent.Choices[0];
             ChoiceB.Text = questionCurrent.Choices[1];
@@ -72,7 +69,7 @@ namespace Quiz.Forms
 
         private void Next_Click(object sender, EventArgs e)
         {
-            if (pageCurrent + 1 == Quizzes.Questions.Count)
+            if (pageCurrent == Quizzes.Questions.Count)
             {
                 Hide();
                 var newForm = new Results();

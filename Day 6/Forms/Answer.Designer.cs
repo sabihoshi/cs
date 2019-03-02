@@ -216,7 +216,9 @@
             // 
             // OpenFile
             // 
+            this.OpenFile.DefaultExt = "json";
             this.OpenFile.FileName = "FileName";
+            this.OpenFile.Filter = "\"JSON Files|*.json\"";
             // 
             // QuizTimer
             // 

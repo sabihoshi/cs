@@ -249,6 +249,18 @@
             label16.TabIndex = 0;
             label16.Text = "Student";
             // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.BackColor = System.Drawing.Color.Transparent;
+            label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label17.ForeColor = System.Drawing.Color.Black;
+            label17.Location = new System.Drawing.Point(139, 67);
+            label17.Name = "label17";
+            label17.Size = new System.Drawing.Size(45, 20);
+            label17.TabIndex = 0;
+            label17.Text = "Term";
+            // 
             // QuizRemove
             // 
             this.QuizRemove.BackColor = System.Drawing.Color.Red;
@@ -377,6 +389,7 @@
             this.SaveButton.TabIndex = 5;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // QuizList
             // 
@@ -409,28 +422,14 @@
             // 
             // StudentList
             // 
-            this.StudentList.Enabled = false;
             this.StudentList.FormattingEnabled = true;
             this.StudentList.Location = new System.Drawing.Point(16, 39);
             this.StudentList.Name = "StudentList";
             this.StudentList.Size = new System.Drawing.Size(121, 21);
             this.StudentList.TabIndex = 7;
             // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.BackColor = System.Drawing.Color.Transparent;
-            label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label17.ForeColor = System.Drawing.Color.Black;
-            label17.Location = new System.Drawing.Point(139, 67);
-            label17.Name = "label17";
-            label17.Size = new System.Drawing.Size(45, 20);
-            label17.TabIndex = 0;
-            label17.Text = "Term";
-            // 
             // TermList
             // 
-            this.TermList.Enabled = false;
             this.TermList.FormattingEnabled = true;
             this.TermList.Items.AddRange(new object[] {
             "Midterms",
@@ -439,7 +438,6 @@
             this.TermList.Name = "TermList";
             this.TermList.Size = new System.Drawing.Size(121, 21);
             this.TermList.TabIndex = 7;
-            this.TermList.SelectedIndexChanged += new System.EventHandler(this.TermList_SelectedIndexChanged);
             // 
             // EditGrade
             // 
