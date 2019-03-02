@@ -51,7 +51,7 @@ namespace Quiz.Forms
         private void NewQuestion_Click(object sender, EventArgs e)
         {
             Questionnaire.Name = Title.Text;
-            Questionnaire.Questions.Add(new Question(Question.Text, correctAnswer, A.Text, B.Text, C.Text, D.Text));
+            Questionnaire.Questions.Add(new Questions(Question.Text, correctAnswer, A.Text, B.Text, C.Text, D.Text));
         }
     }
 }

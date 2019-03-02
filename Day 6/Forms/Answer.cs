@@ -39,7 +39,7 @@ namespace Quiz.Forms
         public void UpdateQuestion()
         {
             PageNo.Text = $"{pageCurrent + 1}/{Quizzes.Questions.Count}";
-            Question questionCurrent = Quizzes.Questions.FirstOrDefault(q => q.Page == pageCurrent);
+            Questions questionCurrent = Quizzes.Questions.FirstOrDefault(q => q.Page == pageCurrent);
             QuestionBox.Text = questionCurrent.Description;
 
             if (pageCurrent == 0)
