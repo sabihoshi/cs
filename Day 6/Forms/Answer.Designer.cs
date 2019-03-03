@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Answer));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.quizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openAQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createAQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,19 +49,20 @@
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
             this.QuizTimer = new System.Windows.Forms.Timer(this.components);
             this.QuizProgress = new System.Windows.Forms.ProgressBar();
-            this.menuStrip1.SuspendLayout();
+            this.TimeElapsed = new System.Windows.Forms.Label();
+            this.MenuStrip.SuspendLayout();
             this.QuestionBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // MenuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quizToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(545, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(545, 24);
+            this.MenuStrip.TabIndex = 0;
+            this.MenuStrip.Text = "menuStrip1";
             // 
             // quizToolStripMenuItem
             // 
@@ -218,11 +219,12 @@
             // 
             this.OpenFile.DefaultExt = "json";
             this.OpenFile.FileName = "FileName";
-            this.OpenFile.Filter = "\"JSON Files|*.json\"";
+            this.OpenFile.Filter = "JSON Files|*.json";
             // 
             // QuizTimer
             // 
             this.QuizTimer.Interval = 1000;
+            this.QuizTimer.Tick += new System.EventHandler(this.OnTimerElapsed);
             // 
             // QuizProgress
             // 
@@ -234,24 +236,34 @@
             this.QuizProgress.Size = new System.Drawing.Size(288, 23);
             this.QuizProgress.TabIndex = 0;
             // 
+            // TimeElapsed
+            // 
+            this.TimeElapsed.AutoSize = true;
+            this.TimeElapsed.Location = new System.Drawing.Point(451, 41);
+            this.TimeElapsed.Name = "TimeElapsed";
+            this.TimeElapsed.Size = new System.Drawing.Size(34, 13);
+            this.TimeElapsed.TabIndex = 6;
+            this.TimeElapsed.Text = "00:00";
+            // 
             // Answer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(545, 274);
+            this.Controls.Add(this.TimeElapsed);
             this.Controls.Add(this.PageNo);
             this.Controls.Add(this.Next);
             this.Controls.Add(this.Back);
             this.Controls.Add(this.QuestionBox);
             this.Controls.Add(this.QuizLabel);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.MenuStrip);
             this.Controls.Add(this.QuizProgress);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.MenuStrip;
             this.Name = "Answer";
             this.Text = "Quiz Maker";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.MenuStrip.ResumeLayout(false);
+            this.MenuStrip.PerformLayout();
             this.QuestionBox.ResumeLayout(false);
             this.QuestionBox.PerformLayout();
             this.ResumeLayout(false);
@@ -261,7 +273,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip MenuStrip;
         private System.Windows.Forms.ToolStripMenuItem quizToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openAQuizToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createAQuizToolStripMenuItem;
@@ -280,6 +292,7 @@
         private System.Windows.Forms.ToolStripMenuItem EasyMode;
         private System.Windows.Forms.ToolStripMenuItem HardMode;
         private System.Windows.Forms.ProgressBar QuizProgress;
+        private System.Windows.Forms.Label TimeElapsed;
     }
 }
 

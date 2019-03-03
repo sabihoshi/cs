@@ -28,33 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Results));
             this.Result = new System.Windows.Forms.Label();
             this.Correct = new System.Windows.Forms.Label();
             this.Score = new System.Windows.Forms.Label();
             this.z = new System.Windows.Forms.Label();
-            this.overall = new System.Windows.Forms.Label();
+            this.Total = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.NameInput = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.TimeElapsed = new System.Windows.Forms.Label();
             this.YEHEY = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.Name = new System.Windows.Forms.Label();
+            this.Date = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // Results
+            // Result
             // 
             this.Result.AutoSize = true;
             this.Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Result.Location = new System.Drawing.Point(12, 29);
-            this.Result.Name = "Results";
+            this.Result.Name = "Result";
             this.Result.Size = new System.Drawing.Size(183, 39);
             this.Result.TabIndex = 0;
             this.Result.Text = "RESULTS";
@@ -91,16 +92,16 @@
             this.z.TabIndex = 3;
             this.z.Text = "/";
             // 
-            // overall
+            // Total
             // 
-            this.overall.AutoSize = true;
-            this.overall.BackColor = System.Drawing.Color.Transparent;
-            this.overall.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.overall.Location = new System.Drawing.Point(362, 140);
-            this.overall.Name = "overall";
-            this.overall.Size = new System.Drawing.Size(36, 25);
-            this.overall.TabIndex = 2;
-            this.overall.Text = "10";
+            this.Total.AutoSize = true;
+            this.Total.BackColor = System.Drawing.Color.Transparent;
+            this.Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Total.Location = new System.Drawing.Point(362, 140);
+            this.Total.Name = "Total";
+            this.Total.Size = new System.Drawing.Size(36, 25);
+            this.Total.TabIndex = 2;
+            this.Total.Text = "10";
             // 
             // label2
             // 
@@ -122,13 +123,13 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Quiz";
             // 
-            // textBox1
+            // NameInput
             // 
-            this.textBox1.Location = new System.Drawing.Point(249, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(164, 20);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "Write Your Name Here";
+            this.NameInput.Location = new System.Drawing.Point(249, 29);
+            this.NameInput.Name = "NameInput";
+            this.NameInput.Size = new System.Drawing.Size(164, 20);
+            this.NameInput.TabIndex = 4;
+            this.NameInput.Text = "Write Your Name Here";
             // 
             // label4
             // 
@@ -166,16 +167,16 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "TOTAL TIME : ";
             // 
-            // label6
+            // TimeElapsed
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(138, 187);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 25);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "00:00:00";
+            this.TimeElapsed.AutoSize = true;
+            this.TimeElapsed.BackColor = System.Drawing.Color.Transparent;
+            this.TimeElapsed.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeElapsed.Location = new System.Drawing.Point(138, 187);
+            this.TimeElapsed.Name = "TimeElapsed";
+            this.TimeElapsed.Size = new System.Drawing.Size(96, 25);
+            this.TimeElapsed.TabIndex = 2;
+            this.TimeElapsed.Text = "00:00:00";
             // 
             // YEHEY
             // 
@@ -185,6 +186,7 @@
             this.YEHEY.TabIndex = 7;
             this.YEHEY.Text = "YEHEY";
             this.YEHEY.UseVisualStyleBackColor = true;
+            this.YEHEY.Click += new System.EventHandler(this.YEHEY_Click);
             // 
             // pictureBox1
             // 
@@ -197,57 +199,57 @@
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
-            // label7
+            // Name
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Linen;
-            this.label7.Font = new System.Drawing.Font("Script MT Bold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(205, 383);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(105, 33);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "NAME ";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Name.AutoSize = true;
+            this.Name.BackColor = System.Drawing.Color.Linen;
+            this.Name.Font = new System.Drawing.Font("Script MT Bold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Name.Location = new System.Drawing.Point(205, 383);
+            this.Name.Name = "Name";
+            this.Name.Size = new System.Drawing.Size(105, 33);
+            this.Name.TabIndex = 9;
+            this.Name.Text = "NAME ";
+            this.Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label8
+            // Date
             // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Linen;
-            this.label8.Font = new System.Drawing.Font("Poor Richard", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(229, 341);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 19);
-            this.label8.TabIndex = 9;
-            this.label8.Text = " DATE ";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Date.AutoSize = true;
+            this.Date.BackColor = System.Drawing.Color.Linen;
+            this.Date.Font = new System.Drawing.Font("Poor Richard", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Date.Location = new System.Drawing.Point(229, 341);
+            this.Date.Name = "Date";
+            this.Date.Size = new System.Drawing.Size(53, 19);
+            this.Date.TabIndex = 9;
+            this.Date.Text = " DATE ";
+            this.Date.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Linen;
             this.label9.Enabled = false;
-            this.label9.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(209, 454);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(90, 14);
+            this.label9.Size = new System.Drawing.Size(101, 13);
             this.label9.TabIndex = 10;
             this.label9.Text = "Kendric and Neil";
             // 
-            // QuizResults
+            // Results
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(525, 559);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.Date);
+            this.Controls.Add(this.Name);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.YEHEY);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.overall);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.NameInput);
+            this.Controls.Add(this.Total);
+            this.Controls.Add(this.TimeElapsed);
             this.Controls.Add(this.Score);
             this.Controls.Add(this.z);
             this.Controls.Add(this.label4);
@@ -256,8 +258,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Correct);
             this.Controls.Add(this.Result);
-            this.Name = "QuizResults";
-            this.Text = "QuizResults";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Results";
+            this.Text = "Quiz Results";
+            this.Load += new System.EventHandler(this.Results_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -270,19 +274,19 @@
         private System.Windows.Forms.Label Correct;
         private System.Windows.Forms.Label Score;
         private System.Windows.Forms.Label z;
-        private System.Windows.Forms.Label overall;
+        private System.Windows.Forms.Label Total;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox NameInput;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label TimeElapsed;
         private System.Windows.Forms.Button YEHEY;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label Name;
+        private System.Windows.Forms.Label Date;
         private System.Windows.Forms.Label label9;
     }
 }

@@ -14,8 +14,16 @@ namespace Quiz.Forms
             InitializeComponent();
         }
 
-        public Questionnaire Quizzes = new Questionnaire();
+        public static Questionnaire Quiz = new Questionnaire();
         public int pageCurrent = 1;
+        public static int pageMax = 0;
+        public static int[] answers;
+        public static DateTime start = DateTime.Now;
+
+        private void OnTimerElapsed(object sender, EventArgs e)
+        {
+            TimeElapsed.Text = (DateTime.Now - start).ToString(@"mm\:ss");
+        }
 
         private void openAQuizToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -31,25 +39,29 @@ namespace Quiz.Forms
                     buffer = sr.ReadToEnd();
                     sr.Close();
                 }
-                Quizzes = JsonConvert.DeserializeObject<Questionnaire>(buffer);
-                QuizLabel.Text = Quizzes.Name;
+                Quiz = JsonConvert.DeserializeObject<Questionnaire>(buffer);
+                QuizLabel.Text = Quiz.Name;
             }
-            catch (JsonReaderException) { MessageBox.Show("Invalid file", "Open file", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-            QuizProgress.Step = 100 / Quizzes.Questions.Count;
+            catch (JsonReaderException) { MessageBox.Show("Invalid file", "Open file", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            catch (ArgumentNullException) { return; }
+            QuizTimer.Enabled = true;
+            pageMax = Quiz.Questions.Count;
+            answers = Enumerable.Repeat(-1, pageMax).ToArray();
+            QuizProgress.Step = 100 / pageMax;
             UpdateQuestion();
         }
 
         public void UpdateQuestion()
         {
-            PageNo.Text = $"{pageCurrent}/{Quizzes.Questions.Count}";
-            Question questionCurrent = Quizzes.Questions[pageCurrent - 1];
+            PageNo.Text = $"{pageCurrent}/{pageMax}";
+            Question questionCurrent = Quiz.Questions[pageCurrent - 1];
             QuestionBox.Text = questionCurrent.Description;
 
             if (pageCurrent == 1)
                 Back.Enabled = false;
             else
                 Back.Enabled = true;
-            if (pageCurrent == Quizzes.Questions.Count)
+            if (pageCurrent == pageMax)
                 Next.Text = "Submit";
             else
                 Next.Text = "Next";
@@ -58,10 +70,30 @@ namespace Quiz.Forms
             ChoiceB.Text = questionCurrent.Choices[1];
             ChoiceC.Text = questionCurrent.Choices[2];
             ChoiceD.Text = questionCurrent.Choices[3];
+            int c = answers[pageCurrent - 1];
+            ChoiceA.Checked = c == 0;
+            ChoiceB.Checked = c == 1;
+            ChoiceC.Checked = c == 2;
+            ChoiceD.Checked = c == 3;
+        }
+
+        private int ChoiceMade()
+        {
+            if (ChoiceA.Checked)
+                return 0;
+            else if (ChoiceB.Checked)
+                return 1;
+            else if (ChoiceC.Checked)
+                return 2;
+            else if (ChoiceD.Checked)
+                return 3;
+            else
+                return -1;
         }
 
         private void Back_Click(object sender, EventArgs e)
         {
+            answers[pageCurrent - 1] = ChoiceMade();
             pageCurrent--;
             QuizProgress.Increment(-QuizProgress.Step);
             UpdateQuestion();
@@ -69,8 +101,15 @@ namespace Quiz.Forms
 
         private void Next_Click(object sender, EventArgs e)
         {
-            if (pageCurrent == Quizzes.Questions.Count)
+            answers[pageCurrent - 1] = ChoiceMade();
+            if (pageCurrent == pageMax)
             {
+                if (answers.Any(c => c == -1))
+                {
+                    string result = string.Join(" ", answers.Where(x => x == 1).Select((x, i) => i + 1));
+                    MessageBox.Show($"Your answer in {result}");
+                    return;
+                }
                 Hide();
                 var newForm = new Results();
                 newForm.Show();

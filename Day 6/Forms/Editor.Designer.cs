@@ -52,7 +52,7 @@
             this.openAQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
-            this.Menu = new System.Windows.Forms.MenuStrip();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openExistingQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,7 +77,7 @@
             label6 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
             this.QuestionBox.SuspendLayout();
-            this.Menu.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // QuizLabel
@@ -297,15 +297,15 @@
             // 
             // Menu
             // 
-            this.Menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.quizToolStripMenuItem});
-            this.Menu.Location = new System.Drawing.Point(0, 0);
-            this.Menu.Name = "Menu";
-            this.Menu.Size = new System.Drawing.Size(585, 24);
-            this.Menu.TabIndex = 6;
-            this.Menu.Text = "menuStrip1";
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "Menu";
+            this.menuStrip1.Size = new System.Drawing.Size(585, 24);
+            this.menuStrip1.TabIndex = 6;
+            this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -453,14 +453,14 @@
             this.Controls.Add(this.Back);
             this.Controls.Add(this.QuestionBox);
             this.Controls.Add(QuizLabel);
-            this.Controls.Add(this.Menu);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Editor";
             this.Text = "Quiz Editor";
             this.QuestionBox.ResumeLayout(false);
             this.QuestionBox.PerformLayout();
-            this.Menu.ResumeLayout(false);
-            this.Menu.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -482,7 +482,7 @@
         private System.Windows.Forms.ToolStripMenuItem openAQuizToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quizToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog OpenFile;
-        private System.Windows.Forms.MenuStrip Menu;
+        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openExistingQuizToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
