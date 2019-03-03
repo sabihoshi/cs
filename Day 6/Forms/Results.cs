@@ -21,7 +21,7 @@ namespace Quiz.Forms
         private void YEHEY_Click(object sender, EventArgs e)
         {
             Date.Text = DateTime.Now.ToString();
-            Name.Text = NameInput.Text;
+            NameOutput.Text = NameInput.Text;
         }
     }
 }

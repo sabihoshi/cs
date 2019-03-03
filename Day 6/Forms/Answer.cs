@@ -120,18 +120,6 @@ namespace Quiz.Forms
             UpdateQuestion();
         }
 
-        private void EasyMode_Click(object sender, EventArgs e)
-        {
-            HardMode.Checked = false;
-            EasyMode.Checked = true;
-        }
-
-        private void HardMode_Click(object sender, EventArgs e)
-        {
-            HardMode.Checked = true;
-            EasyMode.Checked = false;
-        }
-
         private void createAQuizToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hide();

@@ -52,24 +52,23 @@ namespace Quiz.Forms
 
         private void UpdateQuestion()
         {
-            if (pageCurrent == 1)
+            if (Questionnaire.Questions.Count == 0)
             {
+                deletePageToolStripMenuItem.Enabled = false;
                 RemoveQuestion.Enabled = false;
-                Back.Enabled = false;
             }
             else
             {
+                deletePageToolStripMenuItem.Enabled = true;
                 RemoveQuestion.Enabled = true;
-                Back.Enabled = true;
             }
-            if (pageCurrent == Questionnaire.Questions.Count)
-                Next.Enabled = false;
-            else
-                Next.Enabled = true;
+            Next.Enabled = pageCurrent != Questionnaire.Questions.Count;
+            Back.Enabled = pageCurrent != 1;
 
-            Question currentQuestion = Questionnaire.Questions[pageCurrent];
+            saveToolStripMenuItem.Enabled = Questionnaire.Questions.Count != 0;
+            Question currentQuestion = Questionnaire.Questions[pageCurrent - 1];
 
-            PageNo.Text = $"Page {pageCurrent + 1}/{Questionnaire.Questions.Count}";
+            PageNo.Text = $"Page {pageCurrent}/{Questionnaire.Questions.Count}";
             Question.Text = currentQuestion.Description;
             TextA.Text = currentQuestion.Choices[0];
             TextB.Text = currentQuestion.Choices[1];
@@ -99,8 +98,8 @@ namespace Quiz.Forms
 
         private void RemoveQuestion_Click(object sender, EventArgs e)
         {
-            Questionnaire.Questions.RemoveAt(pageCurrent);
-            pageCurrent--;
+            Questionnaire.Questions.RemoveAt(pageCurrent - 1);
+            pageCurrent = pageCurrent <= 1 ? 1 : pageCurrent - 1;
             UpdateQuestion();
         }
 
@@ -118,14 +117,31 @@ namespace Quiz.Forms
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SaveFile.ShowDialog() == DialogResult.OK)
+            if (Title.Text == "")
+                MessageBox.Show("Please input a title!", "Save file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (Questionnaire.Questions.Count == 0)
+                MessageBox.Show("Please have at least one question!", "Save file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
             {
                 try
                 {
-                    File.WriteAllText(SaveFile.FileName, JsonConvert.SerializeObject(Questionnaire, Formatting.Indented));
+                    Questionnaire.Name = Title.Text;
+                    SaveFile.FileName = Title.Text;
+                    if (SaveFile.ShowDialog() == DialogResult.OK)
+                    {
+                        File.WriteAllText(SaveFile.FileName, JsonConvert.SerializeObject(Questionnaire, Formatting.Indented));
+                        MessageBox.Show("File saved.", "Save file", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else return;
                 }
                 catch (JsonWriterException) { MessageBox.Show("Invalid file", "Save file", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
+        }
+
+        private void Editor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            var newForm = new Answer();
+            newForm.Show();
         }
     }
 }

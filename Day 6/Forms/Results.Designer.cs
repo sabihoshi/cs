@@ -44,7 +44,7 @@
             this.TimeElapsed = new System.Windows.Forms.Label();
             this.YEHEY = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Name = new System.Windows.Forms.Label();
+            this.NameOutput = new System.Windows.Forms.Label();
             this.Date = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -199,17 +199,17 @@
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
-            // Name
+            // NameOutput
             // 
-            this.Name.AutoSize = true;
-            this.Name.BackColor = System.Drawing.Color.Linen;
-            this.Name.Font = new System.Drawing.Font("Script MT Bold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name.Location = new System.Drawing.Point(205, 383);
-            this.Name.Name = "Name";
-            this.Name.Size = new System.Drawing.Size(105, 33);
-            this.Name.TabIndex = 9;
-            this.Name.Text = "NAME ";
-            this.Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.NameOutput.AutoSize = true;
+            this.NameOutput.BackColor = System.Drawing.Color.Linen;
+            this.NameOutput.Font = new System.Drawing.Font("Script MT Bold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameOutput.Location = new System.Drawing.Point(205, 383);
+            this.NameOutput.Name = "NameOutput";
+            this.NameOutput.Size = new System.Drawing.Size(105, 33);
+            this.NameOutput.TabIndex = 9;
+            this.NameOutput.Text = "NAME ";
+            this.NameOutput.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Date
             // 
@@ -242,7 +242,7 @@
             this.ClientSize = new System.Drawing.Size(525, 559);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.Date);
-            this.Controls.Add(this.Name);
+            this.Controls.Add(this.NameOutput);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.YEHEY);
             this.Controls.Add(this.label5);
@@ -285,7 +285,7 @@
         private System.Windows.Forms.Label TimeElapsed;
         private System.Windows.Forms.Button YEHEY;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label Name;
+        private System.Windows.Forms.Label NameOutput;
         private System.Windows.Forms.Label Date;
         private System.Windows.Forms.Label label9;
     }

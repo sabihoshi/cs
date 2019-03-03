@@ -34,9 +34,6 @@
             this.quizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openAQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createAQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.EasyMode = new System.Windows.Forms.ToolStripMenuItem();
-            this.HardMode = new System.Windows.Forms.ToolStripMenuItem();
             this.QuizLabel = new System.Windows.Forms.Label();
             this.ChoiceA = new System.Windows.Forms.RadioButton();
             this.QuestionBox = new System.Windows.Forms.GroupBox();
@@ -68,8 +65,7 @@
             // 
             this.quizToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openAQuizToolStripMenuItem,
-            this.createAQuizToolStripMenuItem,
-            this.toolStripMenuItem1});
+            this.createAQuizToolStripMenuItem});
             this.quizToolStripMenuItem.Name = "quizToolStripMenuItem";
             this.quizToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.quizToolStripMenuItem.Text = "Quiz";
@@ -77,39 +73,16 @@
             // openAQuizToolStripMenuItem
             // 
             this.openAQuizToolStripMenuItem.Name = "openAQuizToolStripMenuItem";
-            this.openAQuizToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.openAQuizToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openAQuizToolStripMenuItem.Text = "Open a quiz";
             this.openAQuizToolStripMenuItem.Click += new System.EventHandler(this.openAQuizToolStripMenuItem_Click);
             // 
             // createAQuizToolStripMenuItem
             // 
             this.createAQuizToolStripMenuItem.Name = "createAQuizToolStripMenuItem";
-            this.createAQuizToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.createAQuizToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createAQuizToolStripMenuItem.Text = "Create a quiz";
             this.createAQuizToolStripMenuItem.Click += new System.EventHandler(this.createAQuizToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.EasyMode,
-            this.HardMode});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
-            this.toolStripMenuItem1.Text = "Mode";
-            // 
-            // EasyMode
-            // 
-            this.EasyMode.Name = "EasyMode";
-            this.EasyMode.Size = new System.Drawing.Size(123, 22);
-            this.EasyMode.Text = "Easy";
-            this.EasyMode.Click += new System.EventHandler(this.EasyMode_Click);
-            // 
-            // HardMode
-            // 
-            this.HardMode.Name = "HardMode";
-            this.HardMode.Size = new System.Drawing.Size(123, 22);
-            this.HardMode.Text = "Hardcore";
-            this.HardMode.Click += new System.EventHandler(this.HardMode_Click);
             // 
             // QuizLabel
             // 
@@ -288,9 +261,6 @@
         private System.Windows.Forms.Label PageNo;
         private System.Windows.Forms.OpenFileDialog OpenFile;
         private System.Windows.Forms.Timer QuizTimer;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem EasyMode;
-        private System.Windows.Forms.ToolStripMenuItem HardMode;
         private System.Windows.Forms.ProgressBar QuizProgress;
         private System.Windows.Forms.Label TimeElapsed;
     }

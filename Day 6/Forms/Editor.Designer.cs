@@ -45,14 +45,8 @@
             this.ChoiceB = new System.Windows.Forms.RadioButton();
             this.QuestionBox = new System.Windows.Forms.GroupBox();
             this.ChoiceA = new System.Windows.Forms.RadioButton();
-            this.HardMode = new System.Windows.Forms.ToolStripMenuItem();
-            this.EasyMode = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.createAQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openAQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openExistingQuizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,7 +71,7 @@
             label6 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
             this.QuestionBox.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // QuizLabel
@@ -248,64 +242,20 @@
             this.ChoiceA.UseVisualStyleBackColor = true;
             this.ChoiceA.CheckedChanged += new System.EventHandler(this.Choice_CorrectAnswer);
             // 
-            // HardMode
-            // 
-            this.HardMode.Name = "HardMode";
-            this.HardMode.Size = new System.Drawing.Size(123, 22);
-            this.HardMode.Text = "Hardcore";
-            // 
-            // EasyMode
-            // 
-            this.EasyMode.Name = "EasyMode";
-            this.EasyMode.Size = new System.Drawing.Size(123, 22);
-            this.EasyMode.Text = "Easy";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.EasyMode,
-            this.HardMode});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
-            this.toolStripMenuItem1.Text = "Mode";
-            // 
-            // createAQuizToolStripMenuItem
-            // 
-            this.createAQuizToolStripMenuItem.Name = "createAQuizToolStripMenuItem";
-            this.createAQuizToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.createAQuizToolStripMenuItem.Text = "Create a quiz";
-            // 
-            // openAQuizToolStripMenuItem
-            // 
-            this.openAQuizToolStripMenuItem.Name = "openAQuizToolStripMenuItem";
-            this.openAQuizToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.openAQuizToolStripMenuItem.Text = "Open a quiz";
-            // 
-            // quizToolStripMenuItem
-            // 
-            this.quizToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openAQuizToolStripMenuItem,
-            this.createAQuizToolStripMenuItem,
-            this.toolStripMenuItem1});
-            this.quizToolStripMenuItem.Name = "quizToolStripMenuItem";
-            this.quizToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.quizToolStripMenuItem.Text = "Quiz";
-            // 
             // OpenFile
             // 
             this.OpenFile.FileName = "FileName";
             // 
-            // Menu
+            // MenuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.quizToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "Menu";
-            this.menuStrip1.Size = new System.Drawing.Size(585, 24);
-            this.menuStrip1.TabIndex = 6;
-            this.menuStrip1.Text = "menuStrip1";
+            this.editToolStripMenuItem});
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(585, 24);
+            this.MenuStrip.TabIndex = 6;
+            this.MenuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -324,6 +274,7 @@
             // 
             // saveToolStripMenuItem
             // 
+            this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
@@ -343,12 +294,14 @@
             this.addPageToolStripMenuItem.Name = "addPageToolStripMenuItem";
             this.addPageToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.addPageToolStripMenuItem.Text = "Add Page";
+            this.addPageToolStripMenuItem.Click += new System.EventHandler(this.NewQuestion_Click);
             // 
             // deletePageToolStripMenuItem
             // 
             this.deletePageToolStripMenuItem.Name = "deletePageToolStripMenuItem";
             this.deletePageToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.deletePageToolStripMenuItem.Text = "Delete Page";
+            this.deletePageToolStripMenuItem.Click += new System.EventHandler(this.RemoveQuestion_Click);
             // 
             // NewQuestion
             // 
@@ -427,6 +380,7 @@
             // SaveFile
             // 
             this.SaveFile.DefaultExt = "json";
+            this.SaveFile.Filter = "JSON files|*.json";
             // 
             // Editor
             // 
@@ -453,14 +407,15 @@
             this.Controls.Add(this.Back);
             this.Controls.Add(this.QuestionBox);
             this.Controls.Add(QuizLabel);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.MenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Editor";
             this.Text = "Quiz Editor";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Editor_FormClosed);
             this.QuestionBox.ResumeLayout(false);
             this.QuestionBox.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.MenuStrip.ResumeLayout(false);
+            this.MenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -475,14 +430,8 @@
         private System.Windows.Forms.RadioButton ChoiceB;
         private System.Windows.Forms.GroupBox QuestionBox;
         private System.Windows.Forms.RadioButton ChoiceA;
-        private System.Windows.Forms.ToolStripMenuItem HardMode;
-        private System.Windows.Forms.ToolStripMenuItem EasyMode;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem createAQuizToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openAQuizToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem quizToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog OpenFile;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip MenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openExistingQuizToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
