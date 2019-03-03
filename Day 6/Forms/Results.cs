@@ -14,7 +14,7 @@ namespace Quiz.Forms
         private void Results_Load(object sender, System.EventArgs e)
         {
             Total.Text = Answer.pageMax.ToString();
-            Correct.Text = Answer.Quiz.Questions.Where((q, i) => q.Correct == Answer.answers[i]).Count().ToString();
+            Score.Text = Answer.Quiz.Questions.Where((q, i) => q.Correct == Answer.answers[i]).Count().ToString();
             TimeElapsed.Text = (DateTime.Now - Answer.start).ToString(@"mm\:ss");
         }
 

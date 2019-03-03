@@ -438,6 +438,7 @@
             this.TermList.Name = "TermList";
             this.TermList.Size = new System.Drawing.Size(121, 21);
             this.TermList.TabIndex = 7;
+            this.TermList.SelectedIndexChanged += new System.EventHandler(this.TermList_SelectedIndexChanged);
             // 
             // EditGrade
             // 

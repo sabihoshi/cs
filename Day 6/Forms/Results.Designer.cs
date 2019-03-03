@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Results));
             this.Result = new System.Windows.Forms.Label();
-            this.Correct = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.Score = new System.Windows.Forms.Label();
             this.z = new System.Windows.Forms.Label();
             this.Total = new System.Windows.Forms.Label();
@@ -60,15 +60,15 @@
             this.Result.TabIndex = 0;
             this.Result.Text = "RESULTS";
             // 
-            // Correct
+            // label10
             // 
-            this.Correct.AutoSize = true;
-            this.Correct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Correct.Location = new System.Drawing.Point(15, 131);
-            this.Correct.Name = "Correct";
-            this.Correct.Size = new System.Drawing.Size(281, 20);
-            this.Correct.TabIndex = 1;
-            this.Correct.Text = "NUMBER OF CORRECT ANSWERS :";
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(15, 131);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(281, 20);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "NUMBER OF CORRECT ANSWERS :";
             // 
             // Score
             // 
@@ -256,7 +256,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.Correct);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.Result);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Results";
@@ -271,7 +271,7 @@
         #endregion
 
         private System.Windows.Forms.Label Result;
-        private System.Windows.Forms.Label Correct;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label Score;
         private System.Windows.Forms.Label z;
         private System.Windows.Forms.Label Total;

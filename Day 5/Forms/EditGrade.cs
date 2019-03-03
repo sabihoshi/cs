@@ -38,7 +38,7 @@ namespace CIIT_Grading_System.Forms
         {
             StudentList.Items.Clear();
             StudentList.Enabled = true;
-            foreach (string item in Login.User.userData.Classrooms.FirstOrDefault(c => c.Name.Equals(ClassroomList.SelectedText)).Students.Select(s => s.Name))
+            foreach (string item in Login.User.userData.Classrooms.FirstOrDefault(c => c.Name == ClassroomList.SelectedText).Students.Select(s => s.Name))
             {
                 StudentList.Items.Add(item);
             }
@@ -47,6 +47,16 @@ namespace CIIT_Grading_System.Forms
         private void SaveButton_Click(object sender, EventArgs e)
         {
             var Student = new UserData.Student();
+        }
+
+        private void TermList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            object studentSelected = Login.User.userData.Classrooms.FirstOrDefault(c => c.Name == ClassroomList.SelectedText).Students.FirstOrDefault(s => s.Name == StudentList.SelectedText);
+            switch (TermList.SelectedItem)
+            {
+                case "Midterms":
+                    break;
+            }
         }
     }
 }
