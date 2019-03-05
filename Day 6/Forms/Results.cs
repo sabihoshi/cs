@@ -22,6 +22,7 @@ namespace Quiz.Forms
         {
             Date.Text = DateTime.Now.ToString();
             NameOutput.Text = NameInput.Text;
+            SS.Show();
         }
     }
 }

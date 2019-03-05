@@ -47,8 +47,12 @@
             this.QuizTimer = new System.Windows.Forms.Timer(this.components);
             this.QuizProgress = new System.Windows.Forms.ProgressBar();
             this.TimeElapsed = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.MenuStrip.SuspendLayout();
             this.QuestionBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuStrip
@@ -89,7 +93,9 @@
             // QuizLabel
             // 
             this.QuizLabel.AutoSize = true;
+            this.QuizLabel.BackColor = System.Drawing.Color.MidnightBlue;
             this.QuizLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuizLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.QuizLabel.Location = new System.Drawing.Point(20, 50);
             this.QuizLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.QuizLabel.Name = "QuizLabel";
@@ -193,7 +199,7 @@
             // PageNo
             // 
             this.PageNo.AutoSize = true;
-            this.PageNo.BackColor = System.Drawing.Color.Transparent;
+            this.PageNo.BackColor = System.Drawing.Color.RoyalBlue;
             this.PageNo.Location = new System.Drawing.Point(523, 302);
             this.PageNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PageNo.Name = "PageNo";
@@ -226,12 +232,32 @@
             // TimeElapsed
             // 
             this.TimeElapsed.AutoSize = true;
+            this.TimeElapsed.BackColor = System.Drawing.Color.MidnightBlue;
+            this.TimeElapsed.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.TimeElapsed.Location = new System.Drawing.Point(601, 50);
             this.TimeElapsed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TimeElapsed.Name = "TimeElapsed";
             this.TimeElapsed.Size = new System.Drawing.Size(44, 17);
             this.TimeElapsed.TabIndex = 6;
             this.TimeElapsed.Text = "00:00";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.MidnightBlue;
+            this.pictureBox1.Location = new System.Drawing.Point(1, 31);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(726, 65);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.pictureBox2.Location = new System.Drawing.Point(1, 96);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(726, 242);
+            this.pictureBox2.TabIndex = 7;
+            this.pictureBox2.TabStop = false;
             // 
             // Answer
             // 
@@ -246,6 +272,8 @@
             this.Controls.Add(this.QuizLabel);
             this.Controls.Add(this.MenuStrip);
             this.Controls.Add(this.QuizProgress);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuStrip;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -255,6 +283,8 @@
             this.MenuStrip.PerformLayout();
             this.QuestionBox.ResumeLayout(false);
             this.QuestionBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,6 +309,8 @@
         private System.Windows.Forms.Timer QuizTimer;
         private System.Windows.Forms.ProgressBar QuizProgress;
         private System.Windows.Forms.Label TimeElapsed;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 
