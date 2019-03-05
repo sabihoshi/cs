@@ -1,10 +1,12 @@
-[
-  {
-    "Username": "Kao",
-    "Password": "abc"
-  },
-  {
-    "Username": "Test",
-    "Password": "abc"
-  }
-]
+{
+  "User": [
+    {
+      "Username": "Kao",
+      "Password": "abc"
+    },
+    {
+      "Username": "Test",
+      "Password": "abc"
+    }
+  ]
+}
