@@ -45,6 +45,7 @@ namespace Quiz.Forms
             catch (JsonReaderException) { MessageBox.Show("Invalid file", "Open file", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             catch (ArgumentNullException) { return; }
             QuizTimer.Enabled = true;
+            Next.Enabled = true;
             pageMax = Quiz.Questions.Count;
             answers = Enumerable.Repeat(-1, pageMax).ToArray();
             QuizProgress.Step = 100 / pageMax;
@@ -106,9 +107,9 @@ namespace Quiz.Forms
             {
                 if (answers.Any(c => c == -1))
                 {
-                    string result = string.Join(" ", answers.Where(x => x == 1).Select((x, i) => i + 1));
-                    MessageBox.Show($"Your answer in {result}");
-                    return;
+                    string result = string.Join(", ", answers.Where(x => x == -1).Select((x, i) => i + 1));
+                    if (MessageBox.Show($"Your answer in {result} is empty", "Continue?", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                        return;
                 }
                 Hide();
                 var newForm = new Results();
