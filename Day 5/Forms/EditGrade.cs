@@ -51,7 +51,7 @@ namespace CIIT_Grading_System.Forms
         private void TermList_SelectedIndexChanged(object sender, EventArgs e)
         {
             Term = Student.Terms.FirstOrDefault(t => t.Name == TermList.SelectedItem.ToString());
-            QuizList.Items.AddRange(Term.Lecture.Exams.Select(q => q.Name).ToArray());
+            QuizList.Items.AddRange(Term.Lecture.Exams.Where(q => q.Name != "Major").Select(q => q.Name).ToArray());
         }
 
         private void QuizList_SelectedIndexChanged(object sender, EventArgs e)
@@ -108,9 +108,15 @@ namespace CIIT_Grading_System.Forms
         private void SaveButton_Click(object sender, EventArgs e)
         {
             var Student = new Student(StudentList.SelectedItem.ToString());
-            CheckInts(MajorScore, MajorTotal);
-            CheckInts(CommunicationScore, CommunicationTotal);
-            CheckInts(TeamworkScore, TeamworkTotal);
+            if(!CheckInts(
+                MajorScore, MajorTotal,
+                CommunicationScore, TeamworkScore
+            ))
+            {
+                Term.HandsOn.Communication = Convert.ToInt32(CommunicationScore.Text);
+                Term.HandsOn.Teamwork = Convert.ToInt32(TeamworkScore.Text);
+                Term.Lecture.Exams.Add(new Graded("Major", Convert.ToInt32(MajorScore.Text), Convert.ToInt32(MajorTotal.Text)));
+            }
         }
     }
 }

@@ -9,7 +9,7 @@
           "Name": "Kao",
           "Terms": [
             {
-              "Term": "Midterms",
+              "Name": "Midterms",
               "Lecture": {
                 "Exams": [
                   {
@@ -58,7 +58,7 @@
               }
             },
             {
-              "Term": "Midterm",
+              "Name": "Midterm",
               "Lecture": {
                 "Exams": [
                   {

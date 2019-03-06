@@ -32,10 +32,8 @@
             System.Windows.Forms.Label label4;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label6;
-            System.Windows.Forms.Label label8;
             System.Windows.Forms.Label label9;
             System.Windows.Forms.Label label7;
-            System.Windows.Forms.Label label10;
             System.Windows.Forms.Label label11;
             System.Windows.Forms.Label label12;
             System.Windows.Forms.Label label13;
@@ -44,35 +42,33 @@
             System.Windows.Forms.Label label16;
             System.Windows.Forms.Label label17;
             System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label label10;
+            System.Windows.Forms.Label label8;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditGrade));
             this.QuizScore = new System.Windows.Forms.TextBox();
             this.QuizTotal = new System.Windows.Forms.TextBox();
             this.CommunicationScore = new System.Windows.Forms.TextBox();
-            this.CommunicationTotal = new System.Windows.Forms.TextBox();
             this.TeamworkScore = new System.Windows.Forms.TextBox();
-            this.TeamworkTotal = new System.Windows.Forms.TextBox();
             this.AcitivtyScore = new System.Windows.Forms.TextBox();
             this.ActivityTotal = new System.Windows.Forms.TextBox();
             this.ActivityRemove = new System.Windows.Forms.Button();
             this.ActivityAdd = new System.Windows.Forms.Button();
             this.ActivityList = new System.Windows.Forms.ListBox();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.QuizList = new System.Windows.Forms.ComboBox();
-            this.SaveQuizButton = new System.Windows.Forms.Button();
             this.ClassroomList = new System.Windows.Forms.ComboBox();
             this.StudentList = new System.Windows.Forms.ComboBox();
             this.TermList = new System.Windows.Forms.ComboBox();
             this.MajorScore = new System.Windows.Forms.TextBox();
             this.MajorTotal = new System.Windows.Forms.TextBox();
-            this.QuizCount = new System.Windows.Forms.NumericUpDown();
+            this.QuizList = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
-            label8 = new System.Windows.Forms.Label();
             label9 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
-            label10 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
             label12 = new System.Windows.Forms.Label();
             label13 = new System.Windows.Forms.Label();
@@ -81,7 +77,8 @@
             label16 = new System.Windows.Forms.Label();
             label17 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.QuizCount)).BeginInit();
+            label10 = new System.Windows.Forms.Label();
+            label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -90,7 +87,7 @@
             label1.BackColor = System.Drawing.Color.Transparent;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label1.ForeColor = System.Drawing.Color.Black;
-            label1.Location = new System.Drawing.Point(12, 96);
+            label1.Location = new System.Drawing.Point(7, 96);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(93, 29);
             label1.TabIndex = 0;
@@ -102,7 +99,7 @@
             label4.BackColor = System.Drawing.Color.Transparent;
             label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label4.ForeColor = System.Drawing.Color.Black;
-            label4.Location = new System.Drawing.Point(13, 134);
+            label4.Location = new System.Drawing.Point(12, 134);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(66, 20);
             label4.TabIndex = 0;
@@ -114,7 +111,7 @@
             label2.BackColor = System.Drawing.Color.Transparent;
             label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label2.ForeColor = System.Drawing.Color.Black;
-            label2.Location = new System.Drawing.Point(67, 183);
+            label2.Location = new System.Drawing.Point(188, 160);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(14, 20);
             label2.TabIndex = 0;
@@ -126,23 +123,11 @@
             label6.BackColor = System.Drawing.Color.Transparent;
             label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label6.ForeColor = System.Drawing.Color.Black;
-            label6.Location = new System.Drawing.Point(14, 206);
+            label6.Location = new System.Drawing.Point(139, 224);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(48, 20);
             label6.TabIndex = 0;
             label6.Text = "Major";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.BackColor = System.Drawing.Color.Transparent;
-            label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label8.ForeColor = System.Drawing.Color.Black;
-            label8.Location = new System.Drawing.Point(57, 315);
-            label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(14, 20);
-            label8.TabIndex = 0;
-            label8.Text = "/";
             // 
             // label9
             // 
@@ -150,7 +135,7 @@
             label9.BackColor = System.Drawing.Color.Transparent;
             label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label9.ForeColor = System.Drawing.Color.Black;
-            label9.Location = new System.Drawing.Point(14, 291);
+            label9.Location = new System.Drawing.Point(268, 42);
             label9.Name = "label9";
             label9.Size = new System.Drawing.Size(119, 20);
             label9.TabIndex = 0;
@@ -162,23 +147,11 @@
             label7.BackColor = System.Drawing.Color.Transparent;
             label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label7.ForeColor = System.Drawing.Color.Black;
-            label7.Location = new System.Drawing.Point(13, 262);
+            label7.Location = new System.Drawing.Point(267, 13);
             label7.Name = "label7";
             label7.Size = new System.Drawing.Size(117, 29);
             label7.TabIndex = 0;
             label7.Text = "Hands-on";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.BackColor = System.Drawing.Color.Transparent;
-            label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label10.ForeColor = System.Drawing.Color.Black;
-            label10.Location = new System.Drawing.Point(192, 315);
-            label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(14, 20);
-            label10.TabIndex = 0;
-            label10.Text = "/";
             // 
             // label11
             // 
@@ -186,7 +159,7 @@
             label11.BackColor = System.Drawing.Color.Transparent;
             label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label11.ForeColor = System.Drawing.Color.Black;
-            label11.Location = new System.Drawing.Point(149, 291);
+            label11.Location = new System.Drawing.Point(399, 42);
             label11.Name = "label11";
             label11.Size = new System.Drawing.Size(82, 20);
             label11.TabIndex = 0;
@@ -270,7 +243,7 @@
             label3.BackColor = System.Drawing.Color.Transparent;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label3.ForeColor = System.Drawing.Color.Black;
-            label3.Location = new System.Drawing.Point(67, 229);
+            label3.Location = new System.Drawing.Point(192, 247);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(14, 20);
             label3.TabIndex = 0;
@@ -278,7 +251,7 @@
             // 
             // QuizScore
             // 
-            this.QuizScore.Location = new System.Drawing.Point(17, 182);
+            this.QuizScore.Location = new System.Drawing.Point(138, 159);
             this.QuizScore.Name = "QuizScore";
             this.QuizScore.Size = new System.Drawing.Size(43, 20);
             this.QuizScore.TabIndex = 2;
@@ -286,7 +259,7 @@
             // 
             // QuizTotal
             // 
-            this.QuizTotal.Location = new System.Drawing.Point(86, 183);
+            this.QuizTotal.Location = new System.Drawing.Point(207, 160);
             this.QuizTotal.Name = "QuizTotal";
             this.QuizTotal.Size = new System.Drawing.Size(43, 20);
             this.QuizTotal.TabIndex = 2;
@@ -294,35 +267,19 @@
             // 
             // CommunicationScore
             // 
-            this.CommunicationScore.Location = new System.Drawing.Point(14, 314);
+            this.CommunicationScore.Location = new System.Drawing.Point(300, 65);
             this.CommunicationScore.Name = "CommunicationScore";
-            this.CommunicationScore.Size = new System.Drawing.Size(37, 20);
+            this.CommunicationScore.Size = new System.Drawing.Size(53, 20);
             this.CommunicationScore.TabIndex = 2;
             this.CommunicationScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Input_KeyPress);
             // 
-            // CommunicationTotal
-            // 
-            this.CommunicationTotal.Location = new System.Drawing.Point(77, 314);
-            this.CommunicationTotal.Name = "CommunicationTotal";
-            this.CommunicationTotal.Size = new System.Drawing.Size(37, 20);
-            this.CommunicationTotal.TabIndex = 2;
-            this.CommunicationTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Input_KeyPress);
-            // 
             // TeamworkScore
             // 
-            this.TeamworkScore.Location = new System.Drawing.Point(149, 314);
+            this.TeamworkScore.Location = new System.Drawing.Point(403, 65);
             this.TeamworkScore.Name = "TeamworkScore";
-            this.TeamworkScore.Size = new System.Drawing.Size(37, 20);
+            this.TeamworkScore.Size = new System.Drawing.Size(52, 20);
             this.TeamworkScore.TabIndex = 2;
             this.TeamworkScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Input_KeyPress);
-            // 
-            // TeamworkTotal
-            // 
-            this.TeamworkTotal.Location = new System.Drawing.Point(212, 314);
-            this.TeamworkTotal.Name = "TeamworkTotal";
-            this.TeamworkTotal.Size = new System.Drawing.Size(37, 20);
-            this.TeamworkTotal.TabIndex = 2;
-            this.TeamworkTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Input_KeyPress);
             // 
             // AcitivtyScore
             // 
@@ -382,27 +339,6 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // QuizList
-            // 
-            this.QuizList.FormattingEnabled = true;
-            this.QuizList.Location = new System.Drawing.Point(17, 157);
-            this.QuizList.Name = "QuizList";
-            this.QuizList.Size = new System.Drawing.Size(112, 21);
-            this.QuizList.TabIndex = 6;
-            this.QuizList.SelectedIndexChanged += new System.EventHandler(this.QuizList_SelectedIndexChanged);
-            // 
-            // SaveQuizButton
-            // 
-            this.SaveQuizButton.BackColor = System.Drawing.Color.Green;
-            this.SaveQuizButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveQuizButton.Location = new System.Drawing.Point(135, 181);
-            this.SaveQuizButton.Name = "SaveQuizButton";
-            this.SaveQuizButton.Size = new System.Drawing.Size(53, 21);
-            this.SaveQuizButton.TabIndex = 3;
-            this.SaveQuizButton.Text = "Save";
-            this.SaveQuizButton.UseVisualStyleBackColor = false;
-            this.SaveQuizButton.Click += new System.EventHandler(this.QuizSave_Click);
-            // 
             // ClassroomList
             // 
             this.ClassroomList.FormattingEnabled = true;
@@ -435,7 +371,7 @@
             // 
             // MajorScore
             // 
-            this.MajorScore.Location = new System.Drawing.Point(16, 229);
+            this.MajorScore.Location = new System.Drawing.Point(141, 247);
             this.MajorScore.Name = "MajorScore";
             this.MajorScore.Size = new System.Drawing.Size(43, 20);
             this.MajorScore.TabIndex = 2;
@@ -443,24 +379,68 @@
             // 
             // MajorTotal
             // 
-            this.MajorTotal.Location = new System.Drawing.Point(86, 229);
+            this.MajorTotal.Location = new System.Drawing.Point(211, 247);
             this.MajorTotal.Name = "MajorTotal";
             this.MajorTotal.Size = new System.Drawing.Size(43, 20);
             this.MajorTotal.TabIndex = 2;
             this.MajorTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Input_KeyPress);
             // 
-            // QuizCount
+            // label10
             // 
-            this.QuizCount.Location = new System.Drawing.Point(135, 157);
-            this.QuizCount.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.QuizCount.Name = "QuizCount";
-            this.QuizCount.Size = new System.Drawing.Size(53, 20);
-            this.QuizCount.TabIndex = 8;
-            this.QuizCount.ValueChanged += new System.EventHandler(this.QuizCount_ValueChanged);
+            label10.AutoSize = true;
+            label10.BackColor = System.Drawing.Color.Transparent;
+            label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label10.ForeColor = System.Drawing.Color.Black;
+            label10.Location = new System.Drawing.Point(461, 68);
+            label10.Name = "label10";
+            label10.Size = new System.Drawing.Size(24, 20);
+            label10.TabIndex = 0;
+            label10.Text = "%";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = System.Drawing.Color.Transparent;
+            label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label8.ForeColor = System.Drawing.Color.Black;
+            label8.Location = new System.Drawing.Point(359, 68);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(24, 20);
+            label8.TabIndex = 0;
+            label8.Text = "%";
+            // 
+            // QuizList
+            // 
+            this.QuizList.FormattingEnabled = true;
+            this.QuizList.Location = new System.Drawing.Point(12, 157);
+            this.QuizList.Name = "QuizList";
+            this.QuizList.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.QuizList.Size = new System.Drawing.Size(120, 186);
+            this.QuizList.Sorted = true;
+            this.QuizList.TabIndex = 9;
+            this.QuizList.SelectedIndexChanged += new System.EventHandler(this.QuizList_SelectedIndexChanged);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(138, 185);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(53, 21);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Delete";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Green;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(197, 185);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(53, 21);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Add";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // EditGrade
             // 
@@ -468,25 +448,23 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::CIIT_Grading_System.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(523, 358);
-            this.Controls.Add(this.QuizCount);
+            this.ClientSize = new System.Drawing.Size(528, 363);
+            this.Controls.Add(this.QuizList);
             this.Controls.Add(this.TermList);
             this.Controls.Add(this.StudentList);
             this.Controls.Add(this.ClassroomList);
-            this.Controls.Add(this.QuizList);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.ActivityList);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.ActivityAdd);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ActivityRemove);
-            this.Controls.Add(this.SaveQuizButton);
             this.Controls.Add(this.ActivityTotal);
             this.Controls.Add(this.AcitivtyScore);
             this.Controls.Add(this.MajorTotal);
             this.Controls.Add(this.QuizTotal);
             this.Controls.Add(this.MajorScore);
             this.Controls.Add(this.QuizScore);
-            this.Controls.Add(this.TeamworkTotal);
-            this.Controls.Add(this.CommunicationTotal);
             this.Controls.Add(this.TeamworkScore);
             this.Controls.Add(this.CommunicationScore);
             this.Controls.Add(label3);
@@ -509,7 +487,6 @@
             this.Name = "EditGrade";
             this.Text = "Edit Grade";
             this.Load += new System.EventHandler(this.EditGrade_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.QuizCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -519,22 +496,20 @@
         private System.Windows.Forms.TextBox QuizScore;
         private System.Windows.Forms.TextBox QuizTotal;
         private System.Windows.Forms.TextBox CommunicationScore;
-        private System.Windows.Forms.TextBox CommunicationTotal;
         private System.Windows.Forms.TextBox TeamworkScore;
-        private System.Windows.Forms.TextBox TeamworkTotal;
         private System.Windows.Forms.TextBox AcitivtyScore;
         private System.Windows.Forms.TextBox ActivityTotal;
         private System.Windows.Forms.Button ActivityRemove;
         private System.Windows.Forms.Button ActivityAdd;
         private System.Windows.Forms.ListBox ActivityList;
         private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.ComboBox QuizList;
-        private System.Windows.Forms.Button SaveQuizButton;
         private System.Windows.Forms.ComboBox ClassroomList;
         private System.Windows.Forms.ComboBox StudentList;
         private System.Windows.Forms.ComboBox TermList;
         private System.Windows.Forms.TextBox MajorScore;
         private System.Windows.Forms.TextBox MajorTotal;
-        private System.Windows.Forms.NumericUpDown QuizCount;
+        private System.Windows.Forms.ListBox QuizList;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
