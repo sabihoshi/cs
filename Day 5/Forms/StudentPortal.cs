@@ -42,11 +42,11 @@ namespace CIIT_Grading_System.Forms
         public string itemName;
         public int itemTotal, itemScore;
 
-        public string CalculateGrade(string classroomName, string studentName)
+        public string CalculateGrade(string classroomName, string studentName, string termName)
         {
             var Grade = new GradeTemplate();
             Classroom classroom = Login.User.userData.GetClassroom(ClassroomList.Text);
-            Student student = classroom.GetStudent(StudentList.Text);
+            Term student = classroom.GetStudent(StudentList.Text, termName);
 
             foreach (Graded item in student.Lecture.Exams)
             {
@@ -126,7 +126,7 @@ namespace CIIT_Grading_System.Forms
 
         private void addClassToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Login.User.userData.CreateClassroom(Microsoft.VisualBasic.Interaction.InputBox("Enter a new classroom name", "Create new classroom", "Class #"));
+            Login.User.userData.Classrooms.Add(new Classroom(Microsoft.VisualBasic.Interaction.InputBox("Enter a new classroom name", "Create new classroom", "Class #")));
             Login.User.JsonUpdate(Login.User.userFile, Login.User.userData);
         }
 
@@ -193,7 +193,7 @@ namespace CIIT_Grading_System.Forms
 
         private void StudentList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string buffer = CalculateGrade(ClassroomList.Text, StudentList.Text);
+            string buffer = CalculateGrade(ClassroomList.Text, StudentList.Text, "Midterms");
             Console.WriteLine(buffer);
             string fileName = String.Format(@"..\..\Data\Users\{0}_grade.html", Login.userName);
             string htmlName = @"file:\\\" + Path.GetFullPath(fileName);

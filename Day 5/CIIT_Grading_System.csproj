@@ -137,7 +137,6 @@
     <None Include="Data\Users\Kao.json" />
     <None Include="Data\Users\test.md" />
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\CIIT_Grading_System.Forms.User.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -180,6 +179,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo_square.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

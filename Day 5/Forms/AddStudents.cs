@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using UserData;
 
 namespace CIIT_Grading_System.Forms
 {
@@ -45,8 +46,8 @@ namespace CIIT_Grading_System.Forms
             }
             else
             {
-                classroom.CreateStudent(StudentName.Text);
-                StudentList.Items.Add(StudentName.Text);
+                var Student = new Student(StudentName.Text);
+                StudentList.Items.Add(Student);
                 User.JsonUpdate(User.userFile, User.userData);
             }
         }

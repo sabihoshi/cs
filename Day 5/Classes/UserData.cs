@@ -8,66 +8,78 @@
     {
         public Uri Avatar { get; set; }
         public string Status { get; set; }
-        public List<Classroom> Classrooms { get; set; } = new List<Classroom>();
+        public List<Classroom> Classrooms { get; set; }
         public string Recent { get; set; }
 
         public Classroom GetClassroom(string name)
         {
-            return Classrooms.FirstOrDefault(c => c.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-        }
-
-        public void CreateClassroom(string name)
-        {
-            Classrooms.Add(new Classroom
-            {
-                Name = name
-            });
+            return Classrooms.FirstOrDefault(c => c.Name == name);
         }
     }
 
     public partial class Classroom
     {
         public string Name { get; set; }
-        public List<Student> Students { get; set; } = new List<Student>();
+        public List<Student> Students { get; set; }
 
-        public Student GetStudent(string name)
+        public Classroom(string name)
         {
-            return Students.FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            Name = name;
         }
 
-        public void CreateStudent(string name)
+        public Term GetStudent(string name, string term)
         {
-            Students.Add(new Student
-            {
-                Name = name
-            });
+            return Students.FirstOrDefault(s => s.Name == name).Terms.FirstOrDefault(t => t.Name == term);
         }
     }
 
     public partial class Student
     {
         public string Name { get; set; }
+        public List<Term> Terms { get; set; }
+
+        public Student(string name)
+        {
+            Name = name;
+        }
+    }
+
+    public partial class Term
+    {
+        public string Name { get; set; }
         public Lecture Lecture { get; set; } = new Lecture();
-        public List<Graded> Laboratory { get; set; } = new List<Graded>();
         public HandsOn HandsOn { get; set; } = new HandsOn();
+        public List<Graded> Laboratory { get; set; } = new List<Graded>();
+
+        public Term(string name)
+        {
+            Name = name;
+        }
     }
 
     public partial class HandsOn
     {
-        public int Communication { get; set; }
-        public int Teamwork { get; set; }
+        public int Communication { get; set; } = 0;
+        public int Teamwork { get; set; } = 0;
     }
 
     public partial class Graded
     {
         public string Name { get; set; }
-        public int Score { get; set; }
-        public int Total { get; set; }
+        public int Score { get; set; } = 0;
+        public int Total { get; set; } = 0;
+
+        public Graded(string name, int score, int total)
+        {
+            Name = name;
+            Score = score;
+            Total = total;
+        }
     }
 
     public partial class Lecture
     {
         public List<Graded> Exams { get; set; } = new List<Graded>();
-        public long Recitation { get; set; }
+        public int Recitation { get; set; } = 0;
     }
 }
