@@ -22,6 +22,15 @@ namespace Quiz.Forms
         {
             Date.Text = DateTime.Now.ToString();
             NameOutput.Text = NameInput.Text;
+            SS.Show();
+            YEHEY.Hide();
+        }
+
+        private void Restart_Click(object sender, EventArgs e)
+        {
+            var newForm = new Answer();
+            newForm.Show();
+            Hide();
         }
     }
 }

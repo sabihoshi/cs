@@ -14,6 +14,7 @@ namespace Quiz.Forms
         }
 
         public Questionnaire Questionnaire = new Questionnaire();
+        private Question currentQuestion = null;
 
         private void Title_TextChanged(object sender, EventArgs e)
         {
@@ -50,6 +51,13 @@ namespace Quiz.Forms
                 correctAnswer = 3;
         }
 
+        private void UpdateObject()
+        {
+            currentQuestion.Description = Question.Text;
+            currentQuestion.Choices = new string[] { ChoiceA.Text, ChoiceB.Text, ChoiceC.Text, ChoiceD.Text };
+            currentQuestion.Correct = correctAnswer;
+        }
+
         private void UpdateQuestion()
         {
             if (Questionnaire.Questions.Count == 0)
@@ -66,7 +74,7 @@ namespace Quiz.Forms
             Back.Enabled = pageCurrent != 1;
 
             saveToolStripMenuItem.Enabled = Questionnaire.Questions.Count != 0;
-            Question currentQuestion = Questionnaire.Questions[pageCurrent - 1];
+            currentQuestion = Questionnaire.Questions[pageCurrent - 1];
 
             PageNo.Text = $"Page {pageCurrent}/{Questionnaire.Questions.Count}";
             Question.Text = currentQuestion.Description;
@@ -105,12 +113,14 @@ namespace Quiz.Forms
 
         private void Back_Click(object sender, EventArgs e)
         {
+            UpdateObject();
             pageCurrent--;
             UpdateQuestion();
         }
 
         private void Next_Click(object sender, EventArgs e)
         {
+            UpdateObject();
             pageCurrent++;
             UpdateQuestion();
         }
@@ -142,6 +152,13 @@ namespace Quiz.Forms
         {
             var newForm = new Answer();
             newForm.Show();
+        }
+
+        private void openExistingQuizToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var newForm = new Answer();
+            newForm.Show();
+            Hide();
         }
     }
 }
