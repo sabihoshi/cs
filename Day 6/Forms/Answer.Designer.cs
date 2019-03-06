@@ -106,6 +106,7 @@
             // ChoiceA
             // 
             this.ChoiceA.AutoSize = true;
+            this.ChoiceA.Enabled = false;
             this.ChoiceA.Location = new System.Drawing.Point(28, 69);
             this.ChoiceA.Margin = new System.Windows.Forms.Padding(4);
             this.ChoiceA.Name = "ChoiceA";
@@ -118,6 +119,7 @@
             // QuestionBox
             // 
             this.QuestionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.QuestionBox.BackColor = System.Drawing.Color.RoyalBlue;
             this.QuestionBox.Controls.Add(this.ChoiceD);
             this.QuestionBox.Controls.Add(this.ChoiceC);
             this.QuestionBox.Controls.Add(this.ChoiceB);
@@ -134,6 +136,7 @@
             // ChoiceD
             // 
             this.ChoiceD.AutoSize = true;
+            this.ChoiceD.Enabled = false;
             this.ChoiceD.Location = new System.Drawing.Point(28, 154);
             this.ChoiceD.Margin = new System.Windows.Forms.Padding(4);
             this.ChoiceD.Name = "ChoiceD";
@@ -146,6 +149,7 @@
             // ChoiceC
             // 
             this.ChoiceC.AutoSize = true;
+            this.ChoiceC.Enabled = false;
             this.ChoiceC.Location = new System.Drawing.Point(28, 126);
             this.ChoiceC.Margin = new System.Windows.Forms.Padding(4);
             this.ChoiceC.Name = "ChoiceC";
@@ -158,6 +162,7 @@
             // ChoiceB
             // 
             this.ChoiceB.AutoSize = true;
+            this.ChoiceB.Enabled = false;
             this.ChoiceB.Location = new System.Drawing.Point(28, 97);
             this.ChoiceB.Margin = new System.Windows.Forms.Padding(4);
             this.ChoiceB.Name = "ChoiceB";
@@ -278,6 +283,7 @@
             this.MainMenuStrip = this.MenuStrip;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Answer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quiz Maker";
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();

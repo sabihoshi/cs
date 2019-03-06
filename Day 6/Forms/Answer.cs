@@ -44,6 +44,11 @@ namespace Quiz.Forms
             }
             catch (JsonReaderException) { MessageBox.Show("Invalid file", "Open file", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             catch (ArgumentNullException) { return; }
+            start = DateTime.Now;
+            ChoiceA.Enabled = true;
+            ChoiceB.Enabled = true;
+            ChoiceC.Enabled = true;
+            ChoiceD.Enabled = true;
             QuizTimer.Enabled = true;
             Next.Enabled = true;
             pageMax = Quiz.Questions.Count;

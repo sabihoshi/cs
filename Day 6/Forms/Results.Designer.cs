@@ -50,6 +50,7 @@
             this.SS = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.Restart = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -78,7 +79,7 @@
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(350, 25);
-            this.label10.TabIndex = 1;
+            this.label10.TabIndex = 0;
             this.label10.Text = "NUMBER OF CORRECT ANSWERS :";
             // 
             // Score
@@ -130,7 +131,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 25);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Of";
             // 
             // label3
@@ -152,7 +153,7 @@
             this.NameInput.Margin = new System.Windows.Forms.Padding(4);
             this.NameInput.Name = "NameInput";
             this.NameInput.Size = new System.Drawing.Size(217, 22);
-            this.NameInput.TabIndex = 4;
+            this.NameInput.TabIndex = 1;
             this.NameInput.Text = "Write Your Name Here";
             // 
             // label4
@@ -216,11 +217,11 @@
             // 
             // YEHEY
             // 
-            this.YEHEY.Location = new System.Drawing.Point(532, 236);
+            this.YEHEY.Location = new System.Drawing.Point(525, 233);
             this.YEHEY.Margin = new System.Windows.Forms.Padding(4);
             this.YEHEY.Name = "YEHEY";
             this.YEHEY.Size = new System.Drawing.Size(100, 28);
-            this.YEHEY.TabIndex = 7;
+            this.YEHEY.TabIndex = 2;
             this.YEHEY.Text = "Apply";
             this.YEHEY.UseVisualStyleBackColor = true;
             this.YEHEY.Click += new System.EventHandler(this.YEHEY_Click);
@@ -240,17 +241,16 @@
             // 
             // NameOutput
             // 
-            this.NameOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.NameOutput.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NameOutput.AutoSize = true;
             this.NameOutput.BackColor = System.Drawing.Color.FloralWhite;
             this.NameOutput.Font = new System.Drawing.Font("Script MT Bold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameOutput.Location = new System.Drawing.Point(170, 470);
+            this.NameOutput.Location = new System.Drawing.Point(175, 470);
             this.NameOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NameOutput.Name = "NameOutput";
-            this.NameOutput.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.NameOutput.Size = new System.Drawing.Size(258, 41);
-            this.NameOutput.TabIndex = 9;
-            this.NameOutput.Text = "            NAME   ";
+            this.NameOutput.Size = new System.Drawing.Size(288, 41);
+            this.NameOutput.TabIndex = 0;
+            this.NameOutput.Text = "                              ";
             this.NameOutput.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Date
@@ -283,7 +283,7 @@
             // 
             this.SS.AutoSize = true;
             this.SS.BackColor = System.Drawing.Color.RoyalBlue;
-            this.SS.Location = new System.Drawing.Point(45, 277);
+            this.SS.Location = new System.Drawing.Point(71, 277);
             this.SS.Name = "SS";
             this.SS.Size = new System.Drawing.Size(249, 17);
             this.SS.TabIndex = 11;
@@ -307,6 +307,16 @@
             this.pictureBox3.Size = new System.Drawing.Size(726, 421);
             this.pictureBox3.TabIndex = 13;
             this.pictureBox3.TabStop = false;
+            // 
+            // Restart
+            // 
+            this.Restart.Location = new System.Drawing.Point(525, 232);
+            this.Restart.Name = "Restart";
+            this.Restart.Size = new System.Drawing.Size(100, 29);
+            this.Restart.TabIndex = 14;
+            this.Restart.Text = "Try Again";
+            this.Restart.UseVisualStyleBackColor = true;
+            this.Restart.Click += new System.EventHandler(this.Restart_Click);
             // 
             // Results
             // 
@@ -332,11 +342,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.Result);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.Restart);
+            this.Controls.Add(this.pictureBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Results";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quiz Results";
             this.Load += new System.EventHandler(this.Results_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -370,5 +382,6 @@
         private System.Windows.Forms.Label SS;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button Restart;
     }
 }

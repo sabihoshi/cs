@@ -187,7 +187,7 @@
             this.Next.Enabled = false;
             this.Next.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Next.Location = new System.Drawing.Point(611, 300);
-            this.Next.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Next.Margin = new System.Windows.Forms.Padding(4);
             this.Next.Name = "Next";
             this.Next.Size = new System.Drawing.Size(100, 28);
             this.Next.TabIndex = 11;
@@ -200,7 +200,7 @@
             this.Back.Enabled = false;
             this.Back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Back.Location = new System.Drawing.Point(28, 300);
-            this.Back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Back.Margin = new System.Windows.Forms.Padding(4);
             this.Back.Name = "Back";
             this.Back.Size = new System.Drawing.Size(100, 28);
             this.Back.TabIndex = 10;
@@ -212,7 +212,7 @@
             // 
             this.ChoiceD.AutoSize = true;
             this.ChoiceD.Location = new System.Drawing.Point(28, 154);
-            this.ChoiceD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ChoiceD.Margin = new System.Windows.Forms.Padding(4);
             this.ChoiceD.Name = "ChoiceD";
             this.ChoiceD.Size = new System.Drawing.Size(39, 21);
             this.ChoiceD.TabIndex = 9;
@@ -225,7 +225,7 @@
             // 
             this.ChoiceC.AutoSize = true;
             this.ChoiceC.Location = new System.Drawing.Point(28, 126);
-            this.ChoiceC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ChoiceC.Margin = new System.Windows.Forms.Padding(4);
             this.ChoiceC.Name = "ChoiceC";
             this.ChoiceC.Size = new System.Drawing.Size(38, 21);
             this.ChoiceC.TabIndex = 8;
@@ -238,7 +238,7 @@
             // 
             this.ChoiceB.AutoSize = true;
             this.ChoiceB.Location = new System.Drawing.Point(28, 97);
-            this.ChoiceB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ChoiceB.Margin = new System.Windows.Forms.Padding(4);
             this.ChoiceB.Name = "ChoiceB";
             this.ChoiceB.Size = new System.Drawing.Size(38, 21);
             this.ChoiceB.TabIndex = 7;
@@ -249,14 +249,15 @@
             // 
             // QuestionBox
             // 
+            this.QuestionBox.BackColor = System.Drawing.Color.RoyalBlue;
             this.QuestionBox.Controls.Add(this.ChoiceD);
             this.QuestionBox.Controls.Add(this.ChoiceC);
             this.QuestionBox.Controls.Add(this.ChoiceB);
             this.QuestionBox.Controls.Add(this.ChoiceA);
             this.QuestionBox.Location = new System.Drawing.Point(28, 108);
-            this.QuestionBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.QuestionBox.Margin = new System.Windows.Forms.Padding(4);
             this.QuestionBox.Name = "QuestionBox";
-            this.QuestionBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.QuestionBox.Padding = new System.Windows.Forms.Padding(4);
             this.QuestionBox.Size = new System.Drawing.Size(368, 185);
             this.QuestionBox.TabIndex = 8;
             this.QuestionBox.TabStop = false;
@@ -266,7 +267,7 @@
             // 
             this.ChoiceA.AutoSize = true;
             this.ChoiceA.Location = new System.Drawing.Point(28, 69);
-            this.ChoiceA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ChoiceA.Margin = new System.Windows.Forms.Padding(4);
             this.ChoiceA.Name = "ChoiceA";
             this.ChoiceA.Size = new System.Drawing.Size(38, 21);
             this.ChoiceA.TabIndex = 6;
@@ -304,14 +305,15 @@
             // openExistingQuizToolStripMenuItem
             // 
             this.openExistingQuizToolStripMenuItem.Name = "openExistingQuizToolStripMenuItem";
-            this.openExistingQuizToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.openExistingQuizToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.openExistingQuizToolStripMenuItem.Text = "Open Existing Quiz";
+            this.openExistingQuizToolStripMenuItem.Click += new System.EventHandler(this.openExistingQuizToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -327,21 +329,21 @@
             // addPageToolStripMenuItem
             // 
             this.addPageToolStripMenuItem.Name = "addPageToolStripMenuItem";
-            this.addPageToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.addPageToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.addPageToolStripMenuItem.Text = "Add Page";
             this.addPageToolStripMenuItem.Click += new System.EventHandler(this.NewQuestion_Click);
             // 
             // deletePageToolStripMenuItem
             // 
             this.deletePageToolStripMenuItem.Name = "deletePageToolStripMenuItem";
-            this.deletePageToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.deletePageToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.deletePageToolStripMenuItem.Text = "Delete Page";
             this.deletePageToolStripMenuItem.Click += new System.EventHandler(this.RemoveQuestion_Click);
             // 
             // NewQuestion
             // 
             this.NewQuestion.Location = new System.Drawing.Point(719, 300);
-            this.NewQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NewQuestion.Margin = new System.Windows.Forms.Padding(4);
             this.NewQuestion.Name = "NewQuestion";
             this.NewQuestion.Size = new System.Drawing.Size(32, 28);
             this.NewQuestion.TabIndex = 12;
@@ -352,7 +354,7 @@
             // Title
             // 
             this.Title.Location = new System.Drawing.Point(485, 63);
-            this.Title.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Title.Margin = new System.Windows.Forms.Padding(4);
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(132, 22);
             this.Title.TabIndex = 0;
@@ -362,7 +364,7 @@
             // 
             this.Question.Enabled = false;
             this.Question.Location = new System.Drawing.Point(485, 111);
-            this.Question.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Question.Margin = new System.Windows.Forms.Padding(4);
             this.Question.Name = "Question";
             this.Question.Size = new System.Drawing.Size(132, 22);
             this.Question.TabIndex = 1;
@@ -372,7 +374,7 @@
             // 
             this.TextB.Enabled = false;
             this.TextB.Location = new System.Drawing.Point(485, 202);
-            this.TextB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TextB.Margin = new System.Windows.Forms.Padding(4);
             this.TextB.Name = "TextB";
             this.TextB.Size = new System.Drawing.Size(132, 22);
             this.TextB.TabIndex = 3;
@@ -382,7 +384,7 @@
             // 
             this.TextA.Enabled = false;
             this.TextA.Location = new System.Drawing.Point(485, 174);
-            this.TextA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TextA.Margin = new System.Windows.Forms.Padding(4);
             this.TextA.Name = "TextA";
             this.TextA.Size = new System.Drawing.Size(132, 22);
             this.TextA.TabIndex = 2;
@@ -392,7 +394,7 @@
             // 
             this.TextD.Enabled = false;
             this.TextD.Location = new System.Drawing.Point(485, 258);
-            this.TextD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TextD.Margin = new System.Windows.Forms.Padding(4);
             this.TextD.Name = "TextD";
             this.TextD.Size = new System.Drawing.Size(132, 22);
             this.TextD.TabIndex = 5;
@@ -402,7 +404,7 @@
             // 
             this.TextC.Enabled = false;
             this.TextC.Location = new System.Drawing.Point(485, 230);
-            this.TextC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TextC.Margin = new System.Windows.Forms.Padding(4);
             this.TextC.Name = "TextC";
             this.TextC.Size = new System.Drawing.Size(132, 22);
             this.TextC.TabIndex = 4;
@@ -412,7 +414,7 @@
             // 
             this.RemoveQuestion.Enabled = false;
             this.RemoveQuestion.Location = new System.Drawing.Point(571, 300);
-            this.RemoveQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RemoveQuestion.Margin = new System.Windows.Forms.Padding(4);
             this.RemoveQuestion.Name = "RemoveQuestion";
             this.RemoveQuestion.Size = new System.Drawing.Size(32, 28);
             this.RemoveQuestion.TabIndex = 12;
@@ -482,8 +484,9 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Editor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quiz Editor";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Editor_FormClosed);
             this.QuestionBox.ResumeLayout(false);
