@@ -49,7 +49,7 @@
             this.QuizTotal = new System.Windows.Forms.TextBox();
             this.CommunicationScore = new System.Windows.Forms.TextBox();
             this.TeamworkScore = new System.Windows.Forms.TextBox();
-            this.AcitivtyScore = new System.Windows.Forms.TextBox();
+            this.ActivityScore = new System.Windows.Forms.TextBox();
             this.ActivityTotal = new System.Windows.Forms.TextBox();
             this.ActivityRemove = new System.Windows.Forms.Button();
             this.ActivityAdd = new System.Windows.Forms.Button();
@@ -61,8 +61,8 @@
             this.MajorScore = new System.Windows.Forms.TextBox();
             this.MajorTotal = new System.Windows.Forms.TextBox();
             this.QuizList = new System.Windows.Forms.ListBox();
-            this.RemoveQuiz = new System.Windows.Forms.Button();
-            this.AddQuiz = new System.Windows.Forms.Button();
+            this.QuizRemove = new System.Windows.Forms.Button();
+            this.QuizAdd = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -305,13 +305,13 @@
             this.TeamworkScore.TabIndex = 2;
             this.TeamworkScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Input_KeyPress);
             // 
-            // AcitivtyScore
+            // ActivityScore
             // 
-            this.AcitivtyScore.Location = new System.Drawing.Point(398, 157);
-            this.AcitivtyScore.Name = "AcitivtyScore";
-            this.AcitivtyScore.Size = new System.Drawing.Size(43, 20);
-            this.AcitivtyScore.TabIndex = 2;
-            this.AcitivtyScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Input_KeyPress);
+            this.ActivityScore.Location = new System.Drawing.Point(398, 157);
+            this.ActivityScore.Name = "ActivityScore";
+            this.ActivityScore.Size = new System.Drawing.Size(43, 20);
+            this.ActivityScore.TabIndex = 2;
+            this.ActivityScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Input_KeyPress);
             // 
             // ActivityTotal
             // 
@@ -324,6 +324,7 @@
             // ActivityRemove
             // 
             this.ActivityRemove.BackColor = System.Drawing.Color.Red;
+            this.ActivityRemove.Enabled = false;
             this.ActivityRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ActivityRemove.Location = new System.Drawing.Point(398, 183);
             this.ActivityRemove.Name = "ActivityRemove";
@@ -331,6 +332,7 @@
             this.ActivityRemove.TabIndex = 3;
             this.ActivityRemove.Text = "Delete";
             this.ActivityRemove.UseVisualStyleBackColor = false;
+            this.ActivityRemove.Click += new System.EventHandler(this.Remove_Click);
             // 
             // ActivityAdd
             // 
@@ -342,6 +344,7 @@
             this.ActivityAdd.TabIndex = 3;
             this.ActivityAdd.Text = "Add";
             this.ActivityAdd.UseVisualStyleBackColor = false;
+            this.ActivityAdd.Click += new System.EventHandler(this.Add_Click);
             // 
             // ActivityList
             // 
@@ -420,29 +423,30 @@
             this.QuizList.TabIndex = 9;
             this.QuizList.SelectedIndexChanged += new System.EventHandler(this.QuizList_SelectedIndexChanged);
             // 
-            // RemoveQuiz
+            // QuizRemove
             // 
-            this.RemoveQuiz.BackColor = System.Drawing.Color.Red;
-            this.RemoveQuiz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RemoveQuiz.Location = new System.Drawing.Point(138, 185);
-            this.RemoveQuiz.Name = "RemoveQuiz";
-            this.RemoveQuiz.Size = new System.Drawing.Size(53, 21);
-            this.RemoveQuiz.TabIndex = 3;
-            this.RemoveQuiz.Text = "Delete";
-            this.RemoveQuiz.UseVisualStyleBackColor = false;
-            this.RemoveQuiz.Click += new System.EventHandler(this.RemoveQuiz_Click);
+            this.QuizRemove.BackColor = System.Drawing.Color.Red;
+            this.QuizRemove.Enabled = false;
+            this.QuizRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.QuizRemove.Location = new System.Drawing.Point(138, 185);
+            this.QuizRemove.Name = "QuizRemove";
+            this.QuizRemove.Size = new System.Drawing.Size(53, 21);
+            this.QuizRemove.TabIndex = 3;
+            this.QuizRemove.Text = "Delete";
+            this.QuizRemove.UseVisualStyleBackColor = false;
+            this.QuizRemove.Click += new System.EventHandler(this.Remove_Click);
             // 
-            // AddQuiz
+            // QuizAdd
             // 
-            this.AddQuiz.BackColor = System.Drawing.Color.Green;
-            this.AddQuiz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddQuiz.Location = new System.Drawing.Point(197, 185);
-            this.AddQuiz.Name = "AddQuiz";
-            this.AddQuiz.Size = new System.Drawing.Size(53, 21);
-            this.AddQuiz.TabIndex = 3;
-            this.AddQuiz.Text = "Add";
-            this.AddQuiz.UseVisualStyleBackColor = false;
-            this.AddQuiz.Click += new System.EventHandler(this.AddQuiz_Click);
+            this.QuizAdd.BackColor = System.Drawing.Color.Green;
+            this.QuizAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.QuizAdd.Location = new System.Drawing.Point(197, 185);
+            this.QuizAdd.Name = "QuizAdd";
+            this.QuizAdd.Size = new System.Drawing.Size(53, 21);
+            this.QuizAdd.TabIndex = 3;
+            this.QuizAdd.Text = "Add";
+            this.QuizAdd.UseVisualStyleBackColor = false;
+            this.QuizAdd.Click += new System.EventHandler(this.Add_Click);
             // 
             // EditGrade
             // 
@@ -457,12 +461,12 @@
             this.Controls.Add(this.ClassroomList);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.ActivityList);
-            this.Controls.Add(this.AddQuiz);
+            this.Controls.Add(this.QuizAdd);
             this.Controls.Add(this.ActivityAdd);
-            this.Controls.Add(this.RemoveQuiz);
+            this.Controls.Add(this.QuizRemove);
             this.Controls.Add(this.ActivityRemove);
             this.Controls.Add(this.ActivityTotal);
-            this.Controls.Add(this.AcitivtyScore);
+            this.Controls.Add(this.ActivityScore);
             this.Controls.Add(this.MajorTotal);
             this.Controls.Add(this.QuizTotal);
             this.Controls.Add(this.MajorScore);
@@ -499,7 +503,7 @@
         private System.Windows.Forms.TextBox QuizTotal;
         private System.Windows.Forms.TextBox CommunicationScore;
         private System.Windows.Forms.TextBox TeamworkScore;
-        private System.Windows.Forms.TextBox AcitivtyScore;
+        private System.Windows.Forms.TextBox ActivityScore;
         private System.Windows.Forms.TextBox ActivityTotal;
         private System.Windows.Forms.Button ActivityRemove;
         private System.Windows.Forms.Button ActivityAdd;
@@ -511,7 +515,7 @@
         private System.Windows.Forms.TextBox MajorScore;
         private System.Windows.Forms.TextBox MajorTotal;
         private System.Windows.Forms.ListBox QuizList;
-        private System.Windows.Forms.Button RemoveQuiz;
-        private System.Windows.Forms.Button AddQuiz;
+        private System.Windows.Forms.Button QuizRemove;
+        private System.Windows.Forms.Button QuizAdd;
     }
 }

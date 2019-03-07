@@ -75,21 +75,63 @@ namespace CIIT_Grading_System.Forms
             return true;
         }
 
-        private void RemoveQuiz_Click(object sender, EventArgs e)
+        private void Add_Click(object sender, EventArgs e)
         {
-            Term.Lecture.Exams.RemoveAt(Term.Lecture.Exams.Count - 1);
-            QuizList.Items.RemoveAt(QuizList.Items.Count - 1);
-            if (QuizList.Items.Count == 0)
-                RemoveQuiz.Enabled = false;
+            var Sender = sender as Button;
+            TextBox Score = null;
+            TextBox Total = null;
+            Button Remove = null;
+            List<Graded> Graded = null;
+            string name = null;
+            switch (Sender.Name)
+            {
+                case "QuizAdd":
+                    Score = QuizScore;
+                    Total = QuizTotal;
+                    Remove = QuizRemove;
+                    Graded = Term.Lecture.Exams;
+                    name = "Exam";
+                    break;
+
+                case "ActivityAdd":
+                    Score = ActivityScore;
+                    Total = ActivityTotal;
+                    Remove = ActivityRemove;
+                    Graded = Term.Laboratory;
+                    name = "Activity";
+                    break;
+            }
+            if (CheckInts(Score, Total))
+            {
+                int score = Convert.ToInt32(Score);
+                int total = Convert.ToInt32(Total);
+                total = score > total ? score : total;
+
+                Graded.Add(new Graded($"{name} #{Graded.Count + 1}", score, total));
+            }
         }
 
-        private void AddQuiz_Click(object sender, EventArgs e)
+        private void Remove_Click(object sender, EventArgs e)
         {
-            if (CheckInts(QuizTotal, QuizScore))
+            var Sender = sender as Button;
+            ListBox ListBox = null;
+            List<Graded> Graded = null;
+            switch (Sender.Name)
             {
-                Term.Lecture.Exams.Add(new Graded($"Quiz #{Term.Lecture.Exams.Count + 1}", Convert.ToInt32(QuizScore.Text), Convert.ToInt32(QuizTotal.Text)));
-                RemoveQuiz.Enabled = true;
+                case "QuizRemove":
+                    Graded = Term.Lecture.Exams;
+                    ListBox = QuizList;
+                    break;
+
+                case "ActivityRemove":
+                    Graded = Term.Laboratory;
+                    ListBox = ActivityList;
+                    break;
             }
+            Graded.RemoveAt(Graded.Count - 1);
+            ListBox.Items.RemoveAt(ListBox.Items.Count - 1);
+            if (ListBox.Items.Count == 0)
+                Sender.Enabled = false;
         }
 
         private void Input_KeyPress(object sender, KeyPressEventArgs e)
