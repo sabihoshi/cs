@@ -75,28 +75,20 @@ namespace CIIT_Grading_System.Forms
             return true;
         }
 
-        private void QuizCount_ValueChanged(object sender, EventArgs e)
+        private void RemoveQuiz_Click(object sender, EventArgs e)
         {
-            if (Term.Lecture.Exams.Count < QuizCount.Value)
-            {
-                for (int i = Term.Lecture.Exams.Count; i < QuizCount.Value; i++)
-                {
-                    QuizList.Items.Add("Quiz #{i}");
-                    Term.Lecture.Exams.Add(new Graded("Quiz #{i}", 0, 0));
-                }
-            }
-            else if (Term.Lecture.Exams.Count > QuizCount.Value)
-            {
-                int count = (int)QuizCount.Value - Term.Lecture.Exams.Count;
-                Term.Lecture.Exams.RemoveRange((int)QuizCount.Value - 1, Term.Lecture.Exams.Count);
-            }
+            Term.Lecture.Exams.RemoveAt(Term.Lecture.Exams.Count - 1);
+            QuizList.Items.RemoveAt(QuizList.Items.Count - 1);
+            if (QuizList.Items.Count == 0)
+                RemoveQuiz.Enabled = false;
         }
 
-        private void QuizSave_Click(object sender, EventArgs e)
+        private void AddQuiz_Click(object sender, EventArgs e)
         {
-            Graded Quiz = Term.Lecture.Exams.FirstOrDefault(q => q.Name == QuizList.SelectedItem.ToString());
             if (CheckInts(QuizTotal, QuizScore))
             {
+                Term.Lecture.Exams.Add(new Graded($"Quiz #{Term.Lecture.Exams.Count + 1}", Convert.ToInt32(QuizScore.Text), Convert.ToInt32(QuizTotal.Text)));
+                RemoveQuiz.Enabled = true;
             }
         }
 
@@ -108,7 +100,7 @@ namespace CIIT_Grading_System.Forms
         private void SaveButton_Click(object sender, EventArgs e)
         {
             var Student = new Student(StudentList.SelectedItem.ToString());
-            if(!CheckInts(
+            if (!CheckInts(
                 MajorScore, MajorTotal,
                 CommunicationScore, TeamworkScore
             ))

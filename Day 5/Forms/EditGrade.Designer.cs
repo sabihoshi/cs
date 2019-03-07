@@ -61,8 +61,8 @@
             this.MajorScore = new System.Windows.Forms.TextBox();
             this.MajorTotal = new System.Windows.Forms.TextBox();
             this.QuizList = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.RemoveQuiz = new System.Windows.Forms.Button();
+            this.AddQuiz = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -249,6 +249,30 @@
             label3.TabIndex = 0;
             label3.Text = "/";
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = System.Drawing.Color.Transparent;
+            label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label10.ForeColor = System.Drawing.Color.Black;
+            label10.Location = new System.Drawing.Point(461, 68);
+            label10.Name = "label10";
+            label10.Size = new System.Drawing.Size(24, 20);
+            label10.TabIndex = 0;
+            label10.Text = "%";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = System.Drawing.Color.Transparent;
+            label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label8.ForeColor = System.Drawing.Color.Black;
+            label8.Location = new System.Drawing.Point(359, 68);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(24, 20);
+            label8.TabIndex = 0;
+            label8.Text = "%";
+            // 
             // QuizScore
             // 
             this.QuizScore.Location = new System.Drawing.Point(138, 159);
@@ -385,30 +409,6 @@
             this.MajorTotal.TabIndex = 2;
             this.MajorTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Input_KeyPress);
             // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.BackColor = System.Drawing.Color.Transparent;
-            label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label10.ForeColor = System.Drawing.Color.Black;
-            label10.Location = new System.Drawing.Point(461, 68);
-            label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(24, 20);
-            label10.TabIndex = 0;
-            label10.Text = "%";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.BackColor = System.Drawing.Color.Transparent;
-            label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label8.ForeColor = System.Drawing.Color.Black;
-            label8.Location = new System.Drawing.Point(359, 68);
-            label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(24, 20);
-            label8.TabIndex = 0;
-            label8.Text = "%";
-            // 
             // QuizList
             // 
             this.QuizList.FormattingEnabled = true;
@@ -420,27 +420,29 @@
             this.QuizList.TabIndex = 9;
             this.QuizList.SelectedIndexChanged += new System.EventHandler(this.QuizList_SelectedIndexChanged);
             // 
-            // button1
+            // RemoveQuiz
             // 
-            this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(138, 185);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(53, 21);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Delete";
-            this.button1.UseVisualStyleBackColor = false;
+            this.RemoveQuiz.BackColor = System.Drawing.Color.Red;
+            this.RemoveQuiz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RemoveQuiz.Location = new System.Drawing.Point(138, 185);
+            this.RemoveQuiz.Name = "RemoveQuiz";
+            this.RemoveQuiz.Size = new System.Drawing.Size(53, 21);
+            this.RemoveQuiz.TabIndex = 3;
+            this.RemoveQuiz.Text = "Delete";
+            this.RemoveQuiz.UseVisualStyleBackColor = false;
+            this.RemoveQuiz.Click += new System.EventHandler(this.RemoveQuiz_Click);
             // 
-            // button2
+            // AddQuiz
             // 
-            this.button2.BackColor = System.Drawing.Color.Green;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(197, 185);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(53, 21);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Add";
-            this.button2.UseVisualStyleBackColor = false;
+            this.AddQuiz.BackColor = System.Drawing.Color.Green;
+            this.AddQuiz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddQuiz.Location = new System.Drawing.Point(197, 185);
+            this.AddQuiz.Name = "AddQuiz";
+            this.AddQuiz.Size = new System.Drawing.Size(53, 21);
+            this.AddQuiz.TabIndex = 3;
+            this.AddQuiz.Text = "Add";
+            this.AddQuiz.UseVisualStyleBackColor = false;
+            this.AddQuiz.Click += new System.EventHandler(this.AddQuiz_Click);
             // 
             // EditGrade
             // 
@@ -455,9 +457,9 @@
             this.Controls.Add(this.ClassroomList);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.ActivityList);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.AddQuiz);
             this.Controls.Add(this.ActivityAdd);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.RemoveQuiz);
             this.Controls.Add(this.ActivityRemove);
             this.Controls.Add(this.ActivityTotal);
             this.Controls.Add(this.AcitivtyScore);
@@ -509,7 +511,7 @@
         private System.Windows.Forms.TextBox MajorScore;
         private System.Windows.Forms.TextBox MajorTotal;
         private System.Windows.Forms.ListBox QuizList;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button RemoveQuiz;
+        private System.Windows.Forms.Button AddQuiz;
     }
 }
