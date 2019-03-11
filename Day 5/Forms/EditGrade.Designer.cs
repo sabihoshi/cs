@@ -275,6 +275,7 @@
             // 
             // QuizScore
             // 
+            this.QuizScore.Enabled = false;
             this.QuizScore.Location = new System.Drawing.Point(138, 159);
             this.QuizScore.Name = "QuizScore";
             this.QuizScore.Size = new System.Drawing.Size(43, 20);
@@ -283,6 +284,7 @@
             // 
             // QuizTotal
             // 
+            this.QuizTotal.Enabled = false;
             this.QuizTotal.Location = new System.Drawing.Point(207, 160);
             this.QuizTotal.Name = "QuizTotal";
             this.QuizTotal.Size = new System.Drawing.Size(43, 20);
@@ -291,6 +293,7 @@
             // 
             // CommunicationScore
             // 
+            this.CommunicationScore.Enabled = false;
             this.CommunicationScore.Location = new System.Drawing.Point(300, 65);
             this.CommunicationScore.Name = "CommunicationScore";
             this.CommunicationScore.Size = new System.Drawing.Size(53, 20);
@@ -299,6 +302,7 @@
             // 
             // TeamworkScore
             // 
+            this.TeamworkScore.Enabled = false;
             this.TeamworkScore.Location = new System.Drawing.Point(403, 65);
             this.TeamworkScore.Name = "TeamworkScore";
             this.TeamworkScore.Size = new System.Drawing.Size(52, 20);
@@ -307,6 +311,7 @@
             // 
             // ActivityScore
             // 
+            this.ActivityScore.Enabled = false;
             this.ActivityScore.Location = new System.Drawing.Point(398, 157);
             this.ActivityScore.Name = "ActivityScore";
             this.ActivityScore.Size = new System.Drawing.Size(43, 20);
@@ -315,6 +320,7 @@
             // 
             // ActivityTotal
             // 
+            this.ActivityTotal.Enabled = false;
             this.ActivityTotal.Location = new System.Drawing.Point(467, 157);
             this.ActivityTotal.Name = "ActivityTotal";
             this.ActivityTotal.Size = new System.Drawing.Size(43, 20);
@@ -348,12 +354,11 @@
             // 
             // ActivityList
             // 
+            this.ActivityList.Enabled = false;
             this.ActivityList.FormattingEnabled = true;
             this.ActivityList.Location = new System.Drawing.Point(272, 157);
             this.ActivityList.Name = "ActivityList";
-            this.ActivityList.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.ActivityList.Size = new System.Drawing.Size(120, 186);
-            this.ActivityList.Sorted = true;
             this.ActivityList.TabIndex = 4;
             // 
             // SaveButton
@@ -398,6 +403,7 @@
             // 
             // MajorScore
             // 
+            this.MajorScore.Enabled = false;
             this.MajorScore.Location = new System.Drawing.Point(141, 247);
             this.MajorScore.Name = "MajorScore";
             this.MajorScore.Size = new System.Drawing.Size(43, 20);
@@ -406,6 +412,7 @@
             // 
             // MajorTotal
             // 
+            this.MajorTotal.Enabled = false;
             this.MajorTotal.Location = new System.Drawing.Point(211, 247);
             this.MajorTotal.Name = "MajorTotal";
             this.MajorTotal.Size = new System.Drawing.Size(43, 20);
@@ -417,9 +424,7 @@
             this.QuizList.FormattingEnabled = true;
             this.QuizList.Location = new System.Drawing.Point(12, 157);
             this.QuizList.Name = "QuizList";
-            this.QuizList.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.QuizList.Size = new System.Drawing.Size(120, 186);
-            this.QuizList.Sorted = true;
             this.QuizList.TabIndex = 9;
             this.QuizList.SelectedIndexChanged += new System.EventHandler(this.QuizList_SelectedIndexChanged);
             // 

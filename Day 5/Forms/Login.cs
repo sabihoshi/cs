@@ -28,13 +28,16 @@ namespace CIIT_Grading_System.Forms
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            userName = UserName.Text;
-            userPass = userLogin.User.Single(u => u.Username == userName).Password;
-            if (UserPass.Text == userPass)
+            if (userLogin.User.SingleOrDefault(u => u.Username == UserName.Text) != null)
             {
-                this.Hide();
-                var projectForm = new StudentPortal();
-                projectForm.ShowDialog();
+                userName = UserName.Text;
+                userPass = userLogin.User.SingleOrDefault(u => u.Username == userName).Password;
+                if (UserPass.Text == userPass)
+                {
+                    Hide();
+                    var projectForm = new StudentPortal();
+                    projectForm.ShowDialog();
+                }
             }
             else
                 MessageBox.Show("Wrong Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -46,12 +46,52 @@ namespace CIIT_Grading_System.Forms
             }
         }
 
+        private void UpdateFields()
+        {
+            QuizList.Items.Clear();
+            QuizList.Items.AddRange(Term.Lecture.Exams.Where(quiz => quiz.Name != "Major").Select(quiz => quiz.Name).ToArray());
+            ActivityList.Items.Clear();
+            ActivityList.Items.AddRange(Term.Laboratory.Select(activity => activity.Name).ToArray());
+            CommunicationScore.Text = Term.HandsOn.Communication.ToString();
+            TeamworkScore.Text = Term.HandsOn.Teamwork.ToString();
+        }
+
+        private void Enable(params Control[] controls)
+        {
+            foreach (Control control in controls)
+                control.Enabled = true;
+        }
+
         public Term Term = null;
 
         private void TermList_SelectedIndexChanged(object sender, EventArgs e)
         {
             Term = Student.Terms.FirstOrDefault(t => t.Name == TermList.SelectedItem.ToString());
-            QuizList.Items.AddRange(Term.Lecture.Exams.Where(q => q.Name != "Major").Select(q => q.Name).ToArray());
+            if (Term == null)
+            {
+                Term = new Term(TermList.SelectedItem.ToString());
+            }
+            Enable(
+                QuizList, QuizScore, QuizTotal,
+                MajorScore, MajorTotal,
+                CommunicationScore, TeamworkScore,
+                ActivityList, ActivityScore, ActivityTotal
+            );
+            UpdateFields();
+        }
+
+        public bool CheckInts(params TextBox[] textBoxes)
+        {
+            foreach (TextBox textBox in textBoxes)
+            {
+                if (!int.TryParse(textBox.Text, out int score))
+                {
+                    MessageBox.Show($"Enter only digits! {textBox.Text} is invalid.", Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBox.Text = "";
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void QuizList_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,20 +99,6 @@ namespace CIIT_Grading_System.Forms
             Graded Quiz = Term.Lecture.Exams.FirstOrDefault(q => q.Name == QuizList.SelectedItem.ToString());
             QuizScore.Text = Quiz.Score.ToString();
             QuizTotal.Text = Quiz.Total.ToString();
-        }
-
-        public bool CheckInts(params TextBox[] textBoxes)
-        {
-            foreach (TextBox textBox in textBoxes)
-            {
-                if (int.TryParse(textBox.Text, out int score))
-                {
-                    MessageBox.Show($"Enter only digits! {textBox.Text} is invalid.", Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    textBox.Text.Remove(0);
-                    return false;
-                }
-            }
-            return true;
         }
 
         private void Add_Click(object sender, EventArgs e)
@@ -90,7 +116,7 @@ namespace CIIT_Grading_System.Forms
                     Total = QuizTotal;
                     Remove = QuizRemove;
                     Graded = Term.Lecture.Exams;
-                    name = "Exam";
+                    name = "Quiz";
                     break;
 
                 case "ActivityAdd":
@@ -103,11 +129,12 @@ namespace CIIT_Grading_System.Forms
             }
             if (CheckInts(Score, Total))
             {
-                int score = Convert.ToInt32(Score);
-                int total = Convert.ToInt32(Total);
+                int score = Convert.ToInt32(Score.Text);
+                int total = Convert.ToInt32(Total.Text);
                 total = score > total ? score : total;
 
-                Graded.Add(new Graded($"{name} #{Graded.Count + 1}", score, total));
+                Graded.Add(new Graded($"{name} #{Graded.Where(g => g.Name != "Major").Count() + 1}", score, total));
+                UpdateFields();
             }
         }
 
@@ -150,6 +177,7 @@ namespace CIIT_Grading_System.Forms
                 Term.HandsOn.Communication = Convert.ToInt32(CommunicationScore.Text);
                 Term.HandsOn.Teamwork = Convert.ToInt32(TeamworkScore.Text);
                 Term.Lecture.Exams.Add(new Graded("Major", Convert.ToInt32(MajorScore.Text), Convert.ToInt32(MajorTotal.Text)));
+                Login.User.JsonUpdate(Login.User.userFile, Login.User.userData);
             }
         }
     }
