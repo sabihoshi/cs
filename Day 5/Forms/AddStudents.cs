@@ -46,8 +46,7 @@ namespace CIIT_Grading_System.Forms
             }
             else
             {
-                var Student = new Student(StudentName.Text);
-                StudentList.Items.Add(Student);
+                StudentList.Items.Add(new Student(StudentName.Text));
                 User.JsonUpdate(User.userFile, User.userData);
             }
         }

@@ -16,12 +16,9 @@ namespace CIIT_Grading_System.Forms
             InitializeComponent();
         }
 
-        private void StudentPortal_Load(object sender, EventArgs e)
+        public void UpdateClasses()
         {
-            Login.User.CreateUser(Login.userName);
-            WebBrowser.Url = new Uri(@"file:\\\" + Path.GetFullPath(@"..\..\Resources\default.html"));
-            if (Login.User.userData.Classrooms == null)
-                Login.User.userData.Classrooms = new List<Classroom>();
+            ClassroomList.Items.Clear();
             foreach (var item in Login.User.userData.Classrooms.Select(c => c.Name))
             {
                 string output = item;
@@ -29,28 +26,43 @@ namespace CIIT_Grading_System.Forms
             }
         }
 
+        private void StudentPortal_Load(object sender, EventArgs e)
+        {
+            Login.User.CreateUser(Login.userName);
+            WebBrowser.Url = new Uri(@"file:\\\" + Path.GetFullPath(@"..\..\Resources\default.html"));
+            if (Login.User.userData.Classrooms == null)
+                Login.User.userData.Classrooms = new List<Classroom>();
+            UpdateClasses();
+        }
+
         private void ClassroomList_SelectedIndexChanged(object sender, EventArgs e)
         {
             StudentList.Items.Clear();
-            foreach (dynamic item in Login.User.userData.Classrooms.FirstOrDefault(c => c.Name.Equals(ClassroomList.Text)).Students.Select(s => s.Name))
+            var Classroom = Login.User.userData.Classrooms.FirstOrDefault(c => c.Name.Equals(ClassroomList.Text));
+            if (Classroom.Students == null)
+                StudentList.Enabled = false;
+            else
             {
-                string output = item;
-                StudentList.Items.Add(output);
+                StudentList.Items.Clear();
+                foreach (var item in Classroom.Students.Select(s => s.Name))
+                {
+                    string output = item;
+                    StudentList.Items.Add(output);
+                }
+                StudentList.Enabled = true;
             }
-            StudentList.SelectedIndex = 0;
-            StudentList.Enabled = true;
         }
 
         public double finalGrade = 0;
 
-        public double CalculatePercentage(GradeTemplate.Recorded component)
-        {
-            return 100 / component.Total * component.Score;
-        }
-
         public string CalculateGrade(string classroomName, string studentName, string termName)
         {
             var Grade = new GradeTemplate();
+
+            double CalculatePercentage(GradeTemplate.Recorded component)
+            {
+                return 100 / component.Total * component.Score;
+            }
 
             Classroom classroom = Login.User.userData.GetClassroom(ClassroomList.Text);
             Term student = classroom.Students.FirstOrDefault(s => s.Name == StudentList.Text).Terms
@@ -165,6 +177,7 @@ namespace CIIT_Grading_System.Forms
         {
             Login.User.userData.Classrooms.Add(new Classroom(Microsoft.VisualBasic.Interaction.InputBox("Enter a new classroom name", "Create new classroom", "Class #")));
             Login.User.JsonUpdate(Login.User.userFile, Login.User.userData);
+            UpdateClasses();
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -204,6 +217,7 @@ namespace CIIT_Grading_System.Forms
                     MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
             {
                 Login.userLogin.User.Remove(Login.userLogin.User.Single(u => u.Username == Login.userName));
+                Login.User.JsonUpdate(Login.userFile, Login.userLogin);
                 File.Delete(Login.userFile);
                 Hide();
             }
