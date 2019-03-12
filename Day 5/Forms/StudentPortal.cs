@@ -26,18 +26,8 @@ namespace CIIT_Grading_System.Forms
             }
         }
 
-        private void StudentPortal_Load(object sender, EventArgs e)
+        public void UpdateStudents()
         {
-            Login.User.CreateUser(Login.userName);
-            WebBrowser.Url = new Uri(@"file:\\\" + Path.GetFullPath(@"..\..\Resources\default.html"));
-            if (Login.User.userData.Classrooms == null)
-                Login.User.userData.Classrooms = new List<Classroom>();
-            UpdateClasses();
-        }
-
-        private void ClassroomList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            StudentList.Items.Clear();
             var Classroom = Login.User.userData.Classrooms.FirstOrDefault(c => c.Name.Equals(ClassroomList.Text));
             if (Classroom.Students == null)
                 StudentList.Enabled = false;
@@ -51,6 +41,20 @@ namespace CIIT_Grading_System.Forms
                 }
                 StudentList.Enabled = true;
             }
+        }
+
+        private void StudentPortal_Load(object sender, EventArgs e)
+        {
+            Login.User.CreateUser(Login.userName);
+            WebBrowser.Url = new Uri(@"file:\\\" + Path.GetFullPath(@"..\..\Resources\default.html"));
+            if (Login.User.userData.Classrooms == null)
+                Login.User.userData.Classrooms = new List<Classroom>();
+            UpdateClasses();
+        }
+
+        private void ClassroomList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            StudentList.Items.Clear();
         }
 
         public double finalGrade = 0;
@@ -178,6 +182,7 @@ namespace CIIT_Grading_System.Forms
             Login.User.userData.Classrooms.Add(new Classroom(Microsoft.VisualBasic.Interaction.InputBox("Enter a new classroom name", "Create new classroom", "Class #")));
             Login.User.JsonUpdate(Login.User.userFile, Login.User.userData);
             UpdateClasses();
+            UpdateStudents();
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)

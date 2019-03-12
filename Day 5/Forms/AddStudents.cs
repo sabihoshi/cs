@@ -14,6 +14,7 @@ namespace CIIT_Grading_System.Forms
         }
 
         public User User = new User();
+        public Classroom classroom;
 
         private void AddStudents_Load(object sender, EventArgs e)
         {
@@ -26,7 +27,7 @@ namespace CIIT_Grading_System.Forms
 
         private void ClassroomList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UserData.Classroom classroom = User.userData.Classrooms.FirstOrDefault(c => c.Name.Equals(ClassroomList.SelectedItem));
+            classroom = User.userData.Classrooms.FirstOrDefault(c => c.Name.Equals(ClassroomList.SelectedItem));
             StudentList.Items.Clear();
             StudentList.Enabled = true;
             foreach (string item in classroom.Students.Select(s => s.Name))
@@ -39,14 +40,15 @@ namespace CIIT_Grading_System.Forms
         {
             if (StudentName.Text == "")
                 return;
-            UserData.Classroom classroom = User.userData.Classrooms.FirstOrDefault(c => c.Name.Equals(ClassroomList.SelectedItem));
+            Classroom classroom = User.userData.Classrooms.FirstOrDefault(c => c.Name.Equals(ClassroomList.SelectedItem));
             if (classroom == null)
             {
                 MessageBox.Show("Invalid classroom!", "Add Student", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                StudentList.Items.Add(new Student(StudentName.Text));
+                classroom.Students.Add(new Student(StudentName.Text));
+                StudentList.Items.Add(StudentName.Text);
                 User.JsonUpdate(User.userFile, User.userData);
             }
         }
