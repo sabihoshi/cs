@@ -44,6 +44,7 @@
             System.Windows.Forms.Label label3;
             System.Windows.Forms.Label label10;
             System.Windows.Forms.Label label8;
+            System.Windows.Forms.Label label5;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditGrade));
             this.QuizScore = new System.Windows.Forms.TextBox();
             this.QuizTotal = new System.Windows.Forms.TextBox();
@@ -63,6 +64,7 @@
             this.QuizList = new System.Windows.Forms.ListBox();
             this.QuizRemove = new System.Windows.Forms.Button();
             this.QuizAdd = new System.Windows.Forms.Button();
+            this.RecitationScore = new System.Windows.Forms.TextBox();
             label1 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -79,6 +81,7 @@
             label3 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             label8 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -453,6 +456,27 @@
             this.QuizAdd.UseVisualStyleBackColor = false;
             this.QuizAdd.Click += new System.EventHandler(this.Add_Click);
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = System.Drawing.Color.Transparent;
+            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label5.ForeColor = System.Drawing.Color.Black;
+            label5.Location = new System.Drawing.Point(138, 285);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(81, 20);
+            label5.TabIndex = 0;
+            label5.Text = "Recitation";
+            // 
+            // recitationScore
+            // 
+            this.RecitationScore.Enabled = false;
+            this.RecitationScore.Location = new System.Drawing.Point(140, 308);
+            this.RecitationScore.Name = "recitationScore";
+            this.RecitationScore.Size = new System.Drawing.Size(43, 20);
+            this.RecitationScore.TabIndex = 2;
+            this.RecitationScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Input_KeyPress);
+            // 
             // EditGrade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -474,6 +498,7 @@
             this.Controls.Add(this.ActivityScore);
             this.Controls.Add(this.MajorTotal);
             this.Controls.Add(this.QuizTotal);
+            this.Controls.Add(this.RecitationScore);
             this.Controls.Add(this.MajorScore);
             this.Controls.Add(this.QuizScore);
             this.Controls.Add(this.TeamworkScore);
@@ -481,6 +506,7 @@
             this.Controls.Add(label3);
             this.Controls.Add(label14);
             this.Controls.Add(label2);
+            this.Controls.Add(label5);
             this.Controls.Add(label6);
             this.Controls.Add(label11);
             this.Controls.Add(label9);
@@ -522,5 +548,6 @@
         private System.Windows.Forms.ListBox QuizList;
         private System.Windows.Forms.Button QuizRemove;
         private System.Windows.Forms.Button QuizAdd;
+        private System.Windows.Forms.TextBox RecitationScore;
     }
 }

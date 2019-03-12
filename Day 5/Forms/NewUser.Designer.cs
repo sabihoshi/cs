@@ -142,7 +142,12 @@
             this.Controls.Add(UserNameLbl);
             this.Controls.Add(this.UserPass);
             this.Controls.Add(this.UserName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "NewUser";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "NewUser";
             this.ResumeLayout(false);
             this.PerformLayout();

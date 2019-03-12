@@ -2,7 +2,7 @@
 
 namespace CIIT_Grading_System.Classes
 {
-    internal class GradeTemplate
+    public class GradeTemplate
     {
         public class TableGradeClass
         {
@@ -14,30 +14,30 @@ namespace CIIT_Grading_System.Classes
 
         public TableGradeClass Table { get; set; } = new TableGradeClass();
 
-        public class GradeClass
+        public class Recorded
         {
-            public int Total { get; set; } = 0;
-            public int Score { get; set; } = 0;
+            public double Total { get; set; } = 0;
+            public double Score { get; set; } = 0;
             public double Percentage { get; set; } = 0;
         }
 
         public class LecturesClass
         {
-            public GradeClass Exams { get; set; } = new GradeClass();
-            public GradeClass Recitation { get; set; } = new GradeClass();
-            public GradeClass Attendance { get; set; } = new GradeClass();
+            public Recorded Exams { get; set; } = new Recorded();
+            public double Recitation { get; set; } = 0;
+            public Recorded Attendance { get; set; } = new Recorded();
             public double Percentage { get; set; } = 0;
         }
 
         public class HandsOnClass
         {
-            public GradeClass Communication { get; set; } = new GradeClass();
-            public GradeClass Teamwork { get; set; } = new GradeClass();
+            public double Communication { get; set; } = 0;
+            public double Teamwork { get; set; } = 0;
             public double Percentage { get; set; } = 0;
         }
 
         public LecturesClass Lectures { get; set; } = new LecturesClass();
         public HandsOnClass HandsOn { get; set; } = new HandsOnClass();
-        public GradeClass Laboratory { get; set; } = new GradeClass();
+        public Recorded Laboratory { get; set; } = new Recorded();
     }
 }

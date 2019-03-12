@@ -38,9 +38,6 @@
             this.changeUsernameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeAvatarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.classesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,8 +104,7 @@
             // accountToolStripMenuItem
             // 
             this.accountToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.manageToolStripMenuItem,
-            this.infoToolStripMenuItem});
+            this.manageToolStripMenuItem});
             this.accountToolStripMenuItem.Name = "accountToolStripMenuItem";
             this.accountToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.accountToolStripMenuItem.Text = "&Account";
@@ -144,29 +140,6 @@
             this.deleteAccountToolStripMenuItem.Text = "Delete Account";
             this.deleteAccountToolStripMenuItem.Click += new System.EventHandler(this.deleteAccountToolStripMenuItem_Click);
             // 
-            // infoToolStripMenuItem
-            // 
-            this.infoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeAvatarToolStripMenuItem,
-            this.changeStatusToolStripMenuItem});
-            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.infoToolStripMenuItem.Text = "Info";
-            // 
-            // changeAvatarToolStripMenuItem
-            // 
-            this.changeAvatarToolStripMenuItem.Name = "changeAvatarToolStripMenuItem";
-            this.changeAvatarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.changeAvatarToolStripMenuItem.Text = "Change Avatar";
-            this.changeAvatarToolStripMenuItem.Click += new System.EventHandler(this.changeAvatarToolStripMenuItem_Click);
-            // 
-            // changeStatusToolStripMenuItem
-            // 
-            this.changeStatusToolStripMenuItem.Name = "changeStatusToolStripMenuItem";
-            this.changeStatusToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.changeStatusToolStripMenuItem.Text = "Change Status";
-            this.changeStatusToolStripMenuItem.Click += new System.EventHandler(this.changeStatusToolStripMenuItem_Click);
-            // 
             // classesToolStripMenuItem
             // 
             this.classesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -179,14 +152,14 @@
             // addClassToolStripMenuItem
             // 
             this.addClassToolStripMenuItem.Name = "addClassToolStripMenuItem";
-            this.addClassToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addClassToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.addClassToolStripMenuItem.Text = "Add class...";
             this.addClassToolStripMenuItem.Click += new System.EventHandler(this.addClassToolStripMenuItem_Click);
             // 
             // deleteClassToolStripMenuItem
             // 
             this.deleteClassToolStripMenuItem.Name = "deleteClassToolStripMenuItem";
-            this.deleteClassToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteClassToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.deleteClassToolStripMenuItem.Text = "Delete class...";
             // 
             // studentsToolStripMenuItem
@@ -201,14 +174,14 @@
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.addToolStripMenuItem.Text = "Add new student(s)";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // manageGradeToolStripMenuItem
             // 
             this.manageGradeToolStripMenuItem.Name = "manageGradeToolStripMenuItem";
-            this.manageGradeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manageGradeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.manageGradeToolStripMenuItem.Text = "Manage grade";
             this.manageGradeToolStripMenuItem.Click += new System.EventHandler(this.manageGradeToolStripMenuItem_Click);
             // 
@@ -292,9 +265,6 @@
         private System.Windows.Forms.ToolStripMenuItem changeUsernameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteAccountToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changeAvatarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changeStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem classesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addClassToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteClassToolStripMenuItem;

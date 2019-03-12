@@ -21,7 +21,7 @@ namespace CIIT_Grading_System.Forms
             }
         }
 
-        public Classroom Classroom = null;
+        public Classroom Classroom;
 
         private void ClassroomList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -31,7 +31,7 @@ namespace CIIT_Grading_System.Forms
             StudentList.Items.AddRange(Classroom.Students.Select(s => s.Name).ToArray());
         }
 
-        public Student Student = null;
+        public Student Student;
 
         private void StudentList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -50,10 +50,17 @@ namespace CIIT_Grading_System.Forms
         {
             QuizList.Items.Clear();
             QuizList.Items.AddRange(Term.Lecture.Exams.Where(quiz => quiz.Name != "Major").Select(quiz => quiz.Name).ToArray());
+
+            RecitationScore.Text = Term.Lecture.Recitation.ToString();
+
             ActivityList.Items.Clear();
             ActivityList.Items.AddRange(Term.Laboratory.Select(activity => activity.Name).ToArray());
+
             CommunicationScore.Text = Term.HandsOn.Communication.ToString();
             TeamworkScore.Text = Term.HandsOn.Teamwork.ToString();
+
+            MajorScore.Text = Term.Lecture.Exams.FirstOrDefault(e => e.Name == "Major").Score.ToString();
+            MajorTotal.Text = Term.Lecture.Exams.FirstOrDefault(e => e.Name == "Major").Total.ToString();
         }
 
         private void Enable(params Control[] controls)
@@ -62,7 +69,7 @@ namespace CIIT_Grading_System.Forms
                 control.Enabled = true;
         }
 
-        public Term Term = null;
+        public Term Term;
 
         private void TermList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -80,7 +87,7 @@ namespace CIIT_Grading_System.Forms
             UpdateFields();
         }
 
-        public bool CheckInts(params TextBox[] textBoxes)
+        public bool CheckInt(params TextBox[] textBoxes)
         {
             foreach (TextBox textBox in textBoxes)
             {
@@ -106,7 +113,6 @@ namespace CIIT_Grading_System.Forms
             var Sender = sender as Button;
             TextBox Score = null;
             TextBox Total = null;
-            Button Remove = null;
             List<Graded> Graded = null;
             string name = null;
             switch (Sender.Name)
@@ -114,7 +120,6 @@ namespace CIIT_Grading_System.Forms
                 case "QuizAdd":
                     Score = QuizScore;
                     Total = QuizTotal;
-                    Remove = QuizRemove;
                     Graded = Term.Lecture.Exams;
                     name = "Quiz";
                     break;
@@ -122,18 +127,17 @@ namespace CIIT_Grading_System.Forms
                 case "ActivityAdd":
                     Score = ActivityScore;
                     Total = ActivityTotal;
-                    Remove = ActivityRemove;
                     Graded = Term.Laboratory;
                     name = "Activity";
                     break;
             }
-            if (CheckInts(Score, Total))
+            if (CheckInt(Score, Total))
             {
                 int score = Convert.ToInt32(Score.Text);
                 int total = Convert.ToInt32(Total.Text);
                 total = score > total ? score : total;
 
-                Graded.Add(new Graded($"{name} #{Graded.Where(g => g.Name != "Major").Count() + 1}", score, total));
+                Graded.Add(new Graded($"{name} #{Graded.Count(g => g.Name != "Major") + 1}", score, total));
                 UpdateFields();
             }
         }
@@ -168,16 +172,19 @@ namespace CIIT_Grading_System.Forms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            var Student = new Student(StudentList.SelectedItem.ToString());
-            if (!CheckInts(
+            if (CheckInt(
                 MajorScore, MajorTotal,
-                CommunicationScore, TeamworkScore
+                CommunicationScore, TeamworkScore,
+                RecitationScore
             ))
             {
                 Term.HandsOn.Communication = Convert.ToInt32(CommunicationScore.Text);
                 Term.HandsOn.Teamwork = Convert.ToInt32(TeamworkScore.Text);
+
+                Term.Lecture.Recitation = Convert.ToInt32(RecitationScore.Text);
                 Term.Lecture.Exams.Add(new Graded("Major", Convert.ToInt32(MajorScore.Text), Convert.ToInt32(MajorTotal.Text)));
                 Login.User.JsonUpdate(Login.User.userFile, Login.User.userData);
+                MessageBox.Show($"Successfully edited {Term.Name}.", "Edit Grade", MessageBoxButtons.OK);
             }
         }
     }

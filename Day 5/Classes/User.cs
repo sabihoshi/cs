@@ -11,8 +11,6 @@ namespace CIIT_Grading_System.Classes
 
         public string userFile;
 
-        public Users userLogin = new Users();
-
         public void CreateUser(string userName)
         {
             userFile = String.Format(@"..\..\Data\Users\{0}.json", userName);
