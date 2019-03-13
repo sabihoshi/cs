@@ -1,14 +1,22 @@
-﻿using Library.Classes;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using Library.Classes;
+using Newtonsoft.Json;
 
 namespace Library.Forms
 {
     public partial class Login : Form
     {
+        public static RootUsers Authentication = new RootUsers();
+
+        public static string userName, userPass;
+
+        public static Interface newForm = new Interface();
+        public int curTick = 0;
+
+        public int maxTick = 0;
+
         public Login()
         {
             InitializeComponent();
@@ -21,17 +29,13 @@ namespace Library.Forms
             Hide();
         }
 
-        public static RootUsers Authentication = new RootUsers();
-
         private void Login_Load(object sender, EventArgs e)
         {
-            Authentication = JsonConvert.DeserializeObject<RootUsers>(Manager.ReadFile(@"../../Data/login.json"));
+            Timer.Enabled = false;
+            ProgressBar.Value = 0;
+            ProgressBar.Visible = false;
+            Authentication = JsonConvert.DeserializeObject<RootUsers>(Manager.ReadFile(@"./Data/login.json"));
         }
-
-        public string userName, userPass;
-
-        public int maxTick = 0;
-        public int curTick = 0;
 
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -40,7 +44,6 @@ namespace Library.Forms
             {
                 Timer.Enabled = false;
                 Hide();
-                var newForm = new Interface();
                 newForm.ShowDialog();
             }
         }
@@ -58,6 +61,7 @@ namespace Library.Forms
                     return;
                 }
             }
+
             MessageBox.Show("Wrong Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }

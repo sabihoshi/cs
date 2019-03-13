@@ -87,6 +87,7 @@
             this.PassWord.Name = "PassWord";
             this.PassWord.Size = new System.Drawing.Size(246, 20);
             this.PassWord.TabIndex = 1;
+            this.PassWord.UseSystemPasswordChar = true;
             // 
             // MenuStrip
             // 

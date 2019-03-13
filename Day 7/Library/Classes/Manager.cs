@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.IO;
+﻿using System.IO;
+using Newtonsoft.Json;
 
 namespace Library.Classes
 {
@@ -7,7 +7,7 @@ namespace Library.Classes
     {
         public static void JsonUpdate(string fileName, object new_object)
         {
-            using (StreamWriter file = File.CreateText(fileName))
+            using (var file = File.CreateText(fileName))
             {
                 var serializer = new JsonSerializer
                 {
@@ -24,6 +24,7 @@ namespace Library.Classes
             {
                 output = sr.ReadToEnd();
             }
+
             return output;
         }
     }

@@ -1,31 +1,1207 @@
 {
-  "Romance": [
+  "Books": [
     {
       "Name": "Your Lie in April V1",
       "Author": "Naoshi Arakawa",
-      "Type": "Manga"
+      "Type": "Manga",
+      "Genre": [
+        "Romance",
+        "Slice of Life"
+      ]
     },
     {
       "Name": "Your Lie in April V2",
       "Author": "Naoshi Arakawa",
-      "Type": "Manga"
+      "Type": "Manga",
+      "Genre": [
+        "Romance",
+        "Slice of Life"
+      ]
     },
     {
       "Name": "The life of my pet",
-      "Author": "Kurt",
-      "Type": "Novel"
-    }
-  ],
-  "Horror": [
+      "Author": "Kurt Jackson",
+      "Type": "Novel",
+      "Genre": [
+        "Romance",
+        "Slice of Life",
+        "Comedy"
+      ]
+    },
     {
       "Name": "Your Lie in April V3",
       "Author": "Naoshi Arakawa",
-      "Type": "Manga"
+      "Type": "Manga",
+      "Genre": [
+        "Romance",
+        "Slice of Life"
+      ]
     },
     {
       "Name": "Your Lie in April V4",
       "Author": "Naoshi Arakawa",
-      "Type": "Manga"
+      "Type": "Manga",
+      "Genre": [
+        "Romance",
+        "Slice of Life"
+      ]
+    },
+    {
+      "Name": "Erased",
+      "Author": "Kei Sanbe",
+      "Type": "Manga",
+      "Genre": [
+        "Thriller",
+        "Psychological"
+      ]
+    },
+    {
+      "Name": "Your Name",
+      "Author": "Makoto Shinkai",
+      "Type": "Manga",
+      "Genre": [
+        "Romance",
+        "Slice of Life",
+        "Supernatural"
+      ]
+    },
+    {
+      "Name": "Verses for the Dead",
+      "Author": "Douglas Preston",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Thriller",
+        "Comedy"
+      ]
+    },
+    {
+      "Name": "Lethal Agent",
+      "Author": "Vince Flynn",
+      "Type": "Novel",
+      "Genre": [
+        "Horror",
+        "Supernatural"
+      ]
+    },
+    {
+      "Name": "The Great Alone",
+      "Author": "Emma Straub",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "An Anonymous Girl",
+      "Author": "Kristin Hannah",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Bad Blood",
+      "Author": "John Carreyrou",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "When August Ends",
+      "Author": "Penelope Ward",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Girl, Wash Your Face",
+      "Author": "Rachel Hollis",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Orchid House",
+      "Author": "Lucinda Riley",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Huntress",
+      "Author": "Kate Quinn",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Risk",
+      "Author": "Elle Kennedy",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "False Start",
+      "Author": "Meli Raine",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Tattooist of Auschwitz",
+      "Author": "Heather Morris",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Reckoning",
+      "Author": "John Grisham",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Good Living Guide to Natural and Herbal Remedies",
+      "Author": "Katolen Yardley",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Things I Never Told You",
+      "Author": "Beth K Vogt",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Comedy"
+      ]
+    },
+    {
+      "Name": "Harry Potter and the Sorcerer's Stone (Enhanced Edition)",
+      "Author": "J.K. Rowling",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Rich Dad Poor Dad",
+      "Author": "Robert T. Kiyosaki",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Statue of Liberty",
+      "Author": "Christian Blanchet & Bertrand Dard",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "X",
+      "Author": "Sue Grafton",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Power of the Dog",
+      "Author": "Don Winslow",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Can't Hurt Me",
+      "Author": "David Goggins",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Blue Moon",
+      "Author": "Lee Child",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Comedy",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Mission Critical",
+      "Author": "Mark Greaney",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Girl, Wash Your Face",
+      "Author": "Rachel Hollis",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Connections in Death",
+      "Author": "J. D. Robb",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Less (Winner of the Pulitzer Prize)",
+      "Author": "Andrew Sean Greer",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Gray Man",
+      "Author": "Mark Greaney",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Doctor",
+      "Author": "E. L. Todd",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Conviction",
+      "Author": "Corinne Michaels",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Edge of Eternity",
+      "Author": "Ken Follett",
+      "Type": "Novel",
+      "Genre": [
+        "Comedy",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "After Ever Happy",
+      "Author": "Anna Todd",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Chef",
+      "Author": "James Patterson & Max DiLallo",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Too Wilde to Wed",
+      "Author": "Eloisa James",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Tattooist of Auschwitz",
+      "Author": "Heather Morris",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Runner",
+      "Author": "Patrick Lee",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Comedy",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Extraordinary Lives: The Art and Craft of American Biography",
+      "Author": "William Zinsser",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Mastering the Art of French Eating",
+      "Author": "Ann Mah",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "A Million Different Ways",
+      "Author": "P. Dangelico",
+      "Type": "Novel",
+      "Genre": [
+        "Comedy",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Cemetery Road",
+      "Author": "Greg Iles",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Fade",
+      "Author": "Kyle Mills",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Reckoning",
+      "Author": "John Grisham",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Say Nothing",
+      "Author": "Patrick Radden Keefe",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Vacationers",
+      "Author": "Emma Straub",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Comedy",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Luck of the Devil",
+      "Author": "Meghan March",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Eleanor Oliphant Is Completely Fine",
+      "Author": "Gail Honeyman",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Endless Summer",
+      "Author": "Nora Roberts",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Twenty-Sided Sorceress Series, Books 1-3",
+      "Author": "Annie Bellet",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Comedy"
+      ]
+    },
+    {
+      "Name": "Bad Blood",
+      "Author": "John Carreyrou",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Where the Crawdads Sing",
+      "Author": "Delia Owens",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Wife Between Us",
+      "Author": "Greer Hendricks & Sarah Pekkanen",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "An Anonymous Girl",
+      "Author": "Greer Hendricks & Sarah Pekkanen",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "A Mother's Love",
+      "Author": "Charlotte Hubbard",
+      "Type": "Novel",
+      "Genre": [
+        "Comedy",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Lost Girls of Paris",
+      "Author": "Pam Jenoff",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "A World Full of Strangers",
+      "Author": "Cynthia Freeman",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Stuff Series Collection",
+      "Author": "Don Bruns",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Boyfriend For Hire",
+      "Author": "Kendall Ryan",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Comedy",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Huntress",
+      "Author": "Kate Quinn",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "An Irish Country Doctor",
+      "Author": "Patrick Taylor",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "False Hope",
+      "Author": "Meli Raine",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Blindsighted",
+      "Author": "Karin Slaughter",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Rock, the Road, and the Rabbi",
+      "Author": "Kathie Lee Gifford",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Comedy",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Bikini Season",
+      "Author": "Sheila Roberts",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Wedding Guest",
+      "Author": "Jonathan Kellerman",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Good Living Guide to Natural and Herbal Remedies",
+      "Author": "Katolen Yardley",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "False Start",
+      "Author": "Meli Raine",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Comedy",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Becoming",
+      "Author": "Michelle Obama",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Record of a Spaceborn Few",
+      "Author": "Becky Chambers",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Vendetta in Death",
+      "Author": "J. D. Robb",
+      "Type": "Novel",
+      "Genre": [
+        "Comedy",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Love and Other Scandals",
+      "Author": "Caroline Linden",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Tough Luck Cowboy",
+      "Author": "A.J. Pine",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "When August Ends",
+      "Author": "Penelope Ward",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "California Girls",
+      "Author": "Susan Mallery",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Great Alone",
+      "Author": "Kristin Hannah",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Comedy"
+      ]
+    },
+    {
+      "Name": "Big Stick",
+      "Author": "R.C. Stephens",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Dark Tort",
+      "Author": "Diane Mott Davidson",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Subtle Art of Not Giving a F*ck",
+      "Author": "Mark Manson",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Ashford Affair",
+      "Author": "Lauren Willig",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Comedy"
+      ]
+    },
+    {
+      "Name": "Never Tell",
+      "Author": "Lisa Gardner",
+      "Type": "Novel",
+      "Genre": [
+        "Comedy",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Nightingale",
+      "Author": "Kristin Hannah",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "You Are a Badass at Making Money",
+      "Author": "Jen Sincero",
+      "Type": "Novel",
+      "Genre": [
+        "Comedy",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "On Target",
+      "Author": "Mark Greaney",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Bennett Mafia",
+      "Author": "Tijan",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Sweet Liar",
+      "Author": "Laurelin Paige",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Romance"
+      ]
+    },
+    {
+      "Name": "Wasted Justice",
+      "Author": "Diane Capri",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Romance"
+      ]
+    },
+    {
+      "Name": "The Orchid House",
+      "Author": "Lucinda Riley",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Romance",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The 5 Love Languages",
+      "Author": "Gary Chapman",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Backlash",
+      "Author": "Brad Thor",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Girl, Stop Apologizing",
+      "Author": "Rachel Hollis",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Comedy",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Going Home",
+      "Author": "A. American",
+      "Type": "Novel",
+      "Genre": [
+        "Comedy",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Keto Diet",
+      "Author": "Josh Axe",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Romance",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "After We Collided",
+      "Author": "Anna Todd",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "After We Fell",
+      "Author": "Anna Todd",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Comedy"
+      ]
+    },
+    {
+      "Name": "The Silent Patient",
+      "Author": "Alex Michaelides",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Comedy"
+      ]
+    },
+    {
+      "Name": "Lethal Agent",
+      "Author": "Vince Flynn & Kyle Mills",
+      "Type": "Novel",
+      "Genre": [
+        "Comedy",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Bad Boy",
+      "Author": "Willow Winters",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Romance",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Threat",
+      "Author": "Andrew G. McCabe",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Lethal White",
+      "Author": "Robert Galbraith",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Walk the Right Road: The Complete Collection",
+      "Author": "Lorhainne Eckhart",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Comedy"
+      ]
+    },
+    {
+      "Name": "The Irish Pub Cookbook",
+      "Author": "Margaret M. Johnson",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Comedy",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Verses for the Dead",
+      "Author": "Douglas Preston & Lincoln Child",
+      "Type": "Novel",
+      "Genre": [
+        "Romance",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Devil's Daughter",
+      "Author": "Lisa Kleypas",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Border",
+      "Author": "Don Winslow",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Every Breath",
+      "Author": "Nicholas Sparks",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Risk",
+      "Author": "Elle Kennedy",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Educated",
+      "Author": "Tara Westover",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Fear Collector",
+      "Author": "Gregg Olsen",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Promise",
+      "Author": "R.L. Mathewson",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "After",
+      "Author": "Anna Todd",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Choosing Happiness Even When Life Is Hard",
+      "Author": "Frank Minirth",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Heroes for Hire: Books 4-6",
+      "Author": "Dale Mayer",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Best Laid Plans",
+      "Author": "Lauren Blakely",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "Five Feet Apart",
+      "Author": "Rachael Lippincott",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "The Handmaid's Tale",
+      "Author": "Margaret Atwood",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
+    },
+    {
+      "Name": "On the Island",
+      "Author": "Tracey Garvis Graves",
+      "Type": "Novel",
+      "Genre": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ]
     }
   ]
 }

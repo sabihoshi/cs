@@ -1,20 +1,23 @@
-﻿using Library.Forms;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using Library.Forms;
 
 namespace Library
 {
-    internal static class Program
+    public static class Program
     {
+        public static Login newForm;
+
         /// <summary>
-        /// The main entry point for the application.
+        ///     The main entry point for the application.
         /// </summary>
         [STAThread]
         private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            newForm = new Login();
+            Application.Run(newForm);
         }
     }
 }

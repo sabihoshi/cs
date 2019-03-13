@@ -32,14 +32,11 @@
             System.Windows.Forms.Label label3;
             System.Windows.Forms.Label label4;
             System.Windows.Forms.Label label5;
+            System.Windows.Forms.Label label1;
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeUsernameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chanePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.borrowHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.returnABookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.AuthorName = new System.Windows.Forms.TextBox();
@@ -56,6 +53,7 @@
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,6 +94,15 @@
             label5.TabIndex = 3;
             label5.Text = "Type";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(12, 50);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(27, 13);
+            label1.TabIndex = 3;
+            label1.Text = "Title";
+            // 
             // MenuStrip
             // 
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -110,59 +117,32 @@
             // accountToolStripMenuItem
             // 
             this.accountToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.manageToolStripMenuItem,
             this.logoutToolStripMenuItem});
             this.accountToolStripMenuItem.Name = "accountToolStripMenuItem";
             this.accountToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.accountToolStripMenuItem.Text = "Account";
             // 
-            // manageToolStripMenuItem
-            // 
-            this.manageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeUsernameToolStripMenuItem,
-            this.chanePasswordToolStripMenuItem});
-            this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
-            this.manageToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.manageToolStripMenuItem.Text = "Manage";
-            // 
-            // changeUsernameToolStripMenuItem
-            // 
-            this.changeUsernameToolStripMenuItem.Name = "changeUsernameToolStripMenuItem";
-            this.changeUsernameToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.changeUsernameToolStripMenuItem.Text = "Change Username";
-            // 
-            // chanePasswordToolStripMenuItem
-            // 
-            this.chanePasswordToolStripMenuItem.Name = "chanePasswordToolStripMenuItem";
-            this.chanePasswordToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.chanePasswordToolStripMenuItem.Text = "Chane Password";
-            // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // statusToolStripMenuItem
             // 
             this.statusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.borrowHistoryToolStripMenuItem,
             this.returnABookToolStripMenuItem});
             this.statusToolStripMenuItem.Name = "statusToolStripMenuItem";
             this.statusToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.statusToolStripMenuItem.Text = "Status";
-            // 
-            // borrowHistoryToolStripMenuItem
-            // 
-            this.borrowHistoryToolStripMenuItem.Name = "borrowHistoryToolStripMenuItem";
-            this.borrowHistoryToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.borrowHistoryToolStripMenuItem.Text = "Borrow History";
             // 
             // returnABookToolStripMenuItem
             // 
             this.returnABookToolStripMenuItem.Name = "returnABookToolStripMenuItem";
             this.returnABookToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.returnABookToolStripMenuItem.Text = "Return a book...";
+            this.returnABookToolStripMenuItem.Click += new System.EventHandler(this.returnABookToolStripMenuItem_Click);
             // 
             // progressBar1
             // 
@@ -193,29 +173,27 @@
             this.BookList.Location = new System.Drawing.Point(151, 58);
             this.BookList.Name = "BookList";
             this.BookList.Size = new System.Drawing.Size(171, 147);
+            this.BookList.Sorted = true;
             this.BookList.TabIndex = 8;
+            this.BookList.SelectedIndexChanged += new System.EventHandler(this.BookList_SelectedIndexChanged);
             // 
             // GenreName
             // 
             this.GenreName.FormattingEnabled = true;
-            this.GenreName.Items.AddRange(new object[] {
-            "Romance",
-            "Horror"});
             this.GenreName.Location = new System.Drawing.Point(12, 144);
             this.GenreName.Name = "GenreName";
             this.GenreName.Size = new System.Drawing.Size(112, 21);
+            this.GenreName.Sorted = true;
             this.GenreName.TabIndex = 9;
             this.GenreName.SelectionChangeCommitted += new System.EventHandler(this.FilterChanged);
             // 
             // TypeName
             // 
             this.TypeName.FormattingEnabled = true;
-            this.TypeName.Items.AddRange(new object[] {
-            "Manga",
-            "Novel"});
             this.TypeName.Location = new System.Drawing.Point(12, 184);
             this.TypeName.Name = "TypeName";
             this.TypeName.Size = new System.Drawing.Size(112, 21);
+            this.TypeName.Sorted = true;
             this.TypeName.TabIndex = 9;
             this.TypeName.SelectionChangeCommitted += new System.EventHandler(this.FilterChanged);
             // 
@@ -261,6 +239,7 @@
             // 
             // ReadBook
             // 
+            this.ReadBook.Enabled = false;
             this.ReadBook.Location = new System.Drawing.Point(247, 211);
             this.ReadBook.Name = "ReadBook";
             this.ReadBook.Size = new System.Drawing.Size(75, 23);
@@ -273,7 +252,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 254);
+            this.ClientSize = new System.Drawing.Size(334, 252);
             this.Controls.Add(this.ReadBook);
             this.Controls.Add(this.TypeCheck);
             this.Controls.Add(this.GenreCheck);
@@ -288,10 +267,13 @@
             this.Controls.Add(label2);
             this.Controls.Add(label5);
             this.Controls.Add(label4);
+            this.Controls.Add(label1);
             this.Controls.Add(label3);
             this.Controls.Add(this.MenuStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "Interface";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Interface";
             this.Load += new System.EventHandler(this.Interface_Load);
             this.MenuStrip.ResumeLayout(false);
@@ -305,12 +287,8 @@
 
         private System.Windows.Forms.MenuStrip MenuStrip;
         private System.Windows.Forms.ToolStripMenuItem accountToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changeUsernameToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem chanePasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem statusToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem borrowHistoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem returnABookToolStripMenuItem;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.TextBox AuthorName;

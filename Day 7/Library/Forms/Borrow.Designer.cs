@@ -34,12 +34,12 @@
             System.Windows.Forms.Label label6;
             System.Windows.Forms.Label label4;
             System.Windows.Forms.Label label3;
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.BookAuthor = new System.Windows.Forms.TextBox();
+            this.BookType = new System.Windows.Forms.TextBox();
+            this.BookGenre = new System.Windows.Forms.TextBox();
+            this.BookName = new System.Windows.Forms.TextBox();
+            this.BorrowBook = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
@@ -103,68 +103,74 @@
             label3.TabIndex = 1;
             label3.Text = "Title";
             // 
-            // dateTimePicker1
+            // DateTimePicker
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(16, 127);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(240, 20);
-            this.dateTimePicker1.TabIndex = 0;
+            this.DateTimePicker.Location = new System.Drawing.Point(16, 127);
+            this.DateTimePicker.Name = "DateTimePicker";
+            this.DateTimePicker.Size = new System.Drawing.Size(240, 20);
+            this.DateTimePicker.TabIndex = 0;
             // 
-            // textBox2
+            // BookAuthor
             // 
-            this.textBox2.Location = new System.Drawing.Point(139, 49);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(117, 20);
-            this.textBox2.TabIndex = 3;
+            this.BookAuthor.Location = new System.Drawing.Point(139, 49);
+            this.BookAuthor.Name = "BookAuthor";
+            this.BookAuthor.ReadOnly = true;
+            this.BookAuthor.Size = new System.Drawing.Size(117, 20);
+            this.BookAuthor.TabIndex = 3;
             // 
-            // textBox1
+            // BookType
             // 
-            this.textBox1.Location = new System.Drawing.Point(139, 88);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(117, 20);
-            this.textBox1.TabIndex = 3;
+            this.BookType.Location = new System.Drawing.Point(139, 88);
+            this.BookType.Name = "BookType";
+            this.BookType.ReadOnly = true;
+            this.BookType.Size = new System.Drawing.Size(117, 20);
+            this.BookType.TabIndex = 3;
             // 
-            // textBox4
+            // BookGenre
             // 
-            this.textBox4.Location = new System.Drawing.Point(16, 88);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(117, 20);
-            this.textBox4.TabIndex = 3;
+            this.BookGenre.Location = new System.Drawing.Point(16, 88);
+            this.BookGenre.Name = "BookGenre";
+            this.BookGenre.ReadOnly = true;
+            this.BookGenre.Size = new System.Drawing.Size(117, 20);
+            this.BookGenre.TabIndex = 3;
             // 
-            // textBox3
+            // BookName
             // 
-            this.textBox3.Location = new System.Drawing.Point(16, 49);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(117, 20);
-            this.textBox3.TabIndex = 3;
+            this.BookName.Location = new System.Drawing.Point(16, 49);
+            this.BookName.Name = "BookName";
+            this.BookName.ReadOnly = true;
+            this.BookName.Size = new System.Drawing.Size(117, 20);
+            this.BookName.TabIndex = 3;
             // 
-            // button1
+            // BorrowBook
             // 
-            this.button1.Location = new System.Drawing.Point(180, 154);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Borrow";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BorrowBook.Location = new System.Drawing.Point(180, 154);
+            this.BorrowBook.Name = "BorrowBook";
+            this.BorrowBook.Size = new System.Drawing.Size(75, 23);
+            this.BorrowBook.TabIndex = 4;
+            this.BorrowBook.Text = "Borrow";
+            this.BorrowBook.UseVisualStyleBackColor = true;
+            this.BorrowBook.Click += new System.EventHandler(this.BorrowBook_Click);
             // 
             // Borrow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(275, 191);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BorrowBook);
             this.Controls.Add(label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.BookName);
             this.Controls.Add(label4);
             this.Controls.Add(label2);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.BookGenre);
+            this.Controls.Add(this.BookAuthor);
             this.Controls.Add(label6);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.BookType);
             this.Controls.Add(label5);
             this.Controls.Add(label1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.DateTimePicker);
             this.Name = "Borrow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Borrow";
             this.Load += new System.EventHandler(this.Borrow_Load);
             this.ResumeLayout(false);
@@ -174,11 +180,11 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker DateTimePicker;
+        private System.Windows.Forms.TextBox BookAuthor;
+        private System.Windows.Forms.TextBox BookType;
+        private System.Windows.Forms.TextBox BookGenre;
+        private System.Windows.Forms.TextBox BookName;
+        private System.Windows.Forms.Button BorrowBook;
     }
 }
