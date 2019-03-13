@@ -1,0 +1,36 @@
+{
+  "Romance": [
+    {
+      "Name": "Your Lie in April V1",
+      "Author": "Naoshi Arakawa",
+      "Type": "Manga",
+      "Id": 1
+    },
+    {
+      "Name": "Your Lie in April V2",
+      "Author": "Naoshi Arakawa",
+      "Type": "Manga",
+      "Id": 2
+    },
+    {
+      "Name": "The life of my pet",
+      "Author": "Kurt",
+      "Type": "Novel",
+      "Id": 5
+    }
+  ],
+  "Horror": [
+    {
+      "Name": "Your Lie in April V3",
+      "Author": "Naoshi Arakawa",
+      "Type": "Manga",
+      "Id": 3
+    },
+    {
+      "Name": "Your Lie in April V4",
+      "Author": "Naoshi Arakawa",
+      "Type": "Manga",
+      "Id": 4
+    }
+  ]
+}

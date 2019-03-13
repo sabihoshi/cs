@@ -54,7 +54,7 @@ namespace CIIT_Grading_System.Forms
 
         private void ClassroomList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            StudentList.Items.Clear();
+            UpdateStudents();
         }
 
         public double finalGrade = 0;
