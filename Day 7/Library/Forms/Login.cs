@@ -30,6 +30,21 @@ namespace Library.Forms
 
         public string userName, userPass;
 
+        public int maxTick = 0;
+        public int curTick = 0;
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            ProgressBar.PerformStep();
+            if (ProgressBar.Value >= 100)
+            {
+                Timer.Enabled = false;
+                Hide();
+                var newForm = new Interface();
+                newForm.ShowDialog();
+            }
+        }
+
         private void UserLogin_Click(object sender, EventArgs e)
         {
             if (Authentication.Users.SingleOrDefault(u => u.Username == UserName.Text) != null)
@@ -38,13 +53,12 @@ namespace Library.Forms
                 userPass = Authentication.Users.SingleOrDefault(u => u.Username == userName).Password;
                 if (PassWord.Text == userPass)
                 {
-                    Hide();
-                    var newForm = new Interface();
-                    newForm.ShowDialog();
+                    ProgressBar.Visible = true;
+                    Timer.Enabled = true;
+                    return;
                 }
             }
-            else
-                MessageBox.Show("Wrong Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Wrong Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

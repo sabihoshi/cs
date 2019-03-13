@@ -31,6 +31,16 @@
                     "Total": 60.0
                   },
                   {
+                    "Name": "Quiz #4",
+                    "Score": 100.0,
+                    "Total": 100.0
+                  },
+                  {
+                    "Name": "Quiz #5",
+                    "Score": 100.0,
+                    "Total": 100.0
+                  },
+                  {
                     "Name": "Major",
                     "Score": 50.0,
                     "Total": 60.0
@@ -39,7 +49,7 @@
                 "Recitation": 30.0
               },
               "HandsOn": {
-                "Communication": 100.0,
+                "Communication": 20.0,
                 "Teamwork": 100.0
               },
               "Laboratory": [
@@ -110,6 +120,10 @@
               ]
             }
           ]
+        },
+        {
+          "Name": "Kendric",
+          "Terms": null
         }
       ]
     },

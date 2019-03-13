@@ -8,15 +8,6 @@ using System.Windows.Forms;
 
 namespace Library.Forms
 {
-    public static class Extensions
-    {
-        public static bool CaseInsensitiveContains(this string text, string value,
-            StringComparison stringComparison = StringComparison.CurrentCultureIgnoreCase)
-        {
-            return text.IndexOf(value, stringComparison) >= 0;
-        }
-    }
-
     public partial class Interface : Form
     {
         public Interface()
@@ -24,7 +15,29 @@ namespace Library.Forms
             InitializeComponent();
         }
 
-        public Books books = JsonConvert.DeserializeObject<Books>(Manager.ReadFile(@"../../Data/books.json"));
+        public static Books books = JsonConvert.DeserializeObject<Books>(Manager.ReadFile(@"../../Data/books.json"));
+
+        private void UpdateLibrary()
+        {
+            void UpdateBooks(List<Book> genre)
+            {
+                var result = genre;
+                if (NameCheck.Checked)
+                    result = genre.FindAll(b => b.Name.CaseInsensitiveContains(BookName.Text));
+                if (AuthorCheck.Checked)
+                    result = genre.FindAll(b => b.Author.CaseInsensitiveContains(AuthorName.Text));
+                if (TypeCheck.Checked)
+                    result = genre.FindAll(b => b.Type.CaseInsensitiveContains(TypeName.SelectedItem.ToString()));
+                BookList.Items.AddRange(result.Select(b => b.Name).ToArray());
+            }
+
+            BookList.Items.Clear();
+            string name = GenreName.Text;
+            if (name == "Romance" || name == "")
+                UpdateBooks(books.Romance);
+            if (name == "Horror" || name == "")
+                UpdateBooks(books.Horror);
+        }
 
         private void FilterChanged(object sender, EventArgs e)
         {
@@ -47,34 +60,23 @@ namespace Library.Forms
                     TypeCheck.Checked = true;
                     break;
 
-                case "IdInt":
-                    IsbnCheck.Checked = true;
-                    break;
-
                 default:
                     break;
             }
 
-            void UpdateBooks(List<Book> genre)
-            {
-                var result = genre;
-                if (NameCheck.Checked)
-                    result = genre.FindAll(b => b.Name.CaseInsensitiveContains(BookName.Text));
-                if (AuthorCheck.Checked)
-                    result = genre.FindAll(b => b.Author.CaseInsensitiveContains(AuthorName.Text));
-                if (TypeCheck.Checked)
-                    result = genre.FindAll(b => b.Type.CaseInsensitiveContains(TypeName.SelectedItem.ToString()));
-                if (IsbnCheck.Checked)
-                    result = genre.FindAll(b => b.ISBN == IdInt.Value);
-                BookList.Items.AddRange(result.Select(b => b.Name).ToArray());
-            }
+            UpdateLibrary();
+        }
 
-            BookList.Items.Clear();
-            string name = GenreName.Text;
-            if (name == "Romance" || name == "")
-                UpdateBooks(books.Romance);
-            if (name == "Horror" || name == "")
-                UpdateBooks(books.Horror);
+        private void Interface_Load(object sender, EventArgs e)
+        {
+            UpdateLibrary();
+        }
+
+        private void ReadBook_Click(object sender, EventArgs e)
+        {
+            foreach (var item in typeof(Book).GetProperties())
+            {
+            }
         }
     }
 }

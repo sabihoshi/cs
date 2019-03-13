@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label3;
@@ -37,6 +38,8 @@
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserLogin = new System.Windows.Forms.Button();
+            this.ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.Timer = new System.Windows.Forms.Timer(this.components);
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -73,16 +76,16 @@
             // 
             // UserName
             // 
-            this.UserName.Location = new System.Drawing.Point(15, 93);
+            this.UserName.Location = new System.Drawing.Point(12, 93);
             this.UserName.Name = "UserName";
-            this.UserName.Size = new System.Drawing.Size(242, 20);
+            this.UserName.Size = new System.Drawing.Size(246, 20);
             this.UserName.TabIndex = 0;
             // 
             // PassWord
             // 
-            this.PassWord.Location = new System.Drawing.Point(15, 132);
+            this.PassWord.Location = new System.Drawing.Point(12, 132);
             this.PassWord.Name = "PassWord";
-            this.PassWord.Size = new System.Drawing.Size(242, 20);
+            this.PassWord.Size = new System.Drawing.Size(246, 20);
             this.PassWord.TabIndex = 1;
             // 
             // MenuStrip
@@ -120,11 +123,25 @@
             this.UserLogin.UseVisualStyleBackColor = true;
             this.UserLogin.Click += new System.EventHandler(this.UserLogin_Click);
             // 
+            // ProgressBar
+            // 
+            this.ProgressBar.Location = new System.Drawing.Point(12, 158);
+            this.ProgressBar.Name = "ProgressBar";
+            this.ProgressBar.Size = new System.Drawing.Size(164, 24);
+            this.ProgressBar.TabIndex = 5;
+            this.ProgressBar.Visible = false;
+            // 
+            // Timer
+            // 
+            this.Timer.Interval = 200;
+            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(270, 194);
+            this.Controls.Add(this.ProgressBar);
             this.Controls.Add(label3);
             this.Controls.Add(this.UserLogin);
             this.Controls.Add(this.PassWord);
@@ -152,6 +169,8 @@
         private System.Windows.Forms.ToolStripMenuItem accountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createAccountToolStripMenuItem;
         private System.Windows.Forms.Button UserLogin;
+        private System.Windows.Forms.ProgressBar ProgressBar;
+        private System.Windows.Forms.Timer Timer;
     }
 }
 

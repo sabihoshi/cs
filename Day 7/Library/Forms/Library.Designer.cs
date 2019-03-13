@@ -1,6 +1,6 @@
 ﻿namespace Library.Forms
 {
-    partial class Interface
+    partial class Interface 
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label3;
             System.Windows.Forms.Label label4;
             System.Windows.Forms.Label label5;
+            System.Windows.Forms.Label label6;
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,10 +42,13 @@
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.borrowHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.borrowABookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.returnABookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.AuthorName = new System.Windows.Forms.TextBox();
             this.BookName = new System.Windows.Forms.TextBox();
+            this.IdInt = new System.Windows.Forms.NumericUpDown();
             this.BookList = new System.Windows.Forms.ListBox();
             this.GenreName = new System.Windows.Forms.ComboBox();
             this.TypeName = new System.Windows.Forms.ComboBox();
@@ -51,13 +56,25 @@
             this.AuthorCheck = new System.Windows.Forms.CheckBox();
             this.GenreCheck = new System.Windows.Forms.CheckBox();
             this.TypeCheck = new System.Windows.Forms.CheckBox();
-            this.ReadBook = new System.Windows.Forms.Button();
+            this.IsbnCheck = new System.Windows.Forms.CheckBox();
+            label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
             this.MenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IdInt)).BeginInit();
             this.SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(12, 50);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(35, 13);
+            label1.TabIndex = 3;
+            label1.Text = "Name";
             // 
             // label2
             // 
@@ -96,6 +113,15 @@
             label5.TabIndex = 3;
             label5.Text = "Type";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(12, 208);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(32, 13);
+            label6.TabIndex = 3;
+            label6.Text = "ISBN";
+            // 
             // MenuStrip
             // 
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -103,7 +129,7 @@
             this.statusToolStripMenuItem});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(334, 24);
+            this.MenuStrip.Size = new System.Drawing.Size(373, 24);
             this.MenuStrip.TabIndex = 0;
             this.MenuStrip.Text = "menuStrip1";
             // 
@@ -147,6 +173,7 @@
             // 
             this.statusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.borrowHistoryToolStripMenuItem,
+            this.borrowABookToolStripMenuItem,
             this.returnABookToolStripMenuItem});
             this.statusToolStripMenuItem.Name = "statusToolStripMenuItem";
             this.statusToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
@@ -155,14 +182,28 @@
             // borrowHistoryToolStripMenuItem
             // 
             this.borrowHistoryToolStripMenuItem.Name = "borrowHistoryToolStripMenuItem";
-            this.borrowHistoryToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.borrowHistoryToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.borrowHistoryToolStripMenuItem.Text = "Borrow History";
+            // 
+            // borrowABookToolStripMenuItem
+            // 
+            this.borrowABookToolStripMenuItem.Name = "borrowABookToolStripMenuItem";
+            this.borrowABookToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.borrowABookToolStripMenuItem.Text = "Borrow a book...";
             // 
             // returnABookToolStripMenuItem
             // 
             this.returnABookToolStripMenuItem.Name = "returnABookToolStripMenuItem";
-            this.returnABookToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.returnABookToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.returnABookToolStripMenuItem.Text = "Return a book...";
+            // 
+            // StatusStrip
+            // 
+            this.StatusStrip.Location = new System.Drawing.Point(0, 331);
+            this.StatusStrip.Name = "StatusStrip";
+            this.StatusStrip.Size = new System.Drawing.Size(373, 22);
+            this.StatusStrip.TabIndex = 4;
+            this.StatusStrip.Text = "statusStrip1";
             // 
             // progressBar1
             // 
@@ -187,12 +228,20 @@
             this.BookName.TabIndex = 6;
             this.BookName.TextChanged += new System.EventHandler(this.FilterChanged);
             // 
+            // IdInt
+            // 
+            this.IdInt.Location = new System.Drawing.Point(12, 224);
+            this.IdInt.Name = "IdInt";
+            this.IdInt.Size = new System.Drawing.Size(112, 20);
+            this.IdInt.TabIndex = 7;
+            this.IdInt.ValueChanged += new System.EventHandler(this.FilterChanged);
+            // 
             // BookList
             // 
             this.BookList.FormattingEnabled = true;
-            this.BookList.Location = new System.Drawing.Point(151, 58);
+            this.BookList.Location = new System.Drawing.Point(163, 58);
             this.BookList.Name = "BookList";
-            this.BookList.Size = new System.Drawing.Size(171, 147);
+            this.BookList.Size = new System.Drawing.Size(152, 186);
             this.BookList.TabIndex = 8;
             // 
             // GenreName
@@ -259,22 +308,22 @@
             this.TypeCheck.UseVisualStyleBackColor = true;
             this.TypeCheck.CheckedChanged += new System.EventHandler(this.FilterChanged);
             // 
-            // ReadBook
+            // IsbnCheck
             // 
-            this.ReadBook.Location = new System.Drawing.Point(247, 211);
-            this.ReadBook.Name = "ReadBook";
-            this.ReadBook.Size = new System.Drawing.Size(75, 23);
-            this.ReadBook.TabIndex = 11;
-            this.ReadBook.Text = "Read";
-            this.ReadBook.UseVisualStyleBackColor = true;
-            this.ReadBook.Click += new System.EventHandler(this.ReadBook_Click);
+            this.IsbnCheck.AutoSize = true;
+            this.IsbnCheck.Location = new System.Drawing.Point(130, 230);
+            this.IsbnCheck.Name = "IsbnCheck";
+            this.IsbnCheck.Size = new System.Drawing.Size(15, 14);
+            this.IsbnCheck.TabIndex = 10;
+            this.IsbnCheck.UseVisualStyleBackColor = true;
+            this.IsbnCheck.CheckedChanged += new System.EventHandler(this.FilterChanged);
             // 
             // Interface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 254);
-            this.Controls.Add(this.ReadBook);
+            this.ClientSize = new System.Drawing.Size(373, 353);
+            this.Controls.Add(this.IsbnCheck);
             this.Controls.Add(this.TypeCheck);
             this.Controls.Add(this.GenreCheck);
             this.Controls.Add(this.AuthorCheck);
@@ -282,20 +331,24 @@
             this.Controls.Add(this.TypeName);
             this.Controls.Add(this.GenreName);
             this.Controls.Add(this.BookList);
+            this.Controls.Add(this.IdInt);
             this.Controls.Add(this.BookName);
             this.Controls.Add(this.AuthorName);
             this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.StatusStrip);
             this.Controls.Add(label2);
+            this.Controls.Add(label6);
             this.Controls.Add(label5);
             this.Controls.Add(label4);
             this.Controls.Add(label3);
+            this.Controls.Add(label1);
             this.Controls.Add(this.MenuStrip);
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "Interface";
             this.Text = "Interface";
-            this.Load += new System.EventHandler(this.Interface_Load);
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IdInt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -311,10 +364,13 @@
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem statusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem borrowHistoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem borrowABookToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem returnABookToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip StatusStrip;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.TextBox AuthorName;
         private System.Windows.Forms.TextBox BookName;
+        private System.Windows.Forms.NumericUpDown IdInt;
         private System.Windows.Forms.ListBox BookList;
         private System.Windows.Forms.ComboBox GenreName;
         private System.Windows.Forms.ComboBox TypeName;
@@ -322,6 +378,6 @@
         private System.Windows.Forms.CheckBox AuthorCheck;
         private System.Windows.Forms.CheckBox GenreCheck;
         private System.Windows.Forms.CheckBox TypeCheck;
-        private System.Windows.Forms.Button ReadBook;
+        private System.Windows.Forms.CheckBox IsbnCheck;
     }
 }
