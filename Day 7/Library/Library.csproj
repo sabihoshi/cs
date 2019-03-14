@@ -51,7 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-      <Compile Include="Classes\History.cs"/>
+    <Compile Include="Classes\bokkeh.cs" />
+    <Compile Include="Classes\History.cs" />
     <Compile Include="Classes\Library.cs" />
     <Compile Include="Classes\Manager.cs" />
     <Compile Include="Classes\User.cs" />
@@ -80,12 +81,12 @@
     <Compile Include="Forms\NewUser.Designer.cs">
       <DependentUpon>NewUser.cs</DependentUpon>
     </Compile>
-      <Compile Include="Forms\Return.cs">
-          <SubType>Form</SubType>
-      </Compile>
-      <Compile Include="Forms\Return.Designer.cs">
-          <DependentUpon>Return.cs</DependentUpon>
-      </Compile>
+    <Compile Include="Forms\Return.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Return.Designer.cs">
+      <DependentUpon>Return.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Borrow.resx">
       <DependentUpon>Borrow.cs</DependentUpon>
@@ -99,9 +100,9 @@
     <EmbeddedResource Include="Forms\NewUser.resx">
       <DependentUpon>NewUser.cs</DependentUpon>
     </EmbeddedResource>
-      <EmbeddedResource Include="Forms\REturn.resx">
-          <DependentUpon>Return.cs</DependentUpon>
-      </EmbeddedResource>
+    <EmbeddedResource Include="Forms\REturn.resx">
+      <DependentUpon>Return.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -112,15 +113,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="Configuration\packages.config" />
-      <None Include="Data\books.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Include="Data\history.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Include="Data\login.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+    <None Include="Data\books.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\history.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\login.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

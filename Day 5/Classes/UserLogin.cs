@@ -2,20 +2,20 @@
 
 namespace CIIT_Grading_System.Classes
 {
-    public partial class UserLogin
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
+	public class UserLogin
+	{
+		public UserLogin(string username, string password)
+		{
+			Username = username;
+			Password = password;
+		}
 
-        public UserLogin(string username, string password)
-        {
-            Username = username;
-            Password = password;
-        }
-    }
+		public string Username { get; set; }
+		public string Password { get; set; }
+	}
 
-    public partial class Users
-    {
-        public List<UserLogin> User = new List<UserLogin>();
-    }
+	public class Users
+	{
+		public List<UserLogin> User = new List<UserLogin>();
+	}
 }
