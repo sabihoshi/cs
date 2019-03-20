@@ -4,29 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B7D951B8-5FC0-4EF4-AE93-BE24A9FA86DC}</ProjectGuid>
+    <ProjectGuid>{7872A313-230C-4E3B-A0F0-BA1711D99A5E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Quiz</RootNamespace>
-    <AssemblyName>Quiz</AssemblyName>
+    <RootNamespace>IRC</RootNamespace>
+    <AssemblyName>IRC</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,17 +32,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>Quiz.Forms.Program</StartupObject>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MaterialDesignColors, Version=1.0.0.14576, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MaterialDesignColors.1.1.1\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -72,35 +52,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Questions.cs" />
-    <Compile Include="Forms\Editor.cs">
+    <Compile Include="Forms\Chat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Editor.Designer.cs">
-      <DependentUpon>Editor.cs</DependentUpon>
+    <Compile Include="Forms\Chat.Designer.cs">
+      <DependentUpon>Chat.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Results.cs">
+    <Compile Include="Forms\MainLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Results.Designer.cs">
-      <DependentUpon>Results.cs</DependentUpon>
+    <Compile Include="Forms\Form1.Designer.cs">
+      <DependentUpon>MainLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Answer.cs">
+    <Compile Include="Forms\NewAccount.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Answer.Designer.cs">
-      <DependentUpon>Answer.cs</DependentUpon>
+    <Compile Include="Forms\NewAccount.Designer.cs">
+      <DependentUpon>NewAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Program.cs" />
+    <Compile Include="Forms\Visualizer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Visualizer.Designer.cs">
+      <DependentUpon>Visualizer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Editor.resx">
-      <DependentUpon>Editor.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Chat.resx">
+      <DependentUpon>Chat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Results.resx">
-      <DependentUpon>Results.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainLogin.resx">
+      <DependentUpon>MainLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Answer.resx">
-      <DependentUpon>Answer.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\NewAccount.resx">
+      <DependentUpon>NewAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Visualizer.resx">
+      <DependentUpon>Visualizer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -112,7 +100,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config" />
+    <None Include="Properties\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -122,25 +110,48 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Data\test.json" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Properties\App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\8968e8b0-04d1-11e8-af59-3146f00748dd.jpg" />
+    <None Include="Properties\Resources\WelcomeSplash.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
+    <None Include="Properties\Resources\6dVX6sb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\Konachan.com - 209307 black_hair blush brown_eyes drink k-on! nakano_azusa scarf snow thighhighs winter xiao_ren zettai_ryouiki.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\2019-03-20_14-23-00.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\2019-03-20_14-28-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2019-03-20_14-56-59.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2019-03-15_10-18-39.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2019-03-20_15-20-00.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2019-03-20_15-26-08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2019-03-20_15-25-59.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2019-03-20_15-25-53.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5721435a1a229_download%284%29.png.545134d5ae4e76230ed15d97a775a2b4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

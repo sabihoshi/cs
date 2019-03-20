@@ -10,11 +10,14 @@ using System.Windows.Forms;
 
 namespace Statistics
 {
-    public partial class Statistic : Form
+    public partial class Statistic : MaterialSkin.Controls.MaterialForm
     {
         public Statistic()
         {
             InitializeComponent();
+            var skinManager = MaterialSkin.MaterialSkinManager.Instance;
+            skinManager.AddFormToManage(this);
+            skinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
         }
 
         private static IEnumerable<IEnumerable<T>>
@@ -35,37 +38,25 @@ namespace Statistics
                     (t1, t2) => t1.Concat(new T[] { t2 }));
         }
 
-        private void GetResult_Click(object sender, EventArgs e)
+        private void GetResults_Click(object sender, EventArgs e)
         {
             IEnumerable<IEnumerable<int>> result;
             var inputList = InputBox.Text.Split(new[] {','}
-                , StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray(); ;
+                , StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            ;
             if (ReplacementCheck.Checked)
                 result = GetPermutationsWithRept(inputList, (int)SampleSize.Value);
             else
                 result = GetPermutations(inputList, (int)SampleSize.Value);
 
-            ResultBox.Clear();
-            var dict = new Dictionary<string, double> ();
-            string.Join(", ", result.Select(inner => inner.Average()).Distinct());
-            foreach (var item in result)
+            OutputBox.Clear();
+            var dict = result
+                .GroupBy(inner => inner.Average())
+                .ToDictionary(group => group.First().ToList(), group => group.Count());
+            foreach (var item in dict)
             {
-                if (!dict.ContainsValue(item.Average()))
-                {
-                    dict.Add(string.Join(", ", item), item.Average());
-                }
-            }
-            foreach (var item in result)
-            {
-                if (!dict.ContainsValue(item.Average().ToString()))
-                {
-                    dict.Add(string.Join(", ", item), item.Average().ToString());
-
-                    ResultBox.AppendText(
-                        $"{string.Join(", ", item).PadRight(8)} {item.Average().ToString().PadRight(8)} {Environment.NewLine}");
-                }
+                OutputBox.AppendText($"{string.Join(", ", item.Key).PadRight(5)}: {item.Key.Average().ToString().PadRight(8)} {item.Value}/{result.Count()} {Environment.NewLine}");
             }
         }
     }
-}
 }

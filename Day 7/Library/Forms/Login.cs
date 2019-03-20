@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace Library.Forms
 {
-	public partial class Login : Form
+	public partial class Login : MaterialSkin.Controls.MaterialForm
 	{
 		public static RootUsers Authentication = new RootUsers();
 

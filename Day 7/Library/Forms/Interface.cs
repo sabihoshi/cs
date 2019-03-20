@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Library.Forms
 {
-	public partial class Interface : Form
+	public partial class Interface : MaterialSkin.Controls.MaterialForm
 	{
 		public static Lib library = JsonConvert.DeserializeObject<Lib>(Manager.ReadFile(@"./Data/books.json"));
 		public static Bor borrowers = JsonConvert.DeserializeObject<Bor>(Manager.ReadFile(@"./Data/history.json"));
