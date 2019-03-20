@@ -145,7 +145,6 @@
     </Compile>
     <None Include="Data\Users\Kao.json" />
     <None Include="Data\userLogin.json" />
-    <None Include="Data\Users\Test.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -165,8 +164,6 @@
     <None Include="Resources\icon.ico" />
     <None Include="Resources\background.png" />
     <None Include="Resources\avatar.png" />
-    <None Include="Data\userLogin.txt" />
-    <Content Include="Data\Users\Kao.txt" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
