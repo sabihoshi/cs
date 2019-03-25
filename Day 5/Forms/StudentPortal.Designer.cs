@@ -48,6 +48,7 @@
             this.StudentList = new System.Windows.Forms.ComboBox();
             this.WebBrowser = new System.Windows.Forms.WebBrowser();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BrowserPanel = new System.Windows.Forms.Panel();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -116,27 +117,27 @@
             this.changePasswordToolStripMenuItem,
             this.deleteAccountToolStripMenuItem});
             this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
-            this.manageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manageToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.manageToolStripMenuItem.Text = "Manage";
             // 
             // changeUsernameToolStripMenuItem
             // 
             this.changeUsernameToolStripMenuItem.Name = "changeUsernameToolStripMenuItem";
-            this.changeUsernameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changeUsernameToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.changeUsernameToolStripMenuItem.Text = "Change Username";
             this.changeUsernameToolStripMenuItem.Click += new System.EventHandler(this.changeUsernameToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // deleteAccountToolStripMenuItem
             // 
             this.deleteAccountToolStripMenuItem.Name = "deleteAccountToolStripMenuItem";
-            this.deleteAccountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteAccountToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.deleteAccountToolStripMenuItem.Text = "Delete Account";
             this.deleteAccountToolStripMenuItem.Click += new System.EventHandler(this.deleteAccountToolStripMenuItem_Click);
             // 
@@ -215,6 +216,7 @@
             this.WebBrowser.Name = "WebBrowser";
             this.WebBrowser.Size = new System.Drawing.Size(580, 264);
             this.WebBrowser.TabIndex = 8;
+            this.WebBrowser.Visible = false;
             // 
             // pictureBox1
             // 
@@ -229,12 +231,23 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // BrowserPanel
+            // 
+            this.BrowserPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BrowserPanel.Location = new System.Drawing.Point(12, 75);
+            this.BrowserPanel.Name = "BrowserPanel";
+            this.BrowserPanel.Size = new System.Drawing.Size(580, 264);
+            this.BrowserPanel.TabIndex = 11;
+            // 
             // StudentPortal
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::CIIT_Grading_System.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(604, 351);
+            this.Controls.Add(this.BrowserPanel);
             this.Controls.Add(label3);
             this.Controls.Add(label2);
             this.Controls.Add(this.StudentList);
@@ -243,7 +256,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(label1);
             this.Controls.Add(this.MainMenu);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MainMenu;
             this.MaximizeBox = false;
@@ -275,5 +287,6 @@
         private System.Windows.Forms.WebBrowser WebBrowser;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem manageGradeToolStripMenuItem;
+        private System.Windows.Forms.Panel BrowserPanel;
     }
 }
