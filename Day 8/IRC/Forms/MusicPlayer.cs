@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace IRC.Forms
 {
-    public partial class Chat : Form
+    public partial class MusicPlayer : Form
     {
-        public Chat()
+        public MusicPlayer()
         {
             InitializeComponent();
         }
