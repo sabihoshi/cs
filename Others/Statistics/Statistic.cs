@@ -52,10 +52,16 @@ namespace Statistics
             OutputBox.Clear();
             var dict = result
                 .GroupBy(inner => inner.Average())
-                .ToDictionary(group => group.First().ToList(), group => group.Count());
+                .ToDictionary(group => group.First().Average(), group => group.Count());
             foreach (var item in dict)
             {
-                OutputBox.AppendText($"{string.Join(", ", item.Key).PadRight(5)}: {item.Key.Average().ToString().PadRight(8)} {item.Value}/{result.Count()} {Environment.NewLine}");
+                OutputBox.AppendText($"{item.Key.ToString().PadRight(8)} {item.Value}/{result.Count()} {Environment.NewLine}");
+            }
+
+            SampleBox.Clear();
+            foreach (var item in result)
+            {
+                SampleBox.AppendText($"{string.Join(", ", item)} {Environment.NewLine}");
             }
         }
     }

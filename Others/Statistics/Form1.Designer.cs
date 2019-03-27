@@ -33,6 +33,7 @@
             this.ReplacementCheck = new MaterialSkin.Controls.MaterialCheckBox();
             this.GetResults = new MaterialSkin.Controls.MaterialFlatButton();
             this.SampleSize = new System.Windows.Forms.NumericUpDown();
+            this.SampleBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.SampleSize)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,7 +41,7 @@
             // 
             this.InputBox.Location = new System.Drawing.Point(13, 62);
             this.InputBox.Name = "InputBox";
-            this.InputBox.Size = new System.Drawing.Size(184, 204);
+            this.InputBox.Size = new System.Drawing.Size(184, 26);
             this.InputBox.TabIndex = 0;
             this.InputBox.Text = "";
             // 
@@ -52,6 +53,7 @@
             this.OutputBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OutputBox.Location = new System.Drawing.Point(203, 62);
             this.OutputBox.Name = "OutputBox";
+            this.OutputBox.ReadOnly = true;
             this.OutputBox.Size = new System.Drawing.Size(268, 204);
             this.OutputBox.TabIndex = 0;
             this.OutputBox.Text = "";
@@ -59,6 +61,8 @@
             // ReplacementCheck
             // 
             this.ReplacementCheck.AutoSize = true;
+            this.ReplacementCheck.Checked = true;
+            this.ReplacementCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ReplacementCheck.Depth = 0;
             this.ReplacementCheck.Font = new System.Drawing.Font("Roboto", 10F);
             this.ReplacementCheck.Location = new System.Drawing.Point(162, 279);
@@ -105,6 +109,15 @@
             0,
             0});
             // 
+            // SampleBox
+            // 
+            this.SampleBox.Location = new System.Drawing.Point(12, 94);
+            this.SampleBox.Name = "SampleBox";
+            this.SampleBox.ReadOnly = true;
+            this.SampleBox.Size = new System.Drawing.Size(184, 172);
+            this.SampleBox.TabIndex = 0;
+            this.SampleBox.Text = "";
+            // 
             // Statistic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,6 +127,7 @@
             this.Controls.Add(this.GetResults);
             this.Controls.Add(this.ReplacementCheck);
             this.Controls.Add(this.OutputBox);
+            this.Controls.Add(this.SampleBox);
             this.Controls.Add(this.InputBox);
             this.Name = "Statistic";
             this.Text = "Form1";
@@ -130,6 +144,7 @@
         private MaterialSkin.Controls.MaterialCheckBox ReplacementCheck;
         private MaterialSkin.Controls.MaterialFlatButton GetResults;
         private System.Windows.Forms.NumericUpDown SampleSize;
+        private System.Windows.Forms.RichTextBox SampleBox;
     }
 }
 
