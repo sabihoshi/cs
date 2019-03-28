@@ -48,7 +48,7 @@ namespace CJam
             myRendererSettings.TopHeight = 64;
             myRendererSettings.BottomHeight = 64;
 
-            myRendererSettings.BackgroundImage = new Bitmap(@"C:\Users\ciit\Pictures\Konachan.com - 218504 arima_kousei a-shacho blonde_hair dark glasses instrument male miyazono_kaori piano shigatsu_wa_kimi_no_uso tree violin.jpg");
+            myRendererSettings.BackgroundImage = new Bitmap(@"C:\Users\Kao\Pictures\Background\73109534_p6_master1200.jpg");
 
             // 3. Define the audio file from which the audio wave will be created and define the providers and settings
             WaveFormRenderer renderer = new WaveFormRenderer();

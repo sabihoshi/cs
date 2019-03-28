@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C49FA968-3638-410A-B5A5-8C8D335460AF}</ProjectGuid>
+    <ProjectGuid>{E520C723-9D4E-4DC8-95C1-72FA258C940B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CTJam</RootNamespace>
-    <AssemblyName>CTJam</AssemblyName>
+    <RootNamespace>MVVMTest</RootNamespace>
+    <AssemblyName>MVVMTest</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,15 +35,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JetBrains.Annotations, Version=2019.1.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.2019.1.1\lib\net20\JetBrains.Annotations.dll</HintPath>
+    <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.3.2.0\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
-    <Reference Include="NAudio, Version=1.8.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NAudio.1.8.5\lib\net35\NAudio.dll</HintPath>
+    <Reference Include="Caliburn.Micro.Platform, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,35 +67,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\Track.cs" />
-    <Compile Include="NAudio\WaveFormRendererLib\AveragePeakProvider.cs" />
-    <Compile Include="NAudio\WaveFormRendererLib\DecibelPeakProvider.cs" />
-    <Compile Include="NAudio\WaveFormRendererLib\IPeakProvider.cs" />
-    <Compile Include="NAudio\WaveFormRendererLib\MaxPeakProvider.cs" />
-    <Compile Include="NAudio\WaveFormRendererLib\PeakInfo.cs" />
-    <Compile Include="NAudio\WaveFormRendererLib\PeakProvider.cs" />
-    <Compile Include="NAudio\WaveFormRendererLib\RmsPeakProvider.cs" />
-    <Compile Include="NAudio\WaveFormRendererLib\SamplingPeakProvider.cs" />
-    <Compile Include="NAudio\WaveFormRendererLib\SoundCloudBlockWaveFormSettings.cs" />
-    <Compile Include="NAudio\WaveFormRendererLib\SoundCloudOriginalSettings.cs" />
-    <Compile Include="NAudio\WaveFormRendererLib\StandardWaveFormRendererSettings.cs" />
-    <Compile Include="NAudio\WaveFormRendererLib\WaveFormRenderer.cs" />
-    <Compile Include="NAudio\WaveFormRendererLib\WaveFormRendererSettings.cs" />
-    <Compile Include="NAudio\Wrappers\AudioPlayer.cs" />
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Views\ShellView.xaml.cs">
+      <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Bootstrapper.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -117,35 +105,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Images\pause.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\play.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\shuffle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\skip_next.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\skip_previous.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\stop.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\volume.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\NaudioPlayer\NaudioPlayer\NaudioPlayer\NaudioPlayer.csproj">
-      <Project>{29fa79ec-7795-4f1e-baab-09b8ff67d550}</Project>
-      <Name>NaudioPlayer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <Page Include="Views\ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
