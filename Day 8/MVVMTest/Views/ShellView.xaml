@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVMTest.Views"
+        xmlns:models="clr-namespace:MVVMTest.Models"
         mc:Ignorable="d"
         Title="ShellView" Height="450" Width="800">
     <Grid>
@@ -29,8 +30,41 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        <TextBlock x:Name="FullName"  Grid.Row="1" Grid.Column="1" Margin="10" FontSize="18" />
-        <TextBox Grid.Row ="2" Grid.Column="1" x:Name="FirstName" MinWidth="100" />
-        <TextBox Grid.Row ="2" Grid.Column="2" x:Name="LastName" MinWidth="100" />
+
+        <!--> Row 1 <-->
+        <TextBlock   Grid.Row="1" Grid.Column="1"
+                     x:Name="FullName"
+                     Margin="10" FontSize="18" />
+
+        <!--> Row 2 <-->
+        <TextBox Grid.Row ="2" Grid.Column="1"
+                 x:Name="FirstName" MinWidth="100" />
+        <TextBox Grid.Row ="2" Grid.Column="2"
+                 x:Name="LastName" MinWidth="100" />
+
+        <!--> Row 3 <-->
+        <ComboBox Grid.Row="3" Grid.Column="1" x:Name="People"
+                  SelectedItem="{Binding Path=SelectedPerson, Mode=OneWayToSource}"
+                  DisplayMemberPath="FirstName" />
+        <TextBlock Grid.Row="3"
+                   Grid.Column="2"
+                   x:Name="SelectedPerson_LastName" />
+
+        <!--> Row 4 <-->
+        <Button Grid.Row="4" Grid.Column="1" x:Name="ClearText">Clear Names</Button>
+
+        <!--> Row 5 <-->
+        <ListBox Grid.Row="5" Grid.Column="1"
+                  x:Name="Images"
+                  SelectedItem="{Binding Path=SelectedImage, Mode=OneWayToSource}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:ImageModel}">
+                    <StackPanel>
+                        <TextBlock Margin="3" Text="{Binding Name}" />
+                        <Image Margin="3" MaxHeight="50" MaxWidth="50" Source="{Binding Source}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MVVMTest
+namespace LearnMVVM
 {
     /// <summary>
     /// Interaction logic for App.xaml

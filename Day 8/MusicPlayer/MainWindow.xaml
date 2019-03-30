@@ -1,12 +1,15 @@
-﻿<Window x:Class="CTJam.MainWindow"
+﻿<Window x:Class="MusicPlayer.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CTJam"
+        xmlns:local="clr-namespace:MusicPlayer"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\Kao\Pictures\Background\13wu2.png" />
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="Auto" />
@@ -27,18 +30,11 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        <!--> Row 1 <-->
-        <Button Grid.Row="1" Grid.Column="1"
-                Content="Open File" Click="OpenFile_Click"
-                Margin="10" Width="100" />
-        <Button Grid.Row="1" Grid.Column="2"
-                x:Name="PlayerStatus"  Content="Play" Click="ToggleStateButton"
-                Margin="10" Width="50" />
-        <Image Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="6"
-               x:Name="Image" />
+        <Button x:Name="button" Click="AddImage" Content="Add" Grid.Column="6" HorizontalAlignment="Left" Margin="52,56,0,0" Grid.Row="6" VerticalAlignment="Top" Width="76" />
 
-        <!--> Row 2 <-->
-        <Slider Grid.Column="1" Minimum="0" Maximum="{Binding CurrentTrackLength, Mode=OneWay}" Value="{Binding CurrentTrackPosition, Mode=TwoWay}" x:Name="SeekbarControl" VerticalAlignment="Center">
-        </Slider>
+        <Button Click="RemoveImage" Content="Remove" Grid.Column="6" HorizontalAlignment="Left" Margin="52,100,0,0" Grid.Row="6" VerticalAlignment="Top" Width="76" />
+
+        <!-- Column 1 -->
+        <ListView />
     </Grid>
 </Window>

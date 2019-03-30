@@ -5,20 +5,9 @@ namespace NaudioWrapper
 {
     public class AudioPlayer
     {
-        public enum PlaybackStopTypes
-        {
-            PlaybackStoppedByUser, PlaybackStoppedReachingEndOfFile
-        }
-
-        public PlaybackStopTypes PlaybackStopType { get; set; }
-
         private AudioFileReader _audioFileReader;
 
         private DirectSoundOut _output;
-
-        public event Action PlaybackResumed;
-        public event Action PlaybackStopped;
-        public event Action PlaybackPaused;
 
         public AudioPlayer(string filepath, float volume)
         {
@@ -35,69 +24,18 @@ namespace NaudioWrapper
             _output.Init(wc);
         }
 
-        public void Play(PlaybackState playbackState, double currentVolumeLevel)
+        public event Action PlaybackPaused;
+
+        public event Action PlaybackResumed;
+
+        public event Action PlaybackStopped;
+
+        public enum PlaybackStopTypes
         {
-            if (playbackState == PlaybackState.Stopped || playbackState == PlaybackState.Paused)
-            {
-                _output.Play();
-            }
-
-            _audioFileReader.Volume = (float) currentVolumeLevel;
-
-            if (PlaybackResumed != null)
-            {
-                PlaybackResumed();
-            }
+            PlaybackStoppedByUser, PlaybackStoppedReachingEndOfFile
         }
 
-        private void _output_PlaybackStopped(object sender, StoppedEventArgs e)
-        {
-            Dispose();
-            if (PlaybackStopped != null)
-            {
-                PlaybackStopped();
-            }
-        }
-
-        public void Stop()
-        {
-            if (_output != null)
-            {
-                _output.Stop();
-            }
-        }
-
-        public void Pause()
-        {
-            if (_output != null)
-            {
-                _output.Pause();
-
-                if (PlaybackPaused != null)
-                {
-                    PlaybackPaused();
-                }
-            }
-        }
-
-        public void TogglePlayPause(double currentVolumeLevel)
-        {
-            if (_output != null)
-            {
-                if (_output.PlaybackState == PlaybackState.Playing)
-                {
-                    Pause();
-                }
-                else
-                {
-                    Play(_output.PlaybackState, currentVolumeLevel);
-                }
-            }
-            else
-            {
-                Play(PlaybackState.Stopped, currentVolumeLevel);
-            }
-        }
+        public PlaybackStopTypes PlaybackStopType { get; set; }
 
         public void Dispose()
         {
@@ -143,6 +81,34 @@ namespace NaudioWrapper
             return 1;
         }
 
+        public void Pause()
+        {
+            if (_output != null)
+            {
+                _output.Pause();
+
+                if (PlaybackPaused != null)
+                {
+                    PlaybackPaused();
+                }
+            }
+        }
+
+        public void Play(PlaybackState playbackState, double currentVolumeLevel)
+        {
+            if (playbackState == PlaybackState.Stopped || playbackState == PlaybackState.Paused)
+            {
+                _output.Play();
+            }
+
+            _audioFileReader.Volume = (float)currentVolumeLevel;
+
+            if (PlaybackResumed != null)
+            {
+                PlaybackResumed();
+            }
+        }
+
         public void SetPosition(double value)
         {
             if (_audioFileReader != null)
@@ -156,6 +122,42 @@ namespace NaudioWrapper
             if (_output != null)
             {
                 _audioFileReader.Volume = value;
+            }
+        }
+
+        public void Stop()
+        {
+            if (_output != null)
+            {
+                _output.Stop();
+            }
+        }
+
+        public void TogglePlayPause(double currentVolumeLevel)
+        {
+            if (_output != null)
+            {
+                if (_output.PlaybackState == PlaybackState.Playing)
+                {
+                    Pause();
+                }
+                else
+                {
+                    Play(_output.PlaybackState, currentVolumeLevel);
+                }
+            }
+            else
+            {
+                Play(PlaybackState.Stopped, currentVolumeLevel);
+            }
+        }
+
+        private void _output_PlaybackStopped(object sender, StoppedEventArgs e)
+        {
+            Dispose();
+            if (PlaybackStopped != null)
+            {
+                PlaybackStopped();
             }
         }
     }

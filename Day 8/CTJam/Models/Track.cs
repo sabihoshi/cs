@@ -5,19 +5,16 @@ namespace CTJam.Models
 {
     public class Track : INotifyPropertyChanged
     {
-        private string _friendlyName;
         private string _filepath;
+        private string _friendlyName;
 
-        public string FriendlyName
+        public Track(string filepath, string friendlyName)
         {
-            get { return _friendlyName; }
-            set
-            {
-                if (value == _friendlyName) return;
-                _friendlyName = value;
-                OnPropertyChanged(nameof(FriendlyName));
-            }
+            Filepath = filepath;
+            FriendlyName = friendlyName;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string Filepath
         {
@@ -30,15 +27,17 @@ namespace CTJam.Models
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public Track(string filepath, string friendlyName)
+        public string FriendlyName
         {
-            Filepath = filepath;
-            FriendlyName = friendlyName;
+            get { return _friendlyName; }
+            set
+            {
+                if (value == _friendlyName) return;
+                _friendlyName = value;
+                OnPropertyChanged(nameof(FriendlyName));
+            }
         }
 
-        [NaudioPlayer.Annotations.NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
