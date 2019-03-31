@@ -8,63 +8,95 @@
         mc:Ignorable="d"
         Title="ShellView" Height="450" Width="800">
     <Grid>
+        <!-- Form -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
 
-        <!--> Row 1 <-->
-        <TextBlock   Grid.Row="1" Grid.Column="1"
+        <!-- Column 1 -->
+        <Grid Column="1" Grid.Row="1">
+            <ListBox Grid.Row="1" Grid.Column="1"
+                  x:Name="Images"
+                  SelectedItem="{Binding Path=SelectedImage, Mode=OneWayToSource}" BorderBrush="{x:Null}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:ImageModel}">
+                        <Image Margin="3" MaxHeight="50" MaxWidth="50" Source="{Binding Source}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <!-- Column 1 -->
+        <Grid Column="2" Grid.Row="1">
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+                <Style TargetType="{x:Type ComboBox}">
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+
+            <!--> Row 1 <-->
+            <TextBlock   Grid.Row="1" Grid.Column="2"
                      x:Name="FullName"
                      Margin="10" FontSize="18" />
 
-        <!--> Row 2 <-->
-        <TextBox Grid.Row ="2" Grid.Column="1"
+            <!--> Row 2 <-->
+            <TextBox Grid.Row ="2" Grid.Column="2"
                  x:Name="FirstName" MinWidth="100" />
-        <TextBox Grid.Row ="2" Grid.Column="2"
+
+            <TextBox Grid.Row ="2" Grid.Column="3"
                  x:Name="LastName" MinWidth="100" />
 
-        <!--> Row 3 <-->
-        <ComboBox Grid.Row="3" Grid.Column="1" x:Name="People"
-                  SelectedItem="{Binding Path=SelectedPerson, Mode=OneWayToSource}"
-                  DisplayMemberPath="FirstName" />
-        <TextBlock Grid.Row="3"
-                   Grid.Column="2"
+            <!--> Row 3 <-->
+            <ComboBox Grid.Row="3" Grid.Column="2"
+                      SelectedItem="{Binding Path=SelectedPerson, Mode=OneWayToSource}"
+                      ItemsSource="{Binding Path=People, Mode=OneWay}"
+                      DisplayMemberPath="FirstName" />
+
+            <TextBlock Grid.Row="3"
+                   Grid.Column="3"
                    x:Name="SelectedPerson_LastName" />
 
-        <!--> Row 4 <-->
-        <Button Grid.Row="4" Grid.Column="1" x:Name="ClearText">Clear Names</Button>
-
-        <!--> Row 5 <-->
-        <ListBox Grid.Row="5" Grid.Column="1"
-                  x:Name="Images"
-                  SelectedItem="{Binding Path=SelectedImage, Mode=OneWayToSource}">
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="{x:Type models:ImageModel}">
-                    <StackPanel>
-                        <TextBlock Margin="3" Text="{Binding Name}" />
-                        <Image Margin="3" MaxHeight="50" MaxWidth="50" Source="{Binding Source}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            <!--> Row 4 <-->
+            <Button Grid.Row="4" Grid.Column="2" x:Name="ClearText">Clear Names</Button>
+        </Grid>
     </Grid>
 </Window>

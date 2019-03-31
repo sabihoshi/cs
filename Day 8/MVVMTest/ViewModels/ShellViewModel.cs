@@ -5,10 +5,10 @@ namespace MVVMTest.ViewModels
 {
     public class ShellViewModel : Screen
     {
-        public BindableCollection<PersonModel> _people = new BindableCollection<PersonModel>();
         private string _firstName = "Kao";
         private BindableCollection<ImageModel> _images = new BindableCollection<ImageModel>();
         private string _lastName;
+        private BindableCollection<PersonModel> _people = new BindableCollection<PersonModel>();
         private ImageModel _selectedImage;
         private PersonModel _selectedPerson;
 
@@ -37,7 +37,7 @@ namespace MVVMTest.ViewModels
 
         public BindableCollection<ImageModel> Images
         {
-            get { return _images; }
+            get => _images;
             set
             {
                 _images = value;
@@ -58,7 +58,7 @@ namespace MVVMTest.ViewModels
 
         public BindableCollection<PersonModel> People
         {
-            get { return _people; }
+            get => _people;
             set
             {
                 _people = value;
@@ -68,8 +68,12 @@ namespace MVVMTest.ViewModels
 
         public ImageModel SelectedImage
         {
-            get { return _selectedImage; }
-            set { _selectedImage = value; NotifyOfPropertyChange(() => SelectedImage); }
+            get => _selectedImage;
+            set
+            {
+                _selectedImage = value;
+                NotifyOfPropertyChange(() => SelectedImage);
+            }
         }
 
         public PersonModel SelectedPerson
@@ -82,8 +86,10 @@ namespace MVVMTest.ViewModels
             }
         }
 
-        public bool CanClearText(string firstName, string lastName) =>
-            !string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName);
+        public bool CanClearText(string firstName, string lastName)
+        {
+            return !string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName);
+        }
 
         public void ClearText(string firstName, string lastName)
         {
