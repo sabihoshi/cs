@@ -8,5 +8,6 @@ namespace MusicPlayer.Models
 {
     public class TrackModel
     {
+        public
     }
 }
