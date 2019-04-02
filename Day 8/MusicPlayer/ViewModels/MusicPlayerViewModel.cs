@@ -1,20 +1,17 @@
 ﻿using Caliburn.Micro;
 using MusicPlayer.Models;
-using MusicPlayer.NAudioWrapper;
-using NAudio.Wave;
 
 namespace MusicPlayer.ViewModels
 {
     public class MusicPlayerViewModel : Screen
     {
-        public AudioPlayer AudioPlayer;
         private BindableCollection<AlbumModel> _images = new BindableCollection<AlbumModel>();
         private AlbumModel _selectedAlbumModel;
         private TrackModel _track = new TrackModel();
 
         public MusicPlayerViewModel()
         {
-            string albumPath =
+            var albumPath =
                 @"C:\Users\ciit\source\repos\Conversion_Types\Conversion Types\Day 8\MVVMTest\Images\Albums";
             Images.Add(new AlbumModel($@"{albumPath}\daily_mix_1.png", "Album 1"));
             Images.Add(new AlbumModel($@"{albumPath}\daily_mix_2.png", "Album 2"));
@@ -25,7 +22,7 @@ namespace MusicPlayer.ViewModels
 
         public BindableCollection<AlbumModel> Images
         {
-            get { return _images = new BindableCollection<AlbumModel>(); }
+            get => _images;
             set
             {
                 _images = value;
@@ -35,7 +32,7 @@ namespace MusicPlayer.ViewModels
 
         public AlbumModel SelectedAlbumModel
         {
-            get { return _selectedAlbumModel; }
+            get => _selectedAlbumModel;
             set
             {
                 _selectedAlbumModel = value;
@@ -45,7 +42,7 @@ namespace MusicPlayer.ViewModels
 
         public TrackModel Track
         {
-            get { return _track; }
+            get => _track;
             set
             {
                 _track = value;
