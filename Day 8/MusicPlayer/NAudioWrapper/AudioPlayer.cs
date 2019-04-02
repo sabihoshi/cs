@@ -3,6 +3,9 @@ using System;
 
 namespace MusicPlayer.NAudioWrapper
 {
+    /// <summary>
+    /// This class might not be needed as of now.
+    /// </summary>
     public class AudioPlayer
     {
         private AudioFileReader _audioFileReader;
@@ -25,7 +28,9 @@ namespace MusicPlayer.NAudioWrapper
         }
 
         public event Action PlaybackPaused;
+
         public event Action PlaybackResumed;
+
         public event Action PlaybackStopped;
 
         public enum PlaybackStopTypes

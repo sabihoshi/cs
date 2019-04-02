@@ -5,26 +5,52 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MusicPlayer.Views"
+        xmlns:models="clr-namespace:MusicPlayer.Models"
         mc:Ignorable="d"
         Title="MusicPlayerView" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
 
         <Grid Column="1">
-            <TextBlock>a</TextBlock>
+            <ListBox Grid.Row="1" Grid.Column="1"
+                     x:Name="Images"
+                     SelectedItem="{Binding Path=SelectedImage, Mode=OneWayToSource}" BorderBrush="{x:Null}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:AlbumModel}">
+                        <Image Margin="3" MaxHeight="50" MaxWidth="50" Source="{Binding Source}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
         <Grid Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="*" MaxHeight="50" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="20" />
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Row 1 -->
+            <Button Grid.Row="1" Grid.Column="1"
+                    x:Name="OpenTrack"
+                    Content="Open" />
+            <Button Grid.Row="1" Grid.Column="2"
+                    x:Name="PlayTrack"
+                    Content="Play" />
         </Grid>
     </Grid>
 </Window>

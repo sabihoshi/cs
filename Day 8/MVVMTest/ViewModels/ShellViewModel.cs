@@ -17,9 +17,13 @@ namespace MVVMTest.ViewModels
             People.Add(new PersonModel("Kao", "Miyazono", 17));
             People.Add(new PersonModel("Azusa", "Nakano", 16));
             People.Add(new PersonModel("Mio", "Akiyama", 14));
-            Images.Add(new ImageModel(@"C:\Users\Kao\Pictures\Art\68488155_p0.png", "Kulve Taroth"));
-            Images.Add(new ImageModel(@"C:\Users\Kao\Pictures\Art\1bc26009-884c-48bd-c8e3-86efe61c8aad.png", "Touhou"));
-            Images.Add(new ImageModel(@"C:\Users\Kao\Pictures\Art\5fcf552f-6a13-498a-c903-28afd65bc463.png", "Animo"));
+            string albumPath =
+                @"C:\Users\ciit\source\repos\Conversion_Types\Conversion Types\Day 8\MVVMTest\Images\Albums";
+            Images.Add(new ImageModel($@"{albumPath}\daily_mix_1.png", "Album 1"));
+            Images.Add(new ImageModel($@"{albumPath}\daily_mix_2.png", "Album 2"));
+            Images.Add(new ImageModel($@"{albumPath}\daily_mix_3.png", "Album 3"));
+            Images.Add(new ImageModel($@"{albumPath}\daily_mix_4.png", "Album 4"));
+            Images.Add(new ImageModel($@"{albumPath}\daily_mix_5.png", "Album 5"));
         }
 
         public string FirstName

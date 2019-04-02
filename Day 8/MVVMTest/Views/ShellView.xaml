@@ -28,7 +28,7 @@
                   SelectedItem="{Binding Path=SelectedImage, Mode=OneWayToSource}" BorderBrush="{x:Null}">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:ImageModel}">
-                        <Image Margin="3" MaxHeight="50" MaxWidth="50" Source="{Binding Source}" />
+                        <Image Margin="3" MaxHeight="75" MaxWidth="75" Source="{Binding Source}" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

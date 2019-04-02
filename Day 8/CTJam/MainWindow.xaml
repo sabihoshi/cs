@@ -35,10 +35,10 @@
                 x:Name="PlayerStatus"  Content="Play" Click="ToggleStateButton"
                 Margin="10" Width="50" />
         <Image Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="6"
-               x:Name="Image" />
+               x:Name="MusicImage" />
 
         <!--> Row 2 <-->
-        <Slider Grid.Column="1" Minimum="0" Maximum="{Binding CurrentTrackLength, Mode=OneWay}" Value="{Binding CurrentTrackPosition, Mode=TwoWay}" x:Name="SeekbarControl" VerticalAlignment="Center">
+        <Slider Grid.Column="1" Grid.Row="3" Minimum="0" Maximum="{Binding CurrentTrackLength, Mode=OneWay}" Value="{Binding CurrentTrackPosition, Mode=TwoWay}" x:Name="SeekbarControl" VerticalAlignment="Center">
         </Slider>
     </Grid>
 </Window>

@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -78,11 +79,25 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Bootstrapper.cs" />
+    <Compile Include="Models\AlbumModel.cs" />
     <Compile Include="NAudioWrapper\AudioPlayer.cs" />
     <Compile Include="ViewModels\MusicPlayerViewModel.cs" />
     <Compile Include="Views\MusicPlayerView.xaml.cs">
       <DependentUpon>MusicPlayerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WaveFormRendererLib\AveragePeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\DecibelPeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\IPeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\MaxPeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\PeakInfo.cs" />
+    <Compile Include="WaveFormRendererLib\PeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\RmsPeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\SamplingPeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\SoundCloudBlockWaveFormSettings.cs" />
+    <Compile Include="WaveFormRendererLib\SoundCloudOriginalSettings.cs" />
+    <Compile Include="WaveFormRendererLib\StandardWaveFormRendererSettings.cs" />
+    <Compile Include="WaveFormRendererLib\WaveFormRenderer.cs" />
+    <Compile Include="WaveFormRendererLib\WaveFormRendererSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\PlayListModel.cs" />
@@ -113,9 +128,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Views\MusicPlayerView.xaml">
       <SubType>Designer</SubType>

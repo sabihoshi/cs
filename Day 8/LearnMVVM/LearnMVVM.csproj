@@ -59,6 +59,19 @@
     <Compile Include="Views\StudentView.xaml.cs">
       <DependentUpon>StudentView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WaveFormRendererLib\AveragePeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\DecibelPeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\IPeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\MaxPeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\PeakInfo.cs" />
+    <Compile Include="WaveFormRendererLib\PeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\RmsPeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\SamplingPeakProvider.cs" />
+    <Compile Include="WaveFormRendererLib\SoundCloudBlockWaveFormSettings.cs" />
+    <Compile Include="WaveFormRendererLib\SoundCloudOriginalSettings.cs" />
+    <Compile Include="WaveFormRendererLib\StandardWaveFormRendererSettings.cs" />
+    <Compile Include="WaveFormRendererLib\WaveFormRenderer.cs" />
+    <Compile Include="WaveFormRendererLib\WaveFormRendererSettings.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
