@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="Classes\Bootstrapper.cs" />
     <Compile Include="Models\AlbumModel.cs" />
+    <Compile Include="Models\Class1.cs" />
     <Compile Include="NAudioWrapper\AudioPlayer.cs" />
     <Compile Include="ViewModels\MusicPlayerViewModel.cs" />
     <Compile Include="Views\MusicPlayerView.xaml.cs">
