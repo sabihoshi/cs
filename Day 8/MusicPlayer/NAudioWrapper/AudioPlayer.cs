@@ -91,10 +91,7 @@ namespace MusicPlayer.NAudioWrapper
             {
                 _output.Pause();
 
-                if (PlaybackPaused != null)
-                {
-                    PlaybackPaused();
-                }
+                PlaybackPaused?.Invoke();
             }
         }
 
@@ -107,10 +104,7 @@ namespace MusicPlayer.NAudioWrapper
 
             _audioFileReader.Volume = (float)currentVolumeLevel;
 
-            if (PlaybackResumed != null)
-            {
-                PlaybackResumed();
-            }
+            PlaybackResumed?.Invoke();
         }
 
         public void SetPosition(double value)
@@ -131,10 +125,7 @@ namespace MusicPlayer.NAudioWrapper
 
         public void Stop()
         {
-            if (_output != null)
-            {
-                _output.Stop();
-            }
+            _output?.Stop();
         }
 
         public void TogglePlayPause(double currentVolumeLevel)
@@ -159,10 +150,7 @@ namespace MusicPlayer.NAudioWrapper
         private void _output_PlaybackStopped(object sender, StoppedEventArgs e)
         {
             Dispose();
-            if (PlaybackStopped != null)
-            {
-                PlaybackStopped();
-            }
+            PlaybackStopped?.Invoke();
         }
     }
 }

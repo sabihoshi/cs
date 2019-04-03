@@ -5,19 +5,20 @@ namespace MusicPlayer.ViewModels
 {
     public class MusicPlayerViewModel : Screen
     {
-        private BindableCollection<AlbumModel> _images = new BindableCollection<AlbumModel>();
-        private AlbumModel _selectedAlbumModel;
-        private TrackModel _track = new TrackModel();
+        private float                          _currentVolume = 1f;
+        private BindableCollection<AlbumModel> _images        = new BindableCollection<AlbumModel>();
+        private AlbumModel                     _selectedAlbumModel;
+        private TrackModel                     _track = new TrackModel();
 
         public MusicPlayerViewModel()
         {
             var albumPath =
-                @"C:\Users\ciit\source\repos\Conversion_Types\Conversion Types\Day 8\MVVMTest\Images\Albums";
-            Images.Add(new AlbumModel($@"{albumPath}\daily_mix_1.png", "Album 1"));
-            Images.Add(new AlbumModel($@"{albumPath}\daily_mix_2.png", "Album 2"));
-            Images.Add(new AlbumModel($@"{albumPath}\daily_mix_3.png", "Album 3"));
-            Images.Add(new AlbumModel($@"{albumPath}\daily_mix_4.png", "Album 4"));
-            Images.Add(new AlbumModel($@"{albumPath}\daily_mix_5.png", "Album 5"));
+                @"..\..\Images\Albums\";
+            Images.Add(new AlbumModel($@"{albumPath}daily_mix_1.png", "Album 1"));
+            Images.Add(new AlbumModel($@"{albumPath}daily_mix_2.png", "Album 2"));
+            Images.Add(new AlbumModel($@"{albumPath}daily_mix_3.png", "Album 3"));
+            Images.Add(new AlbumModel($@"{albumPath}daily_mix_4.png", "Album 4"));
+            Images.Add(new AlbumModel($@"{albumPath}daily_mix_5.png", "Album 5"));
         }
 
         public BindableCollection<AlbumModel> Images
@@ -27,6 +28,18 @@ namespace MusicPlayer.ViewModels
             {
                 _images = value;
                 NotifyOfPropertyChange(() => Images);
+            }
+        }
+
+        public float CurrentVolume
+        {
+            get => _currentVolume;
+            set
+            {
+                if (_currentVolume.Equals(value)) return;
+                _currentVolume = value;
+                _track?.SetVolume(CurrentVolume);
+                NotifyOfPropertyChange(() => CurrentVolume);
             }
         }
 
@@ -50,9 +63,19 @@ namespace MusicPlayer.ViewModels
             }
         }
 
+        public bool CanChangeVolumeSlider(TrackModel track)
+        {
+            return _track != null;
+        }
+
         public void OpenTrack()
         {
-            _track.LoadTrack();
+            _track.PlayAudio();
+            if (_track != null)
+            {
+                NotifyOfPropertyChange(() => Track);
+                NotifyOfPropertyChange(() => CurrentVolume);
+            }
         }
 
         public void PlayTrack()
