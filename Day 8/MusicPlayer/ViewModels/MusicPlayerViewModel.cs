@@ -7,12 +7,12 @@ namespace MusicPlayer.ViewModels
 {
     public class MusicPlayerViewModel : Screen
     {
-        private double _currentPosition;
-        private float _currentVolume = 1f;
-        private BindableCollection<AlbumModel> _images = new BindableCollection<AlbumModel>();
-        private PlaybackState _playbackState;
-        private AlbumModel _selectedAlbumModel;
-        private TrackModel _track = new TrackModel();
+        private double                         _currentPosition = 0d;
+        private float                          _currentVolume   = 1f;
+        private BindableCollection<AlbumModel> _images          = new BindableCollection<AlbumModel>();
+        private PlaybackState                  _playbackState;
+        private AlbumModel                     _selectedAlbumModel;
+        private TrackModel                     _track = new TrackModel();
 
         public MusicPlayerViewModel()
         {
@@ -23,6 +23,11 @@ namespace MusicPlayer.ViewModels
             Images.Add(new AlbumModel($@"{albumPath}\daily_mix_3.png", "Album 3"));
             Images.Add(new AlbumModel($@"{albumPath}\daily_mix_4.png", "Album 4"));
             Images.Add(new AlbumModel($@"{albumPath}\daily_mix_5.png", "Album 5"));
+        }
+
+        public bool CanChangeCurrentPosition()
+        {
+            return _track != null;
         }
 
         public double CurrentPosition
@@ -39,7 +44,7 @@ namespace MusicPlayer.ViewModels
         }
 
         public string CurrentPositionSeconds => TimeSpan.FromSeconds(CurrentPosition).ToString(@"mm\:ss");
-        public string TrackLengthSeconds => TimeSpan.FromSeconds(TrackLength).ToString(@"mm\:ss");
+        public string TrackLengthSeconds     => TimeSpan.FromSeconds(TrackLength).ToString(@"mm\:ss");
 
         public float CurrentVolume
         {
@@ -48,7 +53,7 @@ namespace MusicPlayer.ViewModels
             {
                 if (_currentVolume.Equals(value)) return;
                 _currentVolume = value;
-                _track?.SetVolume(CurrentVolume);
+                _track.SetVolume(CurrentVolume);
             }
         }
 
@@ -98,24 +103,21 @@ namespace MusicPlayer.ViewModels
 
         public void OpenTrack()
         {
-            _track?.OpenTrack();
-            if (_track != null)
-            {
-                NotifyOfPropertyChange(() => Track);
-                NotifyOfPropertyChange(() => CurrentVolume);
-                NotifyOfPropertyChange(() => TrackLength);
-                NotifyOfPropertyChange(() => TrackLengthSeconds);
-            }
-        }
-
-        public void PlayAudio()
-        {
-            _track?.OpenTrack();
+            if (_track.IsPlaying())
+                _track.Dispose();
+            _track.OpenTrack();
+            if (_track == null) return;
+            NotifyOfPropertyChange(() => Track);
+            NotifyOfPropertyChange(() => CurrentPosition);
+            NotifyOfPropertyChange(() => CurrentVolume);
+            NotifyOfPropertyChange(() => TrackLength);
+            NotifyOfPropertyChange(() => TrackLengthSeconds);
+            PlayTrack();    
         }
 
         public void PlayTrack()
         {
-            _track?.TogglePlayPause(CurrentVolume);
+            _track.TogglePlayPause(CurrentVolume);
             Task.Run(UpdateAudio);
         }
 

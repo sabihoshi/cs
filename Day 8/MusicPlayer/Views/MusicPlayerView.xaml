@@ -9,77 +9,108 @@
         mc:Ignorable="d"
         Title="MusicPlayerView" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="20" />
-        </Grid.ColumnDefinitions>
 
-        <Grid Column="1">
-            <ListBox Grid.Row="1" Grid.Column="1"
-                     x:Name="Images"
-                     SelectedItem="{Binding Path=SelectedAlbumModel, Mode=OneWayToSource}" BorderBrush="{x:Null}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:AlbumModel}">
-                        <Image Margin="3" MaxHeight="50" MaxWidth="50" Source="{Binding Source}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Grid>
-        <Grid Column="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="20" />
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <Grid Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="20" />
             </Grid.ColumnDefinitions>
+            <Grid Column="1">
+                <ListBox Grid.Row="1" Grid.Column="1"
+                     x:Name="Images"
+                     SelectedItem="{Binding Path=SelectedAlbumModel, Mode=OneWayToSource}" BorderBrush="{x:Null}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:AlbumModel}">
+                            <Image Margin="3" MaxHeight="50" MaxWidth="50" Source="{Binding Source}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <Grid Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
 
-            <!--Styling-->
-            <Grid.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="MinWidth" Value="50" />
-                    <Setter Property="Margin" Value="5" />
-                </Style>
-            </Grid.Resources>
+                <!--Styling-->
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="MinWidth" Value="50" />
+                        <Setter Property="Margin" Value="5" />
+                    </Style>
+                </Grid.Resources>
 
-            <!--Row 1-->
-            <Button Grid.Row="1" Grid.Column="1"
+                <!--Row 1-->
+                <Button Grid.Row="1" Grid.Column="1"
                     x:Name="OpenTrack"
                     Content="Open" />
-            <Button Grid.Row="1" Grid.Column="2"
+                <Button Grid.Row="1" Grid.Column="2"
                     x:Name="PlayTrack"
                     Content="Play" />
-            <Button Grid.Row="1" Grid.Column="3"
+                <Button Grid.Row="1" Grid.Column="3"
                     x:Name="MaximizeVolume"
                     Content="Max Volume" />
 
-            <!--Row 2-->
-            <Slider Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"
-                    Minimum="0" Maximum="1"
-                    Value="{Binding Path=CurrentVolume, Mode=TwoWay}" />
+                
 
-            <!--Row 3-->
-            <Slider Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
+                <!--Row 4-->
+            </Grid>
+        </Grid>
+
+        <Grid Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+
+
+            <TextBlock Grid.Column="1"
+                       MinWidth="30" Margin="0,0,0,5"
+                       HorizontalAlignment="Right"
+                       Text="{Binding Path=CurrentPositionSeconds, Mode=OneWay}" />
+
+            <Slider Grid.Column="2"
+                    IsMoveToPointEnabled="True"
                     Minimum="0" Maximum="{Binding Path=TrackLength, Mode=OneWay}"
                     Value="{Binding Path=CurrentPosition, Mode=TwoWay}" />
 
-            <!--Row 4-->
-            <TextBlock Grid.Row="4" Grid.Column="1"
-                       Text="{Binding Path=CurrentPositionSeconds, Mode=OneWay}" />
-            <TextBlock Grid.Row="4" Grid.Column="3"
-                       Text="{Binding Path=TrackLengthSeconds, Mode=OneWay}"/>
+            <TextBlock  Grid.Column="3"
+                        MinWidth="30" Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                       Text="{Binding Path=TrackLengthSeconds, Mode=OneWay}" />
+
+            <Slider Grid.Column="4" 
+                    Width="100"
+                    IsMoveToPointEnabled="True"
+                    Minimum="0" Maximum="1"
+                    Value="{Binding Path=CurrentVolume, Mode=TwoWay}" />
+
         </Grid>
     </Grid>
 </Window>

@@ -27,7 +27,7 @@ namespace Question_2._04
                 int v = y / 5;
                 int i = y % 5;
 
-                string M = new String('M', m);
+                string M = new string('M', m);
                 string D = new string('D', d);
                 string C = new string('C', c);
                 string L = new string('L', l);
@@ -45,6 +45,7 @@ namespace Question_2._04
                     else
                         C = "CD";
                 }
+
                 if (x == 4)
                 {
                     if (l == 1)
@@ -55,6 +56,7 @@ namespace Question_2._04
                     else
                         X = "XL";
                 }
+
                 if (i == 4)
                 {
                     if (v == 1)
@@ -65,8 +67,10 @@ namespace Question_2._04
                     else
                         I = "IV";
                 }
+
                 Console.WriteLine(M + D + C + L + X + V + I);
             }
+
             Console.ReadKey();
         }
     }
