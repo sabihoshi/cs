@@ -1,34 +1,43 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using Microsoft.Win32;
 using MusicPlayer.Models;
 
 namespace MusicPlayer.ViewModels
 {
     public class MusicPlayerViewModel : Screen
     {
-        private double                         _currentPosition = 0d;
-        private float                          _currentVolume   = 1f;
-        private BindableCollection<AlbumModel> _images          = new BindableCollection<AlbumModel>();
-        private PlaybackState                  _playbackState;
-        private AlbumModel                     _selectedAlbumModel;
-        private TrackModel                     _track = new TrackModel();
+        private double        _currentPosition;
+        private float         _currentVolume = 1f;
+        private PlaybackState _playbackState;
+
+        private string                            _playContent;
+        private BindableCollection<PlaylistModel> _playlist = new BindableCollection<PlaylistModel>();
+        private PlaylistModel                     _selectedPlaylist;
+        private TrackModel                        _selectedTrack;
+
+        private double _trackLength;
 
         public MusicPlayerViewModel()
         {
+            PlayContent = "Play";
             var albumPath =
                 @"..\..\Images\Albums";
-            Images.Add(new AlbumModel($@"{albumPath}\daily_mix_1.png", "Album 1"));
-            Images.Add(new AlbumModel($@"{albumPath}\daily_mix_2.png", "Album 2"));
-            Images.Add(new AlbumModel($@"{albumPath}\daily_mix_3.png", "Album 3"));
-            Images.Add(new AlbumModel($@"{albumPath}\daily_mix_4.png", "Album 4"));
-            Images.Add(new AlbumModel($@"{albumPath}\daily_mix_5.png", "Album 5"));
+            Playlist.Add(new PlaylistModel($@"{albumPath}\daily_mix_1.png", "Album 1")
+            {
+                Songs = new BindableCollection<TrackModel>
+                {
+                    new TrackModel(@"D:\Osu!\[AMV]ONEWAYS - The Boy Who Murdered Love.mp3")
+                }
+            });
+            Playlist.Add(new PlaylistModel($@"{albumPath}\daily_mix_2.png", "Album 2"));
+            Playlist.Add(new PlaylistModel($@"{albumPath}\daily_mix_3.png", "Album 3"));
+            Playlist.Add(new PlaylistModel($@"{albumPath}\daily_mix_4.png", "Album 4"));
+            Playlist.Add(new PlaylistModel($@"{albumPath}\daily_mix_5.png", "Album 5"));
         }
 
-        public bool CanChangeCurrentPosition()
-        {
-            return _track != null;
-        }
+        public BindableCollection<TrackModel> Tracks { get; set; }
 
         public double CurrentPosition
         {
@@ -37,14 +46,25 @@ namespace MusicPlayer.ViewModels
             {
                 if (value.Equals(_currentPosition)) return;
                 _currentPosition = value;
-                _track.SetPosition(CurrentPosition);
+                _selectedTrack.SetPosition(CurrentPosition);
                 NotifyOfPropertyChange(() => CurrentPosition);
                 NotifyOfPropertyChange(() => CurrentPositionSeconds);
             }
         }
 
-        public string CurrentPositionSeconds => TimeSpan.FromSeconds(CurrentPosition).ToString(@"mm\:ss");
-        public string TrackLengthSeconds     => TimeSpan.FromSeconds(TrackLength).ToString(@"mm\:ss");
+        public double TrackLength
+        {
+            get => _trackLength;
+            set
+            {
+                _trackLength = value;
+                NotifyOfPropertyChange(() => TrackLength);
+                NotifyOfPropertyChange(() => TrackLengthSeconds);
+            }
+        }
+
+        public string CurrentPositionSeconds => SelectedTrack?.GetPositionInSeconds;
+        public string TrackLengthSeconds     => SelectedTrack?.GetLengthInSeconds;
 
         public float CurrentVolume
         {
@@ -53,71 +73,90 @@ namespace MusicPlayer.ViewModels
             {
                 if (_currentVolume.Equals(value)) return;
                 _currentVolume = value;
-                _track.SetVolume(CurrentVolume);
+                _selectedTrack.SetVolume(CurrentVolume);
             }
         }
 
-        public BindableCollection<AlbumModel> Images
+        public BindableCollection<PlaylistModel> Playlist
         {
-            get => _images;
+            get => _playlist;
             set
             {
-                _images = value;
-                NotifyOfPropertyChange(() => Images);
+                _playlist = value;
+                NotifyOfPropertyChange(() => Playlist);
             }
         }
 
-        public AlbumModel SelectedAlbumModel
+        public PlaylistModel SelectedPlaylist
         {
-            get => _selectedAlbumModel;
+            get => _selectedPlaylist;
             set
             {
-                _selectedAlbumModel = value;
-                NotifyOfPropertyChange(() => SelectedAlbumModel);
+                _selectedPlaylist = value;
+                NotifyOfPropertyChange(() => SelectedPlaylist);
             }
         }
 
-        public TrackModel Track
+        public TrackModel SelectedTrack
         {
-            get => _track;
+            get => _selectedTrack;
             set
             {
-                _track = value;
-                NotifyOfPropertyChange(() => Track);
+                _selectedTrack?.Dispose();
+                _selectedTrack = value;
+                if (_selectedTrack == null)
+                    return;
+                _selectedTrack.LoadTrack();
+                if (SelectedTrack.IsReady)
+                {
+                    TrackLength = SelectedTrack.GetLength;
+                    NotifyOfPropertyChange(() => CanPlayTrack);
+                    SelectedTrack.TogglePlayPause(CurrentVolume);
+                    _ = UpdateAudio();
+                }
             }
         }
 
-        public double TrackLength => _track.GetLengthInSeconds();
-
-        public bool CanChangeVolumeSlider(TrackModel track)
+        public string PlayContent
         {
-            return _track != null;
+            get => _playContent;
+            set
+            {
+                _playContent = value;
+                NotifyOfPropertyChange(PlayContent);
+            }
         }
+
+        public bool CanPlayTrack => SelectedTrack?.IsReady ?? false;
 
         public void MaximizeVolume()
         {
             CurrentVolume = 1f;
 
             NotifyOfPropertyChange(() => CurrentVolume);
+            NotifyOfPropertyChange(() => SelectedTrack);
         }
 
         public void OpenTrack()
         {
-            if (_track.IsPlaying())
-                _track.Dispose();
-            _track.OpenTrack();
-            if (_track == null) return;
-            NotifyOfPropertyChange(() => Track);
-            NotifyOfPropertyChange(() => CurrentPosition);
-            NotifyOfPropertyChange(() => CurrentVolume);
-            NotifyOfPropertyChange(() => TrackLength);
-            NotifyOfPropertyChange(() => TrackLengthSeconds);
-            PlayTrack();    
+            if (_selectedTrack?.IsPlaying ?? false) _selectedTrack.Dispose();
+
+            var fileDialog = new OpenFileDialog();
+            try
+            {
+                if (fileDialog.ShowDialog() != null)
+                    SelectedTrack = new TrackModel(fileDialog.FileName);
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
 
         public void PlayTrack()
         {
-            _track.TogglePlayPause(CurrentVolume);
+            _selectedTrack.TogglePlayPause(CurrentVolume);
+            PlayContent = _selectedTrack.IsPlaying ? "Pause" : "Play";
             Task.Run(UpdateAudio);
         }
 
@@ -125,8 +164,7 @@ namespace MusicPlayer.ViewModels
         {
             while (_playbackState == PlaybackState.Playing)
             {
-                CurrentPosition = _track.GetPositionInSeconds();
-                NotifyOfPropertyChange(() => CurrentPositionSeconds);
+                CurrentPosition = _selectedTrack.GetPosition;
                 await Task.Delay(500);
             }
         }

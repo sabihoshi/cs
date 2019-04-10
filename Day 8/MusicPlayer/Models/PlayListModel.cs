@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Caliburn.Micro;
 
 namespace MusicPlayer.Models
 {
-    public class PlayListModel
+    public class PlaylistModel
     {
-        public TrackModel[] Tracks { get; set; }
+        public PlaylistModel(string filename, string name)
+        {
+            ImagePath = filename;
+            Name      = name;
+        }
+
+        public string                         Name      { get; set; }
+        public string                         ImagePath { get; set; }
+        public BindableCollection<TrackModel> Songs     { get; set; }
     }
 }

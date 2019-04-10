@@ -50,6 +50,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="policy.2.0.taglib-sharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
+      <HintPath>..\packages\taglib.2.1.0.0\lib\policy.2.0.taglib-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -65,6 +68,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
+      <HintPath>..\packages\taglib.2.1.0.0\lib\taglib-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -79,8 +85,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Bootstrapper.cs" />
-    <Compile Include="Models\AlbumModel.cs" />
-    <Compile Include="Models\Class1.cs" />
+    <Compile Include="Models\PlaylistModel.cs" />
     <Compile Include="NAudioWrapper\AudioPlayer.cs" />
     <Compile Include="ViewModels\MusicPlayerViewModel.cs" />
     <Compile Include="Views\MusicPlayerView.xaml.cs">
@@ -101,7 +106,6 @@
     <Compile Include="WaveFormRendererLib\WaveFormRendererSettings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\PlayListModel.cs" />
     <Compile Include="Models\TrackModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -149,6 +153,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Albums\daily_mix_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Playlists\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

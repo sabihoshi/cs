@@ -9,16 +9,16 @@ namespace WaveFormRendererLib
         public Image Render(string selectedFile, WaveFormRendererSettings settings)
         {
             return Render(selectedFile, new MaxPeakProvider(), settings);
-        }        
+        }
 
         public Image Render(string selectedFile, IPeakProvider peakProvider, WaveFormRendererSettings settings)
         {
             using (var reader = new AudioFileReader(selectedFile))
             {
-                int bytesPerSample = (reader.WaveFormat.BitsPerSample / 8);
-                var samples = reader.Length / (bytesPerSample);
-                var samplesPerPixel = (int)(samples / settings.Width);
-                var stepSize = settings.PixelsPerPeak + settings.SpacerPixels;
+                int bytesPerSample  = (reader.WaveFormat.BitsPerSample / 8);
+                var samples         = reader.Length / (bytesPerSample);
+                var samplesPerPixel = (int) (samples / settings.Width);
+                var stepSize        = settings.PixelsPerPeak + settings.SpacerPixels;
                 peakProvider.Init(reader, samplesPerPixel * stepSize);
                 return Render(peakProvider, settings);
             }
@@ -34,9 +34,15 @@ namespace WaveFormRendererLib
             {
                 b.MakeTransparent();
             }
+
             using (var g = Graphics.FromImage(b))
+            using (var backgroundBrush = settings.BackgroundBrush.Clone() as Brush)
+            using (var topPeakPen = settings.TopPeakPen.Clone() as Pen)
+            using (var bottomPeakPen = settings.BottomPeakPen.Clone() as Pen)
+            //using (var topSpacerPen = settings.TopSpacerPen.Clone() as Pen)
+            //using (var bottomSpacerPen = settings.BottomSpacerPen.Clone() as Pen)
             {
-                g.FillRectangle(settings.BackgroundBrush, 0,0,b.Width,b.Height);
+                g.FillRectangle(backgroundBrush, 0, 0, b.Width, b.Height);
                 var midPoint = settings.TopHeight;
 
                 int x = 0;
@@ -44,13 +50,13 @@ namespace WaveFormRendererLib
                 while (x < settings.Width)
                 {
                     var nextPeak = peakProvider.GetNextPeak();
-                    
+
                     for (int n = 0; n < settings.PixelsPerPeak; n++)
                     {
                         var lineHeight = settings.TopHeight * currentPeak.Max;
-                        g.DrawLine(settings.TopPeakPen, x, midPoint, x, midPoint - lineHeight);
+                        g.DrawLine(topPeakPen, x, midPoint, x, midPoint - lineHeight);
                         lineHeight = settings.BottomHeight * currentPeak.Min;
-                        g.DrawLine(settings.BottomPeakPen, x, midPoint, x, midPoint - lineHeight);
+                        g.DrawLine(bottomPeakPen, x, midPoint, x, midPoint - lineHeight);
                         x++;
                     }
 
@@ -63,15 +69,15 @@ namespace WaveFormRendererLib
                         var lineHeight = settings.TopHeight * max;
                         g.DrawLine(settings.TopSpacerPen, x, midPoint, x, midPoint - lineHeight);
                         lineHeight = settings.BottomHeight * min;
-                        g.DrawLine(settings.BottomSpacerPen, x, midPoint, x, midPoint - lineHeight); 
+                        g.DrawLine(settings.BottomSpacerPen, x, midPoint, x, midPoint - lineHeight);
                         x++;
                     }
+
                     currentPeak = nextPeak;
                 }
             }
+
             return b;
         }
-
-
     }
 }

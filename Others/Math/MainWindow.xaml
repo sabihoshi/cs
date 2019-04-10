@@ -4,11 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Math"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
-
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
             <RowDefinition Height="Auto" />
@@ -21,19 +20,47 @@
                 <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="20" />
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Column="1"
+            <TextBox Grid.Column="1" Margin="5"
                      x:Name="Population"
                      MinWidth="100" />
+
+            <CheckBox Grid.Column="2" Margin="5"
+                      IsChecked="True"
+                      Content="Replacement"
+                      x:Name="Replacement" />
+
+            <CheckBox Grid.Column="3" Margin="5"
+                      IsChecked="True"
+                      Content="Combine"
+                      x:Name="Combine" />
+
+            <xctk:IntegerUpDown Grid.Column="4" Margin="5"
+                                DefaultValue="2" Value="2"
+                                Minimum="2" Maximum="100"
+                                Name="SampleSize" />
+
+            <Button Grid.Column="5" Margin="4"
+                    Content="Calculate"
+                    Click="ButtonBase_OnClick" />
         </Grid>
 
         <Grid Row="2">
-            <DataGrid></DataGrid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="12*" />
+                <ColumnDefinition Width="35*" />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Column="1" Margin="5"
+                      ItemsSource="{Binding Path=Population, Mode=OneWay}"
+                      x:Name="SDGrid" Grid.ColumnSpan="2" IsSynchronizedWithCurrentItem="False" />
         </Grid>
     </Grid>
 </Window>

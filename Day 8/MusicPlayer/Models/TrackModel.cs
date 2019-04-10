@@ -1,18 +1,42 @@
 ﻿using System;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
-using Microsoft.Win32;
-using MusicPlayer.NAudioWrapper;
 using NAudio.Wave;
+using TagLib;
 using WaveFormRendererLib;
+using PathIO = System.IO.Path;
 
 namespace MusicPlayer.Models
 {
     public class TrackModel
     {
         private AudioFileReader _audioFileReader;
-        private DirectSoundOut _output;
+        private DirectSoundOut  _output;
 
+        public TrackModel(string path, string name)
+        {
+            Name = name ?? PathIO.GetFileName(path);
+            Path = path;
+        }
+
+        public TrackModel(string path) : this(path, File.Create(path).Tag.Title) { }
+
+        public string Name { get; set; }
+        public string Path { get; set; }
+
+        public double GetLength => _audioFileReader?.TotalTime.TotalSeconds ?? 0;
+
+        public string GetLengthInSeconds =>
+            TimeSpan.FromSeconds(_audioFileReader?.TotalTime.TotalSeconds ?? 0).ToString(@"mm\:ss");
+
+        public string GetPositionInSeconds =>
+            TimeSpan.FromSeconds(_audioFileReader?.CurrentTime.TotalSeconds ?? 0).ToString(@"mm\:ss");
+
+        public double GetPosition => _audioFileReader?.CurrentTime.TotalSeconds ?? 0;
+
+        public bool IsReady => _output != null;
+
+        public bool IsPlaying => _output?.PlaybackState == PlaybackState.Playing;
 
         public void Dispose()
         {
@@ -31,49 +55,20 @@ namespace MusicPlayer.Models
             }
         }
 
-        public double GetLengthInSeconds()
-        {
-            if (_audioFileReader != null)
-                return _audioFileReader.TotalTime.TotalSeconds;
-            return 0;
-        }
-
-        public double GetPositionInSeconds()
-        {
-            return _audioFileReader?.CurrentTime.TotalSeconds ?? 0;
-        }
-
         public float GetVolume()
         {
-            if (_audioFileReader != null) return _audioFileReader.Volume;
-
-            return 1;
+            return _audioFileReader?.Volume ?? 1;
         }
-        public void OpenTrack()
-        {
-            var fileName = "";
-            var openFileDialog1 = new OpenFileDialog();
-            try
-            {
-                if (openFileDialog1.ShowDialog() != null) fileName = openFileDialog1.FileName;
-            }
-            catch (ArgumentNullException)
-            {
-                return;
-            }
 
-            _audioFileReader = new AudioFileReader(fileName) { Volume = 1f };
-            _output = new DirectSoundOut(200);
+        public void LoadTrack()
+        {
+            _ = RenderAudio(Path);
+
+            _audioFileReader = new AudioFileReader(Path) {Volume = 1f};
+            _output          = new DirectSoundOut(200);
             var wc = new WaveChannel32(_audioFileReader);
             wc.PadWithZeroes = false;
             _output.Init(wc);
-
-            _ = RenderAudio(fileName);
-        }
-
-        public bool IsPlaying()
-        {
-            return _output?.PlaybackState == PlaybackState.Playing;
         }
 
         public void Pause()
@@ -88,22 +83,23 @@ namespace MusicPlayer.Models
 
         public async Task RenderAudio(string fileName)
         {
-            var maxPeakProvider = new MaxPeakProvider();
-            var rmsPeakProvider = new RmsPeakProvider(200); // e.g. 200
+            var maxPeakProvider      = new MaxPeakProvider();
+            var rmsPeakProvider      = new RmsPeakProvider(200);      // e.g. 200
             var samplingPeakProvider = new SamplingPeakProvider(200); // e.g. 200
-            var averagePeakProvider = new AveragePeakProvider(4); // e.g. 4
+            var averagePeakProvider  = new AveragePeakProvider(4);    // e.g. 4
 
             var rendererSettings = new StandardWaveFormRendererSettings();
-            rendererSettings.Width = 1080;
-            rendererSettings.TopHeight = 64;
+            rendererSettings.Width        = 1080;
+            rendererSettings.TopHeight    = 64;
             rendererSettings.BottomHeight = 64;
 
-            // rendererSettings.BackgroundImage = new Bitmap(@"C:\Users\ciit\Pictures\Konachan.com - 218504 arima_kousei a-shacho blonde_hair dark glasses instrument male miyazono_kaori piano shigatsu_wa_kimi_no_uso tree violin.jpg");
-
             var renderer = new WaveFormRenderer();
-            var image = await Task.Run(() => renderer.Render(fileName, averagePeakProvider, rendererSettings));
 
-            image.Save(@"../render.png", ImageFormat.Png);
+
+            rendererSettings.BackgroundBrush.Clone();
+
+            var image = await Task.Run(() => renderer.Render(fileName, averagePeakProvider, rendererSettings));
+            image.Save($@"../{PathIO.GetFileNameWithoutExtension(fileName)}.png", ImageFormat.Png);
         }
 
         public void SetPosition(double value)
