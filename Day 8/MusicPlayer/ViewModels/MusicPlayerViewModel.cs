@@ -8,22 +8,19 @@ namespace MusicPlayer.ViewModels
 {
     public class MusicPlayerViewModel : Screen
     {
-        private double        _currentPosition;
-        private float         _currentVolume = 1f;
-        private PlaybackState _playbackState;
-
+        private double                            _currentPosition;
+        private float                             _currentVolume = 1f;
+        private PlaybackState                     _playbackState;
         private string                            _playContent;
         private BindableCollection<PlaylistModel> _playlist = new BindableCollection<PlaylistModel>();
         private PlaylistModel                     _selectedPlaylist;
         private TrackModel                        _selectedTrack;
-
-        private double _trackLength;
+        private double                            _trackLength;
 
         public MusicPlayerViewModel()
         {
             PlayContent = "Play";
-            var albumPath =
-                @"..\..\Images\Albums";
+            var albumPath = @"..\..\Images\Albums";
             Playlist.Add(new PlaylistModel($@"{albumPath}\daily_mix_1.png", "Album 1")
             {
                 Songs = new BindableCollection<TrackModel>
@@ -41,12 +38,12 @@ namespace MusicPlayer.ViewModels
 
         public double CurrentPosition
         {
-            get => _currentPosition;
+            get => CurrentPosition1;
             set
             {
-                if (value.Equals(_currentPosition)) return;
-                _currentPosition = value;
-                _selectedTrack.SetPosition(CurrentPosition);
+                if (value.Equals(CurrentPosition1)) return;
+                CurrentPosition1 = value;
+                SelectedTrack1.SetPosition(CurrentPosition);
                 NotifyOfPropertyChange(() => CurrentPosition);
                 NotifyOfPropertyChange(() => CurrentPositionSeconds);
             }
@@ -54,10 +51,10 @@ namespace MusicPlayer.ViewModels
 
         public double TrackLength
         {
-            get => _trackLength;
+            get => TrackLength1;
             set
             {
-                _trackLength = value;
+                TrackLength1 = value;
                 NotifyOfPropertyChange(() => TrackLength);
                 NotifyOfPropertyChange(() => TrackLengthSeconds);
             }
@@ -68,50 +65,49 @@ namespace MusicPlayer.ViewModels
 
         public float CurrentVolume
         {
-            get => _currentVolume;
+            get => CurrentVolume1;
             set
             {
-                if (_currentVolume.Equals(value)) return;
-                _currentVolume = value;
-                _selectedTrack.SetVolume(CurrentVolume);
+                if (CurrentVolume1.Equals(value)) return;
+                CurrentVolume1 = value;
+                SelectedTrack1.SetVolume(CurrentVolume);
             }
         }
 
         public BindableCollection<PlaylistModel> Playlist
         {
-            get => _playlist;
+            get => Playlist1;
             set
             {
-                _playlist = value;
+                Playlist1 = value;
                 NotifyOfPropertyChange(() => Playlist);
             }
         }
 
         public PlaylistModel SelectedPlaylist
         {
-            get => _selectedPlaylist;
+            get => SelectedPlaylist1;
             set
             {
-                _selectedPlaylist = value;
+                SelectedPlaylist1 = value;
                 NotifyOfPropertyChange(() => SelectedPlaylist);
             }
         }
 
         public TrackModel SelectedTrack
         {
-            get => _selectedTrack;
+            get => SelectedTrack1;
             set
             {
-                _selectedTrack?.Dispose();
-                _selectedTrack = value;
-                if (_selectedTrack == null)
-                    return;
-                _selectedTrack.LoadTrack();
+                SelectedTrack1?.Dispose();
+                SelectedTrack1 = value;
+                if (SelectedTrack1 == null) return;
+                SelectedTrack1.LoadTrack();
                 if (SelectedTrack.IsReady)
                 {
                     TrackLength = SelectedTrack.GetLength;
                     NotifyOfPropertyChange(() => CanPlayTrack);
-                    SelectedTrack.TogglePlayPause(CurrentVolume);
+                    SelectedTrack.TogglePlayPause();
                     _ = UpdateAudio();
                 }
             }
@@ -119,33 +115,78 @@ namespace MusicPlayer.ViewModels
 
         public string PlayContent
         {
-            get => _playContent;
+            get => PlayContent1;
             set
             {
-                _playContent = value;
+                PlayContent1 = value;
                 NotifyOfPropertyChange(PlayContent);
             }
         }
 
         public bool CanPlayTrack => SelectedTrack?.IsReady ?? false;
 
+        public double CurrentPosition1
+        {
+            get => _currentPosition;
+            set => _currentPosition = value;
+        }
+
+        public float CurrentVolume1
+        {
+            get => _currentVolume;
+            set => _currentVolume = value;
+        }
+
+        public string PlayContent1
+        {
+            get => _playContent;
+            set => _playContent = value;
+        }
+
+        public BindableCollection<PlaylistModel> Playlist1
+        {
+            get => _playlist;
+            set => _playlist = value;
+        }
+
+        public PlaylistModel SelectedPlaylist1
+        {
+            get => _selectedPlaylist;
+            set => _selectedPlaylist = value;
+        }
+
+        public TrackModel SelectedTrack1
+        {
+            get => _selectedTrack;
+            set => _selectedTrack = value;
+        }
+
+        public double TrackLength1
+        {
+            get => _trackLength;
+            set => _trackLength = value;
+        }
+
+        private PlaybackState PlaybackState1
+        {
+            get => _playbackState;
+            set => _playbackState = value;
+        }
+
         public void MaximizeVolume()
         {
             CurrentVolume = 1f;
-
             NotifyOfPropertyChange(() => CurrentVolume);
             NotifyOfPropertyChange(() => SelectedTrack);
         }
 
         public void OpenTrack()
         {
-            if (_selectedTrack?.IsPlaying ?? false) _selectedTrack.Dispose();
-
+            if (SelectedTrack1?.IsPlaying ?? false) SelectedTrack1.Dispose();
             var fileDialog = new OpenFileDialog();
             try
             {
-                if (fileDialog.ShowDialog() != null)
-                    SelectedTrack = new TrackModel(fileDialog.FileName);
+                if (fileDialog.ShowDialog() != null) SelectedTrack = new TrackModel(fileDialog.FileName);
             }
             catch (Exception)
             {
@@ -155,16 +196,16 @@ namespace MusicPlayer.ViewModels
 
         public void PlayTrack()
         {
-            _selectedTrack.TogglePlayPause(CurrentVolume);
-            PlayContent = _selectedTrack.IsPlaying ? "Pause" : "Play";
+            SelectedTrack1.TogglePlayPause();
+            PlayContent = SelectedTrack1.IsPlaying ? "Pause" : "Play";
             Task.Run(UpdateAudio);
         }
 
         private async Task UpdateAudio()
         {
-            while (_playbackState == PlaybackState.Playing)
+            while (PlaybackState1 == PlaybackState.Playing)
             {
-                CurrentPosition = _selectedTrack.GetPosition;
+                CurrentPosition = SelectedTrack1.GetPosition;
                 await Task.Delay(500);
             }
         }
