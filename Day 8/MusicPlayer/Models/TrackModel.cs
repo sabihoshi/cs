@@ -22,7 +22,7 @@ namespace MusicPlayer.Models
         public string   Title     { get; set; }
         public string   Path      { get; set; }
         public double   GetLength => AudioFileReader?.TotalTime.TotalSeconds ?? 0;
-
+        public PlaybackState PlaybackState => Output?.PlaybackState ?? PlaybackState.Stopped;
         public string GetLengthInSeconds =>
             TimeSpan.FromSeconds(AudioFileReader?.TotalTime.TotalSeconds ?? 0).ToString(@"mm\:ss");
 

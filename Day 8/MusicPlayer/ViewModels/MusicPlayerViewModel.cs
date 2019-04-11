@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using MusicPlayer.Models;
+using NAudio.Wave;
 
 namespace MusicPlayer.ViewModels
 {
@@ -10,7 +11,6 @@ namespace MusicPlayer.ViewModels
     {
         private double                            _currentPosition;
         private float                             _currentVolume = 1f;
-        private PlaybackState                     _playbackState;
         private string                            _playContent;
         private BindableCollection<PlaylistModel> _playlist = new BindableCollection<PlaylistModel>();
         private PlaylistModel                     _selectedPlaylist;
@@ -38,12 +38,12 @@ namespace MusicPlayer.ViewModels
 
         public double CurrentPosition
         {
-            get => CurrentPosition1;
+            get => _currentPosition;
             set
             {
-                if (value.Equals(CurrentPosition1)) return;
-                CurrentPosition1 = value;
-                SelectedTrack1.SetPosition(CurrentPosition);
+                if (value.Equals(_currentPosition)) return;
+                _currentPosition = value;
+                SelectedTrack.SetPosition(CurrentPosition);
                 NotifyOfPropertyChange(() => CurrentPosition);
                 NotifyOfPropertyChange(() => CurrentPositionSeconds);
             }
@@ -51,10 +51,10 @@ namespace MusicPlayer.ViewModels
 
         public double TrackLength
         {
-            get => TrackLength1;
+            get => _trackLength;
             set
             {
-                TrackLength1 = value;
+                _trackLength = value;
                 NotifyOfPropertyChange(() => TrackLength);
                 NotifyOfPropertyChange(() => TrackLengthSeconds);
             }
@@ -65,44 +65,44 @@ namespace MusicPlayer.ViewModels
 
         public float CurrentVolume
         {
-            get => CurrentVolume1;
+            get => _currentVolume;
             set
             {
-                if (CurrentVolume1.Equals(value)) return;
-                CurrentVolume1 = value;
-                SelectedTrack1.SetVolume(CurrentVolume);
+                if (_currentVolume.Equals(value)) return;
+                _currentVolume = value;
+                SelectedTrack.SetVolume(CurrentVolume);
             }
         }
 
         public BindableCollection<PlaylistModel> Playlist
         {
-            get => Playlist1;
+            get => _playlist;
             set
             {
-                Playlist1 = value;
+                _playlist = value;
                 NotifyOfPropertyChange(() => Playlist);
             }
         }
 
         public PlaylistModel SelectedPlaylist
         {
-            get => SelectedPlaylist1;
+            get => _selectedPlaylist;
             set
             {
-                SelectedPlaylist1 = value;
+                _selectedPlaylist = value;
                 NotifyOfPropertyChange(() => SelectedPlaylist);
             }
         }
 
         public TrackModel SelectedTrack
         {
-            get => SelectedTrack1;
+            get => _selectedTrack;
             set
             {
-                SelectedTrack1?.Dispose();
-                SelectedTrack1 = value;
-                if (SelectedTrack1 == null) return;
-                SelectedTrack1.LoadTrack();
+                _selectedTrack?.Dispose();
+                _selectedTrack = value;
+                if (_selectedTrack == null) return;
+                _selectedTrack.LoadTrack();
                 if (SelectedTrack.IsReady)
                 {
                     TrackLength = SelectedTrack.GetLength;
@@ -115,63 +115,16 @@ namespace MusicPlayer.ViewModels
 
         public string PlayContent
         {
-            get => PlayContent1;
+            get => _playContent;
             set
             {
-                PlayContent1 = value;
+                _playContent = value;
                 NotifyOfPropertyChange(PlayContent);
             }
         }
 
         public bool CanPlayTrack => SelectedTrack?.IsReady ?? false;
 
-        public double CurrentPosition1
-        {
-            get => _currentPosition;
-            set => _currentPosition = value;
-        }
-
-        public float CurrentVolume1
-        {
-            get => _currentVolume;
-            set => _currentVolume = value;
-        }
-
-        public string PlayContent1
-        {
-            get => _playContent;
-            set => _playContent = value;
-        }
-
-        public BindableCollection<PlaylistModel> Playlist1
-        {
-            get => _playlist;
-            set => _playlist = value;
-        }
-
-        public PlaylistModel SelectedPlaylist1
-        {
-            get => _selectedPlaylist;
-            set => _selectedPlaylist = value;
-        }
-
-        public TrackModel SelectedTrack1
-        {
-            get => _selectedTrack;
-            set => _selectedTrack = value;
-        }
-
-        public double TrackLength1
-        {
-            get => _trackLength;
-            set => _trackLength = value;
-        }
-
-        private PlaybackState PlaybackState1
-        {
-            get => _playbackState;
-            set => _playbackState = value;
-        }
 
         public void MaximizeVolume()
         {
@@ -182,7 +135,7 @@ namespace MusicPlayer.ViewModels
 
         public void OpenTrack()
         {
-            if (SelectedTrack1?.IsPlaying ?? false) SelectedTrack1.Dispose();
+            if (SelectedTrack?.IsPlaying ?? false) SelectedTrack.Dispose();
             var fileDialog = new OpenFileDialog();
             try
             {
@@ -196,25 +149,18 @@ namespace MusicPlayer.ViewModels
 
         public void PlayTrack()
         {
-            SelectedTrack1.TogglePlayPause();
-            PlayContent = SelectedTrack1.IsPlaying ? "Pause" : "Play";
+            SelectedTrack.TogglePlayPause();
+            PlayContent = SelectedTrack.IsPlaying ? "Pause" : "Play";
             Task.Run(UpdateAudio);
         }
 
         private async Task UpdateAudio()
         {
-            while (PlaybackState1 == PlaybackState.Playing)
+            while (SelectedTrack.PlaybackState == PlaybackState.Playing)
             {
-                CurrentPosition = SelectedTrack1.GetPosition;
+                CurrentPosition = SelectedTrack.GetPosition;
                 await Task.Delay(500);
             }
-        }
-
-        private enum PlaybackState
-        {
-            Playing,
-            Stopped,
-            Paused
         }
     }
 }
