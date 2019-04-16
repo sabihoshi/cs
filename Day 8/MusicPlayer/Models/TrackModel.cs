@@ -10,19 +10,20 @@ namespace MusicPlayer.Models
 {
     public class TrackModel
     {
-        public TrackModel(string path, string title)
+        private TrackModel(string path, string title)
         {
             Title = title ?? PathIO.GetFileName(path);
-            Path  = path;
+            Path = path;
         }
 
         public TrackModel(string path) : this(path, File.Create(path).Tag.Title) { }
-        public TimeSpan Length    => File.Create(Path).Properties.Duration;
-        public string   Name      => $"{Title} ({Length:mm\\:ss})";
-        public string   Title     { get; set; }
-        public string   Path      { get; set; }
-        public double   GetLength => AudioFileReader?.TotalTime.TotalSeconds ?? 0;
-        public PlaybackState PlaybackState => Output?.PlaybackState ?? PlaybackState.Stopped;
+        public TimeSpan Length => File.Create(Path).Properties.Duration;
+        public string Name => $"{Title} ({Length:mm\\:ss})";
+        public string Title { get; set; }
+        public string Path { get; set; }
+        public double GetLength => AudioFileReader?.TotalTime.TotalSeconds ?? 0;
+        public PlaybackState PlaybackState => Output?.PlaybackState        ?? PlaybackState.Stopped;
+
         public string GetLengthInSeconds =>
             TimeSpan.FromSeconds(AudioFileReader?.TotalTime.TotalSeconds ?? 0).ToString(@"mm\:ss");
 
@@ -30,8 +31,8 @@ namespace MusicPlayer.Models
             TimeSpan.FromSeconds(AudioFileReader?.CurrentTime.TotalSeconds ?? 0).ToString(@"mm\:ss");
 
         public double GetPosition => AudioFileReader?.CurrentTime.TotalSeconds ?? 0;
-        public bool   IsReady     => Output                != null;
-        public bool   IsPlaying   => Output?.PlaybackState == PlaybackState.Playing;
+        public bool IsReady => Output                  != null;
+        public bool IsPlaying => Output?.PlaybackState == PlaybackState.Playing;
 
         public AudioFileReader AudioFileReader { get; set; }
 
@@ -58,13 +59,12 @@ namespace MusicPlayer.Models
             return AudioFileReader?.Volume ?? 1;
         }
 
-        public async void LoadTrack()
+        public void LoadTrack()
         {
-            _               = RenderAudio(Path);
+            _ = RenderAudioAsync(Path);
             AudioFileReader = new AudioFileReader(Path) {Volume = 1f};
-            Output          = new DirectSoundOut(200);
-            var wc = new WaveChannel32(AudioFileReader);
-            wc.PadWithZeroes = false;
+            Output = new DirectSoundOut(200);
+            var wc = new WaveChannel32(AudioFileReader) {PadWithZeroes = false};
             Output.Init(wc);
         }
 
@@ -78,19 +78,19 @@ namespace MusicPlayer.Models
             Output?.Play();
         }
 
-        public async Task RenderAudio(string fileName)
+        private static async Task RenderAudioAsync(string fileName)
         {
-            var maxPeakProvider      = new MaxPeakProvider();
-            var rmsPeakProvider      = new RmsPeakProvider(200);      // e.g. 200
-            var samplingPeakProvider = new SamplingPeakProvider(200); // e.g. 200
-            var averagePeakProvider  = new AveragePeakProvider(4);    // e.g. 4
-            var rendererSettings     = new StandardWaveFormRendererSettings();
-            rendererSettings.Width        = 1080;
-            rendererSettings.TopHeight    = 64;
-            rendererSettings.BottomHeight = 64;
+            //var maxPeakProvider = new MaxPeakProvider();
+            //var rmsPeakProvider = new RmsPeakProvider(200);           // e.g. 200
+            //var samplingPeakProvider = new SamplingPeakProvider(200); // e.g. 200
+            var averagePeakProvider = new AveragePeakProvider(4);     // e.g. 4
+            var rendererSettings = new StandardWaveFormRendererSettings
+            {
+                Width = 1080, TopHeight = 64, BottomHeight = 64
+            };
             var renderer = new WaveFormRenderer();
-            rendererSettings.BackgroundBrush.Clone();
-            var image = await Task.Run(() => renderer.Render(fileName, averagePeakProvider, rendererSettings));
+            var image = await Task.Run(() => renderer.Render(fileName, averagePeakProvider, rendererSettings))
+                                  .ConfigureAwait(false);
             image.Save($@"../{PathIO.GetFileNameWithoutExtension(fileName)}.png", ImageFormat.Png);
         }
 
@@ -101,7 +101,7 @@ namespace MusicPlayer.Models
 
         public void SetVolume(float value)
         {
-            if (Output != null) AudioFileReader.Volume = value;
+            if (AudioFileReader != null) AudioFileReader.Volume = value;
         }
 
         public void Stop()

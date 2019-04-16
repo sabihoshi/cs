@@ -9,13 +9,13 @@ namespace MusicPlayer.ViewModels
 {
     public class MusicPlayerViewModel : Screen
     {
-        private double                            _currentPosition;
-        private float                             _currentVolume = 1f;
-        private string                            _playContent;
+        private double _currentPosition;
+        private float _currentVolume = 1f;
+        private string _playContent;
         private BindableCollection<PlaylistModel> _playlist = new BindableCollection<PlaylistModel>();
-        private PlaylistModel                     _selectedPlaylist;
-        private TrackModel                        _selectedTrack;
-        private double                            _trackLength;
+        private PlaylistModel _selectedPlaylist;
+        private TrackModel _selectedTrack;
+        private double _trackLength;
 
         public MusicPlayerViewModel()
         {
@@ -61,7 +61,7 @@ namespace MusicPlayer.ViewModels
         }
 
         public string CurrentPositionSeconds => SelectedTrack?.GetPositionInSeconds;
-        public string TrackLengthSeconds     => SelectedTrack?.GetLengthInSeconds;
+        public string TrackLengthSeconds => SelectedTrack?.GetLengthInSeconds;
 
         public float CurrentVolume
         {
@@ -70,7 +70,7 @@ namespace MusicPlayer.ViewModels
             {
                 if (_currentVolume.Equals(value)) return;
                 _currentVolume = value;
-                SelectedTrack.SetVolume(CurrentVolume);
+                SelectedTrack?.SetVolume(CurrentVolume);
             }
         }
 
@@ -99,9 +99,9 @@ namespace MusicPlayer.ViewModels
             get => _selectedTrack;
             set
             {
+                if (_selectedTrack?.Equals(value) ?? false) return;
                 _selectedTrack?.Dispose();
                 _selectedTrack = value;
-                if (_selectedTrack == null) return;
                 _selectedTrack.LoadTrack();
                 if (SelectedTrack.IsReady)
                 {
@@ -124,7 +124,6 @@ namespace MusicPlayer.ViewModels
         }
 
         public bool CanPlayTrack => SelectedTrack?.IsReady ?? false;
-
 
         public void MaximizeVolume()
         {
