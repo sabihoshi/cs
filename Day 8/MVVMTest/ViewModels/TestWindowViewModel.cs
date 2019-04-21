@@ -1,11 +1,9 @@
-﻿using System.Windows;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using MVVMTest.Models;
-using MVVMTest.Views;
 
 namespace MVVMTest.ViewModels
 {
-    public class ShellViewModel : Screen
+    internal class TestWindowViewModel : Screen
     {
         private string _firstName = "Kao";
         private BindableCollection<ImageModel> _images = new BindableCollection<ImageModel>();
@@ -13,10 +11,8 @@ namespace MVVMTest.ViewModels
         private BindableCollection<PersonModel> _people = new BindableCollection<PersonModel>();
         private ImageModel _selectedImage;
         private PersonModel _selectedPerson;
-        private readonly TestWindowViewModel testWindowViewModel = new TestWindowViewModel();
-        private readonly IWindowManager windowManager = new WindowManager();
 
-        public ShellViewModel()
+        public TestWindowViewModel()
         {
             People.Add(new PersonModel("Kao", "Miyazono", 17));
             People.Add(new PersonModel("Azusa", "Nakano", 16));
@@ -101,7 +97,6 @@ namespace MVVMTest.ViewModels
 
         public void ClearText(string firstName, string lastName)
         {
-            windowManager.ShowWindow(testWindowViewModel);
             FirstName = "";
             LastName = "";
         }

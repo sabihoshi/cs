@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Caliburn.Micro;
+using LiteDB;
 using Microsoft.Win32;
 using MusicPlayer.Models;
 using NAudio.Wave;
+using System.Windows;
 
 namespace MusicPlayer.ViewModels
 {
@@ -20,18 +24,14 @@ namespace MusicPlayer.ViewModels
         public MusicPlayerViewModel()
         {
             PlayContent = "Play";
-            var albumPath = @"..\..\Images\Albums";
-            Playlist.Add(new PlaylistModel($@"{albumPath}\daily_mix_1.png", "Album 1")
+
+            using (var db = new LiteDatabase(@"MyData.db"))
             {
-                Songs = new BindableCollection<TrackModel>
-                {
-                    new TrackModel(@"D:\Osu!\[AMV]ONEWAYS - The Boy Who Murdered Love.mp3")
-                }
-            });
-            Playlist.Add(new PlaylistModel($@"{albumPath}\daily_mix_2.png", "Album 2"));
-            Playlist.Add(new PlaylistModel($@"{albumPath}\daily_mix_3.png", "Album 3"));
-            Playlist.Add(new PlaylistModel($@"{albumPath}\daily_mix_4.png", "Album 4"));
-            Playlist.Add(new PlaylistModel($@"{albumPath}\daily_mix_5.png", "Album 5"));
+                var play = db.GetCollection<PlaylistModel>("Playlists");
+                var collection =
+                    new BindableCollection<PlaylistModel>(play.FindAll());
+                Playlist = collection;
+            }
         }
 
         public BindableCollection<TrackModel> Tracks { get; set; }
@@ -124,6 +124,22 @@ namespace MusicPlayer.ViewModels
         }
 
         public bool CanPlayTrack => SelectedTrack?.IsReady ?? false;
+
+        public void CreatePlaylist()
+        {
+            Console.WriteLine(@"It worked");
+        }
+
+        public void AddSong(MusicPlayerViewModel source)
+        {
+            Console.WriteLine($@"Added song to {source.SelectedPlaylist}");
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
 
         public void MaximizeVolume()
         {

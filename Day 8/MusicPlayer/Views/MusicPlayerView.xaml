@@ -6,6 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MusicPlayer.Views"
         xmlns:models="clr-namespace:MusicPlayer.Models"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:viewModels="clr-namespace:MusicPlayer.ViewModels"
         mc:Ignorable="d"
         Title="MusicPlayerView" Height="450" Width="500">
     <Grid>
@@ -24,16 +26,35 @@
                 <ColumnDefinition Width="20" />
             </Grid.ColumnDefinitions>
             <Grid Column="1">
-                <ListBox Grid.Row="1" Grid.Column="1"
-                        x:Name="Playlist"
+                <ListView Grid.Row="1" Grid.Column="1"
+                         x:Name="Playlist"
+                         SelectedItem="{Binding Path=SelectedPlaylist, Mode=OneWayToSource}"
 
-                        SelectedItem="{Binding Path=SelectedPlaylist, Mode=OneWayToSource}" BorderBrush="{x:Null}">
+                         Tag="{Binding DataContext, ElementName=Playlist}">
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type models:PlaylistModel}">
-                            <Image Margin="3" MaxHeight="50" MaxWidth="50" Source="{Binding ImagePath}" />
+                            <Image MaxHeight="50" MaxWidth="50"
+                                   Source="{Binding ImagePath}">
+                                <Image.ContextMenu>
+                                    <ContextMenu
+                                        cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                                        <MenuItem Header="Create new playlist..."
+                                                  cal:Message.Attach="CreatePlaylist" />
+                                        <MenuItem Header="Add a song..."
+                                                  cal:Message.Attach="AddSong($this)" />
+                                    </ContextMenu>
+                                </Image.ContextMenu>
+                            </Image>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                </ListBox>
+                    <ListBox.ContextMenu>
+                        <ContextMenu
+                            cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                            <MenuItem Header="Create new playlist..."
+                                      cal:Message.Attach="CreatePlaylist" />
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
+                </ListView>
             </Grid>
             <Grid Column="2">
                 <Grid.RowDefinitions>
@@ -79,9 +100,9 @@
                 <!--Row 2-->
                 <Grid Row="2" Column="1" ColumnSpan="2">
                     <ListBox Grid.Column="1"
-                            x:Name="SelectedPlaylist_Songs"
-                            DisplayMemberPath="Name"
-                            SelectedItem="{Binding Path=SelectedTrack, Mode=TwoWay}" />
+                             x:Name="SelectedPlaylist_Songs"
+                             DisplayMemberPath="Name"
+                             SelectedItem="{Binding Path=SelectedTrack, Mode=TwoWay}" />
                 </Grid>
 
                 <!--Row 4-->

@@ -1,0 +1,40 @@
+﻿<Window x:Class="FodyMVVM.Views.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FodyMVVM.Views"
+        xmlns:viewModels="clr-namespace:FodyMVVM.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindowView" Height="450" Width="800">
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Column="0" Grid.Row="0"
+                 MinWidth="10" Margin="5"
+                 Name="TheTextBox"
+             Text="{Binding
+                Path=Greeting,
+                Mode=OneWayToSource,
+                UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label Grid.Column="1" Grid.Row="0"
+               MinWidth="10" Margin="{Binding Path=Margin, ElementName=TheTextBox}"
+           Content="{Binding Path=Greeting, Mode=TwoWay}" />
+        <Button Grid.Column="2" Grid.Row="0"
+                Content="Test Click"
+                Command="{Binding Path=TestClick}"
+                CommandParameter="Hey" />
+    </Grid>
+</Window>

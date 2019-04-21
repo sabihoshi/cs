@@ -16,13 +16,20 @@ namespace MusicPlayer.Models
             Path = path;
         }
 
-        public TrackModel(string path) : this(path, File.Create(path).Tag.Title) { }
+        public TrackModel()
+        {
+        }
+
+        public TrackModel(string path) : this(path, File.Create(path).Tag.Title)
+        {
+        }
+
         public TimeSpan Length => File.Create(Path).Properties.Duration;
         public string Name => $"{Title} ({Length:mm\\:ss})";
         public string Title { get; set; }
         public string Path { get; set; }
         public double GetLength => AudioFileReader?.TotalTime.TotalSeconds ?? 0;
-        public PlaybackState PlaybackState => Output?.PlaybackState        ?? PlaybackState.Stopped;
+        public PlaybackState PlaybackState => Output?.PlaybackState ?? PlaybackState.Stopped;
 
         public string GetLengthInSeconds =>
             TimeSpan.FromSeconds(AudioFileReader?.TotalTime.TotalSeconds ?? 0).ToString(@"mm\:ss");
@@ -31,7 +38,7 @@ namespace MusicPlayer.Models
             TimeSpan.FromSeconds(AudioFileReader?.CurrentTime.TotalSeconds ?? 0).ToString(@"mm\:ss");
 
         public double GetPosition => AudioFileReader?.CurrentTime.TotalSeconds ?? 0;
-        public bool IsReady => Output                  != null;
+        public bool IsReady => Output != null;
         public bool IsPlaying => Output?.PlaybackState == PlaybackState.Playing;
 
         public AudioFileReader AudioFileReader { get; set; }
@@ -62,9 +69,9 @@ namespace MusicPlayer.Models
         public void LoadTrack()
         {
             _ = RenderAudioAsync(Path);
-            AudioFileReader = new AudioFileReader(Path) {Volume = 1f};
+            AudioFileReader = new AudioFileReader(Path) { Volume = 1f };
             Output = new DirectSoundOut(200);
-            var wc = new WaveChannel32(AudioFileReader) {PadWithZeroes = false};
+            var wc = new WaveChannel32(AudioFileReader) { PadWithZeroes = false };
             Output.Init(wc);
         }
 
@@ -80,13 +87,12 @@ namespace MusicPlayer.Models
 
         private static async Task RenderAudioAsync(string fileName)
         {
-            //var maxPeakProvider = new MaxPeakProvider();
-            //var rmsPeakProvider = new RmsPeakProvider(200);           // e.g. 200
-            //var samplingPeakProvider = new SamplingPeakProvider(200); // e.g. 200
-            var averagePeakProvider = new AveragePeakProvider(4);     // e.g. 4
+            var averagePeakProvider = new AveragePeakProvider(4);
             var rendererSettings = new StandardWaveFormRendererSettings
             {
-                Width = 1080, TopHeight = 64, BottomHeight = 64
+                Width = 1080,
+                TopHeight = 64,
+                BottomHeight = 64
             };
             var renderer = new WaveFormRenderer();
             var image = await Task.Run(() => renderer.Render(fileName, averagePeakProvider, rendererSettings))

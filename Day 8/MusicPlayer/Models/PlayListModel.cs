@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 
 namespace MusicPlayer.Models
 {
@@ -8,11 +7,16 @@ namespace MusicPlayer.Models
         public PlaylistModel(string filename, string name)
         {
             ImagePath = filename;
-            Name      = name;
+            Name = name;
         }
 
-        public string                         Name      { get; set; }
-        public string                         ImagePath { get; set; }
-        public BindableCollection<TrackModel> Songs     { get; set; }
+        public PlaylistModel()
+        {
+        }
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string ImagePath { get; set; }
+        public BindableCollection<TrackModel> Songs { get; set; }
     }
 }

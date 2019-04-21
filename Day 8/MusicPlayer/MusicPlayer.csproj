@@ -102,9 +102,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AppBootstrapper.cs" />
     <Compile Include="Classes\Bootstrapper.cs" />
+    <Compile Include="IShell.cs" />
     <Compile Include="Models\PlaylistModel.cs" />
     <Compile Include="NAudioWrapper\AudioPlayer.cs" />
+    <Compile Include="ShellViewModel.cs" />
     <Compile Include="ViewModels\MusicPlayerViewModel.cs" />
     <Compile Include="Views\MusicPlayerView.xaml.cs">
       <DependentUpon>MusicPlayerView.xaml</DependentUpon>
@@ -155,6 +158,10 @@
     <Resource Include="Images\Albums\daily_mix_1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ShellView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MusicPlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
