@@ -53,7 +53,8 @@
                             <Image Height="50" Width="50"
                                    Source="{Binding ImagePath}"
                                    Style="{StaticResource ScaleStyle}"
-                                   Stretch="Fill">
+                                   Stretch="Fill"
+                                   Tag="{Binding DataContext, ElementName=Playlist}">
                                 <Image.ContextMenu>
                                     <ContextMenu
                                         cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">

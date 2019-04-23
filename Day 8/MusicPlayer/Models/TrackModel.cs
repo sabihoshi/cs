@@ -65,7 +65,19 @@ namespace MusicPlayer.Models
         {
             return AudioFileReader?.Volume ?? 1;
         }
-
+        public static bool IsValid(string path)
+        {
+            try
+            {
+                new AudioFileReader(path).Dispose();
+                File.Create(path).Dispose();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public void LoadTrack()
         {
             _ = RenderAudioAsync(Path);
