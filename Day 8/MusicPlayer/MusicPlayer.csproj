@@ -109,6 +109,12 @@
     <Compile Include="NAudioWrapper\AudioPlayer.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="ViewModels\MusicPlayerViewModel.cs" />
+    <Compile Include="Views\AccountCreateView.xaml.cs">
+      <DependentUpon>AccountCreateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountLoginView.xaml.cs">
+      <DependentUpon>AccountLoginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MusicPlayerView.xaml.cs">
       <DependentUpon>MusicPlayerView.xaml</DependentUpon>
     </Compile>
@@ -161,6 +167,14 @@
     <Page Include="ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountCreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AccountLoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MusicPlayerView.xaml">
       <SubType>Designer</SubType>

@@ -8,6 +8,7 @@ using Microsoft.Win32;
 using MusicPlayer.Models;
 using NAudio.Wave;
 using System.Windows;
+using MusicPlayer.Views;
 
 namespace MusicPlayer.ViewModels
 {
@@ -28,10 +29,12 @@ namespace MusicPlayer.ViewModels
             using (var db = new LiteDatabase(@"MyData.db"))
             {
                 var play = db.GetCollection<PlaylistModel>("Playlists");
-                var collection =
-                    new BindableCollection<PlaylistModel>(play.FindAll());
+                var collection = new BindableCollection<PlaylistModel>(play.FindAll());
                 Playlist = collection;
             }
+
+            var window = new AccountLoginView();
+            window.Show();
         }
 
         public BindableCollection<TrackModel> Tracks { get; set; }

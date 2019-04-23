@@ -26,15 +26,34 @@
                 <ColumnDefinition Width="20" />
             </Grid.ColumnDefinitions>
             <Grid Column="1">
+                <Grid.Resources>
+                    <Style x:Key="ScaleStyle" TargetType="Image">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.25" ScaleY="1.25" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="RenderTransformOrigin">
+                                    <Setter.Value>
+                                        <Point X="0.5" Y="0.5" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Resources>
                 <ListView Grid.Row="1" Grid.Column="1"
-                         x:Name="Playlist"
+                         x:Name="Playlist" Background="{x:Null}"
                          SelectedItem="{Binding Path=SelectedPlaylist, Mode=OneWayToSource}"
-
                          Tag="{Binding DataContext, ElementName=Playlist}">
-                    <ListBox.ItemTemplate>
+                    <ListView.ItemTemplate>
                         <DataTemplate DataType="{x:Type models:PlaylistModel}">
-                            <Image MaxHeight="50" MaxWidth="50"
-                                   Source="{Binding ImagePath}">
+                            <Image Height="50" Width="50"
+                                   Source="{Binding ImagePath}"
+                                   Style="{StaticResource ScaleStyle}"
+                                   Stretch="Fill">
                                 <Image.ContextMenu>
                                     <ContextMenu
                                         cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
@@ -46,7 +65,7 @@
                                 </Image.ContextMenu>
                             </Image>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
+                    </ListView.ItemTemplate>
                     <ListBox.ContextMenu>
                         <ContextMenu
                             cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">

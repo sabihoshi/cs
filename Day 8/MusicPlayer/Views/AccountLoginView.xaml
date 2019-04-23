@@ -1,0 +1,55 @@
+﻿<Window x:Class="MusicPlayer.Views.AccountLoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusicPlayer.Views"
+        mc:Ignorable="d"
+        Title="AccountLoginView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--Top bar-->
+        <Grid Row="0">
+        </Grid>
+
+        <!--Main UI-->
+        <Grid Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--Logo-->
+            <Grid Column="0">
+            </Grid>
+
+            <!--User login-->
+            <Grid Column="1"
+                  Background="#C4382C">
+
+                <Border Margin="68,67,60,67"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        CornerRadius="10">
+                    <Border.Effect>
+                        <DropShadowEffect />
+                    </Border.Effect>
+                </Border>
+                <Border Margin="68,67,60,67"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        CornerRadius="10">
+
+                    <Rectangle Fill="White"
+                               Stroke="Black"
+                               Margin="37,89,118,98">
+                    </Rectangle>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
