@@ -32,12 +32,12 @@ namespace MusicPlayer.ViewModels
                 var collection = new BindableCollection<PlaylistModel>(play.FindAll());
                 Playlist = collection;
             }
-            for(int i = 1; i <= 5; i++)
+            for (int i = 1; i <= 5; i++)
             {
                 Playlist.Add(new PlaylistModel($@"C:\Users\CIIT_1\source\repos\cs\Day 8\MusicPlayer\Images\Albums\daily_mix_{i}.png", "Playlist #{i}"));
             }
-            // var window = new AccountLoginView();
-            // window.Show();
+            var window = new AccountLoginView();
+            window.Show();
         }
 
         public BindableCollection<TrackModel> Tracks { get; set; }
@@ -137,8 +137,7 @@ namespace MusicPlayer.ViewModels
         }
 
         public void AddSong(MusicPlayerViewModel source)
-        {  
-
+        {
             var fileDialog = new OpenFileDialog
             {
                 Multiselect = true
