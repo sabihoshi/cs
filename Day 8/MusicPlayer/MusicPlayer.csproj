@@ -106,8 +106,10 @@
     <Compile Include="Classes\Bootstrapper.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="Models\PlaylistModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="NAudioWrapper\AudioPlayer.cs" />
     <Compile Include="ShellViewModel.cs" />
+    <Compile Include="ViewModels\AccountLoginViewModel.cs" />
     <Compile Include="ViewModels\MusicPlayerViewModel.cs" />
     <Compile Include="Views\AccountCreateView.xaml.cs">
       <DependentUpon>AccountCreateView.xaml</DependentUpon>

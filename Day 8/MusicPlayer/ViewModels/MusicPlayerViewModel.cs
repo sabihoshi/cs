@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Net.Sockets;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
@@ -7,8 +8,6 @@ using LiteDB;
 using Microsoft.Win32;
 using MusicPlayer.Models;
 using NAudio.Wave;
-using System.Windows;
-using MusicPlayer.Views;
 
 namespace MusicPlayer.ViewModels
 {
@@ -21,23 +20,23 @@ namespace MusicPlayer.ViewModels
         private PlaylistModel _selectedPlaylist;
         private TrackModel _selectedTrack;
         private double _trackLength;
+        private readonly IWindowManager manager = new WindowManager();
 
-        public MusicPlayerViewModel()
+        public MusicPlayerViewModel(string username)
         {
             PlayContent = "Play";
 
             using (var db = new LiteDatabase(@"MyData.db"))
             {
-                var play = db.GetCollection<PlaylistModel>("Playlists");
-                var collection = new BindableCollection<PlaylistModel>(play.FindAll());
-                Playlist = collection;
+                var users = db.GetCollection<UserModel>("Users");
+                Playlist = new BindableCollection<PlaylistModel>(
+                    users.Find(x => x.Username == username).SelectMany(x => x.Playlists)
+                );
             }
-            for (int i = 1; i <= 5; i++)
-            {
-                Playlist.Add(new PlaylistModel($@"C:\Users\CIIT_1\source\repos\cs\Day 8\MusicPlayer\Images\Albums\daily_mix_{i}.png", "Playlist #{i}"));
-            }
-            var window = new AccountLoginView();
-            window.Show();
+
+            
+
+            manager.ShowWindow(new AccountLoginViewModel(), null, null);
         }
 
         public BindableCollection<TrackModel> Tracks { get; set; }
@@ -105,11 +104,12 @@ namespace MusicPlayer.ViewModels
             get => _selectedTrack;
             set
             {
+                if (value is null) return;
                 if (_selectedTrack?.Equals(value) ?? false) return;
                 _selectedTrack?.Dispose();
                 _selectedTrack = value;
-                _selectedTrack.LoadTrack();
-                if (SelectedTrack.IsReady)
+                _selectedTrack?.LoadTrack();
+                if (SelectedTrack?.IsReady ?? false)
                 {
                     TrackLength = SelectedTrack.GetLength;
                     NotifyOfPropertyChange(() => CanPlayTrack);
@@ -144,18 +144,14 @@ namespace MusicPlayer.ViewModels
             };
             fileDialog.ShowDialog();
             foreach (var file in fileDialog.FileNames)
-            {
                 if (TrackModel.IsValid(file))
-                {
                     Console.WriteLine(file);
-                }
-            }
         }
 
         public event EventHandler CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
 
         public void MaximizeVolume()

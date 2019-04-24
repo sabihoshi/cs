@@ -14,7 +14,7 @@ namespace MVVMTest.Classes
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<MusicPlayerViewModel>();
+            DisplayRootViewFor<AccountLoginViewModel>();
         }
     }
 }
