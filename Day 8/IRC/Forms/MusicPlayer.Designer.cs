@@ -1,6 +1,6 @@
 ﻿namespace IRC.Forms
 {
-    partial class Chat
+    partial class MusicPlayer
     {
         /// <summary>
         /// Required designer variable.
@@ -131,7 +131,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(660, 398);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Playlist";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
@@ -141,10 +141,10 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(660, 398);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Current Song";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // Chat
+            // MusicPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -152,7 +152,7 @@
             this.ClientSize = new System.Drawing.Size(800, 459);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Name = "Chat";
+            this.Name = "MusicPlayer";
             this.Text = "Music Player";
             ((System.ComponentModel.ISupportInitialize)(pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(pictureBox2)).EndInit();

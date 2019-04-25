@@ -120,7 +120,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::IRC.Properties.Resources.WelcomeSplash;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1064, 729);
+            this.ClientSize = new System.Drawing.Size(719, 655);
             this.Controls.Add(this.button1);
             this.Controls.Add(linkLabel2);
             this.Controls.Add(linkLabel1);

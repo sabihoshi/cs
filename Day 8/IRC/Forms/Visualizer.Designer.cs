@@ -40,38 +40,14 @@
             pictureBox4 = new System.Windows.Forms.PictureBox();
             pictureBox5 = new System.Windows.Forms.PictureBox();
             pictureBox6 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::IRC.Properties.Resources._5721435a1a229_download_4__png_545134d5ae4e76230ed15d97a775a2b4;
-            this.pictureBox1.Location = new System.Drawing.Point(107, 112);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(854, 480);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.flowLayoutPanel1.Controls.Add(pictureBox2);
-            this.flowLayoutPanel1.Controls.Add(pictureBox3);
-            this.flowLayoutPanel1.Controls.Add(pictureBox4);
-            this.flowLayoutPanel1.Controls.Add(pictureBox5);
-            this.flowLayoutPanel1.Controls.Add(pictureBox6);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 12);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(89, 434);
-            this.flowLayoutPanel1.TabIndex = 2;
             // 
             // pictureBox2
             // 
@@ -123,25 +99,47 @@
             pictureBox6.TabIndex = 0;
             pictureBox6.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::IRC.Properties.Resources._5721435a1a229_download_4__png_545134d5ae4e76230ed15d97a775a2b4;
+            this.pictureBox1.Location = new System.Drawing.Point(107, 111);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(837, 335);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.flowLayoutPanel1.Controls.Add(pictureBox2);
+            this.flowLayoutPanel1.Controls.Add(pictureBox3);
+            this.flowLayoutPanel1.Controls.Add(pictureBox4);
+            this.flowLayoutPanel1.Controls.Add(pictureBox5);
+            this.flowLayoutPanel1.Controls.Add(pictureBox6);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(89, 434);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
             // Visualizer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::IRC.Properties.Resources.Daint;
             this.ClientSize = new System.Drawing.Size(1001, 510);
-            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Visualizer";
             this.Text = "Visualizer";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
