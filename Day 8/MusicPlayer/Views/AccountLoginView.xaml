@@ -43,7 +43,7 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="5*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
@@ -54,14 +54,37 @@
                 <!--Input-->
                 <Grid Row="1" Column="1">
                     <Grid.Resources>
+                        <DropShadowEffect x:Key="dropShadow" BlurRadius="20" ShadowDepth="3" />
                         <Style x:Key="Labels" TargetType="TextBlock">
                             <Style.Setters>
                                 <Setter Property="HorizontalAlignment" Value="Left" />
                                 <Setter Property="VerticalAlignment" Value="Bottom" />
-                                <Setter Property="FontFamily" Value="Consolas" />
+                                <Setter Property="FontFamily" Value="UniSansHeavy" />
                                 <Setter Property="Foreground" Value="White" />
                                 <Setter Property="FontSize" Value="20" />
-                                <Setter Property="MaxHeight" Value="50"/>
+                                <Setter Property="MaxHeight" Value="50" />
+                            </Style.Setters>
+                        </Style>
+                        <Style x:Key="RoundedBox" TargetType="TextBox">
+                            <Setter Property="MaxHeight" Value="40" />
+                            <Setter Property="MinHeight" Value="30" />
+                            <Style.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="5" />
+                                </Style>
+                            </Style.Resources>
+                        </Style>
+                        <Style x:Key="RoundedBorder" TargetType="Border">
+                            <Style.Setters>
+                                <Setter Property="MaxHeight" Value="40" />
+                                <Setter Property="MinHeight" Value="30" />
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="BorderBrush" Value="DarkGray" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="ClipToBounds" Value="True" />
+                                <Setter Property="IsHitTestVisible" Value="False" />
+                                <Setter Property="CornerRadius" Value="5" />
+                                <Setter Property="Effect" Value="{StaticResource dropShadow}" />
                             </Style.Setters>
                         </Style>
                     </Grid.Resources>
@@ -80,11 +103,13 @@
 
                         <TextBlock Grid.Row="0"
                                    Style="{StaticResource Labels}"
-                                   Text="Username"/>
+                                   Text="Username" />
 
-                        <TextBox Grid.Row="1" 
-                                 MaxHeight="50"
-                                 x:Name="Username"/>
+                        <TextBox Grid.Row="1"
+                                 Style="{StaticResource RoundedBox}"
+                                 x:Name="Username" />
+
+                        <Border Grid.Row="1" Style="{StaticResource RoundedBorder}" />
                     </Grid>
 
                     <!--Password-->
@@ -96,23 +121,33 @@
 
                         <TextBlock Grid.Row="0"
                                    Style="{StaticResource Labels}"
-                                   Text="Password"/>
+                                   Text="Password" />
+
                         <TextBox Grid.Row="1"
-                                 MaxHeight="50"
-                                 x:Name="Password"/>
+                                 Style="{StaticResource RoundedBox}"
+                                 x:Name="Password" />
+
+                        <Border Grid.Row="1" Style="{StaticResource RoundedBorder}" />
                     </Grid>
 
                     <!--Ok-->
                     <Grid Row="2" Margin="0,10,0,0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <Button Grid.Column="1"
                                 Content="Login"
-                                MinHeight="25"
-                                x:Name="LoginUser"/>
+                                MinHeight="30" MinWidth="100"
+                                HorizontalAlignment="Right"
+                                x:Name="LoginUser">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="5" />
+                                </Style>
+                            </Button.Resources>
+                        </Button>
                     </Grid>
                 </Grid>
 

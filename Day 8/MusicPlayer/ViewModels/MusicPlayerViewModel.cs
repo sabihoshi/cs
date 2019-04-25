@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using LiteDB;
 using Microsoft.Win32;
 using MusicPlayer.Models;
 using NAudio.Wave;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MusicPlayer.ViewModels
 {
@@ -33,8 +32,6 @@ namespace MusicPlayer.ViewModels
                     users.Find(x => x.Username == username).SelectMany(x => x.Playlists)
                 );
             }
-
-            
 
             manager.ShowWindow(new AccountLoginViewModel(), null, null);
         }
@@ -104,11 +101,10 @@ namespace MusicPlayer.ViewModels
             get => _selectedTrack;
             set
             {
-                if (value is null) return;
-                if (_selectedTrack?.Equals(value) ?? false) return;
-                _selectedTrack?.Dispose();
-                _selectedTrack = value;
-                _selectedTrack?.LoadTrack();
+                if ((SelectedTrack?.Equals(value) ?? false) || value is null) return;
+                SelectedTrack?.Dispose();
+                SelectedTrack = value;
+                SelectedTrack?.LoadTrack();
                 if (SelectedTrack?.IsReady ?? false)
                 {
                     TrackLength = SelectedTrack.GetLength;
