@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28721.148
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CJam", "CJam\CJam.csproj", "{7E472718-8A04-442B-9261-702A1DC83C59}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicPlayer", "MusicPlayer\MusicPlayer.csproj", "{F3BE76F7-7909-4D89-953B-49D27B0AAA9F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FodyMVVM", "FodyMVVM\FodyMVVM.csproj", "{57337C75-03A6-4A54-9B3A-15877E9E8A69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateAccount", "CreateAccount\CreateAccount.csproj", "{F6485477-27C8-4C6F-BEBF-B91957CFBD6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +103,14 @@ Global
 		{57337C75-03A6-4A54-9B3A-15877E9E8A69}.Release|Any CPU.Build.0 = Release|Any CPU
 		{57337C75-03A6-4A54-9B3A-15877E9E8A69}.Release|x86.ActiveCfg = Release|Any CPU
 		{57337C75-03A6-4A54-9B3A-15877E9E8A69}.Release|x86.Build.0 = Release|Any CPU
+		{F6485477-27C8-4C6F-BEBF-B91957CFBD6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6485477-27C8-4C6F-BEBF-B91957CFBD6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6485477-27C8-4C6F-BEBF-B91957CFBD6D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F6485477-27C8-4C6F-BEBF-B91957CFBD6D}.Debug|x86.Build.0 = Debug|Any CPU
+		{F6485477-27C8-4C6F-BEBF-B91957CFBD6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6485477-27C8-4C6F-BEBF-B91957CFBD6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6485477-27C8-4C6F-BEBF-B91957CFBD6D}.Release|x86.ActiveCfg = Release|Any CPU
+		{F6485477-27C8-4C6F-BEBF-B91957CFBD6D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
