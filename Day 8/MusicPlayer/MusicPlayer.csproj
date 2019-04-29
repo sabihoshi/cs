@@ -109,13 +109,18 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="NAudioWrapper\AudioPlayer.cs" />
     <Compile Include="ShellViewModel.cs" />
+    <Compile Include="ViewModels\AccountCreateViewModel.cs" />
     <Compile Include="ViewModels\AccountLoginViewModel.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\MusicPlayerViewModel.cs" />
     <Compile Include="Views\AccountCreateView.xaml.cs">
       <DependentUpon>AccountCreateView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AccountLoginView.xaml.cs">
       <DependentUpon>AccountLoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountView.xaml.cs">
+      <DependentUpon>AccountView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MusicPlayerView.xaml.cs">
       <DependentUpon>MusicPlayerView.xaml</DependentUpon>
@@ -175,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AccountLoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

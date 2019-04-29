@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CreateAccount"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" MinHeight="480" MinWidth="800" Background="#C4382C">
-    
+
     <Grid>
         <Grid.Resources>
             <Style x:Key="Labels" TargetType="TextBlock">
@@ -20,90 +20,86 @@
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="500"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="500" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <Grid Grid.Column="0">
+        </Grid>
+        <Grid Grid.Column="2">
+        </Grid>
 
-        <Grid Grid.Column="0" >
-        </Grid>
-        <Grid Grid.Column="2" >
-        </Grid>
-        
-        <Grid Grid.Column="1" >
-            
+        <Grid Grid.Column="1">
+
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" >
+            <Grid Grid.Row="0">
                 <TextBlock HorizontalAlignment="Center"
                        VerticalAlignment="Bottom"
                        FontSize="50"
                        FontFamily="Consolas"
-                       Foreground="White" Text="CREATE A NEW USER"/>
+                       Foreground="White" Text="CREATE A NEW USER" />
             </Grid>
-            
-            <Grid Grid.Row="1" >
+
+            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                
-                <TextBlock Grid.Row="0" 
-                           HorizontalAlignment="Left"  VerticalAlignment="Bottom" 
-                           Style= "{StaticResource Labels}" Text="Username"/>
-                
-                <TextBox Grid.Row="1" 
+
+                <TextBlock Grid.Row="0"
+                           HorizontalAlignment="Left"  VerticalAlignment="Bottom"
+                           Style= "{StaticResource Labels}" Text="Username" />
+
+                <TextBox Grid.Row="1"
                          VerticalAlignment="Top"
-                         MinHeight="50"/>
+                         MinHeight="50" />
             </Grid>
 
             <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                
+
                 <TextBlock Grid.Row="0"
                            HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                           Style="{StaticResource Labels}" Text="Password (max 16)"/>
-                
-                <PasswordBox Grid.Row="1" 
-                             VerticalAlignment="Top" 
+                           Style="{StaticResource Labels}" Text="Password (max 16)" />
+
+                <PasswordBox Grid.Row="1"
+                             VerticalAlignment="Top"
                              MinHeight="50"
-                             MaxLength="16" 
-                             PasswordChar="*"/>
+                             MaxLength="16"
+                             PasswordChar="*" />
             </Grid>
 
+            <Grid Grid.Row="4">
 
-            <Grid Grid.Row="4" >
-                
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                
+
                 <TextBlock Grid.Row="0"
                     HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                       Style="{StaticResource Labels}" Text="Confirm Password"/>
+                       Style="{StaticResource Labels}" Text="Confirm Password" />
 
                 <PasswordBox Grid.Row ="1"
                              VerticalAlignment="Top"
                              MinHeight="50"
-                             MaxLength="16" 
-                             PasswordChar="*"/>
+                             MaxLength="16"
+                             PasswordChar="*" />
             </Grid>
-
-
         </Grid>
     </Grid>
 </Window>

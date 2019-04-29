@@ -32,8 +32,6 @@ namespace MusicPlayer.ViewModels
                     users.Find(x => x.Username == username).SelectMany(x => x.Playlists)
                 );
             }
-
-            manager.ShowWindow(new AccountLoginViewModel(), null, null);
         }
 
         public BindableCollection<TrackModel> Tracks { get; set; }
@@ -103,14 +101,14 @@ namespace MusicPlayer.ViewModels
             {
                 if ((SelectedTrack?.Equals(value) ?? false) || value is null) return;
                 SelectedTrack?.Dispose();
-                SelectedTrack = value;
+                _selectedTrack = value;
                 SelectedTrack?.LoadTrack();
                 if (SelectedTrack?.IsReady ?? false)
                 {
                     TrackLength = SelectedTrack.GetLength;
                     NotifyOfPropertyChange(() => CanPlayTrack);
                     SelectedTrack.TogglePlayPause();
-                    _ = UpdateAudio();
+                    _ = UpdateAudioAsync();
                 }
             }
         }
@@ -175,15 +173,15 @@ namespace MusicPlayer.ViewModels
         {
             SelectedTrack.TogglePlayPause();
             PlayContent = SelectedTrack.IsPlaying ? "Pause" : "Play";
-            Task.Run(UpdateAudio);
+            Task.Run(UpdateAudioAsync);
         }
 
-        private async Task UpdateAudio()
+        private async Task UpdateAudioAsync()
         {
             while (SelectedTrack.PlaybackState == PlaybackState.Playing)
             {
                 CurrentPosition = SelectedTrack.GetPosition;
-                await Task.Delay(500);
+                await Task.Delay(500).ConfigureAwait(false);
             }
         }
     }

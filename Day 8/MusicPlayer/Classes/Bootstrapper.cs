@@ -12,9 +12,11 @@ namespace MVVMTest.Classes
             Initialize();
         }
 
+        private readonly IWindowManager manager = new WindowManager();
+
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<AccountLoginViewModel>();
+            manager.ShowWindow(new AccountViewModel());
         }
     }
 }

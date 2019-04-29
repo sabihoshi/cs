@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace MusicPlayer.Views
 {
     /// <summary>
-    /// Interaction logic for AccountCreateView.xaml
+    /// Interaction logic for AccountView.xaml
     /// </summary>
-    public partial class AccountCreateView : UserControl
+    public partial class AccountView : Window
     {
-        public AccountCreateView()
+        public AccountView()
         {
             InitializeComponent();
         }

@@ -1,33 +1,29 @@
-﻿using Caliburn.Micro;
+﻿using System.Windows;
+using Caliburn.Micro;
 using LiteDB;
 using MusicPlayer.Models;
+using MVVMTest.Classes;
 
 namespace MusicPlayer.ViewModels
 {
     internal class AccountLoginViewModel : Screen
     {
-        private string username;
-        private string password;
         private readonly IWindowManager manager = new WindowManager();
 
-        public string Username
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+
+        public void InvalidLogin()
         {
-            get => username;
-            set
-            {
-                username = value;
-                NotifyOfPropertyChange(Username);
-            }
+            MessageBox.Show("Invalid username or password, please try again.", "User login", MessageBoxButton.OK);
         }
 
-        public AccountLoginViewModel()
+        private AccountViewModel context;
+
+        public AccountLoginViewModel(AccountViewModel context)
         {
-            
-        }
-        public string Password
-        {
-            get => password;
-            set { password = value; NotifyOfPropertyChange(Password); }
+            this.context = context;
         }
 
         public void LoginUser()
@@ -39,18 +35,20 @@ namespace MusicPlayer.ViewModels
                 if (!(user is null))
                 {
                     if (user.Password == Password)
-                    {
-                        manager.ShowWindow(new MusicPlayerViewModel(user.Username), null, null);
-                    }
+                        manager.ShowWindow(new MusicPlayerViewModel(user.Username));
                     else
-                    { // error
-                    }
+                        InvalidLogin();
                 }
                 else
                 {
-                    // error
+                    InvalidLogin();
                 }
             }
+        }
+
+        public void CreateAccount()
+        {
+            context.LoadAccountCreation();
         }
     }
 }

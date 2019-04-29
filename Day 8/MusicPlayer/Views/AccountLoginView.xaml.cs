@@ -17,7 +17,7 @@ namespace MusicPlayer.Views
     /// <summary>
     /// Interaction logic for AccountLoginView.xaml
     /// </summary>
-    public partial class AccountLoginView : Window
+    public partial class AccountLoginView : UserControl
     {
         public AccountLoginView()
         {
