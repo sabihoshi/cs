@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using System.IO;
+using Caliburn.Micro;
 
 namespace MusicPlayer.Models
 {
@@ -26,11 +27,19 @@ namespace MusicPlayer.Models
 
         public PlaylistModel()
         {
+                
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public string ImagePath { get; set; }
+        public string _imagePath;
+        public string ImagePath
+        {
+            get => File.Exists(_imagePath) ? _imagePath : Path.GetFullPath("../../Images/Albums/placeholder.jpg");
+            set => _imagePath = value;
+        }
+
+        public string DefaultImage => "../../Images/Albums/placeholder.jpg";
         public BindableCollection<TrackModel> Songs { get; set; } = new BindableCollection<TrackModel>();
     }
 }

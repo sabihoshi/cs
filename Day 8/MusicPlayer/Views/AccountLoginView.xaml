@@ -90,10 +90,8 @@
                                    Text="Username" />
 
                 <TextBox Grid.Row="1"
-                                 Style="{StaticResource RoundedBox}"
+                                 Style="{DynamicResource MaterialDesignTextBox}"
                                  x:Name="Username" />
-
-                <Border Grid.Row="1" Style="{StaticResource RoundedBorder}" />
             </Grid>
 
             <!--Password-->
@@ -108,10 +106,8 @@
                                    Text="Password" />
 
                 <TextBox Grid.Row="1"
-                                 Style="{StaticResource RoundedBox}"
+                         Style="{DynamicResource MaterialDesignTextBox}"
                                  x:Name="Password" />
-
-                <Border Grid.Row="1" Style="{StaticResource RoundedBorder}" />
             </Grid>
 
             <!--Ok-->

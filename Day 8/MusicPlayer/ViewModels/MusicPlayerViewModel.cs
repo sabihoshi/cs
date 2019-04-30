@@ -173,6 +173,7 @@ namespace MusicPlayer.ViewModels
         {
             SelectedTrack.TogglePlayPause();
             PlayContent = SelectedTrack.IsPlaying ? "Pause" : "Play";
+            NotifyOfPropertyChange(() => PlayContent);
             Task.Run(UpdateAudioAsync);
         }
 

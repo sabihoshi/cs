@@ -18,18 +18,18 @@ namespace MusicPlayer.Models
 
         public TrackModel() { }
         public TrackModel(string path) : this(path, File.Create(path).Tag.Title) { }
-        public TimeSpan Length => FileExists ? File.Create(Path).Properties.Duration : new TimeSpan();
+        public TimeSpan Length => TrackExists ? File.Create(Path).Properties.Duration : new TimeSpan();
 
         public string Name
         {
             get
             {
-                if (FileExists) return $"{Title} ({Length:mm\\:ss})";
+                if (TrackExists) return $"{Title} ({Length:mm\\:ss})";
                 return $"File not found. ({Title})";
             }
         }
 
-        public bool FileExists => System.IO.File.Exists(Path);
+        public bool TrackExists => System.IO.File.Exists(Path);
         public string Title { get; set; }
         public string Path { get; set; }
         public double GetLength => AudioFileReader?.TotalTime.TotalSeconds ?? 0;
@@ -84,6 +84,7 @@ namespace MusicPlayer.Models
 
         public void LoadTrack()
         {
+            if (!IsValid(Path)) return;
             _ = RenderAudioAsync(Path);
             AudioFileReader = new AudioFileReader(Path) {Volume = 1f};
             Output = new DirectSoundOut(200);
