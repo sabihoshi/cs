@@ -105,8 +105,7 @@
                 Width="3"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Stretch"
-                Background="Black">
-            </GridSplitter>
+                Background="Black" />
 
             <Grid Column="1">
                 <Grid.RowDefinitions>
@@ -135,8 +134,7 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="Auto"
-                                           />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="20" />
                     </Grid.ColumnDefinitions>
@@ -165,13 +163,13 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="1"
-                            
-                            Text="{Binding Path=SelectedPlaylist.Name}"
+
+                                   Text="{Binding Path=SelectedPlaylist.Name}"
                                    Style="{DynamicResource MaterialDesignTitleTextBlock}"
                                    FontWeight="Bold"
                                    FontSize="32"
                                    Margin="10"
-                                   HorizontalAlignment="Left"/>
+                                   HorizontalAlignment="Left" />
                     </Grid>
                 </Grid>
 
@@ -200,7 +198,7 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="3*" 
+                <ColumnDefinition Width="3*"
                                   MaxWidth="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>

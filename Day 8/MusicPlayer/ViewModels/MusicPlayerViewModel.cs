@@ -1,17 +1,18 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Caliburn.Micro;
 using LiteDB;
 using Microsoft.Win32;
 using MusicPlayer.Models;
 using NAudio.Wave;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace MusicPlayer.ViewModels
 {
     public class MusicPlayerViewModel : Screen
     {
+        private readonly IWindowManager manager = new WindowManager();
         private double _currentPosition;
         private float _currentVolume = 1f;
         private string _playContent;
@@ -19,7 +20,6 @@ namespace MusicPlayer.ViewModels
         private PlaylistModel _selectedPlaylist;
         private TrackModel _selectedTrack;
         private double _trackLength;
-        private readonly IWindowManager manager = new WindowManager();
 
         public MusicPlayerViewModel(string username)
         {
