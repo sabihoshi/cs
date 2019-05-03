@@ -1,12 +1,12 @@
 ﻿<UserControl x:Class="MusicPlayer.Views.AccountLoginView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MusicPlayer.Views"
-        xmlns:cal="http://www.caliburnproject.org"
-        mc:Ignorable="d"
-        Background="#C4382C">
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MusicPlayer.Views"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             Background="#C4382C">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -86,12 +86,12 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0"
-                                   Style="{StaticResource Labels}"
-                                   Text="Username" />
+                           Style="{StaticResource Labels}"
+                           Text="Username" />
 
                 <TextBox Grid.Row="1"
-                                 Style="{DynamicResource MaterialDesignTextBox}"
-                                 x:Name="Username" />
+                         Style="{DynamicResource MaterialDesignTextBox}"
+                         x:Name="Username" />
             </Grid>
 
             <!--Password-->
@@ -102,12 +102,12 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0"
-                                   Style="{StaticResource Labels}"
-                                   Text="Password" />
+                           Style="{StaticResource Labels}"
+                           Text="Password" />
 
                 <TextBox Grid.Row="1"
                          Style="{DynamicResource MaterialDesignTextBox}"
-                                 x:Name="Password" />
+                         x:Name="Password" />
             </Grid>
 
             <!--Ok-->
@@ -129,10 +129,10 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="1"
-                                Content="Login"
-                                MinHeight="30" MinWidth="100"
-                                HorizontalAlignment="Right"
-                                x:Name="LoginUser">
+                        Content="Login"
+                        MinHeight="30" MinWidth="100"
+                        HorizontalAlignment="Right"
+                        x:Name="LoginUser">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5" />
@@ -141,17 +141,16 @@
                 </Button>
 
                 <Button Grid.Column="0"
-                            Style="{StaticResource HyperlinkButton}" Focusable="False"
-                                cal:Message.Attach="CreateAccount">
+                        Style="{StaticResource HyperlinkButton}" Focusable="False"
+                        cal:Message.Attach="CreateAccount">
                     <TextBlock>
-                                <Hyperlink Focusable="False">New Account</Hyperlink>
+                        <Hyperlink Focusable="False">New Account</Hyperlink>
                     </TextBlock>
                 </Button>
             </Grid>
         </Grid>
 
         <!--Logos-->
-        <Grid Row="2" Column="1">
-        </Grid>
+        <Grid Row="2" Column="1" />
     </Grid>
 </UserControl>

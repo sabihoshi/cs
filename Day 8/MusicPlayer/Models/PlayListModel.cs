@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using Caliburn.Micro;
 
 namespace MusicPlayer.Models
@@ -12,6 +14,17 @@ namespace MusicPlayer.Models
                 if (TrackModel.IsValid(path))
                 {
                     playlist.Songs.Add(new TrackModel(path));
+                }
+            }
+        }
+
+        public static void AddSong<T>(this PlaylistModel playlist, IEnumerable<T> paths)
+        {
+            foreach (var path in paths)
+            {
+                if (TrackModel.IsValid(path as string))
+                {
+                    playlist.Songs.Add(new TrackModel(path as string));
                 }
             }
         }

@@ -35,7 +35,10 @@ namespace MusicPlayer.ViewModels
                 if (!(user is null))
                 {
                     if (user.Password == Password)
-                        manager.ShowWindow(new MusicPlayerViewModel(user.Username));
+                    {
+                        manager.ShowWindow(new MusicPlayerViewModel(user));
+                        context.TryClose();
+                    }
                     else
                         InvalidLogin();
                 }

@@ -17,6 +17,7 @@ namespace MVVMTest.Classes
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
             manager.ShowWindow(new AccountViewModel());
+            
         }
     }
 }

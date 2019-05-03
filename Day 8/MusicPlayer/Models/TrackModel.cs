@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
+using Caliburn.Micro;
 using NAudio.Wave;
 using TagLib;
 using WaveFormRendererLib;
@@ -8,8 +9,14 @@ using PathIO = System.IO.Path;
 
 namespace MusicPlayer.Models
 {
-    public class TrackModel
+    public class TrackModel : Screen
     {
+        public enum PlaybackStoppedTypes
+        {
+            PlaybackStoppedByUser,
+            PlaybackEnded
+        }
+
         private TrackModel(string path, string title)
         {
             Title = title ?? PathIO.GetFileName(path);
@@ -18,13 +25,14 @@ namespace MusicPlayer.Models
 
         public TrackModel() { }
         public TrackModel(string path) : this(path, File.Create(path).Tag.Title) { }
+        public PlaybackStoppedTypes PlaybackStoppedType { get; set; }
         public TimeSpan Length => TrackExists ? File.Create(Path).Properties.Duration : new TimeSpan();
 
         public string Name
         {
             get
             {
-                if (TrackExists) return $"{Title} ({Length:mm\\:ss})";
+                if (TrackExists) return Title;
                 return $"File not found. ({Title})";
             }
         }
@@ -34,13 +42,11 @@ namespace MusicPlayer.Models
         public string Path { get; set; }
         public double GetLength => AudioFileReader?.TotalTime.TotalSeconds ?? 0;
         public PlaybackState PlaybackState => Output?.PlaybackState        ?? PlaybackState.Stopped;
-
         public string GetLengthInSeconds =>
             TimeSpan.FromSeconds(AudioFileReader?.TotalTime.TotalSeconds ?? 0).ToString(@"mm\:ss");
-
+        public string PlayingText => IsPlaying ? "▶" : "";
         public string GetPositionInSeconds =>
             TimeSpan.FromSeconds(AudioFileReader?.CurrentTime.TotalSeconds ?? 0).ToString(@"mm\:ss");
-
         public double GetPosition => AudioFileReader?.CurrentTime.TotalSeconds ?? 0;
         public bool IsReady => Output                  != null;
         public bool IsPlaying => Output?.PlaybackState == PlaybackState.Playing;
@@ -55,12 +61,12 @@ namespace MusicPlayer.Models
                 Output.Dispose();
                 Output = null;
             }
-
             if (AudioFileReader != null)
             {
                 AudioFileReader.Dispose();
                 AudioFileReader = null;
             }
+            NotifyOfPropertyChange(() => PlayingText);
         }
 
         public float GetVolume()
@@ -82,11 +88,11 @@ namespace MusicPlayer.Models
             }
         }
 
-        public void LoadTrack()
+        public void LoadTrack(float volume)
         {
             if (!IsValid(Path)) return;
             _ = RenderAudioAsync(Path);
-            AudioFileReader = new AudioFileReader(Path) {Volume = 1f};
+            AudioFileReader = new AudioFileReader(Path) {Volume = volume};
             Output = new DirectSoundOut(200);
             var wc = new WaveChannel32(AudioFileReader) {PadWithZeroes = false};
             Output.Init(wc);
@@ -94,11 +100,13 @@ namespace MusicPlayer.Models
 
         public void Pause()
         {
+            PlaybackStoppedType = PlaybackStoppedTypes.PlaybackStoppedByUser;
             Output?.Pause();
         }
 
         public void Play()
         {
+            PlaybackStoppedType = PlaybackStoppedTypes.PlaybackEnded;
             Output?.Play();
         }
 
@@ -141,6 +149,7 @@ namespace MusicPlayer.Models
             {
                 Play();
             }
+            NotifyOfPropertyChange(() => PlayingText);
         }
     }
 }

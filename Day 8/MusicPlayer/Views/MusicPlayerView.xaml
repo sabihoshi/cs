@@ -16,7 +16,8 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MusicPlayerView" Height="450" Width="500">
+        MinWidth="500" MinHeight="550"
+        Title="MusicPlayerView" Height="550" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -25,7 +26,7 @@
 
         <Grid Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="75" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -34,61 +35,101 @@
                   Background="#212121"
                   MinWidth="50"
                   HorizontalAlignment="Stretch">
-                <Grid.Resources>
-                    <Style x:Key="ScaleStyle" TargetType="Image">
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="RenderTransform">
-                                    <Setter.Value>
-                                        <ScaleTransform ScaleX="1.25" ScaleY="1.25" />
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="RenderTransformOrigin">
-                                    <Setter.Value>
-                                        <Point X="0.5" Y="0.5" />
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Grid.Resources>
 
                 <!--Playlists-->
-                <ListView Grid.Row="1" Grid.Column="1"
-                          HorizontalAlignment="Stretch"
-                          Margin="10"
-                          x:Name="Playlist" BorderBrush="{x:Null}"
-                          SelectedItem="{Binding Path=SelectedPlaylist, Mode=OneWayToSource}"
-                          Style="{DynamicResource MaterialDesignListView}"
-                          ScrollViewer.CanContentScroll="False"
-                          Tag="{Binding DataContext, ElementName=Playlist}">
+                <ListBox Grid.Row="1" Grid.Column="1"
+                         HorizontalAlignment="Stretch"
+                         Margin="10"
+                         x:Name="Playlists" BorderBrush="{x:Null}"
+                         SelectedItem="{Binding Path=SelectedPlaylist, Mode=OneWayToSource}"
+                         Style="{DynamicResource MaterialDesignListBox}"
+                         ScrollViewer.CanContentScroll="False"
+                         Tag="{Binding DataContext, ElementName=Playlist}">
 
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                        <ContentPresenter />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
                         </Style>
-                    </ListView.ItemContainerStyle>
+                    </ListBox.ItemContainerStyle>
 
-                    <ListView.ItemTemplate>
+                    <ListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type models:PlaylistModel}">
-                            <Grid MaxWidth="50" HorizontalAlignment="Stretch">
-                                <Image Source="{Binding ImagePath}"
-                                       Style="{StaticResource ScaleStyle}"
-                                       Stretch="Uniform"
-                                       Tag="{Binding DataContext, ElementName=Playlist}">
-                                    <Image.ContextMenu>
-                                        <ContextMenu
-                                            cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
-                                            <MenuItem Header="Create new playlist..."
-                                                      cal:Message.Attach="CreatePlaylist" />
-                                            <MenuItem Header="Add a song..."
-                                                      cal:Message.Attach="AddSong($this)" />
-                                        </ContextMenu>
-                                    </Image.ContextMenu>
-                                </Image>
-                            </Grid>
+                            <Image Source="{Binding ImagePath}"
+                                   Margin="5"
+                                   Stretch="Uniform"
+                                   Tag="{Binding DataContext, ElementName=Playlists}">
+                                <Image.ContextMenu>
+                                    <ContextMenu
+                                        cal:Action.TargetWithoutContext="{Binding 
+                                            Path=PlacementTarget.Tag, 
+                                            RelativeSource={RelativeSource Self}}">
+                                        <MenuItem Header="Create new playlist..."
+                                                  cal:Message.Attach="CreatePlaylist" />
+                                        <MenuItem Header="Add a song..."
+                                                  cal:Message.Attach="AddSong" />
+                                    </ContextMenu>
+                                </Image.ContextMenu>
+                            </Image>
+
+                            <DataTemplate.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding Path=IsSelected,
+                                                      RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"
+                                    Value="True">
+
+                                    <Setter Property="RenderTransform">
+                                        <Setter.Value>
+                                            <ScaleTransform ScaleX="1.35" ScaleY="1.35" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="RenderTransformOrigin">
+                                        <Setter.Value>
+                                            <Point X="0.5" Y="0.5" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+
+                                <DataTrigger
+                                    Binding="{Binding Path=IsSelected,
+                                                      RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"
+                                    Value="False">
+
+                                    <Setter Property="Opacity" Value="0.5" />
+                                </DataTrigger>
+
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition
+                                            Binding="{Binding Path=IsSelected,
+                                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"
+                                            Value="False" />
+                                        <Condition
+                                            Binding="{Binding Path=IsMouseOver,
+                                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"
+                                            Value="True" />
+                                    </MultiDataTrigger.Conditions>
+
+                                    <Setter Property="RenderTransform">
+                                        <Setter.Value>
+                                            <ScaleTransform ScaleX="1.25" ScaleY="1.25" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="RenderTransformOrigin">
+                                        <Setter.Value>
+                                            <Point X="0.5" Y="0.5" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </MultiDataTrigger>
+                            </DataTemplate.Triggers>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
+                    </ListBox.ItemTemplate>
                     <ListBox.ContextMenu>
                         <ContextMenu
                             cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
@@ -96,7 +137,7 @@
                                       cal:Message.Attach="CreatePlaylist" />
                         </ContextMenu>
                     </ListBox.ContextMenu>
-                </ListView>
+                </ListBox>
             </Grid>
 
             <GridSplitter
@@ -159,11 +200,10 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="6*" />
-                            <RowDefinition Height="4*" />
+                            <RowDefinition Height="3*" />
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="1"
-
                                    Text="{Binding Path=SelectedPlaylist.Name}"
                                    Style="{DynamicResource MaterialDesignTitleTextBlock}"
                                    FontWeight="Bold"
@@ -177,11 +217,51 @@
                 <Grid Row="1">
                     <ListBox Grid.Column="1"
                              x:Name="SelectedPlaylist_Songs"
-                             DisplayMemberPath="Name"
                              BorderBrush="{x:Null}"
                              Margin="10"
+                             ScrollViewer.CanContentScroll="False"
+                             HorizontalAlignment="Stretch"
                              Style="{DynamicResource MaterialDesignListBox}"
-                             SelectedItem="{Binding Path=SelectedTrack, Mode=TwoWay}" />
+                             IsSynchronizedWithCurrentItem="True"
+                             cal:Message.Attach="[Event MouseDoubleClick] = [Action ChangeTrack]"
+                             SelectedItem="{Binding Path=SelectedTrack, Mode=OneWayToSource}">
+
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="{x:Type models:TrackModel}">
+                                <Border Name="Border"
+                                        Background="Transparent"
+                                        BorderThickness="0,0,0,2"
+                                        Padding="5"
+                                        HorizontalAlignment="Stretch">
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Color="White" Opacity="0.10" />
+                                    </Border.BorderBrush>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding PlayingText, Mode=OneWay}"
+                                                   Margin="0,0,5,0" MinWidth="15" />
+                                        <TextBlock Grid.Column="1" Text="{Binding Name, Mode=OneWay}" />
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{Binding Length, StringFormat='{}{0:mm\\:ss}'}"
+                                                   Margin="5,0,0,0"
+                                                   FontWeight="Bold"
+                                                   Foreground="#aaaaaa" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
 
                 <!--Row 4-->
@@ -210,10 +290,47 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Button Grid.Column="1" Grid.Row="0"
-                        x:Name="PlayTrack"
-                        HorizontalAlignment="Center"
-                        Content="{Binding Path=PlayContent, Mode=TwoWay}" />
+                <!--Media Buttons-->
+                <Grid Row="0" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--Shuffle-->
+                    <Button Grid.Column="0" Grid.Row="0"
+                            x:Name="ToggleShuffle" Margin="5"
+                            HorizontalAlignment="Center"
+                            Content="{Binding Path=ShuffleContent, Mode=OneWay}" />
+
+                    <!--Previous-->
+                    <Button Grid.Column="1" Grid.Row="0"
+                            x:Name="PreviousTrack" Margin="5"
+                            HorizontalAlignment="Center"
+                            Content="⏮" />
+
+                    <!--Play/Pause-->
+                    <Button Grid.Column="2" Grid.Row="0"
+                            x:Name="PlayTrack" Margin="5"
+                            HorizontalAlignment="Center"
+                            Content="{Binding Path=PlayContent, Mode=OneWay}" />
+
+                    <!--Next-->
+                    <Button Grid.Column="3" Grid.Row="0"
+                            x:Name="NextTrack" Margin="5"
+                            HorizontalAlignment="Center"
+                            Content="⏭" />
+
+                    <!--Loop-->
+                    <Button Grid.Column="4" Grid.Row="0"
+                            x:Name="ToggleLoop" Margin="5"
+                            HorizontalAlignment="Center"
+                            Content="{Binding Path=LoopContent, Mode=OneWay}" />
+                </Grid>
+
 
                 <Grid Row="1">
                     <Grid.ColumnDefinitions>
@@ -241,11 +358,7 @@
             </Grid>
 
             <!--Volume-->
-            <Grid Column="2" Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="20" />
-                </Grid.ColumnDefinitions>
+            <Grid Column="2" Row="1" Margin="20,0,20,0">
                 <Slider MaxWidth="150"
                         IsMoveToPointEnabled="True"
                         VerticalAlignment="Bottom"
