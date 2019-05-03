@@ -1,13 +1,19 @@
-﻿using NAudio.Wave;
-using System;
+﻿using System;
+using NAudio.Wave;
 
 namespace MusicPlayer.NAudioWrapper
 {
     /// <summary>
-    /// This class might not be needed as of now.
+    ///     This class might not be needed as of now.
     /// </summary>
     public class AudioPlayer
     {
+        public enum PlaybackStopTypes
+        {
+            PlaybackStoppedByUser,
+            PlaybackStoppedReachingEndOfFile
+        }
+
         private AudioFileReader _audioFileReader;
         private string _filepath;
         private DirectSoundOut _output;
@@ -16,7 +22,7 @@ namespace MusicPlayer.NAudioWrapper
         {
             PlaybackStopType = PlaybackStopTypes.PlaybackStoppedReachingEndOfFile;
 
-            _audioFileReader = new AudioFileReader(filepath) { Volume = volume };
+            _audioFileReader = new AudioFileReader(filepath) {Volume = volume};
 
             _output = new DirectSoundOut(200);
             _output.PlaybackStopped += _output_PlaybackStopped;
@@ -27,31 +33,23 @@ namespace MusicPlayer.NAudioWrapper
             _output.Init(wc);
         }
 
+        public PlaybackStopTypes PlaybackStopType { get; set; }
+
         public event Action PlaybackPaused;
 
         public event Action PlaybackResumed;
 
         public event Action PlaybackStopped;
 
-        public enum PlaybackStopTypes
-        {
-            PlaybackStoppedByUser,
-            PlaybackStoppedReachingEndOfFile
-        }
-
-        public PlaybackStopTypes PlaybackStopType { get; set; }
-
         public void Dispose()
         {
             if (_output != null)
             {
-                if (_output.PlaybackState == PlaybackState.Playing)
-                {
-                    _output.Stop();
-                }
+                if (_output.PlaybackState == PlaybackState.Playing) _output.Stop();
                 _output.Dispose();
                 _output = null;
             }
+
             if (_audioFileReader != null)
             {
                 _audioFileReader.Dispose();
@@ -62,13 +60,8 @@ namespace MusicPlayer.NAudioWrapper
         public double GetLenghtInSeconds()
         {
             if (_audioFileReader != null)
-            {
                 return _audioFileReader.TotalTime.TotalSeconds;
-            }
-            else
-            {
-                return 0;
-            }
+            return 0;
         }
 
         public double GetPositionInSeconds()
@@ -78,10 +71,7 @@ namespace MusicPlayer.NAudioWrapper
 
         public float GetVolume()
         {
-            if (_audioFileReader != null)
-            {
-                return _audioFileReader.Volume;
-            }
+            if (_audioFileReader != null) return _audioFileReader.Volume;
             return 1;
         }
 
@@ -97,30 +87,21 @@ namespace MusicPlayer.NAudioWrapper
 
         public void Play(PlaybackState playbackState, double currentVolumeLevel)
         {
-            if (playbackState == PlaybackState.Stopped || playbackState == PlaybackState.Paused)
-            {
-                _output.Play();
-            }
+            if (playbackState == PlaybackState.Stopped || playbackState == PlaybackState.Paused) _output.Play();
 
-            _audioFileReader.Volume = (float)currentVolumeLevel;
+            _audioFileReader.Volume = (float) currentVolumeLevel;
 
             PlaybackResumed?.Invoke();
         }
 
         public void SetPosition(double value)
         {
-            if (_audioFileReader != null)
-            {
-                _audioFileReader.CurrentTime = TimeSpan.FromSeconds(value);
-            }
+            if (_audioFileReader != null) _audioFileReader.CurrentTime = TimeSpan.FromSeconds(value);
         }
 
         public void SetVolume(float value)
         {
-            if (_output != null)
-            {
-                _audioFileReader.Volume = value;
-            }
+            if (_output != null) _audioFileReader.Volume = value;
         }
 
         public void Stop()
@@ -133,13 +114,9 @@ namespace MusicPlayer.NAudioWrapper
             if (_output != null)
             {
                 if (_output.PlaybackState == PlaybackState.Playing)
-                {
                     Pause();
-                }
                 else
-                {
                     Play(_output.PlaybackState, currentVolumeLevel);
-                }
             }
             else
             {

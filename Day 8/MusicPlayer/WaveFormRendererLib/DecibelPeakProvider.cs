@@ -3,10 +3,10 @@ using NAudio.Wave;
 
 namespace WaveFormRendererLib
 {
-    class DecibelPeakProvider : IPeakProvider
+    internal class DecibelPeakProvider : IPeakProvider
     {
-        private readonly IPeakProvider sourceProvider;
         private readonly double dynamicRange;
+        private readonly IPeakProvider sourceProvider;
 
         public DecibelPeakProvider(IPeakProvider sourceProvider, double dynamicRange)
         {
@@ -24,7 +24,7 @@ namespace WaveFormRendererLib
             var peak = sourceProvider.GetNextPeak();
             var decibelMax = 20 * Math.Log10(peak.Max);
             if (decibelMax < 0 - dynamicRange) decibelMax = 0 - dynamicRange;
-            var linear = (float)((dynamicRange + decibelMax) / dynamicRange);
+            var linear = (float) ((dynamicRange + decibelMax) / dynamicRange);
             return new PeakInfo(0 - linear, linear);
         }
     }

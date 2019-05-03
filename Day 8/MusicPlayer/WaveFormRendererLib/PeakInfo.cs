@@ -8,7 +8,7 @@
             Min = min;
         }
 
-        public float Min { get; private set; }
-        public float Max { get; private set; }
+        public float Min { get; }
+        public float Max { get; }
     }
 }

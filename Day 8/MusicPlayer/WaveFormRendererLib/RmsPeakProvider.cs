@@ -16,19 +16,17 @@ namespace WaveFormRendererLib
             var samplesRead = Provider.Read(ReadBuffer, 0, ReadBuffer.Length);
 
             var max = 0.0f;
-            for (int x = 0; x < samplesRead; x += blockSize)
+            for (var x = 0; x < samplesRead; x += blockSize)
             {
-                double total = 0.0;
-                for (int y = 0; y < blockSize && x + y < samplesRead; y++)
-                {
+                var total = 0.0;
+                for (var y = 0; y < blockSize && x + y < samplesRead; y++)
                     total += ReadBuffer[x + y] * ReadBuffer[x + y];
-                }
-                var rms = (float) Math.Sqrt(total/blockSize);
+                var rms = (float) Math.Sqrt(total / blockSize);
 
                 max = Math.Max(max, rms);
             }
 
-            return new PeakInfo(0 -max, max);
+            return new PeakInfo(0 - max, max);
         }
     }
 }

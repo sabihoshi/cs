@@ -6,7 +6,5 @@
         xmlns:local="clr-namespace:MusicPlayer.Views"
         mc:Ignorable="d"
         Title="NewPlaylistView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Grid />
 </Window>

@@ -6,8 +6,8 @@ namespace WaveFormRendererLib
 {
     public class SoundCloudOriginalSettings : WaveFormRendererSettings
     {
-        private int lastTopHeight;
         private int lastBottomHeight;
+        private int lastTopHeight;
 
         public SoundCloudOriginalSettings()
         {
@@ -22,16 +22,18 @@ namespace WaveFormRendererLib
             {
                 if (base.TopPeakPen == null || lastTopHeight != TopHeight)
                 {
-                    base.TopPeakPen = CreateGradientPen(TopHeight, Color.FromArgb(120, 120, 120), Color.FromArgb(50, 50, 50));
+                    base.TopPeakPen = CreateGradientPen(TopHeight, Color.FromArgb(120, 120, 120),
+                        Color.FromArgb(50, 50, 50));
                     lastTopHeight = TopHeight;
                 }
+
                 return base.TopPeakPen;
             }
-            set { base.TopPeakPen = value; }
+            set => base.TopPeakPen = value;
         }
 
 
-        public override Pen BottomPeakPen 
+        public override Pen BottomPeakPen
         {
             get
             {
@@ -41,20 +43,19 @@ namespace WaveFormRendererLib
                     lastBottomHeight = BottomHeight;
                     lastTopHeight = TopHeight;
                 }
+
                 return base.BottomPeakPen;
             }
-            set { base.BottomPeakPen = value; }
+            set => base.BottomPeakPen = value;
         }
 
 
-        public override Pen BottomSpacerPen
-        {
-            get { throw new InvalidOperationException("No spacer pen required"); }
-        }
+        public override Pen BottomSpacerPen => throw new InvalidOperationException("No spacer pen required");
 
         private Pen CreateSoundcloudBottomPen(int topHeight, int bottomHeight)
         {
-            var bottomGradient = new LinearGradientBrush(new Point(0, topHeight), new Point(0, topHeight + bottomHeight), 
+            var bottomGradient = new LinearGradientBrush(new Point(0, topHeight),
+                new Point(0, topHeight + bottomHeight),
                 Color.FromArgb(16, 16, 16), Color.FromArgb(150, 150, 150));
             var colorBlend = new ColorBlend(3);
             colorBlend.Colors[0] = Color.FromArgb(16, 16, 16);

@@ -187,7 +187,7 @@ namespace MusicPlayer.ViewModels
 
         public void ChangeTrack()
         {
-            if(SelectedTrack == PlayingTrack) return;
+            if (SelectedTrack == PlayingTrack) return;
             if (PlayingTrack != null)
             {
                 PlayingTrack.PlaybackStoppedType = TrackModel.PlaybackStoppedTypes.PlaybackStoppedByUser;
@@ -292,9 +292,10 @@ namespace MusicPlayer.ViewModels
             {
                 if (_ct.IsCancellationRequested)
                 {
-                    break;
                     PlayingTrack.PlaybackStoppedType = TrackModel.PlaybackStoppedTypes.PlaybackStoppedByUser;
+                    break;
                 }
+
                 CurrentPosition = PlayingTrack.GetPosition;
                 await Task.Delay(500).ConfigureAwait(true);
             }

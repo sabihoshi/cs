@@ -14,8 +14,7 @@
 
         <!--Logo-->
         <Grid Column="0"
-              Background="#E63C2D">
-        </Grid>
+              Background="#E63C2D" />
 
         <!--Main UI-->
         <ContentControl Grid.Column="1"
