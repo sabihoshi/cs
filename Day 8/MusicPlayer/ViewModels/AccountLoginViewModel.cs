@@ -2,13 +2,19 @@
 using Caliburn.Micro;
 using LiteDB;
 using MusicPlayer.Models;
-using MVVMTest.Classes;
 
 namespace MusicPlayer.ViewModels
 {
     internal class AccountLoginViewModel : Screen
     {
         private readonly IWindowManager manager = new WindowManager();
+
+        private readonly AccountViewModel context;
+
+        public AccountLoginViewModel(AccountViewModel context)
+        {
+            this.context = context;
+        }
 
         public string Username { get; set; }
 
@@ -19,33 +25,30 @@ namespace MusicPlayer.ViewModels
             MessageBox.Show("Invalid username or password, please try again.", "User login", MessageBoxButton.OK);
         }
 
-        private AccountViewModel context;
-
-        public AccountLoginViewModel(AccountViewModel context)
-        {
-            this.context = context;
-        }
-
         public void LoginUser()
         {
+            UserModel user;
             using (var dt = new LiteDatabase(@"MyData.db"))
             {
                 var users = dt.GetCollection<UserModel>("Users");
-                var user = users.FindOne(u => u.Username == Username);
-                if (!(user is null))
+                user = users.FindOne(u => u.Username == Username);
+            }
+
+            if (!(user is null))
+            {
+                if (user.Password == Password)
                 {
-                    if (user.Password == Password)
-                    {
-                        manager.ShowWindow(new MusicPlayerViewModel(user));
-                        context.TryClose();
-                    }
-                    else
-                        InvalidLogin();
+                    manager.ShowWindow(new MusicPlayerViewModel(user));
+                    context.TryClose();
                 }
                 else
                 {
                     InvalidLogin();
                 }
+            }
+            else
+            {
+                InvalidLogin();
             }
         }
 
