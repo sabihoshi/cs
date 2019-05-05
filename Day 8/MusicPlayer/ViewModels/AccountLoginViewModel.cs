@@ -40,15 +40,9 @@ namespace MusicPlayer.ViewModels
                     _manager.ShowWindow(new MusicPlayerViewModel(user));
                     _context.TryClose();
                 }
-                else
-                {
-                    InvalidLogin();
-                }
+                else { InvalidLogin(); }
             }
-            else
-            {
-                InvalidLogin();
-            }
+            else { InvalidLogin(); }
         }
 
         public void CreateAccount()

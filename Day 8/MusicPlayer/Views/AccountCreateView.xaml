@@ -85,7 +85,7 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="1"
                     x:Name="CreateAccount" Content="Create account"
-                    HorizontalAlignment="Right"/>
+                    HorizontalAlignment="Right" />
         </Grid>
     </Grid>
 </UserControl>
