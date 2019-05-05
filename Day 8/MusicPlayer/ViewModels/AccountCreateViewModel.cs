@@ -7,6 +7,11 @@ namespace MusicPlayer.ViewModels
 {
     public class AccountCreateViewModel : Screen
     {
+        readonly AccountViewModel _context;
+        public AccountCreateViewModel(AccountViewModel context)
+        {
+            _context = context;
+        }
         public string Username { get; set; }
         public string Password1 { get; set; }
         public string Password2 { get; set; }
@@ -26,6 +31,8 @@ namespace MusicPlayer.ViewModels
                         Username = Username,
                         Password = Password1
                     });
+                    MessageBox.Show("Created user");
+                    _context.LoadAccountLogin();
                 }
             }
         }

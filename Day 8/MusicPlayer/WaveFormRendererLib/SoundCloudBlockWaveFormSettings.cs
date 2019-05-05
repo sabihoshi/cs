@@ -50,13 +50,11 @@ namespace WaveFormRendererLib
             set => topSpacerPen = value;
         }
 
-
         public override Pen BottomPeakPen
         {
             get => bottomPen;
             set => bottomPen = value;
         }
-
 
         public override Pen BottomSpacerPen
         {

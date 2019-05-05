@@ -7,12 +7,12 @@ namespace MusicPlayer.ViewModels
 {
     internal class AccountLoginViewModel : Screen
     {
-        private readonly AccountViewModel context;
-        private readonly IWindowManager manager = new WindowManager();
+        private readonly AccountViewModel _context;
+        private readonly IWindowManager _manager = new WindowManager();
 
         public AccountLoginViewModel(AccountViewModel context)
         {
-            this.context = context;
+            _context = context;
         }
 
         public string Username { get; set; }
@@ -37,8 +37,8 @@ namespace MusicPlayer.ViewModels
             {
                 if (user.Password == Password)
                 {
-                    manager.ShowWindow(new MusicPlayerViewModel(user));
-                    context.TryClose();
+                    _manager.ShowWindow(new MusicPlayerViewModel(user));
+                    _context.TryClose();
                 }
                 else
                 {
@@ -53,7 +53,7 @@ namespace MusicPlayer.ViewModels
 
         public void CreateAccount()
         {
-            context.LoadAccountCreation();
+            _context.LoadAccountCreation();
         }
     }
 }

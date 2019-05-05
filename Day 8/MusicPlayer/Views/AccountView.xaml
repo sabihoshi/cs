@@ -15,20 +15,20 @@
 
         <!--Logo-->
         <Grid Column="0"
-              Background="#E63C2D" >
+              Background="#E63C2D">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="4*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
                 <RowDefinition Height="4*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Image Grid.Column="1" Grid.Row="1"
                    RenderOptions.BitmapScalingMode="Fant"
-                   Source="C:\Users\Kao\Downloads\General\canvas_full_logo.png"/>
+                   Source="C:\Users\Kao\Downloads\General\canvas_full_logo.png" />
         </Grid>
 
         <!--Main UI-->

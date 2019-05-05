@@ -217,7 +217,7 @@
                                 </Grid.RowDefinitions>
 
                                 <TextBox Grid.Row="1"
-                                         cal:Message.Attach="[Event LostKeyboardFocus] = [Action UpdateDatabase]"
+                                         cal:Message.Attach="[Event TextChanged] = [Action UpdateDatabase]"
                                          Text="{Binding Path=SelectedPlaylist.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                          Style="{DynamicResource MaterialDesignTextBox}"
                                          FontWeight="Bold"

@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
+using JetBrains.Annotations;
 using LiteDB;
 using Microsoft.Win32;
 using MusicPlayer.Models;
@@ -221,6 +222,7 @@ namespace MusicPlayer.ViewModels
             }
         }
 
+        [UsedImplicitly]
         public void FilePreviewDragEnter(DragEventArgs e)
         {
             var dropEnabled = true;
@@ -244,12 +246,15 @@ namespace MusicPlayer.ViewModels
             }
         }
 
+        [UsedImplicitly]
         public void ChangePlaylistImage(DragEventArgs e)
         {
             var fileList = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
-            if (fileList != null) SelectedPlaylist.ImagePath = fileList[0];
-            NotifyOfPropertyChange(() => SelectedPlaylist);
-            UpdateDatabase();
+            if (fileList != null)
+            {
+                SelectedPlaylist.ImagePath = fileList.FirstOrDefault();
+                UpdateDatabase();
+            }
         }
 
         public void PlayTrack()
@@ -291,6 +296,7 @@ namespace MusicPlayer.ViewModels
             PlayTrack();
         }
 
+        [UsedImplicitly]
         public void PreviousTrack()
         {
             var songs = _playingPlaylist.Songs;

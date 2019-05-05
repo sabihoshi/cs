@@ -32,7 +32,6 @@ namespace WaveFormRendererLib
             set => base.TopPeakPen = value;
         }
 
-
         public override Pen BottomPeakPen
         {
             get
@@ -48,7 +47,6 @@ namespace WaveFormRendererLib
             }
             set => base.BottomPeakPen = value;
         }
-
 
         public override Pen BottomSpacerPen => throw new InvalidOperationException("No spacer pen required");
 

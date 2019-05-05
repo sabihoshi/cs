@@ -26,19 +26,10 @@ namespace MusicPlayer.Models
         public TrackModel() { }
         public TrackModel(string path) : this(path, File.Create(path).Tag.Title) { }
         [BsonIgnore] public PlaybackStoppedTypes PlaybackStoppedType { get; set; }
-        public TimeSpan Length => TrackExists ? File.Create(Path).Properties.Duration : new TimeSpan();
-
-        public string Name
-        {
-            get
-            {
-                if (TrackExists) return Title;
-                return $"File not found. ({Title})";
-            }
-        }
-
+        [BsonIgnore] public TimeSpan Length => TrackExists ? File.Create(Path).Properties.Duration : new TimeSpan();
+        public string Name => TrackExists ? Title : $"File not found. ({Title})";
         [BsonIgnore] public bool IsSelected { get; set; }
-        [BsonIgnore] public bool TrackExists => System.IO.File.Exists(Path);
+        [BsonIgnore] private bool TrackExists => System.IO.File.Exists(Path);
         public string Title { get; set; }
         public string Path { get; set; }
         [BsonIgnore] public PlaybackState PlaybackState => Output?.PlaybackState ?? PlaybackState.Stopped;
@@ -46,8 +37,8 @@ namespace MusicPlayer.Models
         [BsonIgnore] public double GetPosition => AudioFileReader?.CurrentTime.TotalSeconds ?? 0;
         [BsonIgnore] public bool IsReady => Output                  != null;
         [BsonIgnore] public bool IsPlaying => Output?.PlaybackState == PlaybackState.Playing;
-        public AudioFileReader AudioFileReader { get; set; }
-        public DirectSoundOut Output { get; set; }
+        [BsonIgnore] private AudioFileReader AudioFileReader { get; set; }
+        [BsonIgnore] private DirectSoundOut Output { get; set; }
 
         public double GetGetLength()
         {
@@ -82,11 +73,6 @@ namespace MusicPlayer.Models
             NotifyOfPropertyChange(() => PlayingText);
         }
 
-        public float GetVolume()
-        {
-            return AudioFileReader?.Volume ?? 1;
-        }
-
         public static bool IsValid(string path)
         {
             try
@@ -108,13 +94,13 @@ namespace MusicPlayer.Models
             Output.Init(wc);
         }
 
-        public void Pause()
+        private void Pause()
         {
             PlaybackStoppedType = PlaybackStoppedTypes.PlaybackStoppedByUser;
             Output?.Pause();
         }
 
-        public void Play()
+        private void Play()
         {
             PlaybackStoppedType = PlaybackStoppedTypes.PlaybackEnded;
             Output?.Play();

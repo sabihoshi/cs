@@ -5,6 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:MusicPlayer.Views"
              mc:Ignorable="d"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
              Background="#C4382C">
     <Grid VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
@@ -17,13 +23,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="1"
+                   Style="{DynamicResource MaterialDesignTitleTextBlock}"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Bottom"
                    FontSize="32"
-                   FontFamily="Georgia"
                    Foreground="White" Text="Create a new user" />
 
         <!--Inputs-->
@@ -38,7 +44,7 @@
                        HorizontalAlignment="Left" VerticalAlignment="Bottom"
                        Style="{DynamicResource MaterialDesignTextBlock}" Text="Username" />
 
-            <TextBox Grid.Row="1"
+            <TextBox Grid.Row="1" x:Name="Username"
                      Style="{DynamicResource MaterialDesignTextBox}" />
         </Grid>
 
@@ -53,7 +59,7 @@
                        HorizontalAlignment="Left" VerticalAlignment="Bottom"
                        Style="{DynamicResource MaterialDesignTextBlock}" Text="Password (max 16)" />
 
-            <TextBox Grid.Row="1"
+            <TextBox Grid.Row="1" x:Name="Password1"
                      Style="{DynamicResource MaterialDesignTextBox}" />
         </Grid>
 
@@ -68,8 +74,18 @@
                        HorizontalAlignment="Left" VerticalAlignment="Bottom"
                        Style="{DynamicResource MaterialDesignTextBlock}" Text="Confirm Password" />
 
-            <TextBox Grid.Row="1"
+            <TextBox Grid.Row="1" x:Name="Password2"
                      Style="{DynamicResource MaterialDesignTextBox}" />
+        </Grid>
+
+        <Grid Row="4" Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1"
+                    x:Name="CreateAccount" Content="Create account"
+                    HorizontalAlignment="Right"/>
         </Grid>
     </Grid>
 </UserControl>

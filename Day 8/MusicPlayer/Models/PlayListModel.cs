@@ -24,7 +24,7 @@ namespace MusicPlayer.Models
 
     public class PlaylistModel : Screen
     {
-        public string _imagePath;
+        private string _imagePath;
 
         public PlaylistModel(string filename, string name)
         {
@@ -39,7 +39,11 @@ namespace MusicPlayer.Models
         public string ImagePath
         {
             get => File.Exists(_imagePath) ? _imagePath : Path.GetFullPath("../../Images/Albums/placeholder.jpg");
-            set => _imagePath = value;
+            set
+            {
+                _imagePath = value;
+                NotifyOfPropertyChange(() => ImagePath);
+            }
         }
 
         [BsonIgnore] public string DefaultImage => "../../Images/Albums/placeholder.jpg";

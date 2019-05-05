@@ -70,6 +70,9 @@
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
     </Reference>
+    <Reference Include="JetBrains.Annotations, Version=2019.1.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.2019.1.1\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="LiteDB, Version=4.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
       <HintPath>..\packages\LiteDB.4.1.4\lib\net40\LiteDB.dll</HintPath>
     </Reference>
@@ -121,7 +124,6 @@
     <Compile Include="IShell.cs" />
     <Compile Include="Models\PlaylistModel.cs" />
     <Compile Include="Models\UserModel.cs" />
-    <Compile Include="NAudioWrapper\AudioPlayer.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="ViewModels\AccountCreateViewModel.cs" />
     <Compile Include="ViewModels\AccountLoginViewModel.cs" />

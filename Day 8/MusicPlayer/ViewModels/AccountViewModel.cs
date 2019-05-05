@@ -10,7 +10,7 @@ namespace MusicPlayer.ViewModels
         public AccountViewModel()
         {
             _accountLogin = new AccountLoginViewModel(this);
-            _accountCreate = new AccountCreateViewModel();
+            _accountCreate = new AccountCreateViewModel(this);
             LoadAccountLogin();
         }
 
