@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Caliburn.Micro;
+using LiteDB;
 
 namespace MusicPlayer.Models
 {
@@ -21,7 +22,7 @@ namespace MusicPlayer.Models
         }
     }
 
-    public class PlaylistModel
+    public class PlaylistModel : Screen
     {
         public string _imagePath;
 
@@ -32,7 +33,6 @@ namespace MusicPlayer.Models
         }
 
         public PlaylistModel() { }
-
         public int Id { get; set; }
         public string Name { get; set; }
 
@@ -42,7 +42,8 @@ namespace MusicPlayer.Models
             set => _imagePath = value;
         }
 
-        public string DefaultImage => "../../Images/Albums/placeholder.jpg";
+        [BsonIgnore] public string DefaultImage => "../../Images/Albums/placeholder.jpg";
+
         public BindableCollection<TrackModel> Songs { get; set; } = new BindableCollection<TrackModel>();
     }
 }

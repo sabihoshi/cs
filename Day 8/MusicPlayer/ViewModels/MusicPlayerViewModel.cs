@@ -1,7 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Caliburn.Micro;
 using LiteDB;
 using Microsoft.Win32;
@@ -14,22 +16,18 @@ namespace MusicPlayer.ViewModels
     {
         public enum LoopSettings
         {
-            None,
-            Single,
-            All
+            None, Single, All
         }
 
         private readonly Random _r = new Random();
         private readonly UserModel _user;
-
         private readonly IWindowManager manager = new WindowManager();
         private CancellationToken _ct;
         private double _currentPosition;
         private float _currentVolume = 1f;
-
         private CancellationTokenSource _playbackStoppedToken;
         private PlaylistModel _playingPlaylist;
-        private BindableCollection<PlaylistModel> _playlists = new BindableCollection<PlaylistModel>();
+        private BindableCollection<PlaylistModel> _playlists;
         private PlaylistModel _selectedPlaylist;
         private TrackModel _selectedTrack;
         private double _trackLength;
@@ -37,14 +35,11 @@ namespace MusicPlayer.ViewModels
         public MusicPlayerViewModel(UserModel user)
         {
             _user = user;
-            Playlists = new BindableCollection<PlaylistModel>(_user.Playlists);
+            Playlists = _user.Playlists;
         }
 
-
         public TrackModel PlayingTrack { get; set; }
-
         public bool IsShuffle { get; set; } = true;
-
         public LoopSettings LoopSetting { get; set; } = LoopSettings.None;
 
         public string LoopContent
@@ -62,8 +57,6 @@ namespace MusicPlayer.ViewModels
         }
 
         public string ShuffleContent => IsShuffle ? "🔀" : "➡";
-
-        public BindableCollection<TrackModel> Tracks { get; set; }
 
         public double CurrentPosition
         {
@@ -89,8 +82,8 @@ namespace MusicPlayer.ViewModels
             }
         }
 
-        public string CurrentPositionSeconds => PlayingTrack?.GetPositionInSeconds;
-        public string TrackLengthSeconds => PlayingTrack?.GetLengthInSeconds;
+        public string CurrentPositionSeconds => PlayingTrack?.GetPositionInSeconds();
+        public string TrackLengthSeconds => PlayingTrack?.GetLengthInSeconds();
 
         public float CurrentVolume
         {
@@ -139,21 +132,16 @@ namespace MusicPlayer.ViewModels
             }
         }
 
-
         public string PlayContent => PlayingTrack?.IsPlaying ?? false ? "⏸" : "▶";
-
         public bool CanPlayTrack => PlayingTrack?.IsReady ?? false;
 
         public bool CanNextTrack
         {
             get
             {
-                if (_playingPlaylist == null)
-                    return false;
-                if (PlayingTrack == null)
-                    return false;
-                if (LoopSetting == LoopSettings.All || IsShuffle)
-                    return true;
+                if (_playingPlaylist == null) return false;
+                if (PlayingTrack     == null) return false;
+                if (LoopSetting == LoopSettings.All || IsShuffle) return true;
                 return PlayingTrack != _playingPlaylist.Songs.Last();
             }
         }
@@ -162,12 +150,16 @@ namespace MusicPlayer.ViewModels
         {
             get
             {
-                if (_playingPlaylist == null)
-                    return false;
-                if (PlayingTrack == null)
-                    return false;
-                return PlayingTrack != _playingPlaylist.Songs.First();
+                if (_playingPlaylist == null) return false;
+                if (PlayingTrack     == null) return false;
+                return PlayingTrack  != _playingPlaylist.Songs.First();
             }
+        }
+
+        public void RemoveTracks()
+        {
+            foreach (var track in SelectedPlaylist.Songs)
+                Console.WriteLine(track.IsSelected);
         }
 
         public void ToggleLoop()
@@ -183,7 +175,6 @@ namespace MusicPlayer.ViewModels
             NotifyOfPropertyChange(() => ShuffleContent);
             NotifyOfPropertyChange(() => CanNextTrack);
         }
-
 
         public void ChangeTrack()
         {
@@ -209,34 +200,64 @@ namespace MusicPlayer.ViewModels
         public void CreatePlaylist()
         {
             Playlists.Add(new PlaylistModel(null, "New Playlist"));
+            UpdateDatabase();
         }
 
         public void AddSong()
         {
-            var fileDialog = new OpenFileDialog
-            {
-                Multiselect = true
-            };
+            var fileDialog = new OpenFileDialog {Multiselect = true};
             fileDialog.ShowDialog();
-
             SelectedPlaylist.AddSong(fileDialog.FileNames);
             NotifyOfPropertyChange(() => SelectedPlaylist);
+            UpdateDatabase();
+        }
 
-            using (var db = new LiteDatabase(@"MyData.db"))
+        public void UpdateDatabase()
+        {
+            using (var dt = new LiteDatabase(@"MyData.db"))
             {
-                var users = db.GetCollection<UserModel>("Users");
+                var users = dt.GetCollection<UserModel>("Users");
                 users.Update(_user);
             }
         }
 
+        public void FilePreviewDragEnter(DragEventArgs e)
+        {
+            var dropEnabled = true;
+            if (e.Data.GetDataPresent(DataFormats.FileDrop, true))
+            {
+                var filenames =
+                    e.Data.GetData(DataFormats.FileDrop, true) as string[];
+
+                if (filenames != null)
+                {
+                    var ext = Path.GetExtension(filenames[0])?.ToUpperInvariant();
+                    if (ext != ".PNG" && ext != ".JPG" && ext != ".JPEG") dropEnabled = false;
+                }
+            }
+            else { dropEnabled = false; }
+
+            if (!dropEnabled)
+            {
+                e.Effects = DragDropEffects.None;
+                e.Handled = true;
+            }
+        }
+
+        public void ChangePlaylistImage(DragEventArgs e)
+        {
+            var fileList = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            if (fileList != null) SelectedPlaylist.ImagePath = fileList[0];
+            NotifyOfPropertyChange(() => SelectedPlaylist);
+            UpdateDatabase();
+        }
+
         public void PlayTrack()
         {
-            if (PlayingTrack != null && !(PlayingTrack?.IsReady ?? true))
-                PlayingTrack.LoadTrack(_currentVolume);
-
+            if (PlayingTrack != null && !(PlayingTrack?.IsReady ?? true)) PlayingTrack.LoadTrack(_currentVolume);
             if (PlayingTrack?.IsReady ?? false)
             {
-                TrackLength = PlayingTrack.GetLength;
+                TrackLength = PlayingTrack.GetGetLength();
                 if (PlayingTrack?.IsPlaying ?? false)
                 {
                     PlayingTrack.PlaybackStoppedType = TrackModel.PlaybackStoppedTypes.PlaybackStoppedByUser;
@@ -246,17 +267,12 @@ namespace MusicPlayer.ViewModels
                 {
                     PlayingTrack.PlaybackStoppedType = TrackModel.PlaybackStoppedTypes.PlaybackEnded;
                     PlayingTrack.TogglePlayPause();
-
                     _playbackStoppedToken = new CancellationTokenSource();
                     _ct = _playbackStoppedToken.Token;
-
                     _ = UpdateAudioAsync();
                 }
             }
-            else
-            {
-                NextTrack();
-            }
+            else { NextTrack(); }
 
             NotifyOfPropertyChange(() => PlayContent);
             NotifyOfPropertyChange(() => CanPlayTrack);
@@ -271,7 +287,6 @@ namespace MusicPlayer.ViewModels
                 ? _r.Next(_playingPlaylist.Songs.Count)
                 : (songs.IndexOf(PlayingTrack) + 1) % songs.Count;
             StopTrack();
-
             PlayingTrack = songs[nextSong];
             PlayTrack();
         }
@@ -281,7 +296,6 @@ namespace MusicPlayer.ViewModels
             var songs = _playingPlaylist.Songs;
             var songPos = songs.IndexOf(PlayingTrack);
             StopTrack();
-
             PlayingTrack = songs[songPos - 1];
             PlayTrack();
         }
@@ -301,7 +315,6 @@ namespace MusicPlayer.ViewModels
             }
 
             NotifyOfPropertyChange(() => CanPlayTrack);
-
             if (PlayingTrack.PlaybackStoppedType == TrackModel.PlaybackStoppedTypes.PlaybackEnded)
             {
                 var songs = _playingPlaylist.Songs;
@@ -309,8 +322,7 @@ namespace MusicPlayer.ViewModels
                 {
                     case LoopSettings.None:
                     {
-                        if (PlayingTrack == songs.Last())
-                            StopTrack();
+                        if (PlayingTrack == songs.Last()) StopTrack();
                         NextTrack();
                         break;
                     }
@@ -322,9 +334,7 @@ namespace MusicPlayer.ViewModels
                     case LoopSettings.Single:
                     {
                         SelectedTrack.SetPosition(0);
-
                         PlayTrack();
-
                         NotifyOfPropertyChange(() => CanPlayTrack);
                         break;
                     }

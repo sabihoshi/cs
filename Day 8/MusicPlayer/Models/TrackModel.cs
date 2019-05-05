@@ -2,6 +2,7 @@
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using LiteDB;
 using NAudio.Wave;
 using TagLib;
 using WaveFormRendererLib;
@@ -13,8 +14,7 @@ namespace MusicPlayer.Models
     {
         public enum PlaybackStoppedTypes
         {
-            PlaybackStoppedByUser,
-            PlaybackEnded
+            PlaybackStoppedByUser, PlaybackEnded
         }
 
         private TrackModel(string path, string title)
@@ -25,7 +25,7 @@ namespace MusicPlayer.Models
 
         public TrackModel() { }
         public TrackModel(string path) : this(path, File.Create(path).Tag.Title) { }
-        public PlaybackStoppedTypes PlaybackStoppedType { get; set; }
+        [BsonIgnore] public PlaybackStoppedTypes PlaybackStoppedType { get; set; }
         public TimeSpan Length => TrackExists ? File.Create(Path).Properties.Duration : new TimeSpan();
 
         public string Name
@@ -37,21 +37,32 @@ namespace MusicPlayer.Models
             }
         }
 
-        public bool TrackExists => System.IO.File.Exists(Path);
+        [BsonIgnore] public bool IsSelected { get; set; }
+        [BsonIgnore] public bool TrackExists => System.IO.File.Exists(Path);
         public string Title { get; set; }
         public string Path { get; set; }
-        public double GetLength => AudioFileReader?.TotalTime.TotalSeconds ?? 0;
-        public PlaybackState PlaybackState => Output?.PlaybackState        ?? PlaybackState.Stopped;
-        public string GetLengthInSeconds =>
-            TimeSpan.FromSeconds(AudioFileReader?.TotalTime.TotalSeconds ?? 0).ToString(@"mm\:ss");
-        public string PlayingText => IsPlaying ? "▶" : "";
-        public string GetPositionInSeconds =>
-            TimeSpan.FromSeconds(AudioFileReader?.CurrentTime.TotalSeconds ?? 0).ToString(@"mm\:ss");
-        public double GetPosition => AudioFileReader?.CurrentTime.TotalSeconds ?? 0;
-        public bool IsReady => Output                  != null;
-        public bool IsPlaying => Output?.PlaybackState == PlaybackState.Playing;
+        [BsonIgnore] public PlaybackState PlaybackState => Output?.PlaybackState ?? PlaybackState.Stopped;
+        [BsonIgnore] public string PlayingText => IsPlaying ? "▶" : "";
+        [BsonIgnore] public double GetPosition => AudioFileReader?.CurrentTime.TotalSeconds ?? 0;
+        [BsonIgnore] public bool IsReady => Output                  != null;
+        [BsonIgnore] public bool IsPlaying => Output?.PlaybackState == PlaybackState.Playing;
         public AudioFileReader AudioFileReader { get; set; }
         public DirectSoundOut Output { get; set; }
+
+        public double GetGetLength()
+        {
+            return AudioFileReader?.TotalTime.TotalSeconds ?? 0;
+        }
+
+        public string GetLengthInSeconds()
+        {
+            return TimeSpan.FromSeconds(AudioFileReader?.TotalTime.TotalSeconds ?? 0).ToString(@"mm\:ss");
+        }
+
+        public string GetPositionInSeconds()
+        {
+            return TimeSpan.FromSeconds(AudioFileReader?.CurrentTime.TotalSeconds ?? 0).ToString(@"mm\:ss");
+        }
 
         public void Dispose()
         {
@@ -61,11 +72,13 @@ namespace MusicPlayer.Models
                 Output.Dispose();
                 Output = null;
             }
+
             if (AudioFileReader != null)
             {
                 AudioFileReader.Dispose();
                 AudioFileReader = null;
             }
+
             NotifyOfPropertyChange(() => PlayingText);
         }
 
@@ -82,10 +95,7 @@ namespace MusicPlayer.Models
                 File.Create(path).Dispose();
                 return true;
             }
-            catch
-            {
-                return false;
-            }
+            catch { return false; }
         }
 
         public void LoadTrack(float volume)
@@ -135,6 +145,7 @@ namespace MusicPlayer.Models
 
         public void Stop()
         {
+            PlaybackStoppedType = PlaybackStoppedTypes.PlaybackStoppedByUser;
             Output?.Stop();
         }
 
@@ -145,10 +156,8 @@ namespace MusicPlayer.Models
                 if (Output.PlaybackState == PlaybackState.Playing) Pause();
                 else Play();
             }
-            else
-            {
-                Play();
-            }
+            else { Play(); }
+
             NotifyOfPropertyChange(() => PlayingText);
         }
     }

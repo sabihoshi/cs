@@ -7,45 +7,6 @@
              mc:Ignorable="d"
              Background="#C4382C">
     <Grid VerticalAlignment="Center">
-        <Grid.Resources>
-            <DropShadowEffect x:Key="dropShadow" BlurRadius="20" ShadowDepth="3" />
-
-            <Style x:Key="Labels" TargetType="TextBlock">
-                <Style.Setters>
-                    <Setter Property="HorizontalAlignment" Value="Left" />
-                    <Setter Property="VerticalAlignment" Value="Bottom" />
-                    <Setter Property="FontFamily" Value="Candara" />
-                    <Setter Property="FontWeight" Value="Bold" />
-                    <Setter Property="Foreground" Value="White" />
-                    <Setter Property="FontSize" Value="14" />
-                </Style.Setters>
-            </Style>
-
-            <Style x:Key="RoundedBox" TargetType="TextBox">
-                <Setter Property="MaxHeight" Value="50" />
-                <Setter Property="Height" Value="30" />
-                <Style.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="5" />
-                    </Style>
-                </Style.Resources>
-            </Style>
-
-            <Style x:Key="RoundedBorder" TargetType="Border">
-                <Style.Setters>
-                    <Setter Property="MaxHeight" Value="50" />
-                    <Setter Property="Height" Value="30" />
-                    <Setter Property="Background" Value="Transparent" />
-                    <Setter Property="BorderBrush" Value="DarkGray" />
-                    <Setter Property="BorderThickness" Value="1" />
-                    <Setter Property="ClipToBounds" Value="True" />
-                    <Setter Property="IsHitTestVisible" Value="False" />
-                    <Setter Property="CornerRadius" Value="5" />
-                    <Setter Property="Effect" Value="{StaticResource dropShadow}" />
-                </Style.Setters>
-            </Style>
-        </Grid.Resources>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="5*" />
@@ -72,14 +33,13 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+            <!--Username-->
             <TextBlock Grid.Row="0"
                        HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                       Style="{StaticResource Labels}" Text="Username" />
+                       Style="{DynamicResource MaterialDesignTextBlock}" Text="Username" />
 
             <TextBox Grid.Row="1"
-                     Style="{StaticResource RoundedBox}" />
-
-            <Border Grid.Row="1" Style="{StaticResource RoundedBorder}" />
+                     Style="{DynamicResource MaterialDesignTextBox}" />
         </Grid>
 
         <Grid Row="2" Column="1" Margin="0,5,0,5">
@@ -88,14 +48,13 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+            <!--Password-->
             <TextBlock Grid.Row="0"
                        HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                       Style="{StaticResource Labels}" Text="Password (max 16)" />
+                       Style="{DynamicResource MaterialDesignTextBlock}" Text="Password (max 16)" />
 
             <TextBox Grid.Row="1"
-                     Style="{StaticResource RoundedBox}" />
-
-            <Border Grid.Row="1" Style="{StaticResource RoundedBorder}" />
+                     Style="{DynamicResource MaterialDesignTextBox}" />
         </Grid>
 
         <Grid Row="3" Column="1" Margin="0,5,0,5">
@@ -104,14 +63,13 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+            <!--Password again-->
             <TextBlock Grid.Row="0"
                        HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                       Style="{StaticResource Labels}" Text="Confirm Password" />
+                       Style="{DynamicResource MaterialDesignTextBlock}" Text="Confirm Password" />
 
             <TextBox Grid.Row="1"
-                     Style="{StaticResource RoundedBox}" />
-
-            <Border Grid.Row="1" Style="{StaticResource RoundedBorder}" />
+                     Style="{DynamicResource MaterialDesignTextBox}" />
         </Grid>
     </Grid>
 </UserControl>

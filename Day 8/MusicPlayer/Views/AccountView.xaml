@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MusicPlayer.Views"
         mc:Ignorable="d"
-        Title="AccountView" Height="450" Width="800">
+        MinWidth="800" MinHeight="450"
+        Title="AccountView">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -14,7 +15,21 @@
 
         <!--Logo-->
         <Grid Column="0"
-              Background="#E63C2D" />
+              Background="#E63C2D" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Image Grid.Column="1" Grid.Row="1"
+                   RenderOptions.BitmapScalingMode="Fant"
+                   Source="C:\Users\Kao\Downloads\General\canvas_full_logo.png"/>
+        </Grid>
 
         <!--Main UI-->
         <ContentControl Grid.Column="1"

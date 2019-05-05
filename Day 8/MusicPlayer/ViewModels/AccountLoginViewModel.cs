@@ -7,9 +7,8 @@ namespace MusicPlayer.ViewModels
 {
     internal class AccountLoginViewModel : Screen
     {
-        private readonly IWindowManager manager = new WindowManager();
-
         private readonly AccountViewModel context;
+        private readonly IWindowManager manager = new WindowManager();
 
         public AccountLoginViewModel(AccountViewModel context)
         {

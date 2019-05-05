@@ -26,7 +26,8 @@
 
         <Grid Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="75"
+                                  MaxWidth="100" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -38,13 +39,13 @@
 
                 <!--Playlists-->
                 <ListBox Grid.Row="1" Grid.Column="1"
-                         HorizontalAlignment="Stretch"
                          Margin="10"
                          x:Name="Playlists" BorderBrush="{x:Null}"
+                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
                          SelectedItem="{Binding Path=SelectedPlaylist, Mode=OneWayToSource}"
                          Style="{DynamicResource MaterialDesignListBox}"
                          ScrollViewer.CanContentScroll="False"
-                         Tag="{Binding DataContext, ElementName=Playlist}">
+                         Tag="{Binding DataContext, ElementName=Playlists}">
 
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
@@ -61,8 +62,9 @@
 
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type models:PlaylistModel}">
+
                             <Image Source="{Binding ImagePath}"
-                                   Margin="5"
+                                   Margin="5,0,5,10"
                                    Stretch="Uniform"
                                    Tag="{Binding DataContext, ElementName=Playlists}">
                                 <Image.ContextMenu>
@@ -77,6 +79,7 @@
                                     </ContextMenu>
                                 </Image.ContextMenu>
                             </Image>
+
 
                             <DataTemplate.Triggers>
                                 <DataTrigger
@@ -130,6 +133,7 @@
                             </DataTemplate.Triggers>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
+
                     <ListBox.ContextMenu>
                         <ContextMenu
                             cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
@@ -148,126 +152,148 @@
                 VerticalAlignment="Stretch"
                 Background="Black" />
 
-            <Grid Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="2*" />
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <!--Playlist Info-->
-                <Grid Row="0">
-                    <Grid.Background>
-                        <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
-                            <GradientStop Color="#212121" Offset="0.15" />
-                            <GradientStop Color="#303030" Offset="0.5" />
-                        </LinearGradientBrush>
-                    </Grid.Background>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="20" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="20" />
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="20" />
-                    </Grid.ColumnDefinitions>
-
-                    <!--Playlist Image-->
-                    <Grid Row="1" Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <Image Grid.Column="0"
-                               MinHeight="50"
-                               MaxHeight="200"
-                               Stretch="Uniform"
-                               HorizontalAlignment="Left"
-                               Source="{Binding Path=SelectedPlaylist.ImagePath, Mode=OneWay}" />
-                    </Grid>
-
-                    <!--Playlist Info-->
-                    <Grid Row="1" Column="2">
+            <!--Songs UI-->
+            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto"
+                          CanContentScroll="True">
+                <ItemsControl VerticalContentAlignment="Stretch">
+                    <Grid VerticalAlignment="Stretch">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="6*" />
-                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="4*" />
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="1"
-                                   Text="{Binding Path=SelectedPlaylist.Name}"
-                                   Style="{DynamicResource MaterialDesignTitleTextBlock}"
-                                   FontWeight="Bold"
-                                   FontSize="32"
-                                   Margin="10"
-                                   HorizontalAlignment="Left" />
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--Playlist Info-->
+                        <Grid Row="0">
+                            <Grid.Background>
+                                <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+                                    <GradientStop Color="#212121" Offset="0.15" />
+                                    <GradientStop Color="#303030" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Grid.Background>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--Playlist Image-->
+
+                            <Grid Row="1" Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0"
+                                       MinHeight="50"
+                                       MaxHeight="100"
+                                       Stretch="Uniform"
+                                       HorizontalAlignment="Left"
+                                       AllowDrop="True"
+                                       cal:Message.Attach="[Event Drop] = [Action ChangePlaylistImage($eventArgs)];
+                               [Event PreviewDragOver] = [Action FilePreviewDragEnter($eventArgs)]"
+                                       Source="{Binding Path=SelectedPlaylist.ImagePath, Mode=OneWay}" />
+
+                            </Grid>
+
+                            <!--Playlist Info-->
+                            <Grid Row="1" Column="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="6*" />
+                                    <RowDefinition Height="3*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBox Grid.Row="1"
+                                         cal:Message.Attach="[Event LostKeyboardFocus] = [Action UpdateDatabase]"
+                                         Text="{Binding Path=SelectedPlaylist.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         Style="{DynamicResource MaterialDesignTextBox}"
+                                         FontWeight="Bold"
+                                         FontSize="26"
+                                         BorderThickness="0"
+                                         Margin="10"
+                                         HorizontalAlignment="Left" />
+                            </Grid>
+                        </Grid>
+
+                        <!--Songs-->
+                        <Grid Row="1">
+                            <ListBox Grid.Column="1"
+                                     x:Name="SelectedPlaylist_Songs"
+                                     BorderBrush="{x:Null}"
+                                     Margin="10"
+                                     ScrollViewer.CanContentScroll="False"
+                                     HorizontalAlignment="Stretch"
+                                     IsSynchronizedWithCurrentItem="True"
+                                     cal:Message.Attach="[Event MouseDoubleClick] = [Action ChangeTrack]"
+                                     SelectionMode="Extended"
+                                     SelectedItem="{Binding Path=SelectedTrack, Mode=OneWayToSource}">
+
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem"
+                                           BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=OneWayToSource}" />
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type models:TrackModel}">
+                                        <Border Name="Border"
+                                                Background="Transparent"
+                                                BorderThickness="0,0,0,2"
+                                                Margin="-10,0,-10,-8">
+
+                                            <Border.BorderBrush>
+                                                <SolidColorBrush Color="White" Opacity="0.10" />
+                                            </Border.BorderBrush>
+
+                                            <Grid Tag="{Binding DataContext, ElementName=Playlists}" Margin="10">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Text="{Binding PlayingText, Mode=OneWay}"
+                                                           Margin="0,0,5,0" MinWidth="15" />
+
+                                                <TextBlock Grid.Column="1" Text="{Binding Name, Mode=OneWay}" />
+
+                                                <TextBlock Grid.Column="2"
+                                                           Text="{Binding Length, StringFormat='{}{0:mm\\:ss}'}"
+                                                           Margin="5,0,0,0"
+                                                           FontWeight="Bold"
+                                                           Foreground="#aaaaaa" />
+                                                <Grid.ContextMenu>
+                                                    <ContextMenu
+                                                        cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.Tag, 
+                                                RelativeSource={RelativeSource Self}}">
+                                                        <MenuItem Header="Remove Songs"
+                                                                  cal:Message.Attach="RemoveTracks" />
+                                                    </ContextMenu>
+                                                </Grid.ContextMenu>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
                     </Grid>
-                </Grid>
-
-                <!--Songs-->
-                <Grid Row="1">
-                    <ListBox Grid.Column="1"
-                             x:Name="SelectedPlaylist_Songs"
-                             BorderBrush="{x:Null}"
-                             Margin="10"
-                             ScrollViewer.CanContentScroll="False"
-                             HorizontalAlignment="Stretch"
-                             Style="{DynamicResource MaterialDesignListBox}"
-                             IsSynchronizedWithCurrentItem="True"
-                             cal:Message.Attach="[Event MouseDoubleClick] = [Action ChangeTrack]"
-                             SelectedItem="{Binding Path=SelectedTrack, Mode=OneWayToSource}">
-
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-
-                        <ListBox.ItemTemplate>
-                            <DataTemplate DataType="{x:Type models:TrackModel}">
-                                <Border Name="Border"
-                                        Background="Transparent"
-                                        BorderThickness="0,0,0,2"
-                                        Padding="5"
-                                        HorizontalAlignment="Stretch">
-                                    <Border.BorderBrush>
-                                        <SolidColorBrush Color="White" Opacity="0.10" />
-                                    </Border.BorderBrush>
-
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" Text="{Binding PlayingText, Mode=OneWay}"
-                                                   Margin="0,0,5,0" MinWidth="15" />
-                                        <TextBlock Grid.Column="1" Text="{Binding Name, Mode=OneWay}" />
-                                        <TextBlock Grid.Column="2"
-                                                   Text="{Binding Length, StringFormat='{}{0:mm\\:ss}'}"
-                                                   Margin="5,0,0,0"
-                                                   FontWeight="Bold"
-                                                   Foreground="#aaaaaa" />
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-
-                <!--Row 4-->
-            </Grid>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
-
         <!--Controls-->
         <Grid Row="1" Background="#111111">
             <Grid.RowDefinitions>
