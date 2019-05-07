@@ -1,3 +1,4 @@
-namespace MusicPlayer {
-    public interface IShell {}
+namespace MusicPlayer
+{
+    public interface IShell { }
 }

@@ -1,7 +1,7 @@
-﻿using System.Windows;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using LiteDB;
 using MusicPlayer.Models;
+using System.Windows;
 
 namespace MusicPlayer.ViewModels
 {

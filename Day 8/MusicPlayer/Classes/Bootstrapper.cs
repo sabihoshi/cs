@@ -1,6 +1,6 @@
-﻿using System.Windows;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using MusicPlayer.ViewModels;
+using System.Windows;
 
 namespace MVVMTest.Classes
 {

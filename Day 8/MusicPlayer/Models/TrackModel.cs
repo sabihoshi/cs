@@ -1,9 +1,9 @@
-﻿using System;
-using System.Drawing.Imaging;
-using System.Threading.Tasks;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using LiteDB;
 using NAudio.Wave;
+using System;
+using System.Drawing.Imaging;
+using System.Threading.Tasks;
 using TagLib;
 using WaveFormRendererLib;
 using PathIO = System.IO.Path;
@@ -23,8 +23,14 @@ namespace MusicPlayer.Models
             Path = path;
         }
 
-        public TrackModel() { }
-        public TrackModel(string path) : this(path, File.Create(path).Tag.Title) { }
+        public TrackModel()
+        {
+        }
+
+        public TrackModel(string path) : this(path, File.Create(path).Tag.Title)
+        {
+        }
+
         [BsonIgnore] public PlaybackStoppedTypes PlaybackStoppedType { get; set; }
         [BsonIgnore] public TimeSpan Length => TrackExists ? File.Create(Path).Properties.Duration : new TimeSpan();
         public string Name => TrackExists ? Title : $"File not found. ({Title})";
@@ -35,7 +41,7 @@ namespace MusicPlayer.Models
         [BsonIgnore] public PlaybackState PlaybackState => Output?.PlaybackState ?? PlaybackState.Stopped;
         [BsonIgnore] public string PlayingText => IsPlaying ? "▶" : "";
         [BsonIgnore] public double GetPosition => AudioFileReader?.CurrentTime.TotalSeconds ?? 0;
-        [BsonIgnore] public bool IsReady => Output                  != null;
+        [BsonIgnore] public bool IsReady => Output != null;
         [BsonIgnore] public bool IsPlaying => Output?.PlaybackState == PlaybackState.Playing;
         [BsonIgnore] private AudioFileReader AudioFileReader { get; set; }
         [BsonIgnore] private DirectSoundOut Output { get; set; }
@@ -88,9 +94,9 @@ namespace MusicPlayer.Models
         {
             if (!IsValid(Path)) return;
             _ = RenderAudioAsync(Path);
-            AudioFileReader = new AudioFileReader(Path) {Volume = volume};
+            AudioFileReader = new AudioFileReader(Path) { Volume = volume };
             Output = new DirectSoundOut(200);
-            var wc = new WaveChannel32(AudioFileReader) {PadWithZeroes = false};
+            var wc = new WaveChannel32(AudioFileReader) { PadWithZeroes = false };
             Output.Init(wc);
         }
 
@@ -111,7 +117,9 @@ namespace MusicPlayer.Models
             var averagePeakProvider = new AveragePeakProvider(4);
             var rendererSettings = new StandardWaveFormRendererSettings
             {
-                Width = 1080, TopHeight = 64, BottomHeight = 64
+                Width = 1080,
+                TopHeight = 64,
+                BottomHeight = 64
             };
             var renderer = new WaveFormRenderer();
             var image = await Task.Run(() => renderer.Render(fileName, averagePeakProvider, rendererSettings))

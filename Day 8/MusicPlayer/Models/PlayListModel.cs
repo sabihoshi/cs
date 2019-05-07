@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using LiteDB;
+using System.Collections.Generic;
+using System.IO;
 
 namespace MusicPlayer.Models
 {
@@ -32,7 +32,10 @@ namespace MusicPlayer.Models
             Name = name;
         }
 
-        public PlaylistModel() { }
+        public PlaylistModel()
+        {
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
 

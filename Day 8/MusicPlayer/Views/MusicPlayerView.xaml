@@ -69,17 +69,16 @@
                                    Tag="{Binding DataContext, ElementName=Playlists}">
                                 <Image.ContextMenu>
                                     <ContextMenu
-                                        cal:Action.TargetWithoutContext="{Binding 
-                                            Path=PlacementTarget.Tag, 
+                                        cal:Action.TargetWithoutContext="{Binding
+                                            Path=PlacementTarget.Tag,
                                             RelativeSource={RelativeSource Self}}">
                                         <MenuItem Header="Create new playlist..."
                                                   cal:Message.Attach="CreatePlaylist" />
                                         <MenuItem Header="Add a song..."
-                                                  cal:Message.Attach="AddSong" />
+                                                  cal:Message.Attach="AddTrack" />
                                     </ContextMenu>
                                 </Image.ContextMenu>
                             </Image>
-
 
                             <DataTemplate.Triggers>
                                 <DataTrigger
@@ -153,7 +152,8 @@
                 Background="Black" />
 
             <!--Songs UI-->
-            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto"
+            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto"
                           CanContentScroll="True">
                 <ItemsControl VerticalContentAlignment="Stretch">
                     <Grid VerticalAlignment="Stretch">
@@ -189,7 +189,6 @@
                             </Grid.ColumnDefinitions>
 
                             <!--Playlist Image-->
-
                             <Grid Row="1" Column="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -205,7 +204,6 @@
                                        cal:Message.Attach="[Event Drop] = [Action ChangePlaylistImage($eventArgs)];
                                [Event PreviewDragOver] = [Action FilePreviewDragEnter($eventArgs)]"
                                        Source="{Binding Path=SelectedPlaylist.ImagePath, Mode=OneWay}" />
-
                             </Grid>
 
                             <!--Playlist Info-->
@@ -237,7 +235,8 @@
                                      ScrollViewer.CanContentScroll="False"
                                      HorizontalAlignment="Stretch"
                                      IsSynchronizedWithCurrentItem="True"
-                                     cal:Message.Attach="[Event MouseDoubleClick] = [Action ChangeTrack]"
+                                     cal:Message.Attach="[Event MouseDoubleClick] = [Action ChangeTrack];
+                                     [Event PreviewMouseWheel] = [Action PreviewMouseWheel($source, $eventArgs)]"
                                      SelectionMode="Extended"
                                      SelectedItem="{Binding Path=SelectedTrack, Mode=OneWayToSource}">
 
@@ -267,18 +266,19 @@
                                                     <ColumnDefinition Width="Auto" />
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Grid.Column="0" Text="{Binding PlayingText, Mode=OneWay}"
-                                                           Margin="0,0,5,0" MinWidth="15" />
+                                                           Margin="5,0,5,0" MinWidth="15" />
 
                                                 <TextBlock Grid.Column="1" Text="{Binding Name, Mode=OneWay}" />
 
                                                 <TextBlock Grid.Column="2"
                                                            Text="{Binding Length, StringFormat='{}{0:mm\\:ss}'}"
-                                                           Margin="5,0,0,0"
+                                                           Margin="5,0,5,0"
                                                            FontWeight="Bold"
                                                            Foreground="#aaaaaa" />
+
                                                 <Grid.ContextMenu>
                                                     <ContextMenu
-                                                        cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.Tag, 
+                                                        cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.Tag,
                                                 RelativeSource={RelativeSource Self}}">
                                                         <MenuItem Header="Remove Songs"
                                                                   cal:Message.Attach="RemoveTracks" />
@@ -308,7 +308,6 @@
                                   MaxWidth="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
 
             <Grid Column="1" Row="1">
                 <Grid.RowDefinitions>
@@ -357,7 +356,6 @@
                             Content="{Binding Path=LoopContent, Mode=OneWay}" />
                 </Grid>
 
-
                 <Grid Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -380,7 +378,6 @@
                                VerticalAlignment="Bottom"
                                Text="{Binding Path=TrackLengthSeconds, Mode=OneWay}" />
                 </Grid>
-
             </Grid>
 
             <!--Volume-->
@@ -391,7 +388,6 @@
                         Minimum="0" Maximum="1"
                         Value="{Binding Path=CurrentVolume, Mode=TwoWay}" />
             </Grid>
-
         </Grid>
     </Grid>
 </Window>

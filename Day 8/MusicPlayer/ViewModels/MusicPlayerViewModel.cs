@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using Caliburn.Micro;
 using JetBrains.Annotations;
 using LiteDB;
@@ -22,7 +24,6 @@ namespace MusicPlayer.ViewModels
 
         private readonly Random _r = new Random();
         private readonly UserModel _user;
-        private readonly IWindowManager manager = new WindowManager();
         private CancellationToken _ct;
         private double _currentPosition;
         private float _currentVolume = 1f;
@@ -86,6 +87,7 @@ namespace MusicPlayer.ViewModels
         public string CurrentPositionSeconds => PlayingTrack?.GetPositionInSeconds();
         public string TrackLengthSeconds => PlayingTrack?.GetLengthInSeconds();
 
+        [UsedImplicitly]
         public float CurrentVolume
         {
             get => _currentVolume;
@@ -157,12 +159,19 @@ namespace MusicPlayer.ViewModels
             }
         }
 
+        [UsedImplicitly]
         public void RemoveTracks()
         {
-            foreach (var track in SelectedPlaylist.Songs)
-                Console.WriteLine(track.IsSelected);
+            if (PlayingTrack.IsPlaying && PlayingTrack.IsSelected) StopTrack();
+            PlayingTrack.PlaybackStoppedType = TrackModel.PlaybackStoppedTypes.PlaybackStoppedByUser;
+            SelectedPlaylist.Songs =
+                new BindableCollection<TrackModel>(SelectedPlaylist.Songs.Where(track => !track.IsSelected));
+            NotifyOfPropertyChange(() => SelectedPlaylist);
+            UpdateDatabase();
+            UpdateDatabase();
         }
 
+        [UsedImplicitly]
         public void ToggleLoop()
         {
             LoopSetting = (LoopSettings) (((int) LoopSetting + 1) % Enum.GetValues(typeof(LoopSettings)).Length);
@@ -170,6 +179,7 @@ namespace MusicPlayer.ViewModels
             NotifyOfPropertyChange(() => CanNextTrack);
         }
 
+        [UsedImplicitly]
         public void ToggleShuffle()
         {
             IsShuffle = !IsShuffle;
@@ -177,6 +187,7 @@ namespace MusicPlayer.ViewModels
             NotifyOfPropertyChange(() => CanNextTrack);
         }
 
+        [UsedImplicitly]
         public void ChangeTrack()
         {
             if (SelectedTrack == PlayingTrack) return;
@@ -198,19 +209,24 @@ namespace MusicPlayer.ViewModels
             NotifyOfPropertyChange(() => CanPlayTrack);
         }
 
+        [UsedImplicitly]
         public void CreatePlaylist()
         {
             Playlists.Add(new PlaylistModel(null, "New Playlist"));
             UpdateDatabase();
         }
 
-        public void AddSong()
+        [UsedImplicitly]
+        public void AddTrack()
         {
             var fileDialog = new OpenFileDialog {Multiselect = true};
             fileDialog.ShowDialog();
-            SelectedPlaylist.AddSong(fileDialog.FileNames);
-            NotifyOfPropertyChange(() => SelectedPlaylist);
-            UpdateDatabase();
+            Task.Run(() =>
+            {
+                SelectedPlaylist.AddSong(fileDialog.FileNames);
+                NotifyOfPropertyChange(() => SelectedPlaylist);
+                UpdateDatabase();
+            });
         }
 
         public void UpdateDatabase()
@@ -304,6 +320,20 @@ namespace MusicPlayer.ViewModels
             StopTrack();
             PlayingTrack = songs[songPos - 1];
             PlayTrack();
+        }
+
+        [UsedImplicitly]
+        public void PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (!e.Handled)
+            {
+                e.Handled = true;
+                var eventArg = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta);
+                eventArg.RoutedEvent = UIElement.MouseWheelEvent;
+                eventArg.Source = sender;
+                var parent = ((Control) sender).Parent as UIElement;
+                parent.RaiseEvent(eventArg);
+            }
         }
 
         private async Task UpdateAudioAsync()

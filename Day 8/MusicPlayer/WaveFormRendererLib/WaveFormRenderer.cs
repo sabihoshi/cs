@@ -1,6 +1,6 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Drawing;
-using NAudio.Wave;
 
 namespace WaveFormRendererLib
 {
@@ -16,8 +16,8 @@ namespace WaveFormRendererLib
             using (var reader = new AudioFileReader(selectedFile))
             {
                 var bytesPerSample = reader.WaveFormat.BitsPerSample / 8;
-                var samples = reader.Length                          / bytesPerSample;
-                var samplesPerPixel = (int) (samples / settings.Width);
+                var samples = reader.Length / bytesPerSample;
+                var samplesPerPixel = (int)(samples / settings.Width);
                 var stepSize = settings.PixelsPerPeak + settings.SpacerPixels;
                 peakProvider.Init(reader, samplesPerPixel * stepSize);
                 return Render(peakProvider, settings);
@@ -36,8 +36,8 @@ namespace WaveFormRendererLib
             using (var backgroundBrush = settings.BackgroundBrush.Clone() as Brush)
             using (var topPeakPen = settings.TopPeakPen.Clone() as Pen)
             using (var bottomPeakPen = settings.BottomPeakPen.Clone() as Pen)
-                //using (var topSpacerPen = settings.TopSpacerPen.Clone() as Pen)
-                //using (var bottomSpacerPen = settings.BottomSpacerPen.Clone() as Pen)
+            //using (var topSpacerPen = settings.TopSpacerPen.Clone() as Pen)
+            //using (var bottomSpacerPen = settings.BottomSpacerPen.Clone() as Pen)
             {
                 g.FillRectangle(backgroundBrush, 0, 0, b.Width, b.Height);
                 var midPoint = settings.TopHeight;
@@ -59,7 +59,7 @@ namespace WaveFormRendererLib
 
                     for (var n = 0; n < settings.SpacerPixels; n++)
                     {
-                        // spacer bars are always the lower of the 
+                        // spacer bars are always the lower of the
                         var max = Math.Min(currentPeak.Max, nextPeak.Max);
                         var min = Math.Max(currentPeak.Min, nextPeak.Min);
 

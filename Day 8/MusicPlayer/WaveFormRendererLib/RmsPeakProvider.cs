@@ -21,7 +21,7 @@ namespace WaveFormRendererLib
                 var total = 0.0;
                 for (var y = 0; y < blockSize && x + y < samplesRead; y++)
                     total += ReadBuffer[x + y] * ReadBuffer[x + y];
-                var rms = (float) Math.Sqrt(total / blockSize);
+                var rms = (float)Math.Sqrt(total / blockSize);
 
                 max = Math.Max(max, rms);
             }
