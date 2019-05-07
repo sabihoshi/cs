@@ -231,7 +231,8 @@ namespace MusicPlayer.ViewModels
 
         public void UpdateDatabase()
         {
-            using (var dt = new LiteDatabase(@"MyData.db"))
+            using (var dt = new LiteDatabase(
+                $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Kao/UserData.db"))
             {
                 var users = dt.GetCollection<UserModel>("Users");
                 users.Update(_user);

@@ -1,5 +1,5 @@
-﻿using NAudio.Wave;
-using System;
+﻿using System;
+using NAudio.Wave;
 
 namespace WaveFormRendererLib
 {
@@ -24,7 +24,7 @@ namespace WaveFormRendererLib
             var peak = sourceProvider.GetNextPeak();
             var decibelMax = 20 * Math.Log10(peak.Max);
             if (decibelMax < 0 - dynamicRange) decibelMax = 0 - dynamicRange;
-            var linear = (float)((dynamicRange + decibelMax) / dynamicRange);
+            var linear = (float) ((dynamicRange + decibelMax) / dynamicRange);
             return new PeakInfo(0 - linear, linear);
         }
     }

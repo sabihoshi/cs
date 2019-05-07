@@ -1,7 +1,7 @@
-﻿using Caliburn.Micro;
-using LiteDB;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Caliburn.Micro;
 
 namespace MusicPlayer.Models
 {
@@ -32,24 +32,24 @@ namespace MusicPlayer.Models
             Name = name;
         }
 
-        public PlaylistModel()
-        {
-        }
+        public PlaylistModel() { }
 
         public int Id { get; set; }
         public string Name { get; set; }
 
         public string ImagePath
         {
-            get => File.Exists(_imagePath) ? _imagePath : Path.GetFullPath("../../Images/Albums/placeholder.jpg");
+            get => File.Exists(_imagePath)
+                ? _imagePath
+                : Path.GetFullPath(
+                    $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Kao/Resources/placeholder.jpg")
+            ;
             set
             {
                 _imagePath = value;
                 NotifyOfPropertyChange(() => ImagePath);
             }
         }
-
-        [BsonIgnore] public string DefaultImage => "../../Images/Albums/placeholder.jpg";
 
         public BindableCollection<TrackModel> Songs { get; set; } = new BindableCollection<TrackModel>();
     }

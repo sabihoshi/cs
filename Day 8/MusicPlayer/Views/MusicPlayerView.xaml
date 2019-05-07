@@ -232,7 +232,6 @@
                                      x:Name="SelectedPlaylist_Songs"
                                      BorderBrush="{x:Null}"
                                      Margin="10"
-                                     ScrollViewer.CanContentScroll="False"
                                      HorizontalAlignment="Stretch"
                                      IsSynchronizedWithCurrentItem="True"
                                      cal:Message.Attach="[Event MouseDoubleClick] = [Action ChangeTrack];

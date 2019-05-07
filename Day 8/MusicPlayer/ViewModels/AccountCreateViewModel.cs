@@ -1,7 +1,9 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using System.IO;
+using System.Windows;
+using Caliburn.Micro;
 using LiteDB;
 using MusicPlayer.Models;
-using System.Windows;
 
 namespace MusicPlayer.ViewModels
 {
@@ -20,7 +22,9 @@ namespace MusicPlayer.ViewModels
 
         public void CreateAccount()
         {
-            using (var dt = new LiteDatabase(@"MyData.db"))
+            var dataFolder = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Kao";
+            if (!Directory.Exists(dataFolder)) Directory.CreateDirectory(dataFolder);
+            using (var dt = new LiteDatabase($@"{dataFolder}/UserData.db"))
             {
                 var users = dt.GetCollection<UserModel>("Users");
                 if (users.FindOne(user => user.Username == Username) != null)

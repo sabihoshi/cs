@@ -1,4 +1,6 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using Caliburn.Micro;
+using JetBrains.Annotations;
 
 namespace MusicPlayer.ViewModels
 {
@@ -13,6 +15,10 @@ namespace MusicPlayer.ViewModels
             _accountCreate = new AccountCreateViewModel(this);
             LoadAccountLogin();
         }
+
+        [UsedImplicitly]
+        public string Logo { get; } =
+            $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Kao/Resources/canvas_full_logo.png";
 
         public void LoadAccountCreation()
         {

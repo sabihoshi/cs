@@ -28,7 +28,7 @@
             </Grid.RowDefinitions>
             <Image Grid.Column="1" Grid.Row="1"
                    RenderOptions.BitmapScalingMode="Fant"
-                   Source="C:\Users\Kao\Downloads\General\canvas_full_logo.png" />
+                   Source="{Binding Path=Logo, Mode=OneWay}" />
         </Grid>
 
         <!--Main UI-->

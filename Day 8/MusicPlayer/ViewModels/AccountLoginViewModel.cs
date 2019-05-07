@@ -1,7 +1,8 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using System.Windows;
+using Caliburn.Micro;
 using LiteDB;
 using MusicPlayer.Models;
-using System.Windows;
 
 namespace MusicPlayer.ViewModels
 {
@@ -27,7 +28,8 @@ namespace MusicPlayer.ViewModels
         public void LoginUser()
         {
             UserModel user;
-            using (var dt = new LiteDatabase(@"MyData.db"))
+            using (var dt = new LiteDatabase(
+                $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Kao/UserData.db"))
             {
                 var users = dt.GetCollection<UserModel>("Users");
                 user = users.FindOne(u => u.Username == Username);

@@ -1,9 +1,9 @@
-﻿using Caliburn.Micro;
-using LiteDB;
-using NAudio.Wave;
-using System;
+﻿using System;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
+using Caliburn.Micro;
+using LiteDB;
+using NAudio.Wave;
 using TagLib;
 using WaveFormRendererLib;
 using PathIO = System.IO.Path;
@@ -23,13 +23,9 @@ namespace MusicPlayer.Models
             Path = path;
         }
 
-        public TrackModel()
-        {
-        }
+        public TrackModel() { }
 
-        public TrackModel(string path) : this(path, File.Create(path).Tag.Title)
-        {
-        }
+        public TrackModel(string path) : this(path, File.Create(path).Tag.Title) { }
 
         [BsonIgnore] public PlaybackStoppedTypes PlaybackStoppedType { get; set; }
         [BsonIgnore] public TimeSpan Length => TrackExists ? File.Create(Path).Properties.Duration : new TimeSpan();
@@ -41,7 +37,7 @@ namespace MusicPlayer.Models
         [BsonIgnore] public PlaybackState PlaybackState => Output?.PlaybackState ?? PlaybackState.Stopped;
         [BsonIgnore] public string PlayingText => IsPlaying ? "▶" : "";
         [BsonIgnore] public double GetPosition => AudioFileReader?.CurrentTime.TotalSeconds ?? 0;
-        [BsonIgnore] public bool IsReady => Output != null;
+        [BsonIgnore] public bool IsReady => Output                  != null;
         [BsonIgnore] public bool IsPlaying => Output?.PlaybackState == PlaybackState.Playing;
         [BsonIgnore] private AudioFileReader AudioFileReader { get; set; }
         [BsonIgnore] private DirectSoundOut Output { get; set; }
@@ -94,9 +90,9 @@ namespace MusicPlayer.Models
         {
             if (!IsValid(Path)) return;
             _ = RenderAudioAsync(Path);
-            AudioFileReader = new AudioFileReader(Path) { Volume = volume };
+            AudioFileReader = new AudioFileReader(Path) {Volume = volume};
             Output = new DirectSoundOut(200);
-            var wc = new WaveChannel32(AudioFileReader) { PadWithZeroes = false };
+            var wc = new WaveChannel32(AudioFileReader) {PadWithZeroes = false};
             Output.Init(wc);
         }
 
