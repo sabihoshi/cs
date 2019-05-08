@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MusicPlayer.Views"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d"
-             Background="#C4382C">
+             Background="#410082">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />

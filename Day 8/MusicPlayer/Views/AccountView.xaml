@@ -15,7 +15,7 @@
 
         <!--Logo-->
         <Grid Column="0"
-              Background="#E63C2D">
+              Background="#1E0730">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="4*" />
