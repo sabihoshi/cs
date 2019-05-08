@@ -393,7 +393,7 @@
             </Grid>
 
             <!--Volume-->
-            <Grid Column="2" Row="1" Margin="20,0,20,0">
+            <Grid Column="2" Row="1" Margin="20" VerticalAlignment="Bottom">
                 <Slider MaxWidth="150"
                         IsMoveToPointEnabled="True"
                         VerticalAlignment="Bottom"
