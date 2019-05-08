@@ -29,6 +29,8 @@ namespace MusicPlayer.ViewModels
         private float _currentVolume = 1f;
         private CancellationTokenSource _playbackStoppedToken;
         private PlaylistModel _playingPlaylist;
+        private TrackModel _playingTrack;
+
         private BindableCollection<PlaylistModel> _playlists;
         private PlaylistModel _selectedPlaylist;
         private TrackModel _selectedTrack;
@@ -40,7 +42,34 @@ namespace MusicPlayer.ViewModels
             Playlists = _user.Playlists;
         }
 
-        public TrackModel PlayingTrack { get; set; }
+        public PlaylistModel PlayingPlaylist
+        {
+            get => _playingPlaylist;
+            set
+            {
+                if (Equals(value, _playingPlaylist)) return;
+                _playingPlaylist = value;
+                NotifyOfPropertyChange(() => PlayingPlaylist);
+            }
+        }
+
+        public TrackModel PlayingTrack
+        {
+            get => _playingTrack;
+            set
+            {
+                if (Equals(value, _playingTrack)) return;
+                _playingTrack = value;
+                NotifyOfPropertyChange(() => PlayingTrack);
+                NotifyOfPropertyChange(() => CurrentPositionSeconds);
+                NotifyOfPropertyChange(() => TrackLengthSeconds);
+                NotifyOfPropertyChange(() => PlayContent);
+                NotifyOfPropertyChange(() => CanPlayTrack);
+                NotifyOfPropertyChange(() => CanNextTrack);
+                NotifyOfPropertyChange(() => CanPreviousTrack);
+            }
+        }
+
         public bool IsShuffle { get; set; } = true;
         public LoopSettings LoopSetting { get; set; } = LoopSettings.None;
 
@@ -115,7 +144,7 @@ namespace MusicPlayer.ViewModels
             set
             {
                 _selectedPlaylist = value;
-                if (SelectedPlaylist == _playingPlaylist)
+                if (SelectedPlaylist == PlayingPlaylist)
                 {
                     SelectedTrack = PlayingTrack;
                     NotifyOfPropertyChange(() => SelectedTrack);
@@ -142,10 +171,10 @@ namespace MusicPlayer.ViewModels
         {
             get
             {
-                if (_playingPlaylist == null) return false;
-                if (PlayingTrack     == null) return false;
+                if (PlayingPlaylist == null) return false;
+                if (PlayingTrack    == null) return false;
                 if (LoopSetting == LoopSettings.All || IsShuffle) return true;
-                return PlayingTrack != _playingPlaylist.Songs.Last();
+                return PlayingTrack != PlayingPlaylist.Songs.Last();
             }
         }
 
@@ -153,9 +182,9 @@ namespace MusicPlayer.ViewModels
         {
             get
             {
-                if (_playingPlaylist == null) return false;
-                if (PlayingTrack     == null) return false;
-                return PlayingTrack  != _playingPlaylist.Songs.First();
+                if (PlayingPlaylist == null) return false;
+                if (PlayingTrack    == null) return false;
+                return PlayingTrack != PlayingPlaylist.Songs.First();
             }
         }
 
@@ -197,7 +226,7 @@ namespace MusicPlayer.ViewModels
                 StopTrack();
             }
 
-            _playingPlaylist = SelectedPlaylist;
+            PlayingPlaylist = SelectedPlaylist;
             PlayingTrack = SelectedTrack;
             PlayTrack();
         }
@@ -232,7 +261,7 @@ namespace MusicPlayer.ViewModels
         [UsedImplicitly]
         public void RemovePlaylist()
         {
-            if (SelectedPlaylist == _playingPlaylist)
+            if (SelectedPlaylist == PlayingPlaylist)
                 StopTrack();
             Playlists.Remove(SelectedPlaylist);
             UpdateDatabase();
@@ -313,9 +342,9 @@ namespace MusicPlayer.ViewModels
 
         public void NextTrack()
         {
-            var songs = _playingPlaylist.Songs;
+            var songs = PlayingPlaylist.Songs;
             var nextSong = IsShuffle
-                ? _r.Next(_playingPlaylist.Songs.Count)
+                ? _r.Next(PlayingPlaylist.Songs.Count)
                 : (songs.IndexOf(PlayingTrack) + 1) % songs.Count;
             StopTrack();
             PlayingTrack = songs[nextSong];
@@ -325,7 +354,7 @@ namespace MusicPlayer.ViewModels
         [UsedImplicitly]
         public void PreviousTrack()
         {
-            var songs = _playingPlaylist.Songs;
+            var songs = PlayingPlaylist.Songs;
             var songPos = songs.IndexOf(PlayingTrack);
             StopTrack();
             PlayingTrack = songs[songPos - 1];
@@ -363,7 +392,7 @@ namespace MusicPlayer.ViewModels
             NotifyOfPropertyChange(() => CanPlayTrack);
             if (PlayingTrack.PlaybackStoppedType == TrackModel.PlaybackStoppedTypes.PlaybackEnded)
             {
-                var songs = _playingPlaylist.Songs;
+                var songs = PlayingPlaylist.Songs;
                 switch (LoopSetting)
                 {
                     case LoopSettings.None:
