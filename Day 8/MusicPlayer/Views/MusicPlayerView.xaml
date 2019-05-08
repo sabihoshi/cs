@@ -306,7 +306,7 @@
             </Grid.ColumnDefinitions>
 
             <!--Playing song info-->
-            <Grid Column="0" Row="1">
+            <Grid Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -322,7 +322,7 @@
                            TextWrapping="Wrap" />
             </Grid>
 
-            <Grid Column="1" Row="1" Margin="5">
+            <Grid Column="1" Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
