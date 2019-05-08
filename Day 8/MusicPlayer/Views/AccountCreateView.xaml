@@ -86,6 +86,10 @@
             <Button Grid.Column="1"
                     x:Name="CreateAccount" Content="Create account"
                     HorizontalAlignment="Right" />
+
+            <Button Grid.Column="0"
+                    x:Name="CancelAccount" Content="Go back"
+                    HorizontalAlignment="Left" />
         </Grid>
     </Grid>
 </UserControl>

@@ -18,7 +18,7 @@ namespace MusicPlayer.ViewModels
 
         [UsedImplicitly]
         public string Logo { get; } =
-            $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Kao/Resources/canvas_full_logo.png";
+            $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Kao/Resources/logo.png";
 
         public void LoadAccountCreation()
         {

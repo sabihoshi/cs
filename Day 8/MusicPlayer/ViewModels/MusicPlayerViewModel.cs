@@ -229,6 +229,15 @@ namespace MusicPlayer.ViewModels
             });
         }
 
+        [UsedImplicitly]
+        public void RemovePlaylist()
+        {
+            if (SelectedPlaylist == _playingPlaylist)
+                StopTrack();
+            Playlists.Remove(SelectedPlaylist);
+            UpdateDatabase();
+        }
+
         public void UpdateDatabase()
         {
             using (var dt = new LiteDatabase(

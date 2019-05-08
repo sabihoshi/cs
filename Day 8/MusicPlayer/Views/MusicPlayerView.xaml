@@ -76,6 +76,8 @@
                                                   cal:Message.Attach="CreatePlaylist" />
                                         <MenuItem Header="Add a song..."
                                                   cal:Message.Attach="AddTrack" />
+                                        <MenuItem Header="Delete playlist"
+                                                  cal:Message.Attach="RemovePlaylist" />
                                     </ContextMenu>
                                 </Image.ContextMenu>
                             </Image>

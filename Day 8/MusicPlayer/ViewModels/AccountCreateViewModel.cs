@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using Caliburn.Micro;
+using JetBrains.Annotations;
 using LiteDB;
 using MusicPlayer.Models;
 
@@ -20,6 +21,13 @@ namespace MusicPlayer.ViewModels
         public string Password1 { get; set; }
         public string Password2 { get; set; }
 
+        [UsedImplicitly]
+        public void CancelAccount()
+        {
+            _context.LoadAccountLogin();
+        }
+
+        [UsedImplicitly]
         public void CreateAccount()
         {
             var dataFolder = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Kao";
