@@ -1,25 +1,26 @@
-﻿using Caliburn.Micro;
-using JetBrains.Annotations;
-using PropertyChanged;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Threading;
+using Caliburn.Micro;
+using JetBrains.Annotations;
+using PropertyChanged;
 
 namespace Counter.ViewModels
 {
     public class MainWindowViewModel : Screen, INotifyPropertyChanged
     {
         private string _hours;
+        private string _minutes;
+        private string _seconds;
         private TimeSpan _time;
         private DispatcherTimer _timer;
 
         public Stopwatch Timer = new Stopwatch();
-        private string _minutes;
-        private string _seconds;
 
         public int Score1 { get; set; }
         public int Score2 { get; set; }
@@ -73,12 +74,42 @@ namespace Counter.ViewModels
         }
 
         public TimeSpan TimeLeft { get; set; } = new TimeSpan(0);
-        [UsedImplicitly] public void ResetTeam1() => Score1 = 0;
-        [UsedImplicitly] public void ResetTeam2() => Score2 = 0;
-        [UsedImplicitly] public void AddScoreTeam1() => Score1++;
-        [UsedImplicitly] public void AddScoreTeam2() => Score2++;
-        [UsedImplicitly] public void RemoveScoreTeam1() => Score1--;
-        [UsedImplicitly] public void RemoveScoreTeam2() => Score2--;
+
+        [UsedImplicitly]
+        public void ResetTeam1()
+        {
+            Score1 = 0;
+        }
+
+        [UsedImplicitly]
+        public void ResetTeam2()
+        {
+            Score2 = 0;
+        }
+
+        [UsedImplicitly]
+        public void AddScoreTeam1()
+        {
+            Score1++;
+        }
+
+        [UsedImplicitly]
+        public void AddScoreTeam2()
+        {
+            Score2++;
+        }
+
+        [UsedImplicitly]
+        public void RemoveScoreTeam1()
+        {
+            Score1--;
+        }
+
+        [UsedImplicitly]
+        public void RemoveScoreTeam2()
+        {
+            Score2--;
+        }
 
         [UsedImplicitly]
         public void FilePreviewDragEnter(DragEventArgs e)
@@ -107,14 +138,14 @@ namespace Counter.ViewModels
         [UsedImplicitly]
         public void ChangeImage1(DragEventArgs e)
         {
-            var fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            var fileList = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
             if (fileList != null) Image1 = fileList.FirstOrDefault();
         }
 
         [UsedImplicitly]
         public void ChangeImage2(DragEventArgs e)
         {
-            var fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            var fileList = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
             if (fileList != null) Image2 = fileList.FirstOrDefault();
         }
 
@@ -135,6 +166,13 @@ namespace Counter.ViewModels
             TimeLeft = new TimeSpan(0);
         }
 
+        private MediaPlayer mediaPlayer = new MediaPlayer();   
+        public void TimerHorn()
+        {
+            mediaPlayer.Open(new Uri($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\CIIT\Buzzer.wav"));
+            mediaPlayer.Play();
+        }
+
         [UsedImplicitly]
         public void StartTimer()
         {
@@ -144,7 +182,12 @@ namespace Counter.ViewModels
                 DispatcherPriority.Normal, delegate
                 {
                     TimeLeft = _time;
-                    if (_time == TimeSpan.Zero) _timer.Stop();
+                    if (_time == TimeSpan.Zero)
+                    {
+                        TimerHorn();
+                        _timer.Stop();
+                    }
+
                     _time = _time.Add(TimeSpan.FromSeconds(-1));
                 }, Application.Current.Dispatcher);
 
