@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -20,19 +19,13 @@ namespace Counter.ViewModels
         private TimeSpan _time;
         private DispatcherTimer _timer;
 
-        public Stopwatch Timer = new Stopwatch();
+        private readonly MediaPlayer mediaPlayer = new MediaPlayer();
 
-        public int Score1 { get; set; }
-        public int Score2 { get; set; }
-
-        public string Image1 { get; set; } = Path.GetFullPath(@"../../Images/placeholder.png");
-        public string Image2 { get; set; } = Path.GetFullPath(@"../../Images/placeholder.png");
+        [UsedImplicitly] public TeamViewModel Team => new TeamViewModel();
 
         [UsedImplicitly] public bool CanHours => _timer?.IsEnabled   ?? false;
         [UsedImplicitly] public bool CanMinutes => _timer?.IsEnabled ?? false;
         [UsedImplicitly] public bool CanSeconds => _timer?.IsEnabled ?? false;
-        [UsedImplicitly] public bool CanRemoveScoreTeam1 => Score1 > 0;
-        [UsedImplicitly] public bool CanRemoveScoreTeam2 => Score2 > 0;
 
         [UsedImplicitly]
         [AlsoNotifyFor(nameof(TimeLeft))]
@@ -76,42 +69,6 @@ namespace Counter.ViewModels
         public TimeSpan TimeLeft { get; set; } = new TimeSpan(0);
 
         [UsedImplicitly]
-        public void ResetTeam1()
-        {
-            Score1 = 0;
-        }
-
-        [UsedImplicitly]
-        public void ResetTeam2()
-        {
-            Score2 = 0;
-        }
-
-        [UsedImplicitly]
-        public void AddScoreTeam1()
-        {
-            Score1++;
-        }
-
-        [UsedImplicitly]
-        public void AddScoreTeam2()
-        {
-            Score2++;
-        }
-
-        [UsedImplicitly]
-        public void RemoveScoreTeam1()
-        {
-            Score1--;
-        }
-
-        [UsedImplicitly]
-        public void RemoveScoreTeam2()
-        {
-            Score2--;
-        }
-
-        [UsedImplicitly]
         public void FilePreviewDragEnter(DragEventArgs e)
         {
             var dropEnabled = true;
@@ -136,20 +93,6 @@ namespace Counter.ViewModels
         }
 
         [UsedImplicitly]
-        public void ChangeImage1(DragEventArgs e)
-        {
-            var fileList = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
-            if (fileList != null) Image1 = fileList.FirstOrDefault();
-        }
-
-        [UsedImplicitly]
-        public void ChangeImage2(DragEventArgs e)
-        {
-            var fileList = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
-            if (fileList != null) Image2 = fileList.FirstOrDefault();
-        }
-
-        [UsedImplicitly]
         public void PauseTimer()
         {
             _timer.Stop();
@@ -166,10 +109,10 @@ namespace Counter.ViewModels
             TimeLeft = new TimeSpan(0);
         }
 
-        private MediaPlayer mediaPlayer = new MediaPlayer();   
         public void TimerHorn()
         {
-            mediaPlayer.Open(new Uri($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\CIIT\Buzzer.wav"));
+            mediaPlayer.Open(
+                new Uri($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\CIIT\Buzzer.wav"));
             mediaPlayer.Play();
         }
 
