@@ -19,7 +19,7 @@ namespace Counter.ViewModels
         private TimeSpan _time;
         private DispatcherTimer _timer;
 
-        private readonly MediaPlayer mediaPlayer = new MediaPlayer();
+        private readonly MediaPlayer _mediaPlayer = new MediaPlayer();
 
         [UsedImplicitly] public TeamViewModel Team => new TeamViewModel();
 
@@ -27,8 +27,7 @@ namespace Counter.ViewModels
         [UsedImplicitly] public bool CanMinutes => _timer?.IsEnabled ?? false;
         [UsedImplicitly] public bool CanSeconds => _timer?.IsEnabled ?? false;
 
-        [UsedImplicitly]
-        [AlsoNotifyFor(nameof(TimeLeft))]
+        [UsedImplicitly, AlsoNotifyFor(nameof(TimeLeft))]
         public string Hours
         {
             get => TimeLeft.ToString("hh");
@@ -40,8 +39,7 @@ namespace Counter.ViewModels
             }
         }
 
-        [UsedImplicitly]
-        [AlsoNotifyFor(nameof(TimeLeft))]
+        [UsedImplicitly, AlsoNotifyFor(nameof(TimeLeft))]
         public string Minutes
         {
             get => TimeLeft.ToString("mm");
@@ -53,8 +51,7 @@ namespace Counter.ViewModels
             }
         }
 
-        [UsedImplicitly]
-        [AlsoNotifyFor(nameof(TimeLeft))]
+        [UsedImplicitly, AlsoNotifyFor(nameof(TimeLeft))]
         public string Seconds
         {
             get => TimeLeft.ToString("ss");
@@ -111,9 +108,9 @@ namespace Counter.ViewModels
 
         public void TimerHorn()
         {
-            mediaPlayer.Open(
+            _mediaPlayer.Open(
                 new Uri($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\CIIT\Buzzer.wav"));
-            mediaPlayer.Play();
+            _mediaPlayer.Play();
         }
 
         [UsedImplicitly]
