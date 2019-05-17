@@ -1,29 +1,68 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using FodyMVVM.Annotations;
 using FodyMVVM.Classes;
 
 namespace FodyMVVM.ViewModels
 {
     public class MainWindowViewModel : RelayCommand, INotifyPropertyChanged
     {
+        private bool _canShowMessage;
+        private string _greeting;
+        private ICommand _showMessageCommand;
+
         public MainWindowViewModel()
         {
-            TestClick = new RelayCommand(ShowMessage, o => CanExecute);
+            ShowMessageCommand = new RelayCommand(ShowMessage, o => CanShowMessage);
             Greeting = "Hi";
         }
 
-        public ICommand TestClick { get; set; }
+        public ICommand ShowMessageCommand
+        {
+            get => _showMessageCommand;
+            set
+            {
+                if (Equals(value, _showMessageCommand)) return;
+                _showMessageCommand = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public bool CanExecute { get; set; } = true;
+        public bool CanShowMessage
+        {
+            get => _canShowMessage;
+            set
+            {
+                if (value == _canShowMessage) return;
+                _canShowMessage = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string Greeting { get; set; }
+        public string Greeting
+        {
+            get => _greeting;
+            set
+            {
+                if (value == _greeting) return;
+                CanShowMessage = !string.IsNullOrEmpty(Greeting);
+                OnPropertyChanged();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void ShowMessage(object o)
         {
-            MessageBox.Show("Hi");
+            MessageBox.Show(Greeting);
+        }
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

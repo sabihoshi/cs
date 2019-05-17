@@ -1,0 +1,32 @@
+﻿<Window x:Class="VChan.Views.PlayerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VChan.Views"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:models="clr-namespace:VChan.Models"
+        mc:Ignorable="d"
+        Title="PlayerView" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox x:Name="Playlists"
+                 SelectedItem="{Binding Path=SelectedPlaylist, Mode=OneWayToSource}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:PlaylistModel}">
+                    <Image Source="{Binding Image}"
+                           MaxWidth="100"
+                           RenderOptions.BitmapScalingMode="Fant"
+                           Stretch="Uniform" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox Grid.Column="1" x:Name="SelectedPlaylist_Songs">
+        </ListBox>
+    </Grid>
+</Window>

@@ -71,7 +71,7 @@ namespace MusicPlayer.Models
                 AudioFileReader.Dispose();
                 AudioFileReader = null;
             }
-
+            
             NotifyOfPropertyChange(() => PlayingText);
         }
 
