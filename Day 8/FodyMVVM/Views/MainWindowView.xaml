@@ -32,6 +32,7 @@
         <Label Grid.Column="1" Grid.Row="0"
                MinWidth="10" Margin="{Binding Path=Margin, ElementName=TheTextBox}"
            Content="{Binding Path=Greeting, Mode=TwoWay}" />
+
         <Button Grid.Column="2" Grid.Row="0"
                 Content="Test Click"
                 Command="{Binding Path=ShowMessageCommand}"

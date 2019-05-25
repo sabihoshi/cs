@@ -47,6 +47,7 @@ namespace FodyMVVM.ViewModels
             set
             {
                 if (value == _greeting) return;
+                _greeting = value;
                 CanShowMessage = !string.IsNullOrEmpty(Greeting);
                 OnPropertyChanged();
             }
