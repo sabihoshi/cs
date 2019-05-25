@@ -22,7 +22,5 @@ namespace VChan.Models
         public string Image { get; set; }
 
         public List<AudioViewModel> Songs { get; } = new List<AudioViewModel>();
-
-
     }
 }

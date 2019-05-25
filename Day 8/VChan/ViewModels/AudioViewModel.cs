@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Caliburn.Micro;
 using VChan.Annotations;
 using VChan.Models;
 
@@ -22,9 +23,8 @@ namespace VChan.ViewModels
             Song = new AudioModel(path);
         }
         public bool IsPlaying { get; set; }
-
+        public bool IsSelected { get; set; }
         public AudioModel Song { get; }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

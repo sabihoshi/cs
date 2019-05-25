@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:VChan.Views"
              xmlns:models="clr-namespace:VChan.ViewModels"
              mc:Ignorable="d" >
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
     <Border>
         <Grid Background="Red">
             <Grid.ColumnDefinitions>
@@ -15,7 +18,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" 
-                       Text="▶" Visibility="Visible" />
+                       Text="▶" Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <TextBlock Grid.Column="1" 
                        Text="{Binding Song.Title, Mode=OneWay}" />
             <TextBlock Grid.Column="2" 
